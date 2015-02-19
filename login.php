@@ -38,7 +38,7 @@
 
 		})
 
-		    
+		
 	</script>
 </head>
 <body class="gradiante">
@@ -74,22 +74,36 @@
 		</section>
 		
 	</div>
+	<script>
+		function enviar(){
+			var user= $('#email').val();
+			var pass= $('#contrasena').val();
+			
+			if ((user=="") || (pass="")){
+				alert('Compruebe que ha introducido todos los datos');
+			}else{
+				formLoguin.submit();
+			}
+		}		
+	</script>
+	
 	<div id="sidebar" >
 		<div id="loguearse"  class="bloqueSombra bloqueBordesAzul">
 			 <h2>Acceso Usuarios</h2>
-			 <form name="formLoguin" class="loguin_form" method="POST" action="">
+			 <form name="formLoguin" class="loguin_form" method="POST" action="do.php">
+			 <input type="hidden" name="op" value="login">
 			 	<div>
-					<label for="login">Usuario</label>
-					<input type="text" name="login" value="" />
+					<label for="login">Email</label>
+					<input type="text" name="email" id="email" value="" />
 				</div>
 				<div >
 					<label for="password">Password</label>
-					<input type="password"  name="password" value="" />
+					<input type="password" name="contrasena" id="contrasena" value="" />
 				</div>
 				<div style="text-align:center;">
-					<!-- el type 'button'no envia datos al servidor. Solo son utiles si se utiliza javaScript -->
-					<input type="button"  name="" value="Iniciar Sesion" /> 
-					<!-- type="submit" el type 'submit' eniva datos al servidor -->
+					
+					<input type="button" value="Iniciar Sesion" onclick="enviar()"/> 
+					
 				</div>
 				<hr>
 				<p >

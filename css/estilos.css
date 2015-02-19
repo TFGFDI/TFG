@@ -218,3 +218,41 @@ a:hover, a:active{
 	background: linear-gradient(#D3D8E8,white);
 }
 
+#central{
+	width:980px;	
+}
+
+.menu{
+	width:980px;
+	text-align:center;
+	margin:0 auto;
+	padding: 10px;
+	
+}
+
+.menu ul {
+    
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.menu a {
+   
+    width: 6em;
+    text-decoration: none;
+    color: white;
+    background-color: #2B4068;
+    padding: 10px;
+    border-right: 1px solid white;
+}
+
+.menu a:hover {
+    background-color: darkblue;
+}
+
+.menu li {
+    display: inline;
+}
+
