@@ -107,7 +107,7 @@
 				</div>
 				<hr>
 				<p >
-					<a href="">Registrate</a>
+					<a href="registro.php">Registrate</a>
 				</p>
 				<p>
 					<a href="">¿No recuerda sus datos de acceso?</a>

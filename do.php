@@ -9,7 +9,7 @@ function getRequest() {
 
 	}
 
-		
+
 $dict = getRequest();
 $op = $dict['op'];
 session_start();
@@ -35,5 +35,14 @@ if($op=="login"){
 }else if($op=="salir"){
 	session_destroy();
 	header("Location: login.php");
+	
+}else if($op=="registro"){
+	$usuario= new clsUsuario();
+	$usuario->estableceCampos($dict);
+	$usuario->rol="C";
+	$usuario->activo="0";
+	$usuario->incluir();
+	
+	header("Location: login.php?registro=ok");
 }
 ?>

@@ -1,7 +1,11 @@
 @charset "utf-8";
+
+html{
+	height:100%;
+}
 body{
 	margin:0px;
-
+	height:100%;
 
 }
 #contenedor{
@@ -215,7 +219,10 @@ a:hover, a:active{
 	background: -moz-linear-gradient(#D3D8E8,white);
 	background: -webkit-linear-gradient(#D3D8E8,white);
 	background: -o-linear-gradient(#D3D8E8,white);
-	background: linear-gradient(#D3D8E8,white);
+	background: linear-gradient(#D3D8E8,white)!important;
+	/*background-image: url("../imagenes/1.jpg");*/
+	height:100%;
+   
 }
 
 #central{
