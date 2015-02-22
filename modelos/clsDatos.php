@@ -1,7 +1,7 @@
 <?php			
 class clsDatos{
 
-private $conexion; 
+public $conexion; 
 
 public function __construct(){
     $servidor="localhost";

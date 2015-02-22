@@ -41,12 +41,53 @@
 		
 	</script>
 </head>
+
+<?php 
+
+function getRequest() {
+
+		global $_GET,$_POST;
+		$dict=$_GET;
+		if (count($dict)==0) $dict = $_POST;
+		return $dict;
+
+	}
+
+
+$dict = getRequest();
+session_start();
+require_once("modelos/clsUtil.php"); 
+$util= new clsUtil();
+
+
+if(isset($dict['lang'])){
+	$lang=$dict['lang'];
+	$_SESSION['lang']=$lang;
+}else if (isset($_SESSION['lang'])){
+	$lang=$_SESSION['lang'];
+}else{
+	$lang='es';
+}
+
+$url=$util->getURL();
+
+?>
 <body class="gradiante">
 <div id="contenedor"> 
 	<header id="logo">
-		<a href="http://www.unizar.es/">
-			<img src="./imagenes/titulo.png" />
-		</a>
+		<div style="float:left">
+			<a href="http://www.unizar.es/">
+				<img src="./imagenes/titulo.png" />
+			</a>
+		</div>
+		<div style="float:right;margin-right:20px;">			
+			<a href="<?php echo $url?>?lang=es">
+				<img src="./imagenes/esp.gif" />
+			</a>
+			<a href="<?php echo $url?>?lang=en">
+				<img src="./imagenes/eng.gif" />
+			</a>
+		</div>
 	</header >
 	<div id="logo_inferior"  >
 		<a href="http://culm.unizar.es/">
@@ -89,7 +130,7 @@
 	
 	<div id="sidebar" >
 		<div id="loguearse"  class="bloqueSombra bloqueBordesAzul">
-			 <h2>Acceso Usuarios</h2>
+			 <h2><?php echo $util->trad("login",$lang);?></h2>
 			 <form name="formLoguin" class="loguin_form" method="POST" action="do.php">
 			 <input type="hidden" name="op" value="login">
 			 	<div>
@@ -102,15 +143,15 @@
 				</div>
 				<div style="text-align:center;">
 					
-					<input type="button" value="Iniciar Sesion" onclick="enviar()"/> 
+					<input type="button" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" onclick="enviar()"/> 
 					
 				</div>
 				<hr>
 				<p >
-					<a href="registro.php">Registrate</a>
+					<a href="registro.php"><?php echo $util->trad("registro",$lang);?></a>
 				</p>
 				<p>
-					<a href="">¿No recuerda sus datos de acceso?</a>
+					<a href=""><?php echo $util->trad("recordar",$lang);?></a>
 				</p>
 				
 			</form>
