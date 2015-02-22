@@ -28,6 +28,11 @@ public function filtro($sql){
 	return mysqli_fetch_assoc($resultado);
 }   
 
+public function filtroListado($sql){ 
+	$resultado = mysqli_query($this->conexion,$sql) or die(mysql_error());	
+	return $resultado;
+} 
+
 //Metodo para hacer INSERT,UPDATE y DELETE
 public function ejecutar($sql){ 
 mysqli_query($this->conexion,$sql) or die(mysql_error());

@@ -120,7 +120,18 @@ public function login($dict){
 		
 	
 }
-
+public function getEstudiantes($filtro){
+	$objDatos = new clsDatos();
+	if($filtro==""){
+		$sql= "SELECT * FROM usuarios WHERE rol='E'";
+	}else{
+		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$filtro."%') OR apellidos LIKE ('%".$filtro."%') OR nacionalidad LIKE ('%".$filtro."%') OR email LIKE ('%".$filtro."%'))";
+	}
+	
+	 $res = $objDatos->filtroListado($sql);
+	
+	 return $res;
+}
 
 }
 
