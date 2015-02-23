@@ -358,3 +358,8 @@ a:hover, a:active{
  .impar:hover{
 	background:#DCDCDC;;
  }
+ 
+ #central label{
+	color:#2B4068;
+	font-weight:bold;
+ }

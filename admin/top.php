@@ -53,8 +53,8 @@ function getRequest() {
 
 
 $dict = getRequest();
-session_start();
-require_once("modelos/clsUtil.php"); 
+
+require_once("../modelos/clsUtil.php"); 
 $util= new clsUtil();
 
 
@@ -79,7 +79,7 @@ $url=$util->getURL();
 			</a>
 		</div>
 		<div style="float:right;margin-right:20px;">
-			<span style="margin-right:15px"><a href="do.php?op=salir">Salir</a></span>
+			<span style="margin-right:15px"><a href="../do.php?op=salir">Salir</a></span>
 			<a href="http://www.unizar.es/">
 				<img src="../imagenes/esp.gif" />
 			</a>
