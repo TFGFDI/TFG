@@ -6,7 +6,8 @@ if (isset($_SESSION["id"])){
 header("Location: index.php");
 
 }
-require_once("top.php"); 
+require_once("clases.php");
+require_once("top.php");
 ?>
 <script>
 	function validarCampos(){
@@ -70,8 +71,20 @@ require_once("top.php");
 				</div>
 				<br>
 				<div >
-					<label for="nacionalidad">Nacionalidad</label>
-					<input type="text" name="nacionalidad" id="nacionalidad" value="" />
+					<label for="nacionalidad">Nacionalidad</label>					
+					<select name="nacionalidad" id="nacionalidad">
+					<?php 
+						$util=new ClsUtil();
+						$ar_nacionalidades= $util->getNacionalidades();
+						foreach($ar_nacionalidades as $nacionalidad){ ?>
+						
+						<option value="<?php echo $nacionalidad?>"><?php echo $nacionalidad?></option>
+					<?php
+						}
+					?>
+					
+						
+					</select>
 				</div>
 				<div >
 					<label for="fechanacimiento">Fecha Nacimiento</label>

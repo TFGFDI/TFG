@@ -133,6 +133,19 @@ public function getEstudiantes($filtro){
 	 return $res;
 }
 
+public function getProfesores($filtro){
+	$objDatos = new clsDatos();
+	if($filtro==""){
+		$sql= "SELECT * FROM usuarios WHERE rol='P'";
+	}else{
+		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$filtro."%') OR apellidos LIKE ('%".$filtro."%') OR nacionalidad LIKE ('%".$filtro."%') OR email LIKE ('%".$filtro."%'))";
+	}
+	
+	 $res = $objDatos->filtroListado($sql);
+	
+	 return $res;
+}
+
 }
 
 ?>

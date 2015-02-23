@@ -24,8 +24,13 @@ if($op=="login"){
 		$_SESSION['nombre'] = $usuario['nombre'];	
 		$_SESSION['apellidos'] = $usuario['apellidos'];
 		$_SESSION['id'] = $usuario['id'];		
-		$_SESSION['rol'] = $usuario['rol'];		
-		header("Location: index.php?login=ok");
+		$_SESSION['rol'] = $usuario['rol'];	
+		
+		if($usuario['rol']=='A'){
+			header("Location: admin/index.php?login=ok");
+		}else{
+			header("Location: index.php?login=ok");
+		}
 	}else{
 
 		$_SESSION['ERRORES'][] = "Error al hacer login, vuelva intentarlo";
@@ -39,7 +44,7 @@ if($op=="login"){
 }else if($op=="registro"){
 	$usuario= new clsUsuario();
 	$usuario->estableceCampos($dict);
-	$usuario->rol="C";
+	$usuario->rol="E";
 	$usuario->activo="0";
 	$usuario->incluir();
 	

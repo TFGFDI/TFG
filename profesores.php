@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once("modelos/clsUsuario.php");
+
 if (($_SESSION["id"]=="")){ 
 
 header("Location: login.php");
@@ -10,7 +10,7 @@ require_once("top.php");
 ?>
 
 	<div id="central">
-		<?php //require_once("menu_alumno.php");?>
+	
 	</div>
 	
 <?php
