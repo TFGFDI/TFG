@@ -53,6 +53,21 @@ function getRequest() {
 
 
 $dict = getRequest();
+session_start();
+require_once("modelos/clsUtil.php"); 
+$util= new clsUtil();
+
+
+if(isset($dict['lang'])){
+	$lang=$dict['lang'];
+	$_SESSION['lang']=$lang;
+}else if (isset($_SESSION['lang'])){
+	$lang=$_SESSION['lang'];
+}else{
+	$lang='es';
+}
+
+$url=$util->getURL();
 
 ?>
 <body class="gradiante">

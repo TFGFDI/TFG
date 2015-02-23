@@ -4,6 +4,7 @@ class ClsUtil {
 
 	
 public function trad($clave,$lang='es'){
+	//Obtiene el valor correspondiente a la clave e idioma dado para las traducciones
 	$datos = new clsDatos();
 	$conexion=$datos->conexion;
 	$sql = "SELECT valor FROM traducciones WHERE clave='$clave' AND lang='$lang'";
@@ -14,6 +15,7 @@ public function trad($clave,$lang='es'){
 }
 
 public function getURL(){
+	//Obtener la url actual SIN parámetros
 	$url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
 	$ar_url=explode('?',$url);
 	return $ar_url[0];
