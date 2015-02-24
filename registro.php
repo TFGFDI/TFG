@@ -9,8 +9,7 @@ header("Location: index.php");
 require_once("clases.php");
 require_once("top.php");
 ?>
-	<link rel="stylesheet" href="js/jquery-ui-1.11.3.custom/jquery-ui.css">  
-  <script src="js/jquery-ui-1.11.3.custom/jquery-ui.js"></script>
+  
  
 <script>
 	function validarCampos(){

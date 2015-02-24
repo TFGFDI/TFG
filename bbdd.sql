@@ -31,3 +31,24 @@ insert into `traducciones` (`clave`, `valor`, `lang`) values('recordar','¿No rec
 insert into `traducciones` (`clave`, `valor`, `lang`) values('recordar','Can\'t you access to your account?','en');
 insert into `traducciones` (`clave`, `valor`, `lang`) values('salir','Salir','es');
 insert into `traducciones` (`clave`, `valor`, `lang`) values('salir','Log Out','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('formulario_registro','Formulario de registro','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('formulario_registro','Registration Form','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('nombre','Nombre','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('nombre','Name','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('apellidos','Apellidos','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('apellidos','Surname','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('nacionalidad','Nacionalidad','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('nacionalidad','Nacionality','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('nacimiento','Fecha de Nacimiento','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('nacimiento','Date of Birth','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('sexo','Sexo','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('sexo','Gender','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('masculino','Masculino','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('masculino','Male','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('femenino','Femenino','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('femenino','Female','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('contrasena','Contrase&ntilde;a','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('contrasena','Password','en');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('repetir','Repetir Contrase&ntilde;a','es');
+insert into `traducciones` (`clave`, `valor`, `lang`) values('repetir','Repeat Password','en');
+

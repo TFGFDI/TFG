@@ -120,32 +120,44 @@ public function login($dict){
 		
 	
 }
-public function getEstudiantes($filtro){
+public function getEstudiantes($buscador,$filtro,$orden){
 	$objDatos = new clsDatos();
-	if($filtro==""){
+	if($buscador==""){
 		$sql= "SELECT * FROM usuarios WHERE rol='E'";
 	}else{
-		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$filtro."%') OR apellidos LIKE ('%".$filtro."%') OR nacionalidad LIKE ('%".$filtro."%') OR email LIKE ('%".$filtro."%'))";
+		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR nacionalidad LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
-	
+	if(($filtro!="")&&($orden!="")){
+		$sql=$sql." order by $filtro $orden";
+	}
 	 $res = $objDatos->filtroListado($sql);
 	
 	 return $res;
 }
 
-public function getProfesores($filtro){
+public function getProfesores($buscador,$filtro,$orden){
 	$objDatos = new clsDatos();
-	if($filtro==""){
+	if($buscador==""){
 		$sql= "SELECT * FROM usuarios WHERE rol='P'";
 	}else{
-		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$filtro."%') OR apellidos LIKE ('%".$filtro."%') OR nacionalidad LIKE ('%".$filtro."%') OR email LIKE ('%".$filtro."%'))";
+		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR nacionalidad LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
-	
+	if(($filtro!="")&&($orden!="")){
+		$sql=$sql." order by $filtro $orden";
+	}
 	 $res = $objDatos->filtroListado($sql);
 	
 	 return $res;
 }
 
+
+public function getUsuarioById(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT * FROM usuarios WHERE id='$this->id'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res;
+}
 }
 
 ?>

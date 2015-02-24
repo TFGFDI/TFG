@@ -12,6 +12,7 @@ function getRequest() {
 
 $dict = getRequest();
 $op = $dict['op'];
+var_dump($op);
 session_start();
 if($op=="login"){
 	$usuario= new clsUsuario();
@@ -49,5 +50,38 @@ if($op=="login"){
 	$usuario->incluir();
 	
 	header("Location: login.php?registro=ok");
+}else if($op=="activar"){
+	$usuario= new clsUsuario();
+	$usuario->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	$user = $usuario->getUsuarioById();
+	if($user['activo']=='1'){
+		$user['activo']='0';
+	}else{
+		$user['activo']='1';
+	}
+	$usuario->estableceCampos($user);//modificamos el campo activo a 1 ó 0 
+	$usuario->editar();
+	header("Location: admin/index.php");	
+	
+}else if($op=="eliminarUsuario"){
+	$usuario= new clsUsuario();
+	$usuario->estableceCampos($dict);
+	$usuario->eliminar();	
+
+	header("Location: admin/index.php");
+	
+}else if($op=="editarUsuario"){
+	$usuario= new clsUsuario();
+	$usuario->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	
+	$usuario->editar();
+	header("Location: admin/index.php");
+	
+}else if($op=="altaUsuario"){
+	$usuario= new clsUsuario();
+	$usuario->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	
+	$usuario->incluir();
+	header("Location: admin/index.php");
 }
 ?>

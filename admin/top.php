@@ -8,7 +8,8 @@
 <script type="text/javascript"  src="../js/jquery-1.8.1.min.js"></script>
 <link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
+<link rel="stylesheet" href="../js/jquery-ui-1.11.3.custom/jquery-ui.css">  
+<script src="../js/jquery-ui-1.11.3.custom/jquery-ui.js"></script>
 <!-- Optionally add helpers - button, thumbnail and/or media -->
 <link rel="stylesheet" href="../fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
 <script type="text/javascript" src="../fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
@@ -80,12 +81,7 @@ $url=$util->getURL();
 		</div>
 		<div style="float:right;margin-right:20px;">
 			<span style="margin-right:15px"><a href="../do.php?op=salir">Salir</a></span>
-			<a href="http://www.unizar.es/">
-				<img src="../imagenes/esp.gif" />
-			</a>
-			<a href="http://www.unizar.es/">
-				<img src="../imagenes/eng.gif" />
-			</a>
+			
 		</div>
 	</header >
 	<div id="logo_inferior"  >
