@@ -16,14 +16,36 @@ if (isset($dict['buscador'])){
 	$filtro="";
 }
 ?>
-<form name="buscador" method="get" action="index.php">
-	<input type="text" name="buscador" value="<?php echo $filtro?>">
+<script>
+	function eliminar(){
+		$('#buscador_input').val('');
+		$("#buscador").submit();
+	}
 	
-</form>
+</script>
 
-
-<input type="button" name="buscar" value="Buscar" onclick="buscador.submit()">
-	<div id="central">Gestion de alumnos
+<h2>Gestion de alumnos</h2>
+		<div style="margin-left:19.5%">
+			<div style="float:left">
+				<form name="buscador" method="get" action="index.php" id="buscador">
+					<input type="text" name="buscador" value="<?php echo $filtro?>" class="buscador" id="buscador_input">
+				
+				</form>
+			</div>
+			<div style="float:left">
+				<input type="button" name="buscar" value="Buscar" onclick="buscador.submit()">
+			</div>
+			<div style="float:left;margin-left:10px;">
+				<input type="button" name="limpiar" value="Limpiar" onclick="eliminar()" id="limpiar">
+			</div>
+			<div style="float:right;margin-right:24%;">
+				<input type="button" name="nuevo" value="Nuevo" onclick="alert('aa')">
+			</div>
+			</div>
+			<br><br>
+	<div id="central">
+		
+		
 		<div class="datagrid">
 			<table>
 				<thead>

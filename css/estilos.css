@@ -227,6 +227,9 @@ a:hover, a:active{
 
 #central{
 	width:980px;	
+	margin:0 auto;
+	text-align:center;
+	margin:10px 0 10px 0;
 }
 
 .menu{
@@ -277,6 +280,7 @@ a:hover, a:active{
 	-moz-border-radius: 3px; 
 	border-radius: 3px; 
 	text-align:center;
+	margin:0 auto;
 	
 }
  .datagrid table td, .datagrid table th { 
@@ -363,3 +367,7 @@ a:hover, a:active{
 	color:#2B4068;
 	font-weight:bold;
  }
+ 
+.buscador{
+	width:90%!important;
+}
