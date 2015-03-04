@@ -1,13 +1,16 @@
 @charset "utf-8";
 
 html{
-	height:100%;
+	height:100%;  
 }
 body{
 	margin:0px;
 	height:100%;
 
 }
+
+
+
 #contenedor{
 	margin: 0 auto;
 	width:980px;
@@ -40,9 +43,7 @@ footer{
 nav{
 	width:500px;
 	height: 30px;
-	padding-top:5px;
 
-	
 }
 nav ul {
 	margin: 0;
@@ -58,12 +59,9 @@ nav li {
 	width:130px;
 	margin:0 15px 0 0;
 	line-height:31px;  /* indica el alto de la caja de li */
-
-
-
 }
 
-nav li a {
+nav li a, nav li a:visited{
 	display:block;  /* para que el fondo y texto ocupe todo el bloque y no solo el texto*/
 	padding-bottom:5px;
 	background-color:#2B4068;
@@ -82,21 +80,18 @@ nav li a {
 	-o-box-shadow: 0.15em -0.3em 0.1em   silver;
 }
 
-nav li:hover  a {
+nav li.activo a, nav li:hover  a{
 	color:#2B4068;
 	background-color: #fff; 
-	border-bottom: 4px solid #fff;  
-
-	
+	border-bottom: 2px solid #fff;  
+	text-decoration: none;
+	opacity: 1;
+	font-weight: bold;
 }
 
-nav li.activo a {
-	color:#2B4068;
-	background-color: #fff; 
-	border-bottom: 4px solid #fff;
 
 
-}
+
 
 article {
 	/*border-top: gray solid 1px; */
@@ -118,11 +113,8 @@ a, a:visited{
 a:hover, a:active{
 	text-decoration: underline;
 	font-weight: bold;
-/*	color:#808080; */
 	opacity: .7;
-
 }
-
 
 
 #logo_inferior{
@@ -160,7 +152,6 @@ a:hover, a:active{
 
 #informacion{
 	height:300px;
-	margin-top:2px;
 	background-color:#fff;
 	/*border-top: 2px solid gray; */
 	margin-bottom: 0.5em;
@@ -214,22 +205,27 @@ a:hover, a:active{
 	-o-box-shadow: 0.3 0.3em 0.1em 0.05em silver;
 }
 
+.bloqueRedondo{
+	border-radius: 0.5em;
+}
+
 /* estable un fondo de pantalla*/
 .gradiante{
-	background: -moz-linear-gradient(#D3D8E8,white);
-	background: -webkit-linear-gradient(#D3D8E8,white);
-	background: -o-linear-gradient(#D3D8E8,white);
-	background: linear-gradient(#D3D8E8,white)!important;
+	background: -moz-linear-gradient(#D3D8E8,white) no-repeat;
+	background: -webkit-linear-gradient(#D3D8E8,white) no-repeat;
+	background: -o-linear-gradient(#D3D8E8,white) no-repeat;
+	background: linear-gradient(#D3D8E8,white)no-repeat !important ;
+
 	/*background-image: url("../imagenes/1.jpg");*/
-	height:100%;
+	/*height:100%; */
    
 }
 
 #central{
-	width:980px;	
-	margin:0 auto;
-	text-align:center;
-	margin:10px 0 10px 0;
+	width:900px;
+	height: 450px;	
+	margin:0px auto 20px auto;
+	
 }
 
 .menu{

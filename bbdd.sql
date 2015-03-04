@@ -1,54 +1,112 @@
-/*TABLAS*/
+-- phpMyAdmin SQL Dump
+-- version 3.4.3.1
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 03-03-2015 a las 20:44:10
+-- Versión del servidor: 5.5.13
+-- Versión de PHP: 5.3.6
 
-create table `usuarios` (
-	`id` int (11),
-	`nombre` varchar (765),
-	`apellidos` varchar (765),
-	`sexo` varchar (9),
-	`fechanacimiento` varchar (765),
-	`email` varchar (765),
-	`nacionalidad` varchar (765),
-	`contrasena` varchar (765),
-	`rol` varchar (3),
-	`activo` tinyint (1)
-); 
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-create table `traducciones` (
-	`id` int (11),
-	`clave` varchar (765),
-	`valor` varchar (765),
-	`lang` varchar (9)
-); 
 
-/*DATOS*/
-insert into `traducciones` (`clave`, `valor`, `lang`) values('login','Acceso Usuarios','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('login','Login','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('iniciar_sesion','Iniciar Sesion','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('iniciar_sesion','Log me in','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('registro','Registrate','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('registro','Sign in','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('recordar','�No recuerda sus datos de acceso?','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('recordar','Can\'t you access to your account?','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('salir','Salir','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('salir','Log Out','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('formulario_registro','Formulario de registro','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('formulario_registro','Registration Form','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('nombre','Nombre','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('nombre','Name','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('apellidos','Apellidos','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('apellidos','Surname','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('nacionalidad','Nacionalidad','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('nacionalidad','Nacionality','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('nacimiento','Fecha de Nacimiento','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('nacimiento','Date of Birth','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('sexo','Sexo','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('sexo','Gender','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('masculino','Masculino','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('masculino','Male','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('femenino','Femenino','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('femenino','Female','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('contrasena','Contrase&ntilde;a','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('contrasena','Password','en');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('repetir','Repetir Contrase&ntilde;a','es');
-insert into `traducciones` (`clave`, `valor`, `lang`) values('repetir','Repeat Password','en');
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
+--
+-- Base de datos: `tfg`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `traducciones`
+--
+
+CREATE TABLE IF NOT EXISTS `traducciones` (
+  `id` int(11) DEFAULT NULL,
+  `clave` varchar(255) DEFAULT NULL,
+  `valor` varchar(255) DEFAULT NULL,
+  `lang` varchar(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `traducciones`
+--
+
+INSERT INTO `traducciones` (`id`, `clave`, `valor`, `lang`) VALUES
+(NULL, 'login', 'Acceso Usuarios', 'es'),
+(NULL, 'login', 'Login', 'en'),
+(NULL, 'iniciar_sesion', 'Iniciar Sesion', 'es'),
+(NULL, 'iniciar_sesion', 'Log me in', 'en'),
+(NULL, 'registro', 'Registrate', 'es'),
+(NULL, 'registro', 'Sign in', 'en'),
+(NULL, 'recordar', '¿No recuerda sus datos de acceso?', 'es'),
+(NULL, 'recordar', 'Can''t you access to your account?', 'en'),
+(NULL, 'salir', 'Salir', 'es'),
+(NULL, 'salir', 'Log Out', 'en'),
+(NULL, 'formulario_registro', 'Formulario de registro', 'es'),
+(NULL, 'formulario_registro', 'Registration Form', 'en'),
+(NULL, 'nombre', 'Nombre', 'es'),
+(NULL, 'nombre', 'Name', 'en'),
+(NULL, 'apellidos', 'Apellidos', 'es'),
+(NULL, 'apellidos', 'Surname', 'en'),
+(NULL, 'nacionalidad', 'Nacionalidad', 'es'),
+(NULL, 'nacionalidad', 'Nacionality', 'en'),
+(NULL, 'nacimiento', 'Fecha Nacimiento', 'es'),
+(NULL, 'nacimiento', 'Date of Birth', 'en'),
+(NULL, 'sexo', 'Sexo', 'es'),
+(NULL, 'sexo', 'Gender', 'en'),
+(NULL, 'masculino', 'Masculino', 'es'),
+(NULL, 'masculino', 'Male', 'en'),
+(NULL, 'femenino', 'Femenino', 'es'),
+(NULL, 'femenino', 'Female', 'en'),
+(NULL, 'contrasena', 'Contrase&ntilde;a', 'es'),
+(NULL, 'contrasena', 'Password', 'en'),
+(NULL, 'repetir', 'Repetir Contrase&ntilde;a', 'es'),
+(NULL, 'repetir', 'Repeat Password', 'en'),
+(NULL, 'telefono', 'Tel&eacute;fono', 'es'),
+(NULL, 'cp', 'C&oacute;digo Postal', 'es'),
+(NULL, 'ciudad', 'Ciudad', 'es');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `nombre` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `apellidos` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `sexo` enum('F','M') CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `fechanacimiento` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `telefono` smallint(6) NOT NULL,
+  `direccion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `cp` smallint(6) NOT NULL,
+  `ciudad` varchar(255) CHARACTER SET utf32 COLLATE utf32_spanish2_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `nacionalidad` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `contrasena` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `rol` enum('A','P','E') CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `sexo`, `fechanacimiento`, `telefono`, `direccion`, `cp`, `ciudad`, `email`, `nacionalidad`, `contrasena`, `rol`, `activo`) VALUES
+(1, 'oliver', NULL, NULL, NULL, 0, '', 0, '', 'oli@gmail.com', NULL, '1', 'A', 1),
+(2, 'luis alfonso  jjjjjjjjjjjjkkkkkkkkkkkkkkh', 'perez', NULL, NULL, 0, '', 0, '', 'luijjjjjjjjjjjjjjjjjjs@gmail.com', NULL, '1', 'P', 1),
+(3, 'liza', 'almeida', NULL, NULL, 0, '', 0, '', 'liza@gmail.com', NULL, '1', 'E', 1),
+(4, 'berto', 'asdf', '', '0000-00-00', 0, '', 0, '', 'berto@gmail.com', '', '1', 'P', 0);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
