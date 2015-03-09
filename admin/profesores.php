@@ -219,7 +219,7 @@ if (isset($dict['orden'])){
 					$i++;
 					}?>
 				</tbody>
-				<?if(ceil($total/$totalPag)>1){?>
+				<?php if(ceil($total/$totalPag)>1){?>
 				<tfoot>
 				<tr>
 					<td colspan="7">	
@@ -235,7 +235,7 @@ if (isset($dict['orden'])){
 					</td>
 				</tr>
 				</tfoot>	
-				<?}?>
+				<?php }?>
 			</table>
 		</div>
 	</div>

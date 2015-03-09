@@ -120,45 +120,76 @@ public function login($dict){
 		
 	
 }
-public function getEstudiantes($buscador,$filtro,$orden){
+public function getEstudiantes($buscador,$activo,$nacionalidad,$filtro,$orden){
 	$objDatos = new clsDatos();
 	if($buscador==""){
 		$sql= "SELECT * FROM usuarios WHERE rol='E'";
 	}else{
-		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR nacionalidad LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
+		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
+	
+	if($activo=="on"){
+		$sql=$sql." AND activo=1 ";
+	}
+	
+	if($nacionalidad !=""){
+		$sql=$sql." AND nacionalidad='$nacionalidad' ";
+	}
+	
 	if(($filtro!="")&&($orden!="")){
 		$sql=$sql." order by $filtro $orden";
 	}
+	
+	
 	 $res = $objDatos->filtroListado($sql);
 	
 	 return $res;
 }
 
-public function getEstudiantesPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg){
+public function getEstudiantesPaginacion($buscador,$activo,$nacionalidad,$filtro,$orden,$itemsInicio,$numer_reg){
 	$objDatos = new clsDatos();
 	if($buscador==""){
 		$sql= "SELECT * FROM usuarios WHERE rol='E'";
 	}else{
-		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR nacionalidad LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
+		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
+	
+	if($activo=="on"){
+		$sql=$sql." AND activo=1 ";
+	}
+	
+	if($nacionalidad !=""){
+		$sql=$sql." AND nacionalidad='$nacionalidad' ";
+	}
+	
 	if(($filtro!="")&&($orden!="")){
 		$sql=$sql." order by $filtro $orden";
 	}
 	
 	$sql=$sql." LIMIT $itemsInicio,$numer_reg ";
+	
+	
 	 $res = $objDatos->filtroListado($sql);
 	
 	 return $res;
 }
 
-public function getProfesores($buscador,$filtro,$orden){
+public function getProfesores($buscador,$activo,$nacionalidad,$filtro,$orden){
 	$objDatos = new clsDatos();
 	if($buscador==""){
 		$sql= "SELECT * FROM usuarios WHERE rol='P'";
 	}else{
-		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR nacionalidad LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
+		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
+	
+	if($activo=="on"){
+		$sql=$sql." AND activo=1 ";
+	}
+	
+	if($nacionalidad !=""){
+		$sql=$sql." AND nacionalidad='$nacionalidad' ";
+	}
+	
 	if(($filtro!="")&&($orden!="")){
 		$sql=$sql." order by $filtro $orden";
 	}
@@ -167,13 +198,22 @@ public function getProfesores($buscador,$filtro,$orden){
 	 return $res;
 }
 
-public function getProfesoresPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg){
+public function getProfesoresPaginacion($buscador,$activo,$nacionalidad,$filtro,$orden,$itemsInicio,$numer_reg){
 	$objDatos = new clsDatos();
 	if($buscador==""){
 		$sql= "SELECT * FROM usuarios WHERE rol='P'";
 	}else{
-		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR nacionalidad LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
+		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
+	
+	if($activo=="on"){
+		$sql=$sql." AND activo=1 ";
+	}
+	
+	if($nacionalidad !=""){
+		$sql=$sql." AND nacionalidad='$nacionalidad' ";
+	}
+	
 	if(($filtro!="")&&($orden!="")){
 		$sql=$sql." order by $filtro $orden";
 	}

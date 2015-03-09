@@ -384,3 +384,17 @@ a:hover, a:active{
 .buscador{
 	width:90%!important;
 }
+
+.avanzada{
+	cursor:pointer;
+	margin-left:15px;
+}
+
+.avanzada:hover{
+	color:#2B4068;
+	font-weight:bold;
+}
+
+#oculto{
+	padding:20px;
+}

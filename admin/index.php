@@ -15,6 +15,18 @@ if (isset($dict['buscador'])){
 }else{
 	$buscador="";
 }
+
+if (isset($dict['activo'])){
+	$activo=$dict['activo'];
+}else{
+	$activo="";
+}
+
+if (isset($dict['nac'])){
+	$nac=$dict['nac'];
+}else{
+	$nac="";
+}
 if (isset($dict['filtro'])){
 	$filtro = $dict['filtro'];
 }else{
@@ -31,6 +43,8 @@ if (isset($dict['orden'])){
 <script>
 	function limpiar(){
 		$('#buscador_input').val('');
+		$('#activo').val('');
+		$('#nac').val('');
 		$("#buscador").submit();
 	}
 	function orden(filtro,orden){
@@ -75,6 +89,12 @@ if (isset($dict['orden'])){
 		location.href='nuevo.php';
 	}
 	
+	function mostrar(){
+		$('#oculto').toggle('slow');
+		$('#avanzada').toggle('slow');
+		$('#simple').toggle('');
+	}
+	
 	$(document).ready(function() {
 		$(".fancybox").fancybox();
 
@@ -109,7 +129,21 @@ if (isset($dict['orden'])){
 			<div style="float:left">
 				<form name="buscador" method="get" action="index.php" id="buscador">
 					<input type="text" name="buscador" value="<?php echo $buscador?>" class="buscador" id="buscador_input">
-				
+					<div id="oculto" style="display:none">
+					<span>Activo:</span>
+					<input type="checkbox" name="activo" id="activo" <?php if($activo=='on'){?>checked <?php }?>><br>
+					<span>Nacionalidad:</span>
+					<select name="nac" id="nac" class="select_tamanhoMediano">
+					<option value="" <?php if($nac==""){?>selected<?php }?>>--Seleccione--</option>
+					<?php 
+						$util=new ClsUtil();
+						$ar_nacionalidades= $util->getNacionalidades();
+						foreach($ar_nacionalidades as $nacionalidad){ ?>
+						
+							<option value="<?php echo $nacionalidad?>" <?php if($nac==$nacionalidad){?>selected<?php }?>><?php echo $nacionalidad?></option>
+						<?php }	?>
+					</select>
+					</div>
 				</form>
 			</div>
 			<div style="float:left">
@@ -117,6 +151,8 @@ if (isset($dict['orden'])){
 			</div>
 			<div style="float:left;margin-left:10px;">
 				<input type="button" name="limpiar" value="Limpiar" onclick="limpiar()" id="limpiar">
+				<span class="avanzada" id="avanzada" onclick="mostrar();">B&uacute;squeda avanzada</span>
+				<span class="avanzada" id="simple" onclick="mostrar();" style="display:none;">[X]</span>
 			</div>
 			<div style="float:right;margin-right:24%;">
 				<input type="button" name="nuevo" value="Nuevo" onclick="crear()">
@@ -193,14 +229,14 @@ if (isset($dict['orden'])){
 				<?php
 					$usuario= new clsUsuario();
 					$util= new clsUtil();
-					$filasTot = $usuario->getEstudiantes($buscador,$filtro,$orden);
+					$filasTot = $usuario->getEstudiantes($buscador,$activo,$nac,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
 					$numer_reg = 8; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
-					$filasPag = $usuario->getEstudiantesPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg);
+					$filasPag = $usuario->getEstudiantesPaginacion($buscador,$activo,$nac,$filtro,$orden,$itemsInicio,$numer_reg);
 					
 					$total=mysqli_num_rows($filasTot);
 					
@@ -220,23 +256,48 @@ if (isset($dict['orden'])){
 					$i++;
 					}?>
 				</tbody>
-				<?if(ceil($total/$totalPag)>1){?>
-				<tfoot>
-				<tr>
-					<td colspan="7">	
-						<div id="paging">
-							<ul>
-								
-								<?php for($i=1; $i<=ceil($total/$numer_reg); $i++){ ?>
-									<li><a href="<?php $util->getURL() ?>?pag=<?php echo $i ?>" <?php if ($pag == $i){?>class="active" <?php }?>><span><?php echo $i ?></span></a></li>							
-								<?php }?>
-								
-							</ul>
-						</div>
-					</td>
-				</tr>
-				</tfoot>	
-				<?}?>
+				
+				<?php if($totalPag>0){?>
+					<?php if(ceil($total/$totalPag)>1){?>
+					<tfoot>
+					<tr>
+						<td colspan="7">	
+							<div id="paging">
+								<ul>
+									
+									<?php for($i=1; $i<=ceil($total/$numer_reg); $i++){ ?>
+										
+										<?php 
+											$url = $util->getURLparametros();
+											if(!strpos($url,"&pag=")===false){
+												$url = $util->eliminarParametrosURL($url,"pag")."&";
+											}
+										?>
+									
+										<li><a href="<?php echo $url ?>pag=<?php echo $i ?>" <?php if ($pag == $i){?>class="active" <?php }?>><span><?php echo $i ?></span></a></li>							
+									<?php }?>
+									
+								</ul>
+							</div>
+						</td>
+					</tr>
+					</tfoot>	
+					<?php }?>
+				<?php }else{?>
+					<tfoot>
+					<tr>
+						<td colspan="7">	
+							<div id="paging">
+								<ul>
+									
+									<span>No se han encontrado resultados</span>
+									
+								</ul>
+							</div>
+						</td>
+					</tr>
+					</tfoot>
+				<?php }?>
 			</table>
 			
 		</div>

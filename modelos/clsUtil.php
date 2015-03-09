@@ -22,6 +22,32 @@ public function getURL(){
 
 }
 
+public function getURLparametros(){
+	//Obtener la url actual para añadir parametros
+	$url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
+	$ar_url=explode('?',$url);
+	
+	if(count($ar_url)>1){
+		$cadena=$url.'&';
+	}else{
+		$cadena=$ar_url[0].'?';
+	}
+	
+	return $cadena;
+
+}
+
+
+public function eliminarParametrosURL($url,$parametro){
+
+	list($urlpart, $qspart) = array_pad(explode('?', $url), 2, '');
+	parse_str($qspart, $qsvars);
+	unset($qsvars[$parametro]);
+	$nuevoqs = http_build_query($qsvars);
+	return $urlpart . '?' . $nuevoqs; 
+
+}
+
 
 public function getNacionalidades(){
 $nacionalidades = array(
