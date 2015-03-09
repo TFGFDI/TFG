@@ -135,6 +135,23 @@ public function getEstudiantes($buscador,$filtro,$orden){
 	 return $res;
 }
 
+public function getEstudiantesPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg){
+	$objDatos = new clsDatos();
+	if($buscador==""){
+		$sql= "SELECT * FROM usuarios WHERE rol='E'";
+	}else{
+		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR nacionalidad LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
+	}
+	if(($filtro!="")&&($orden!="")){
+		$sql=$sql." order by $filtro $orden";
+	}
+	
+	$sql=$sql." LIMIT $itemsInicio,$numer_reg ";
+	 $res = $objDatos->filtroListado($sql);
+	
+	 return $res;
+}
+
 public function getProfesores($buscador,$filtro,$orden){
 	$objDatos = new clsDatos();
 	if($buscador==""){
@@ -150,6 +167,22 @@ public function getProfesores($buscador,$filtro,$orden){
 	 return $res;
 }
 
+public function getProfesoresPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg){
+	$objDatos = new clsDatos();
+	if($buscador==""){
+		$sql= "SELECT * FROM usuarios WHERE rol='P'";
+	}else{
+		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR nacionalidad LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
+	}
+	if(($filtro!="")&&($orden!="")){
+		$sql=$sql." order by $filtro $orden";
+	}
+	
+	$sql=$sql." LIMIT $itemsInicio,$numer_reg ";
+	 $res = $objDatos->filtroListado($sql);
+	
+	 return $res;
+}
 
 public function getUsuarioById(){
 	$objDatos = new clsDatos();

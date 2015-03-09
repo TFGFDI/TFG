@@ -333,7 +333,7 @@ a:hover, a:active{
 	margin: 0; 
 	padding:0; 
 	list-style: none; 
-	text-align: right; 
+	text-align: center; 
 }
  .datagrid table tfoot  li { 
 	display: inline; 
@@ -352,13 +352,23 @@ a:hover, a:active{
 	background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; 
 }
- .datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { 
+ .datagrid table tfoot ul .active, .datagrid table tfoot ul a:hover { 
 	 text-decoration: none;
 	 border-color: #00557F; 
 	 color: #FFFFFF; 
 	 background: none; 
 	 background-color:#006699;
  }
+ 
+ .active{
+	text-decoration: none;
+	 border-color: #00557F; 
+	 color: #000!important; 
+	 background: none; 
+	 background-color:#DCDCDC!important;
+ 
+ }
+ 
  .alt:hover{
 	background:#DCDCDC;;
  }

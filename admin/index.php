@@ -29,7 +29,7 @@ if (isset($dict['orden'])){
 
 ?>
 <script>
-	function eliminar(){
+	function limpiar(){
 		$('#buscador_input').val('');
 		$("#buscador").submit();
 	}
@@ -116,7 +116,7 @@ if (isset($dict['orden'])){
 				<input type="button" name="buscar" value="Buscar" onclick="buscador.submit()">
 			</div>
 			<div style="float:left;margin-left:10px;">
-				<input type="button" name="limpiar" value="Limpiar" onclick="eliminar()" id="limpiar">
+				<input type="button" name="limpiar" value="Limpiar" onclick="limpiar()" id="limpiar">
 			</div>
 			<div style="float:right;margin-right:24%;">
 				<input type="button" name="nuevo" value="Nuevo" onclick="crear()">
@@ -191,10 +191,21 @@ if (isset($dict['orden'])){
 				</thead>
 				<tbody>
 				<?php
-					$usuario= new clsUsuario();					
-					$filas = $usuario->getEstudiantes($buscador,$filtro,$orden);
+					$usuario= new clsUsuario();
+					$util= new clsUtil();
+					$filasTot = $usuario->getEstudiantes($buscador,$filtro,$orden);
+					
+					$totEmp = mysqli_num_rows($filasTot);
+					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
+					$numer_reg = 8; 
+					$totalPag = ceil($totEmp / $numer_reg);				
+					$itemsInicio = $numer_reg * ($pag - 1);
+					$filasPag = $usuario->getEstudiantesPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg);
+					
+					$total=mysqli_num_rows($filasTot);
+					
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?></a></td>
@@ -209,7 +220,25 @@ if (isset($dict['orden'])){
 					$i++;
 					}?>
 				</tbody>
+				<?if(ceil($total/$totalPag)>1){?>
+				<tfoot>
+				<tr>
+					<td colspan="7">	
+						<div id="paging">
+							<ul>
+								
+								<?php for($i=1; $i<=ceil($total/$numer_reg); $i++){ ?>
+									<li><a href="<?php $util->getURL() ?>?pag=<?php echo $i ?>" <?php if ($pag == $i){?>class="active" <?php }?>><span><?php echo $i ?></span></a></li>							
+								<?php }?>
+								
+							</ul>
+						</div>
+					</td>
+				</tr>
+				</tfoot>	
+				<?}?>
 			</table>
+			
 		</div>
 	</div>
 <?php

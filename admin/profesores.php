@@ -104,7 +104,7 @@ if (isset($dict['orden'])){
 	
 </script>
 
-<h2>Gestion de alumnos</h2>
+<h2>Gestion de Profesores</h2>
 		<div style="margin-left:19.5%">
 			<div style="float:left">
 				<form name="buscador" method="get" action="index.php" id="buscador">
@@ -192,9 +192,19 @@ if (isset($dict['orden'])){
 				<tbody>
 				<?php
 					$usuario= new clsUsuario();					
-					$filas = $usuario->getProfesores($buscador,$filtro,$orden);
+					$filasTot = $usuario->getProfesores($buscador,$filtro,$orden);
+					
+					$totEmp = mysqli_num_rows($filasTot);
+					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
+					$numer_reg = 8; 
+					$totalPag = ceil($totEmp / $numer_reg);				
+					$itemsInicio = $numer_reg * ($pag - 1);
+					$filasPag = $usuario->getProfesoresPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg);
+					
+					$total=mysqli_num_rows($filasTot);
+					
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?></a></td>
@@ -209,6 +219,23 @@ if (isset($dict['orden'])){
 					$i++;
 					}?>
 				</tbody>
+				<?if(ceil($total/$totalPag)>1){?>
+				<tfoot>
+				<tr>
+					<td colspan="7">	
+						<div id="paging">
+							<ul>
+								
+								<?php for($i=1; $i<=ceil($total/$numer_reg); $i++){ ?>
+									<li><a href="<?php $util->getURL() ?>?pag=<?php echo $i ?>" <?php if ($pag == $i){?>class="active" <?php }?>><span><?php echo $i ?></span></a></li>							
+								<?php }?>
+								
+							</ul>
+						</div>
+					</td>
+				</tr>
+				</tfoot>	
+				<?}?>
 			</table>
 		</div>
 	</div>
