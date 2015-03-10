@@ -136,9 +136,11 @@ a:hover, a:active{
 }
 
 #contenido{
+	clear:left;
 	float:left;
-	width:670px;
+	width:960px;
 	margin-bottom:5px;
+	margin-top:30px;
 	
 }
 

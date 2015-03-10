@@ -10,7 +10,9 @@ require_once("top.php");
 ?>
 
 	<div id="central">
-		<?php //require_once("menu_alumno.php");?>
+		<?php require_once("menu_alumno.php");
+		
+		?>
 	</div>
 	
 <?php
@@ -18,3 +20,4 @@ require_once("top.php");
 require_once("bottom.php"); 
 
 ?>
+
