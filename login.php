@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+<script src="js/bjqs.min.js"></script>
+<script src="js/script.js"></script>
 
 <link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
@@ -94,6 +96,53 @@ $url=$util->getURL();
 			<img src="./imagenes/logo.png" />
 		</a>
 	</div>
+	<div class="contenedor_superior">
+	
+	<div id="slider">
+		<ul class="bjqs">
+			<li>
+				<img src="./imagenes/universidad.jpg" alt="" title="Curso Intensivo de Invierno">
+			</li>
+			<li>
+				<img src="./imagenes/verano.jpg" alt="" title="Curso de Español para el turismo">
+			</li>
+			<li>
+				<img src="./imagenes/expo.jpg" alt="" title="Curso de Español comercial">
+			</li>
+		</ul>
+	</div>
+	
+	<div id="sidebar" >
+		<div id="loguearse"  class="bloqueSombra bloqueBordesAzul">
+			 <h2><?php echo $util->trad("login",$lang);?></h2>
+			 <form name="formLoguin" class="loguin_form" method="POST" action="do.php">
+			 <input type="hidden" name="op" value="login">
+			 	<div>
+					<label for="login">Email</label>
+					<input type="text" name="email" id="email" value="" />
+				</div>
+				<div >
+					<label for="password">Password</label>
+					<input type="password" name="contrasena" id="contrasena" value="" />
+				</div>
+				<div style="text-align:center;">
+					
+					<input type="button" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" onclick="enviar()"/> 
+					
+				</div>
+				<hr>
+				<p >
+					<a href="registro.php"><?php echo $util->trad("registro",$lang);?></a>
+				</p>
+				<p>
+					<a href=""><?php echo $util->trad("recordar",$lang);?></a>
+				</p>
+				
+			</form>
+		</div>
+	</div>
+	</div>
+	
 	<div id="contenido">
 		<nav id="menu">
 			<ul>
@@ -128,35 +177,7 @@ $url=$util->getURL();
 		}		
 	</script>
 	
-	<div id="sidebar" >
-		<div id="loguearse"  class="bloqueSombra bloqueBordesAzul">
-			 <h2><?php echo $util->trad("login",$lang);?></h2>
-			 <form name="formLoguin" class="loguin_form" method="POST" action="do.php">
-			 <input type="hidden" name="op" value="login">
-			 	<div>
-					<label for="login">Email</label>
-					<input type="text" name="email" id="email" value="" />
-				</div>
-				<div >
-					<label for="password">Password</label>
-					<input type="password" name="contrasena" id="contrasena" value="" />
-				</div>
-				<div style="text-align:center;">
-					
-					<input type="button" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" onclick="enviar()"/> 
-					
-				</div>
-				<hr>
-				<p >
-					<a href="registro.php"><?php echo $util->trad("registro",$lang);?></a>
-				</p>
-				<p>
-					<a href=""><?php echo $util->trad("recordar",$lang);?></a>
-				</p>
-				
-			</form>
-		</div>
-	</div>
+	
 	<footer>
 		pie Pagina
 	</footer>
