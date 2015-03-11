@@ -32,20 +32,25 @@ form{
 /*  formlario GENERAL */
 label{
 	width: 35%;
-	font-size:12px;
+	font-size:13px;
 	float: left;
 	text-align: right;
 	padding:2px 5px 2px 0px;
+	color:#2B4068;
+
 	
 }
 input[type="text"], input[type="password"]{
 	height:18px;
 	font-size:12px;
 	padding:2px 4px;
-	border:2px solid #aaa;
 	box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
 	border-radius:4px;
-	
+	border:2px solid #aaa;
+}
+
+.input{
+	border:2px solid #aaa;
 }
 
 input[type="text"]:focus, input[type="password"]:focus{
@@ -54,9 +59,24 @@ input[type="text"]:focus, input[type="password"]:focus{
 	box-shadow:0 0 3px #aaa;
 }
 
-	
+input[type="checkbox"]{
+	border:2px solid #2B4068;
+	width:20px;
+	height:20px;
+}
 
-input[type="button"], input[type="button"]:active{
+.labelBuscador{
+	margin-left:5px;
+	font-size:13px;
+	color:#2B4068;
+
+}
+
+.inputFoco{
+	border:2px solid #2B4068;
+}
+
+input[type="button"], input[type="submit"], input[type="button"]:active,input[type="submit"]:active{
 	height:30px;
 	border-radius: 6px;
 	box-shadow: inset 0 1px 0 0 #2B4068;
@@ -75,7 +95,7 @@ input[type="button"], input[type="button"]:active{
 
 }
 
-input[type="button"]:hover{
+input[type="button"]:hover, input[type="submit"]:hover{
 	opacity: .7;
 
 }
@@ -96,8 +116,12 @@ select{
 	margin:7px 0 7px 0;
 }
 
+.input_tamanhoGrande{
+	width:90%;
+}
+
 .input_tamanhoNormal{
-	width:60%;
+	width:58%;
 }
 .input_tamanhoMediano{
 	width:35%;
@@ -120,7 +144,6 @@ select{
 fieldset {
 	float:left;
 	width:400px;
-	height:300px;
 	margin-left:15px;
 	border:2px solid #2B4068; 
 }
@@ -142,3 +165,59 @@ legend{
 
 }
 
+
+/* VALIDACIONES FORMULARIOS */
+/* en VALIDATE la clase para errores se debe llamar 'error' y para los campos que son correctos se debe llamar 'valid' */
+/*
+.errorInput{
+    border:2px solid #BC1010;
+    box-shadow:0 0 0 1.5px #BC1010; 
+}*/
+/*
+label.error {   efecto del mensaje que muestra el error
+	color: #000;
+	border:2px solid #BC1010;
+	background:url("../imagenes/error.gif") no-repeat 0px 0px;
+	background-color: #d7f77a;
+	position: absolute; 
+	padding-left: 16px;
+	margin-left:5px;
+	width:150px;
+	text-align: left;
+	border-radius:4px;
+ }
+label.success {   lo que pasa cuando el mensaje es correcto 
+		background:url("../imagenes/ok.gif") no-repeat 0px 0px; 
+			position: absolute; 
+		padding-left: 16px;
+		margin-left:5px;
+		width:150px;
+		text-align: left;
+			
+	} */
+
+label.error {   /*efecto del mensaje que muestra el error*/
+	color: red;
+	font-weight: bold;
+	font-size: 10px;
+	text-align: left;
+	width: 250px;
+	
+	margin:1px 0px 10px 130px;
+	background:url("../imagenes/error.gif") no-repeat 0px 0px;
+	padding-left: 16px;
+	
+	
+}
+label.valid {  /*  MENSAGE QUE SE MMUESTRA CUANDO EL CAMPO ES VALIDO*/
+	background: url('../imagenes/ok.gif') no-repeat;
+	position: absolute;
+	margin-left:4px;
+	width: 10px;
+	height: 12px;
+	}
+
+	
+div.error { display: none; }
+input:focus, select:focus { border:2px solid #2B4068; }  /* efecto cuando el input coje el valor */
+input.error, select.error { border:2px solid #BC1010;} /* efecto del campo input cuando se produce un error */

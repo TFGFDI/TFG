@@ -9,7 +9,27 @@ body{
 
 }
 
+ul {
+	list-style: none;	
+}
 
+hr{
+	margin:30px 10px -0px 10px;
+	background-color:  #2B4068;
+	height:3px;
+}
+
+a, a:visited{
+	text-decoration: none;
+	color:#0061B1;
+	font-weight: bold;
+}
+
+a:hover, a:active{
+	text-decoration: underline;
+	font-weight: bold;
+	opacity: .7;
+}
 
 #contenedor{
 	margin: 0 auto;
@@ -48,7 +68,6 @@ nav{
 nav ul {
 	margin: 0;
 	padding: 0;
-	list-style: none;
 	line-height: normal;
 	
 }
@@ -98,23 +117,6 @@ article {
 	padding: 0 1em;
 }
 
-hr{
-	margin:30px 10px -0px 10px;
-	background-color:  #2B4068;
-	height:3px;
-}
-
-a, a:visited{
-	text-decoration: none;
-	color:#0061B1;
-	font-weight: bold;
-}
-
-a:hover, a:active{
-	text-decoration: underline;
-	font-weight: bold;
-	opacity: .7;
-}
 
 
 #logo_inferior{
@@ -190,6 +192,31 @@ a:hover, a:active{
 	
 }   
 
+#buscador{
+	width: 600px;
+	height:120px;
+	margin:0px auto 30px auto;
+	padding-left: 10px;
+	
+}
+
+#buscadorIzq{
+	float:left;
+	width: 400px;
+	margin-top: 10px;
+
+	height:80px;
+}
+#buscadorDch{
+	float:right;
+	width: 170px;
+	margin-top: 30px;
+	
+}
+#buscador .divCampo{
+	width:400px;
+}
+
 .bloqueBordesAzul{
 	border-style: solid;
 	border-color: #2B4068;
@@ -199,6 +226,15 @@ a:hover, a:active{
 	border-bottom-width: 0.5em;
 }
 
+/* sin borde superior */
+.bloqueBordesAzul_1{
+	border-style: solid;
+	border-color: #2B4068;
+	border-left-width: 0.2em;
+	border-right-width: 0.2em; 
+	border-top-width: 0;
+	border-bottom-width: 0.5em;
+}
 
 .bloqueSombra{
 	box-shadow: 0.3em 0.3em 0.1em 0.05em silver;
@@ -209,6 +245,17 @@ a:hover, a:active{
 
 .bloqueRedondo{
 	border-radius: 0.5em;
+}
+
+
+.bloqueRedondo_1{
+	border-radius: 0.5em;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.bloqueRedondo_2{
+	border-top-left-radius: 0.5em;
+	border-bottom-left-radius: 0.5em;
 }
 
 /* estable un fondo de pantalla*/
@@ -225,45 +272,172 @@ a:hover, a:active{
 
 #central{
 	width:900px;
-	height: 450px;	
 	margin:0px auto 20px auto;
+}
+
+#centralIndex{  /* se utliza en la pagina index.php de cada usuario y en las paginas que no ocupan mucho verticalmente */
+	width:950px;
+	margin:0px auto 20px auto;
+}
+
+#central1{
+	width:950px;
+	margin:0px auto 20px auto;
+	float:left; /*consigo que los div con 'float:left' se incluyan dentro de su div padre. El div padre va creciendo en alto automaticamente */
+	padding-bottom: 20px;
+
+}
+
+/* MENU SECCION PRIVADA */
+#bloqueMenu {
+	width:950px;
+	display: table;  /* para que cada opcion del menu (li) se incluya dentro de la capa del menu */
+	border-top: solid 0.2em #2B4068;;
+	border-bottom: 1px solid #2B4068;
+	background: #cccccc ;
+	color: #222222;
+	font-weight: bold;
+
+	border-top-left-radius:0.35em;
+	border-top-right-radius:0.35em;
+}
+
+#bloqueMenu  ul{
+padding-left:5px;
+padding-right:50px;
+
+}
+
+#bloqueMenu  li{ 
+	float: left;
+	line-height: 2.5;  /* representa el alto de una caja del menu */
+	
+	
+	margin: 1px .2em  0;
+	
+	
+	border: 1px solid #2B4068;
+	border-bottom-width: 0;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	
+	background: #2B4068;
+	font-weight: normal;
+	color: #fff;
+	font-size: 17px;
 	
 }
 
-.menu{
-	width:980px;
-	text-align:center;
-	margin:0 auto;
-	padding: 10px;
-	
+#bloqueMenu .activo {
+	background: #fff;
+/*para que no se muestre la linea de la opcion del menu activo */	
+	line-height: 2.6;
+	margin-bottom: -1px;
+	border-bottom-width: 0;	
+/* deshabilitar link de a href con css */
+	pointer-events: none;
+	cursor: default;
 }
 
-.menu ul {
-    
-    width: 100%;
-    padding: 0;
-    margin: 0 auto;
-    list-style-type: none;
+#bloqueMenu  li:hover{
+	background-color:#2B4068;
+	opacity: 0.7;
 }
 
-.menu a {
-   
-    width: 6em;
-    text-decoration: none;
-    color: white;
-    background-color: #2B4068;
-    padding: 10px;
-    border-right: 1px solid white;
+#bloqueMenu  li a{
+	padding:0px 20px 0px 20px;
+	color: #fff;
+	text-decoration: none;
+
+	display: block;  /* para que el enlace ocupe toda la caja de su menu, es decir, ocupe toda la caja de la etiqueta 'li' */
+}
+#bloqueMenu  li.activo a{
+	color: #2B4068;
 }
 
-.menu a:hover {
-    background-color: #aaa;
+
+#contenido1{  /*  se utiliza en las secciones privadas para mostrar los listados y formulario de alta de alumnos, profesoras,... */
+	float:left;
+	width:750px;
+	padding:20px 20px 20px 20px;
+	border:0.2em solid #05244c;
+	border-left-width: 0;
+	border-bottom-right-radius:0.5em;
+	border-top-right-radius:0.5em;
+
+	height: 580px;
+}
+
+/*  MENU VERTICAL LATERAL IZQUIERDO  */
+
+#divMenu_Vertical{
+	margin-left:10px;
+	width:130px;
+	float:left;
+	clear:both; 
+}
+
+
+
+ul.menuVertical{
+	 width: 100%; /* para que ocupeto todo el ancho */
+	 margin: 0;
+  	padding: 0;
+}
+ul.menuVertical li{
+	border-left:0.2em solid #05244c;
+
+	line-height: 25px;
+	padding: 5px 0px 5px 10px;
+	background-color:#2B4068;
+	color:#fff;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+ul.menuVertical li:first-child{
+	border-top:0.2em solid #05244c;
+}
+
+ul.menuVertical li:nth-last-child(2){
+	border-bottom:0.2em solid #05244c;
+}
+ul.menuVertical  li:hover{
+	background-color:#2B4068;
+	opacity: 0.7;
+}
+
+ul.menuVertical .activo{
+	border-right-width: 0;
+
+	background: #fff;
 	color:#2B4068;
+/* deshabilitar link de a href con css */
+	pointer-events: none;
+	cursor: default;
 }
 
-.menu li {
-    display: inline;
+/* para la opcion demenu que se no muestra informacion. Se utiliza para diseño */
+ul.menuVertical li.noMenu{
+	border-left-width: 0;
+	border-top-width: 0;
+	border-bottom-width: 0;
+	border-right:0.2em solid #05244c;
+	background-color:#fff;
+	/* deshabilitar link de a href con css */
+	pointer-events: none;
+	cursor: default;
+	
+height:540px;
 }
+ul.menuVertical li.noMenu:hover{
+	border-right: 1px solid #0B0B3B;
+	background-color:#fff;
+}
+
+
+/* lsitados */
+
 .datagrid table { 
 	border-collapse: collapse; /*  fusión automática de todos los bordes adyacentes de la tabla*/
 	text-align: left; 
@@ -472,3 +646,151 @@ ul.bjqs-controls.v-centered li a:hover{
     background:#000;
     color:#fff;
 }
+
+
+/*
+.menu{
+	width:980px;
+	text-align:center;
+	margin:0 auto;
+	padding: 10px;
+	
+}
+
+.menu ul {
+    
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.menu a {
+   
+    width: 6em;
+    text-decoration: none;
+    color: white;
+    background-color: #2B4068;
+    padding: 10px;
+    border-right: 1px solid white;
+}
+
+.menu a:hover {
+    background-color: #aaa;
+	color:#2B4068;
+}
+
+.menu li {
+    display: inline;
+}
+*/
+/*  menu implementado en tabla 
+
+table.menuVertical { 
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	border-collapse: collapse; 
+	width: 920px;
+	margin-left:10px;
+	border-top-left-radius: 0.5em;
+
+}
+th:first-child {
+
+border-left-top-radius: 6px;
+border-right-top-radius: 6px;
+}
+
+table.menuVertical th{
+	border-left: 1px solid #0B0B3B;
+	width: 100px;
+	line-height: 30px;
+	padding: 5px 0px 5px 10px;
+	font-weight: bold;
+	font-size: 17px;
+	text-align: left;
+}
+
+table.menuVertical th.menu{
+	background-color:#2B4068;
+	
+}
+table.menuVertical th.menuActivo{
+	background-color:#fff;
+	
+	border-right-width: 0;
+	pointer-events: none;
+	cursor: default;
+}
+
+table.menuVertical th.no_menu{
+	height: 120px;
+	border-right: 1px solid #0B0B3B;
+	border-left-width: 0;
+
+}
+
+table.menuVertical td { 
+	width: 700px;
+	height: 180px;
+	border-bottom: 1px solid #0B0B3B;
+}
+
+table.menuVertical th a{
+	padding:0px 20px 0px 20px;
+	color: #fff;
+	text-decoration: none;
+}
+table.menuVertical th.menuActivo a{
+	color: #2B4068;
+}
+
+table.menuVertical th:hover.menu{
+	background-color:#2B4068;
+	opacity: 0.7;
+}
+ */
+
+
+/* END menu vertical */
+
+
+/*  MENU SUPERIOR
+#bloqueMmenu{
+	width:980px;
+	text-align:center;
+	margin:0 auto;
+	padding: 10px;
+	border:1px solid red;
+	
+}
+
+#bloqueMenu ul {
+    
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+   
+}
+
+#bloqueMenu a {
+   
+    width: 6em;
+    text-decoration: none;
+    color: white;
+    background-color: #2B4068;
+    padding: 10px;
+    border-right: 1px solid white;
+}
+
+#bloqueMenu a:hover {
+    background-color: #aaa;
+	color:#2B4068;
+}
+
+#bloqueMenu li {
+    display: inline;
+}
+*/
+
+/* end MENU PRIVADO */
