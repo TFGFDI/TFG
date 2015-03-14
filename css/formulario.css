@@ -5,6 +5,7 @@ h2{
 	color:#2B4068;
 	font-weight:bold;
 	margin:10px 0px 20px 15px;
+
 }
 form{
 	font-family:Georgia, "Times New Roman", serif;
@@ -37,9 +38,13 @@ label{
 	text-align: right;
 	padding:2px 5px 2px 0px;
 	color:#2B4068;
-
+	font-weight: bold;
 	
 }
+.labelPequenho{
+	width: 25%;
+}
+
 input[type="text"], input[type="password"]{
 	height:18px;
 	font-size:12px;
@@ -66,10 +71,9 @@ input[type="checkbox"]{
 }
 
 .labelBuscador{
-	margin-left:5px;
-	font-size:13px;
+	font-size:15px;
 	color:#2B4068;
-
+	width:130px;
 }
 
 .inputFoco{
@@ -111,6 +115,23 @@ select{
 
 }
 
+.consulta{
+	font-size: 13px;
+	color:#2B4068;
+	font-weight: bold;
+	background-color: #aaa;
+}
+
+.subtitulo{
+	font-size: 16px;
+	margin-bottom: 20px;
+	color:#2B4068;
+	font-weight: bold;
+	text-decoration: underline;
+
+	
+}
+
 /* div para cada campo de un formulario */
 .bloque_campoForumulario{
 	margin:7px 0 7px 0;
@@ -135,6 +156,9 @@ select{
 .select_tamanhoMediano{
 	width:43%;
 }
+.select_tamanhoPequenho_1{
+	width:30%;
+}
 .select_tamanhoPequenho{
 	width:25%;
 }
@@ -156,6 +180,17 @@ legend{
 	color:#2B4068;
 	font-weight: bold;
 	font-size: 14px;
+}
+
+#formIzquierdo{  /*  div para colocar los campos del formulario a la izquierda */
+	float:left;
+	width: 360px;
+	
+}
+#formDerecho{  /*  div para colocar los campos del formulario a la derecha */
+	float:right;
+	width: 360px;
+	
 }
 
 .divBoton{

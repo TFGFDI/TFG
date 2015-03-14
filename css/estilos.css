@@ -111,13 +111,13 @@ nav li.activo a, nav li:hover  a{
 
 
 
-
+/*
 article {
 	/*border-top: gray solid 1px; */
 	padding: 0 1em;
 }
 
-
+*/
 
 #logo_inferior{
 	
@@ -194,7 +194,7 @@ article {
 
 #buscador{
 	width: 600px;
-	height:120px;
+	height:130px;
 	margin:0px auto 30px auto;
 	padding-left: 10px;
 	
@@ -213,6 +213,24 @@ article {
 	margin-top: 30px;
 	
 }
+
+
+.buscador{
+	width:90%!important;
+}
+
+.avanzada{
+	color:#2B4068;
+	font-size: 15px;
+	font-weight: bold;
+	cursor:pointer;
+	
+}
+
+.avanzada:hover{
+	opacity:.75;
+}
+
 #buscador .divCampo{
 	width:400px;
 }
@@ -245,7 +263,12 @@ article {
 
 .bloqueRedondo{
 	border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	khtml-border-radius: 0.5em;
 }
+
+
 
 
 .bloqueRedondo_1{
@@ -282,11 +305,117 @@ article {
 
 #central1{
 	width:950px;
-	margin:0px auto 20px auto;
+	/*margin:0px auto 20px auto; */
+	margin-left:10px;
+	margin-bottom:20px;
 	float:left; /*consigo que los div con 'float:left' se incluyan dentro de su div padre. El div padre va creciendo en alto automaticamente */
 	padding-bottom: 20px;
 
 }
+
+#izquierdo_general{
+/*	background: url(../images/fondo.png) repeat-x center top;*/
+	background-color:#ddd;
+	float:left;
+	width:190px;
+	height:460px;
+	border: 1px solid #ecebeb;
+	margin: 15px 10px 0px 20px;
+
+}
+
+#derecho_general{
+	float:right;
+    width: 710px;
+	height:460px;
+	border: 1px solid #ecebeb;
+	margin: 15px 10px 0 0;
+
+
+}
+
+/*  seccion CAJAs MENUS IZQUIERDO*/
+.caja{
+    width: 160px;
+	height:100px;
+	margin:10px 15px 0 15px;
+	border: 2px solid #fff;
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+	box-shadow: 1px 1px 0 #e6e6e6; 
+}
+
+
+
+.caja_titulo{
+	width: 160px;
+	height:30px;
+	background-color:#006293;
+
+}
+
+.caja_titulo p{
+	color:#fff;
+	padding-left: 15px;
+	padding-top:5px;
+	height:25px;
+	font-weight: bolder;
+	font-size:16px;
+	margin-top:-0px;
+
+}
+
+.caja_contenido{
+	width: 160px;
+	height:60px;
+}
+
+.caja_contenido ul{
+	clear:both;
+	float:left;
+	width:100%;
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+    
+.caja_contenido ul li{
+	float:left;
+	height:20px;
+	width:160px;
+	margin-top:5px;
+	margin-bottom:5px;
+	font-size:14px;
+
+}
+
+.caja_contenido ul li a{
+	height:20px;
+	display:block;
+	padding-left: .3em;
+	padding-top:5px;
+	text-decoration: none;
+
+}
+	
+.caja_contenido ul li a:hover{
+	height:20px;
+	display:block;
+	padding-left: .3em;
+	padding-top:5px;
+	background-color:#fff;
+}
+
+.caja_contenido ul li .menuActivo{
+	background-color:#fff;
+	height:20px;
+	display:block;
+	padding-left: .3em;
+	padding-top:5px;
+}
+
+
+/* end CAJAS*/
 
 /* MENU SECCION PRIVADA */
 #bloqueMenu {
@@ -312,9 +441,7 @@ padding-right:50px;
 	float: left;
 	line-height: 2.5;  /* representa el alto de una caja del menu */
 	
-	
 	margin: 1px .2em  0;
-	
 	
 	border: 1px solid #2B4068;
 	border-bottom-width: 0;
@@ -347,8 +474,7 @@ padding-right:50px;
 #bloqueMenu  li a{
 	padding:0px 20px 0px 20px;
 	color: #fff;
-	text-decoration: none;
-
+	text-decoration: none; 
 	display: block;  /* para que el enlace ocupe toda la caja de su menu, es decir, ocupe toda la caja de la etiqueta 'li' */
 }
 #bloqueMenu  li.activo a{
@@ -356,16 +482,31 @@ padding-right:50px;
 }
 
 
-#contenido1{  /*  se utiliza en las secciones privadas para mostrar los listados y formulario de alta de alumnos, profesoras,... */
-	float:left;
-	width:750px;
-	padding:20px 20px 20px 20px;
-	border:0.2em solid #05244c;
-	border-left-width: 0;
-	border-bottom-right-radius:0.5em;
-	border-top-right-radius:0.5em;
 
-	height: 580px;
+#contenidoBuscador{
+	width:750px;
+	float:left;
+	height:166px;
+	padding:20px 20px 0px 20px;
+	border-top:0.2em solid #05244c;
+		
+	
+	border-right:0.2em solid #05244c;
+	border-top-right-radius: 0.5em;
+
+}
+#contenido1{  /*  se utiliza en las secciones privadas para mostrar los listados y formulario de alta de alumnos, profesoras,... */
+	float:right;
+	width:750px;
+	margin-right: 17px;
+	padding:10px 20px 20px 20px;
+	border-right:0.2em solid #05244c;
+	border-left:0.2em solid #05244c;
+	border-bottom:0.2em solid #05244c;
+	
+
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
 }
 
 /*  MENU VERTICAL LATERAL IZQUIERDO  */
@@ -421,18 +562,28 @@ ul.menuVertical .activo{
 ul.menuVertical li.noMenu{
 	border-left-width: 0;
 	border-top-width: 0;
-	border-bottom-width: 0;
 	border-right:0.2em solid #05244c;
 	background-color:#fff;
 	/* deshabilitar link de a href con css */
 	pointer-events: none;
 	cursor: default;
-	
-height:540px;
+	height:103px;
+
 }
 ul.menuVertical li.noMenu:hover{
 	border-right: 1px solid #0B0B3B;
 	background-color:#fff;
+}
+
+
+
+ul.menuVertical   li a{
+	color: #fff;
+	text-decoration: none; 
+	display: block;  /* para que el enlace ocupe toda la caja de su menu, es decir, ocupe toda la caja de la etiqueta 'li' */
+}
+ul.menuVertical   li.activo a{
+	color: #2B4068;
 }
 
 
@@ -444,7 +595,7 @@ ul.menuVertical li.noMenu:hover{
 	width: 100%; 
 }
  .datagrid {
-	width:600px;
+	width:750px;
 	font: normal 12px/150% Arial, Helvetica, sans-serif; 
 	background: #fff; 
 	overflow: hidden; 
@@ -493,14 +644,26 @@ ul.menuVertical li.noMenu:hover{
  }
  .datagrid table tbody tr:last-child td { 
 	border-bottom: none; 
+
  }
+
  .datagrid table tfoot td div { 
 	border-top: 1px solid #006699;
-	background: #E1EEF4;
+	
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );
+	background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
+	background-color:#006699; 
+	color:#FFFFFF; 
 } 
+
+
+
  .datagrid table tfoot td { 
 	padding: 0; 
-	font-size: 12px 
+	font-size: 12px ;
+		
+
 } 
  .datagrid table tfoot td div{ 
 	padding: 2px; 
@@ -557,24 +720,12 @@ ul.menuVertical li.noMenu:hover{
 	font-weight:bold;
  }
  
-.buscador{
-	width:90%!important;
-}
 
-.avanzada{
-	cursor:pointer;
-	margin-left:15px;
-}
 
-.avanzada:hover{
-	color:#2B4068;
-	font-weight:bold;
-}
 
-#oculto{
-	padding:20px;
-}
 
+
+/* div de la galeria de fotos*/
 #slider{
 width:600px;
 margin:30px;
@@ -585,11 +736,8 @@ box-shadow: 0 .1em 1em black;
 -o-box-shadow: 0 .1em 1em black;
 }
 
-.contenedor_superior{
-	
-}
 
-/* ESTILOS DEL LOS ELEMENTOS */
+/* ESTILOS GALERIA FOTOS */
 
 ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
 li.bjqs-slide{position:absolute; display:none;}

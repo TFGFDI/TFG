@@ -96,9 +96,9 @@ $url=$util->getURL();
 			<img src="./imagenes/logo.png" />
 		</a>
 	</div>
-	<div class="contenedor_superior">
+
 	
-	<div id="slider">
+		<div id="slider">
 		<ul class="bjqs">
 			<li>
 				<img src="./imagenes/universidad.jpg" alt="" title="Curso Intensivo de Invierno">
@@ -141,7 +141,7 @@ $url=$util->getURL();
 			</form>
 		</div>
 	</div>
-	</div>
+	
 	
 	<div id="contenido">
 		<nav id="menu">

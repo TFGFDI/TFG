@@ -71,8 +71,8 @@ if(isset($dict['lang'])){
 $url=$util->getURL();
 
 ?>
-<body class="gradiante">
-<div id="contenedor"> 
+<body class="gradiante" >
+<div id="contenedor" > 
 	<header id="logo">
 		<div style="float:left">
 			<a href="http://www.unizar.es/">

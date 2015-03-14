@@ -9,7 +9,7 @@ header("Location: login.php");
 require_once("top.php"); 
 
 ?>
-<?php require_once("menu_admin.php"); 
+<?php 
 if (isset($dict['buscador'])){
 	$buscador=$dict['buscador'];
 }else{
@@ -20,6 +20,21 @@ if (isset($dict['filtro'])){
 }else{
 	$filtro="";
 }
+
+if (isset($dict['activo'])){
+	$activo=$dict['activo'];
+}else{
+	$activo="";
+}
+
+if (isset($dict['nac'])){
+	$nac=$dict['nac'];
+}else{
+	$nac="";
+}
+
+
+
 if (isset($dict['orden'])){
 	$orden = $dict['orden'];
 }else{
@@ -31,6 +46,8 @@ if (isset($dict['orden'])){
 <script>
 	function eliminar(){
 		$('#buscador_input').val('');
+		$('#buscador_input').val('');
+		$('#activo').val('');
 		$("#buscador").submit();
 	}
 	function orden(filtro,orden){
@@ -44,7 +61,7 @@ if (isset($dict['orden'])){
 		}
 			
 
-		location.href='profesores.php?filtro='+filtro+"&orden="+orden;
+		location.href='index.php?filtro='+filtro+"&orden="+orden;
 		
 	}
 	function editar(id){
@@ -75,6 +92,13 @@ if (isset($dict['orden'])){
 		location.href='nuevo.php';
 	}
 	
+	function mostrar(){
+		$('#oculto').toggle('slow');
+		$('#avanzada').toggle('slow');
+		$('#simple').toggle('');
+	}
+	
+	
 	$(document).ready(function() {
 		$(".fancybox").fancybox();
 
@@ -103,29 +127,21 @@ if (isset($dict['orden'])){
 	});
 	
 </script>
+<div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
+<?php require_once("menu_admin.php");  ?>
+	<h2>Gestion de profesores</h2>
 
-<h2>Gestion de Profesores</h2>
-		<div style="margin-left:19.5%">
-			<div style="float:left">
-				<form name="buscador" method="get" action="index.php" id="buscador">
-					<input type="text" name="buscador" value="<?php echo $buscador?>" class="buscador" id="buscador_input">
-				
-				</form>
-			</div>
-			<div style="float:left">
-				<input type="button" name="buscar" value="Buscar" onclick="buscador.submit()">
-			</div>
-			<div style="float:left;margin-left:10px;">
-				<input type="button" name="limpiar" value="Limpiar" onclick="eliminar()" id="limpiar">
-			</div>
-			<div style="float:right;margin-right:24%;">
-				<input type="button" name="nuevo" value="Nuevo" onclick="crear()">
-			</div>
-			</div>
-			<br><br>
-	<div id="central">
-		
-		
+	<div id="divMenu_Vertical" class="bloqueRedondo_2 ">
+		<ul class="menuVertical ">
+			<li class="activo" style="border-top-left-radius: 0.5em;"><a href="profesores.php?menu=2" >Consulta</a></li>
+			<li style="border-bottom-left-radius: 0.5em;"><a href="./nuevo.php?menu=2&page=profesores" >Alta</a></li>
+			<li class="noMenu ">&nbsp;asd</li> 
+		</ul>
+	</div>
+	<div id="contenidoBuscador" >
+<?php require_once("../buscador.php");  ?>
+	</div>
+	<div id="contenido1">
 		<div class="datagrid">
 			<table>
 				<thead>
@@ -192,19 +208,22 @@ if (isset($dict['orden'])){
 				<tbody>
 				<?php
 					$usuario= new clsUsuario();					
-					$filasTot = $usuario->getProfesores($buscador,$filtro,$orden);
+					
+					$filas = $usuario->getProfesores($buscador,$activo,$nac,$filtro,$orden);
+					$filasTot = $usuario->getProfesores($buscador,$activo,$nac,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
 					$numer_reg = 8; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
-					$filasPag = $usuario->getProfesoresPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg);
+					$filasPag = $usuario->getProfesoresPaginacion($buscador,$activo,$nac,$filtro,$orden,$itemsInicio,$numer_reg);
 					
 					$total=mysqli_num_rows($filasTot);
 					
+				
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?></a></td>
@@ -219,26 +238,16 @@ if (isset($dict['orden'])){
 					$i++;
 					}?>
 				</tbody>
-				<?php if(ceil($total/$totalPag)>1){?>
-				<tfoot>
-				<tr>
-					<td colspan="7">	
-						<div id="paging">
-							<ul>
-								
-								<?php for($i=1; $i<=ceil($total/$numer_reg); $i++){ ?>
-									<li><a href="<?php $util->getURL() ?>?pag=<?php echo $i ?>" <?php if ($pag == $i){?>class="active" <?php }?>><span><?php echo $i ?></span></a></li>							
-								<?php }?>
-								
-							</ul>
-						</div>
-					</td>
-				</tr>
-				</tfoot>	
-				<?php }?>
+				
+				<?php require_once("../paginador.php"); ?>
 			</table>
 		</div>
-	</div>
+	
+	</div>		
+		
+		
+	
+</div>
 <?php
 
 require_once("bottom.php"); 

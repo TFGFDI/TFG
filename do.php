@@ -12,7 +12,7 @@ function getRequest() {
 
 $dict = getRequest();
 $op = $dict['op'];
-var_dump($op);
+//var_dump($op);
 session_start();
 if($op=="login"){
 	$usuario= new clsUsuario();
@@ -28,7 +28,7 @@ if($op=="login"){
 		$_SESSION['rol'] = $usuario['rol'];	
 		
 		if($usuario['rol']=='A'){
-			header("Location: admin/index.php?login=ok");
+			header("Location: admin/index.php?login=ok&menu=0");
 		}else{
 			header("Location: index.php?login=ok");
 		}

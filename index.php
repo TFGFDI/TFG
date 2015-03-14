@@ -9,7 +9,7 @@ header("Location: login.php");
 require_once("top.php"); 
 ?>
 
-	<div id="central">
+	<div id="central"> 
 		<?php require_once("menu_alumno.php");
 		
 		?>

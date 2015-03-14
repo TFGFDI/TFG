@@ -10,6 +10,9 @@
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <link rel="stylesheet" href="js/jquery-ui-1.11.3.custom/jquery-ui.css">  
 <script src="js/jquery-ui-1.11.3.custom/jquery-ui.js"></script>
+
+
+
 <!-- Optionally add helpers - button, thumbnail and/or media -->
 <link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
@@ -18,6 +21,13 @@
 <link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 
+<!-- validaciones formularios  -->
+  <script type="text/javascript" src="js/jquery.validate.js"></script>
+  <script type="text/javascript" src="js/additional-methods.js"></script>
+  <script type="text/javascript" src="js/messages_es.js"></script>
+  
+  <script type="text/javascript"  src="js/validacionesFormularios.js"></script>
+  
 <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
 <link rel="stylesheet" href="css/formulario.css" type="text/css" media="screen"/>
     <title>TFG</title>  
