@@ -110,3 +110,31 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `sexo`, `fechanacimiento`, 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+CREATE TABLE `examenes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_profesor` int(11) DEFAULT NULL,
+  `nombre_profesor` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL COMMENT '0->privado 1->publico',
+  `activo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+
+CREATE TABLE `preguntas_examen` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_examen` int(11) DEFAULT NULL,
+  `tipo` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pregunta` text COLLATE utf8_spanish_ci,
+  `respuesta1` text COLLATE utf8_spanish_ci,
+  `respuesta2` text COLLATE utf8_spanish_ci,
+  `respuesta3` text COLLATE utf8_spanish_ci,
+  `respuesta4` text COLLATE utf8_spanish_ci,
+  `solucion` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `activo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
