@@ -147,19 +147,67 @@ $url=$util->getURL();
 		<nav id="menu">
 			<ul>
 				<li ><a href="#tab1">Información</a></li>
-				<li ><a href="#tab2">Alta</a></li>
+				<li ><a href="#tab2">Noticias</a></li>
 				<li><a href="#tab3">contacto</a></li>
 			</ul>
 		</nav>
 		<section id="informacion" class="bloqueSombra bloqueBordesAzul">
 			<article id="tab1">
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.</p>
+			<p>Los Cursos de Español como Lengua Extranjera de la Universidad de Zaragoza desarrollan su labor a lo largo de todo el año en Zaragoza y durante el verano trasladan su actividad a la ciudad de Jaca (Huesca), enclave turístico situado en los Pirineos.</p>
+			<p>La Universidad de Zaragoza es pionera en la enseñanza de español a extranjeros desde 1927. Mantiene convenios con diferentes instituciones públicas y privadas de todo el mundo, colabora directamente con distintos organismos oficiales en la tarea de difusión del español (Instituto Cervantes, Consejerías de Educación de diversas Embajadas de España, Gobierno de Aragón, Ministerio de Educación, Cultura y Deporte) y es Centro Examinador Oficial para la obtención del Diploma de Español como Lengua Extranjera (DELE).</p>
+			<p>La Universidad de Zaragoza cuenta con un gran reconocimiento internacional, como lo demuestra el elevado número de estudiantes extranjeros que la visitan dentro de los diferentes programas de cooperación en los que participa (Sócrates-Erasmus, Tempus, ALPA, Asia-Link, Leonardo, etc.). Sus Cursos de Español se integran en dichos programas y, además, organizan cursos específicos para las Universidades extranjeras que así lo solicitan.</p>
 		  </article>
 		  <article id="tab2">
-			<p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+			 <div>
+			  <p>Esta.</p>
+				<div class="destacados">
+				<strong>curso de Verano</strong>
+				<span>la visitan dentro de los diferentes programas de cooperación en los que participa (Sócrates-Erasmus, Tempus, ALPA, Asia-Link, Leonardo, etc.). Sus Cursos de Español se integran en dichos programas y, además, organizan cursos específicos para las Universidades extranjeras que así lo solicitan.</span>
+				</div>
+				<div class="destacados">
+				<strong>curso intensivo de Invierno</strong>
+				</div>
+				<div class="destacados">
+				<strong>curso de español para el turismo</strong>
+				</div>
+				<div class="destacados">
+				<strong>curso de Español comercial</strong>
+				</div>
+				<div class="destacados">
+				<strong>cAAAAAAAAAAAAAAercial</strong>
+				</div>
+				<div class="destacados">
+				<strong>curso de CCCCCCCCCCCCCC comercial</strong>
+				</div>
+			</div>
 		  </article>
 		  <article id="tab3">
-			<p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+		  <div>
+			<form name="formulario" class="loguin_form" action="#" method="post">
+				<fieldset class="bloqueSombra bloqueRedondo" style="margin-top:10px">
+					<legend class="bloqueRedondo">Contáctenos:</legend>
+						<label for="Email">E-mail: </label>
+						<input type="text" name="Email" id="Email" class=""/>
+						
+						<label style="margin-top:20px">Comentario:</label>
+						<textarea name="mensaje" class="" style="margin: 20px 0 0 0; width: 207px; height: 87px;"></textarea>
+						<input type="submit" class="" value="Enviar" onclick="" style="margin:30px;">
+				</fieldset>
+			</form>
+			<div id="mapa">
+				<iframe src="mapa.php" class="mapa"></iframe> 
+				
+			</div>
+			<span class="direccion">
+				Pedro Cerbuna,12 <br>
+			</span>
+			<span class="direccion">
+				50009 Zaragoza - España <br>
+			</span>
+			<span class="direccion">
+				Tel: 976 76 10 00				
+			</span>
+		</div>
 		  </article>
 		</section>
 		
