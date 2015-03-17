@@ -9,9 +9,32 @@ header("Location: login.php");
 require_once("top.php"); 
 ?>
 
-	<div id="central">
 	
-	</div>
+	<h2>Gestion de profesores</h2>
+	
+<div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
+<?php require_once("menu_profesor.php");  ?>
+	<section id="izquierdo_general" class="bloqueRedondo">
+	    <article id="caja0" class="caja" >
+                	<div class="caja_titulo">
+		                <p>Cuenta Usuario</p>
+                    </div>
+                    <div class="caja_contenido"  >
+		                <ul>
+                            <li><a href="./consultaCuentaUsuario.php"  title="Inicio">Modificar Cuenta</a></li>
+                        </ul>
+                    </div>
+                </article>
+		
+		
+	</section>
+	
+	<section id="derecho_general" class=" bloqueRedondeado">
+              
+    </section>
+	
+</div>
+	
 	
 <?php
 

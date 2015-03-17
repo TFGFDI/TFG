@@ -968,3 +968,13 @@ border-radius: 7px 7px 7px 7px;
 #tab1, #tab2, #tab3{
 	margin:20px;
 }
+
+.titulo_examen{
+	margin:20px;
+	width:710px;
+}
+
+.volver{
+	margin:15px;
+	background-color:#E1EEF4;
+}

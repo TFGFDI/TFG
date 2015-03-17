@@ -1,5 +1,5 @@
 <?php
-include_once("modelos/clsUsuario.php");
+include_once("clases.php");
 function getRequest() {
 
 		global $_GET,$_POST;
@@ -12,7 +12,7 @@ function getRequest() {
 
 $dict = getRequest();
 $op = $dict['op'];
-//var_dump($op);
+//var_dump($dict);
 session_start();
 if($op=="login"){
 	$usuario= new clsUsuario();
@@ -29,6 +29,8 @@ if($op=="login"){
 		
 		if($usuario['rol']=='A'){
 			header("Location: admin/index.php?login=ok&menu=0");
+		}else if($usuario['rol']=='P'){
+			header("Location: profesores.php?login=ok");
 		}else{
 			header("Location: index.php?login=ok");
 		}
@@ -83,5 +85,20 @@ if($op=="login"){
 	
 	$usuario->incluir();
 	header("Location: admin/index.php");
+}else if($op=="nuevo_examen"){
+	$examen= new clsExamenes();
+	$examen->id_profesor= $_SESSION["id"];//Obtenemos el usuario con el id que nos viene del objeto
+	$examen->nombre_profesor= $_SESSION["nombre"]." ".$_SESSION["apellidos"];
+	$examen->fecha = date("Y-m-d");
+	$examen->estado = 0;
+	$examen->activo = 0;
+	$examen->incluir();
+	header("Location: ls_examenes_profesor.php");
+}else if($op=="nueva_pregunta"){
+	$pregunta= new clsPreguntasExamen();
+	$pregunta->estableceCampos($dict);
+	
+	$pregunta->incluir();
+	header("Location: ls_preguntas_examen.php?id=".$dict['id_examen']);
 }
 ?>
