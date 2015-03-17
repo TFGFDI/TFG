@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once("../modelos/clsUsuario.php");
+//include_once("../modelos/clsUsuario.php");
 if (($_SESSION["id"]=="")){ 
 
 header("Location: login.php");
@@ -94,7 +94,7 @@ if (isset($dict['orden'])){
 		$('#avanzada').toggle('slow');
 		$('#simple').toggle('');
 	}
-	
+
 	$(document).ready(function() {
 		$(".fancybox").fancybox();
 
@@ -108,23 +108,46 @@ if (isset($dict['orden'])){
 		});
 
 		$(".ifancybox").fancybox({
-         'width' : '45%',
-         'height' : '75%',
-	     'scrolling'   : 'no',
+		 'width' : '45%',
+		 'height' : '75%',
+		 'scrolling'   : 'no',
 		 'autoScale'         : true,
-        'autoDimensions'    : true,
-         'transitionIn' : 'fade',
-         'transitionOut' : 'fade',
-         'type' : 'iframe',		
+		'autoDimensions'    : true,
+		 'transitionIn' : 'fade',
+		 'transitionOut' : 'fade',
+		 'type' : 'iframe',		
 		 'padding' : 0,
 		 'margin' : 20
 		});
+		
+		$("#noticias").click(function(evento){
+			$("#cuenta").removeClass();
+			$("#imagenes").removeClass();
+			$("#noticias").addClass("menuActivo");
+			evento.preventDefault();
+			$("#destino").load("noticias.php");
+	   });
+	   
+	   	$("#imagenes").click(function(evento){ 
+			$("#cuenta").removeClass();
+			$("#noticias").removeClass();
+			$("#imagenes").addClass("menuActivo");
+			evento.preventDefault();
+			$("#destino").load("imagenes.php");
+	   });
+	   
+	    $("#cuenta").click(function(evento){ 
+			$("#noticias").removeClass();
+			$("#imagenes").removeClass();
+			$("#cuenta").addClass("menuActivo");
+			evento.preventDefault();
+			$("#destino").load("cuentaUsuario.php");
+	   });
 
 	});
 	
 </script>
 
-<h2>Gestion de alumnos</h2>
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_admin.php");  ?>
@@ -135,7 +158,7 @@ if (isset($dict['orden'])){
                     </div>
                     <div class="caja_contenido"  >
 		                <ul>
-                            <li><a href="./consultaCuentaUsuario.php"  title="Inicio">Modificar Cuenta</a></li>
+                            <li><a href="#"  id="cuenta" title="Inicio">Modificar Cuenta</a></li>
                         </ul>
                     </div>
                 </article>
@@ -145,15 +168,15 @@ if (isset($dict['orden'])){
 			</div>	
 			<div class="caja_contenido">
 				<ul>
-					<li><a href="./consultaNoticias.php"  title="Inicio">Gestión NOTICIAS</a></li>
-					<li><a href="./crearNoticia.php" title="Empresa">Gestión IMAGENES</a></li>
+					<li><a href="#" id="noticias" title="Inicio">Gestión NOTICIAS</a></li>
+					<li><a href="#" id="imagenes" title="Empresa">Gestión IMAGENES</a></li>
 				</ul>
 			</div>
 		</article>
 		
 	</section>
 	
-	<section id="derecho_general" class=" bloqueRedondeado">
+	<section id="destino" >
               
     </section>
 	

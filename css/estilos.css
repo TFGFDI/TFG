@@ -307,8 +307,8 @@ article {
 #central1{
 	width:950px;
 	/*margin:0px auto 20px auto; */
-	margin-left:10px;
-	margin-bottom:20px;
+
+	margin:20px 0 20px 10px;
 	float:left; /*consigo que los div con 'float:left' se incluyan dentro de su div padre. El div padre va creciendo en alto automaticamente */
 	padding-bottom: 20px;
 
@@ -326,11 +326,11 @@ article {
 }
 
 #derecho_general{
-	float:right;
-    width: 710px;
+	float:left;
+    width: 700px;
 	height:460px;
-	border: 1px solid #ecebeb;
-	margin: 15px 10px 0 0;
+	border: 3px solid #ecebeb;
+	margin: 15px 10px 0 10px;
 
 
 }
@@ -490,12 +490,13 @@ padding-right:50px;
 	height:166px;
 	padding:20px 20px 0px 20px;
 	border-top:0.2em solid #05244c;
-		
-	
+			
 	border-right:0.2em solid #05244c;
 	border-top-right-radius: 0.5em;
-
 }
+
+
+
 #contenido1{  /*  se utiliza en las secciones privadas para mostrar los listados y formulario de alta de alumnos, profesoras,... */
 	float:right;
 	width:750px;
@@ -509,6 +510,8 @@ padding-right:50px;
 	border-bottom-left-radius: 0.5em;
 	border-bottom-right-radius: 0.5em;
 }
+
+
 
 /*  MENU VERTICAL LATERAL IZQUIERDO  */
 
@@ -589,6 +592,8 @@ ul.menuVertical   li.activo a{
 
 
 /* lsitados */
+
+
 
 .datagrid table { 
 	border-collapse: collapse; /*  fusión automática de todos los bordes adyacentes de la tabla*/
