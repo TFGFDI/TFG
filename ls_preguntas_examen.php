@@ -26,6 +26,11 @@ if (isset($dict['orden'])){
 	$orden="";
 }
 ?>
+<style>
+.fancybox-skin{
+	height:300px!important;
+}
+</style>
 <script>
 function openFancybox() {
   $.fancybox({
@@ -44,6 +49,36 @@ function openFancybox() {
 function ocultar(){
 	$('#tipo_test').toggle('slow');
 }
+
+function eliminar(id,id_examen){
+	location.href="do.php?op=eliminar_pregunta_examen&id="+id+"&id_examen="+id_examen;
+}
+
+$(document).ready(function() {
+		$(".fancybox").fancybox();
+
+		$('.fancybox-media').fancybox({
+		openEffect  : 'none',
+		closeEffect : 'none',
+		helpers : {
+			media : {}
+		}
+
+		});
+
+		$(".ifancybox").fancybox({
+         'width' : '25%',
+         'height' : '200px',
+         'autoScale' : true,
+         'transitionIn' : 'none',
+         'transitionOut' : 'none',
+         'type' : 'iframe',
+		 afterClose: function () { 
+                parent.location.reload(true);
+            }
+		});
+		
+	});
 </script>
 	
 	<h2>Gestion de profesores</h2>
@@ -147,8 +182,10 @@ function ocultar(){
 						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['tipo']?></a></td>
 						<td><?php echo $rowEmp["pregunta"]?></td>	
 						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="imagenes/activo.png"><?php }else{?><img src="imagenes/inactivo.png"><?php }?></td>
-						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="editar(this.id)"><img src="imagenes/lapiz.gif"></td>
-						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id)"><img src="imagenes/eliminar.png" style="width:15px;"></td>
+						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>">
+							<a class="ifancybox" href="editar_pregunta_examen.php?id=<?php echo $rowEmp['id']?>&id_examen=<?php echo $dict['id']?>"><img src="imagenes/lapiz.gif"></a>
+						</td>
+						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id,<?php echo $dict['id']?>)"><img src="imagenes/eliminar.png" style="width:15px;"></td>
 					</tr>
 					<?php 
 					$i++;

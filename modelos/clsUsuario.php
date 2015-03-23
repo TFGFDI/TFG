@@ -120,7 +120,7 @@ public function login($dict){
 		
 	
 }
-public function getEstudiantes($buscador,$activo,$nacionalidad,$filtro,$orden){
+public function getEstudiantes($buscador="",$activo="",$nacionalidad="",$filtro,$orden){
 	$objDatos = new clsDatos();
 	if($buscador==""){
 		$sql= "SELECT * FROM usuarios WHERE rol='E'";
@@ -146,7 +146,7 @@ public function getEstudiantes($buscador,$activo,$nacionalidad,$filtro,$orden){
 	 return $res;
 }
 
-public function getEstudiantesPaginacion($buscador,$activo,$nacionalidad,$filtro,$orden,$itemsInicio,$numer_reg){
+public function getEstudiantesPaginacion($buscador="",$activo="",$nacionalidad="",$filtro="",$orden="",$itemsInicio,$numer_reg){
 	$objDatos = new clsDatos();
 	if($buscador==""){
 		$sql= "SELECT * FROM usuarios WHERE rol='E'";

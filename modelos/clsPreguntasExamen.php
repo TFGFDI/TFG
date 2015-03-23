@@ -72,6 +72,14 @@ public function getPreguntasExamenPaginacion($id_examen,$itemsInicio,$numer_reg)
 	 return $res;
 }
 
+public function getPreguntaById($id_pregunta){
+	$objDatos = new clsDatos();
+	$sql= "SELECT * FROM preguntas_examen WHERE id='$id_pregunta'";	
+	$res = $objDatos->filtro($sql);
+	
+	return $res;
+}
+
 public function getProfesorExamenById($id_examen){
 	$objDatos = new clsDatos();
 	$sql= "SELECT nombre_profesor FROM examenes WHERE id='$id_examen'";

@@ -6,8 +6,9 @@ if (($_SESSION["id"]=="")){
 header("Location: login.php");
 
 }
-require_once("clases.php"); 
+include_once("clases.php");
 require_once("top.php"); 
+
 
 if (isset($dict['buscador'])){
 	$buscador=$dict['buscador'];
@@ -42,18 +43,18 @@ if (isset($dict['orden'])){
 ?>
 
 	
-	<h2>Gestion de profesores</h2>
+	<h2>Gestion de Alumnos</h2>
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>
 	<section id="izquierdo_general" class="bloqueRedondo">
 	    <article id="caja0" class="caja" >
                 	<div class="caja_titulo">
-		                <p>Cuenta Usuario</p>
+		                <p>A&ntilde;adir ex&aacute;men</p>
                     </div>
                     <div class="caja_contenido"  >
 		                <ul>
-                            <li><a href="./consultaCuentaUsuario.php"  title="Inicio">Modificar Cuenta</a></li>
+                            <li><a href="do.php?op=nuevo_examen"  title="Inicio">Nuevo </a></li>
                         </ul>
                     </div>
                 </article>
@@ -62,7 +63,8 @@ if (isset($dict['orden'])){
 	</section>
 	
 	<section id="derecho_general" class=" bloqueRedondeado">
-        <div class="datagrid" style="width:auto;">
+       
+		<div class="datagrid" style="width:auto;">
 			<table>
 				<thead>
 					<tr>
@@ -70,20 +72,9 @@ if (isset($dict['orden'])){
 							<?php 
 								if($filtro=="nombre"){
 									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
+										<img src="imagenes/flecha-abajo.png">
 									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
-									<?php }
-								}
-							?>
-						</th>
-						<th onclick="orden('apellidos','<?php echo $orden?>');" style="cursor:pointer"><span>Apellidos</span>
-							<?php 
-								if($filtro=="apellidos"){
-									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
-									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
+										<img src="imagenes/flecha-arriba.png">
 									<?php }
 								}
 							?>
@@ -92,40 +83,53 @@ if (isset($dict['orden'])){
 							<?php 
 								if($filtro=="email"){
 									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
+										<img src="imagenes/flecha-abajo.png">
 									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
+										<img src="imagenes/flecha-arriba.png">
 									<?php }
 								}
 							?>
 						</th>
+						
 						<th onclick="orden('nacionalidad','<?php echo $orden?>');" style="cursor:pointer"><span>Nacionalidad</span>
 							<?php 
 								if($filtro=="nacionalidad"){
 									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
+										<img src="imagenes/flecha-abajo.png">
 									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
+										<img src="imagenes/flecha-arriba.png">
 									<?php }
 								}
 							?>
 						</th>	
+						<th onclick="orden('fechanacimiento','<?php echo $orden?>');" style="cursor:pointer"><span>Fecha de Nacimiento</span>
+							<?php 
+								if($filtro=="fechanacimiento"){
+									if($orden=="DESC"){ ?>
+										<img src="imagenes/flecha-abajo.png">
+									<?php }else if($orden=="ASC"){ ?>
+										<img src="imagenes/flecha-arriba.png">
+									<?php }
+								}
+							?>
+						</th>		
+						
 						
 					</tr>
 				</thead>
 				<tbody>
 				<?php
-					$usuario= new clsUsuario();					
+					$alumnos= new clsUsuario();					
 					
-					$filas = $usuario->getProfesores($buscador,$activo,$nac,$filtro,$orden);
-					$filasTot = $usuario->getProfesores($buscador,$activo,$nac,$filtro,$orden);
+					$filas = $alumnos->getEstudiantes($buscador,"on",$nac,$filtro,$orden);
+					$filasTot = $alumnos->getEstudiantes($buscador,"on",$nac,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
 					$numer_reg = 8; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
-					$filasPag = $usuario->getProfesoresPaginacion($buscador,$activo,$nac,$filtro,$orden,$itemsInicio,$numer_reg);
+					$filasPag = $alumnos->getEstudiantesPaginacion($buscador,"on",$nac,$filtro,$orden,$itemsInicio,$numer_reg);
 					
 					$total=mysqli_num_rows($filasTot);
 					
@@ -134,11 +138,10 @@ if (isset($dict['orden'])){
 					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?></a></td>
-						<td><?php echo $rowEmp["apellidos"]?></td>
-						<td><?php echo $rowEmp["email"]?></td>
+						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?> <?php echo $rowEmp['apellidos']?></a></td>
+						<td><?php echo $rowEmp["email"]?></td>						
 						<td><?php echo $rowEmp["nacionalidad"]?></td>
-						
+						<td><?php echo $rowEmp["fechanacimiento"]?></td>
 					</tr>
 					<?php 
 					$i++;
@@ -147,11 +150,13 @@ if (isset($dict['orden'])){
 				
 				<?php require_once("paginador.php"); ?>
 			</table>
-		</div> 
+		</div>
+	
+		
     </section>
 	
 </div>
-	
+
 	
 <?php
 

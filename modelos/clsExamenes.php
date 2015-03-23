@@ -96,6 +96,46 @@ public function getExamenesById(){
 	
 	return $res;
 }
+
+public function getTodosExamenes($buscador,$filtro,$orden){
+	$objDatos = new clsDatos();
+	if($buscador==""){
+	
+		$sql= "SELECT * FROM examenes ";
+	}else{
+		$sql= "SELECT * FROM examenes WHERE nombre_profesor LIKE ('%".$buscador."%')";
+	}
+			
+	if(($filtro!="")&&($orden!="")){
+		$sql=$sql." order by $filtro $orden";
+	}
+	
+	 $res = $objDatos->filtroListado($sql);
+	
+	 return $res;
+}
+
+public function getTodosExamenesPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg){
+	$objDatos = new clsDatos();
+	if($buscador==""){
+		$sql= "SELECT * FROM examenes ";
+	}else{
+		$sql= "SELECT * FROM examenes WHERE nombre_profesor LIKE ('%".$buscador."%')";
+	}
+	
+	
+	if(($filtro!="")&&($orden!="")){
+		$sql=$sql." order by $filtro $orden";
+	}
+	
+	$sql=$sql." LIMIT $itemsInicio,$numer_reg ";
+	
+	
+	 $res = $objDatos->filtroListado($sql);
+	
+	 return $res;
+}
+
 }
 
 ?>

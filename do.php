@@ -100,5 +100,15 @@ if($op=="login"){
 	
 	$pregunta->incluir();
 	header("Location: ls_preguntas_examen.php?id=".$dict['id_examen']);
+}else if($op=="eliminar_pregunta_examen"){
+	$pregunta= new clsPreguntasExamen();
+	$pregunta->estableceCampos($dict);	
+	$pregunta->eliminar();
+	header("Location: ls_preguntas_examen.php?id=".$dict['id_examen']);
+}else if($op=="editar_pregunta"){
+	$pregunta= new clsPreguntasExamen();
+	$pregunta->estableceCampos($dict);	
+	$pregunta->editar();
+	echo "<div style='text-align:center;padding-top:75px'>Pregunta modificada con &eacute;xito</div>";
 }
 ?>
