@@ -975,8 +975,9 @@ border-radius: 7px 7px 7px 7px;
 }
 
 .titulo_examen{
-	margin:20px;
-	width:710px;
+	padding:10px;	
+	border: 3.5px solid #36559e;	
+	border-radius: 7px 7px 7px 7px;
 }
 
 .volver{

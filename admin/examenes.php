@@ -44,11 +44,13 @@ if (isset($dict['orden'])){
 
 ?>
 <script>
-	function eliminar(){
-		$('#buscador_input').val('');
-		$('#buscador_input').val('');
+	function limpiar(){
+	
+		$('#buscador_input').val('');		
 		$('#activo').val('');
-		$("#buscador").submit();
+		$('#nac').val('');
+		$("#formulario").submit();
+		
 	}
 	function orden(filtro,orden){
 		
@@ -130,7 +132,7 @@ if (isset($dict['orden'])){
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_admin.php");  ?>
 	<h2>Gestion de Ex&aacute;menes</h2>
-
+	
 	<div id="divMenu_Vertical" class="bloqueRedondo_2 ">
 		<ul class="menuVertical ">
 			<li class="activo" style="border-top-left-radius: 0.5em;"><a href="examenes.php?menu=2" >Consulta</a></li>
@@ -212,7 +214,7 @@ if (isset($dict['orden'])){
 					
 				
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre_profesor']?></a></td>

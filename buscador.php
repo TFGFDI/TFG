@@ -1,23 +1,27 @@
+<?php
+$util = new ClsUtil();
+$url=$util->getPagina();
 
+?>
 <div id="buscador" class=" bloqueSombra bloqueRedondo">
 	<div id="buscadorIzq">
-		<form name="buscador" method="get" action="alumnos.php" id="buscador">
+		<form name="formulario" method="get" action="<?php echo $url?>" id="formulario">
 			<div class="divCampo">
-				<input type="text" name="campo_b" value="<?php echo $buscador?>" class="input input_tamanhoGrande" >
+				<input type="text" name="buscador" value="<?php echo $buscador?>" class="input input_tamanhoGrande" id="buscador_input">
 			</div>
-			<div id="oculto" style="display:none; padding:10px">
+			<div id="oculto" <?php if(($activo!="")||($nac!="")){?><?php }else{?> style="display:none; padding:10px"<?php }?>>
 		
 				<div class="bloque_campoForumulario">
 					<label class="labelBuscador">Activos/Desactivos:</label>
-					<select name="activo_b" id="activo_b" class="select_tamanhoPequenho_1" >
-						<option value="0" selected>Activos & Desactivos</option>
-						<option value="1">Activos</option>
-						<option value="2">Desactivo</option>
+					<select name="activo" id="activo" class="select_tamanhoPequenho_1" >
+						<option value="" <?php if($activo==""){?>selected<?php }?>>Todos</option>
+						<option value="1" <?php if($activo=="1"){?>selected<?php }?>>Activos</option>
+						<option value="0" <?php if($activo=="0"){?>selected<?php }?>>Desactivo</option>
 					</select>
 				</div>
 				<div class="bloque_campoForumulario divCampo"  style="margin-top:10px;" >
 					<label class="labelBuscador">Nacionalidad:</label>
-					<select name="nacionalidad_b" id="activo_b" class="select_tamanhoPequenho" >
+					<select name="nac" id="nac" class="select_tamanhoPequenho" >
 						<option value="" <?php if($nac==""){?>selected<?php }?>>--Seleccione--</option>
 						<?php 
 							$util=new ClsUtil();
@@ -32,8 +36,8 @@
 		</form>
 	</div>
 	<div id="buscadorDch">
-		<input type="button" name="buscar" value="Buscar" onclick="buscador.submit()" style="margin-right:10px;">
-		<input type="button" name="limpiar" value="Limpiar" onclick="eliminar()" id="limpiar">
+		<input type="button" name="buscar" value="Buscar" onclick="formulario.submit()" style="margin-right:10px;">
+		<input type="button" name="limpiar" value="Limpiar" onclick="limpiar()" id="limpiar">
 	</div>
 	<div id="buscadorDch" style="margin-left:10px">
 		<span class="avanzada" id="avanzada" onclick="mostrar();">B&uacute;squeda avanzada</span>

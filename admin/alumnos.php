@@ -33,8 +33,6 @@ if (isset($dict['nac'])){
 	$nac="";
 }
 
-
-
 if (isset($dict['orden'])){
 	$orden = $dict['orden'];
 }else{
@@ -44,11 +42,13 @@ if (isset($dict['orden'])){
 
 ?>
 <script>
-	function eliminar(){
-		$('#buscador_input').val('');
-		$('#buscador_input').val('');
+	function limpiar(){
+	
+		$('#buscador_input').val('');		
 		$('#activo').val('');
-		$("#buscador").submit();
+		$('#nac').val('');
+		$("#formulario").submit();
+		
 	}
 	function orden(filtro,orden){
 		
@@ -224,7 +224,7 @@ if (isset($dict['orden'])){
 					
 				
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?></a></td>

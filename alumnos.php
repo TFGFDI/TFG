@@ -121,12 +121,12 @@ if (isset($dict['orden'])){
 				<?php
 					$alumnos= new clsUsuario();					
 					
-					$filas = $alumnos->getEstudiantes($buscador,"on",$nac,$filtro,$orden);
+					//$filas = $alumnos->getEstudiantes($buscador,"on",$nac,$filtro,$orden);
 					$filasTot = $alumnos->getEstudiantes($buscador,"on",$nac,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
-					$numer_reg = 8; 
+					$numer_reg = 11; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
 					$filasPag = $alumnos->getEstudiantesPaginacion($buscador,"on",$nac,$filtro,$orden,$itemsInicio,$numer_reg);
@@ -135,7 +135,7 @@ if (isset($dict['orden'])){
 					
 				
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?> <?php echo $rowEmp['apellidos']?></a></td>

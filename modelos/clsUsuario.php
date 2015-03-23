@@ -128,8 +128,8 @@ public function getEstudiantes($buscador="",$activo="",$nacionalidad="",$filtro,
 		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
 	
-	if($activo=="on"){
-		$sql=$sql." AND activo=1 ";
+	if($activo!=""){
+		$sql=$sql." AND activo=$activo ";
 	}
 	
 	if($nacionalidad !=""){
@@ -154,8 +154,8 @@ public function getEstudiantesPaginacion($buscador="",$activo="",$nacionalidad="
 		$sql= "SELECT * FROM usuarios WHERE rol='E' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
 	
-	if($activo=="on"){
-		$sql=$sql." AND activo=1 ";
+	if($activo!=""){
+		$sql=$sql." AND activo=$activo ";
 	}
 	
 	if($nacionalidad !=""){
@@ -182,9 +182,10 @@ public function getProfesores($buscador,$activo,$nacionalidad,$filtro,$orden){
 		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
 	
-	if($activo=="on"){
-		$sql=$sql." AND activo=1 ";
+	if($activo!=""){
+		$sql=$sql." AND activo=$activo ";
 	}
+		
 	
 	if($nacionalidad !=""){
 		$sql=$sql." AND nacionalidad='$nacionalidad' ";
@@ -206,8 +207,8 @@ public function getProfesoresPaginacion($buscador,$activo,$nacionalidad,$filtro,
 		$sql= "SELECT * FROM usuarios WHERE rol='P' AND (nombre LIKE ('%".$buscador."%') OR apellidos LIKE ('%".$buscador."%') OR email LIKE ('%".$buscador."%'))";
 	}
 	
-	if($activo=="on"){
-		$sql=$sql." AND activo=1 ";
+	if($activo!=""){
+		$sql=$sql." AND activo=$activo ";
 	}
 	
 	if($nacionalidad !=""){

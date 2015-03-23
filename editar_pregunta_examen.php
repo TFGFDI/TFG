@@ -23,12 +23,9 @@ if (isset($dict['id'])){
 	header("Location: ls_examenes_profesor.php");
 }
 
-if (isset($dict['editar'])){ ?>
-	<script>
-		window.close();
-	</script>
-<?php
-	}
+if (! isset($dict['opcion'])){ //Posibles valores: Ver / Editar
+	$dict['opcion']="editar";
+}
 ?>
 <script type="text/javascript"  src="js/jquery-1.8.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
@@ -86,7 +83,9 @@ function ocultar(){
 							<input type="radio" name="solucion" value="d" <?php if($pregunta['solucion']=="d"){?>checked<?php }?>>D
 						</div>
 					</div>
-					<input type="submit" value="Guardar">
+					<?php if($dict["opcion"]!="ver"){?>
+						<input type="submit" value="Guardar">
+					<?php }?>
 		</fieldset>			
 	</form>
 	

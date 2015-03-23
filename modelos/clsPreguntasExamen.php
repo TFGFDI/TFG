@@ -25,7 +25,7 @@ class clsPreguntasExamen{
  public function incluir(){
 	 $objDatos = new clsDatos(); 
 	 $sql = "insert into preguntas_examen(id_examen,tipo,pregunta,respuesta1,respuesta2,respuesta3,respuesta4,solucion) values ('$this->id_examen','$this->tipo','$this->pregunta','$this->respuesta1','$this->respuesta2','$this->respuesta3','$this->respuesta4','$this->solucion')";
-	 	
+	 var_dump($sql);	
 	 $objDatos->ejecutar($sql);
     
 
@@ -110,6 +110,21 @@ public function getActivoExamenById($id_examen){
 	$res = $objDatos->filtro($sql);
 	
 	return $res['activo'];
+}
+
+public function eliminarPreguntasExamen($id_examen){
+	$objDatos = new clsDatos();
+	$sql = "delete from preguntas_examen where(id_examen='$id_examen')";
+	$objDatos->ejecutar($sql);
+	
+}
+
+public function getNumPreguntas($id){
+	$objDatos = new clsDatos();
+	$sql=" SELECT COUNT(*) as total FROM preguntas_examen WHERE id_examen='$id'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res["total"];
 }
 
 }

@@ -22,6 +22,16 @@ public function getURL(){
 
 }
 
+public function getPagina(){
+	//Obtener la url actual SIN parámetros
+	$url=$_SERVER['PHP_SELF'];
+	$ar_url=explode('/',$url);
+	$claves = array_keys($ar_url);
+	
+	return $ar_url[count($ar_url)-1];
+
+}
+
 public function getURLparametros(){
 	//Obtener la url actual para añadir parametros
 	$url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
@@ -48,7 +58,16 @@ public function eliminarParametrosURL($url,$parametro){
 
 }
 
-
+static function desinfectar($cad){
+		if($cad==NULL){
+				$cad="";
+		}
+		$cad=trim($cad);//Eliminar espacios en blanco al principio y final
+		$cad=addslashes($cad);//Escapa caracteres como ' " \ o NULL
+		
+		return $cad;
+	}
+	
 public function getNacionalidades(){
 $nacionalidades = array(
         'Afghan',

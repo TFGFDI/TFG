@@ -117,12 +117,12 @@ if (isset($dict['orden'])){
 				<?php
 					$usuario= new clsUsuario();					
 					
-					$filas = $usuario->getProfesores($buscador,$activo,$nac,$filtro,$orden);
+					//$filas = $usuario->getProfesores($buscador,$activo,$nac,$filtro,$orden);
 					$filasTot = $usuario->getProfesores($buscador,$activo,$nac,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
-					$numer_reg = 8; 
+					$numer_reg = 11; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
 					$filasPag = $usuario->getProfesoresPaginacion($buscador,$activo,$nac,$filtro,$orden,$itemsInicio,$numer_reg);
@@ -131,7 +131,7 @@ if (isset($dict['orden'])){
 					
 				
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?></a></td>

@@ -108,12 +108,30 @@ $(document).ready(function() {
 		$estado=$examen->getEstadoExamenById($id_examen);
 		$activo=$examen->getActivoExamenById($id_examen);
 	   
+	   
+	   
+	   $preguntas= new clsPreguntasExamen();					
+					
+		//$filas = $preguntas->getPreguntas($id_examen);
+		$filasTot = $preguntas->getPreguntas($id_examen);
+		
+		$totEmp = mysqli_num_rows($filasTot);
+		$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
+		$numer_reg = 11; 
+		$totalPag = ceil($totEmp / $numer_reg);				
+		$itemsInicio = $numer_reg * ($pag - 1);
+		$filasPag = $preguntas->getPreguntasExamenPaginacion($id_examen,$itemsInicio,$numer_reg);
+		
+		$total=mysqli_num_rows($filasTot);
+	   
+	   
 	   ?>
 	  <div class="titulo_examen">
-		<div class="">Profesor: <?php echo $profesor?></div>
-		<div class="">Fecha: <?php echo $fecha?></div>
-		<div class="">Estado: <?php if($estado==0){?>Privado<?php }else if($estado==1){?>Compartido<?}?></div>
-		<div class="">Activo: <?php if($activo==0){?>No activo<?php }else if($activo==1){?>Activo<?}?></div>
+		<b>Profesor:</b> <?php echo $profesor?><br>
+		<b>Fecha:</b> <?php echo $fecha?><br>
+		<b>Estado:</b> <?php if($estado==0){?>Privado<?php }else if($estado==1){?>Compartido<?}?><br>
+		<b>Activo:</b> <?php if($activo==0){?>No activo<?php }else if($activo==1){?>Activo<?}?><br>
+		<b>Total preguntas:</b> <?php echo $totEmp?>
 	  </div>
 		<div class="datagrid" style="width:auto;">
 			<table>
@@ -141,18 +159,6 @@ $(document).ready(function() {
 								}
 							?>
 						</th>						
-						
-						<th onclick="orden('activo','<?php echo $orden?>');" style="cursor:pointer"><span>Activo</span>
-							<?php 
-								if($filtro=="activo"){
-									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
-									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
-									<?php }
-								}
-							?>
-						</th>	
 						<th></th>
 						<th></th>
 						
@@ -160,28 +166,15 @@ $(document).ready(function() {
 				</thead>
 				<tbody>
 				<?php
-					$preguntas= new clsPreguntasExamen();					
 					
-					$filas = $preguntas->getPreguntas($id_examen);
-					$filasTot = $preguntas->getPreguntas($id_examen);
-					
-					$totEmp = mysqli_num_rows($filasTot);
-					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
-					$numer_reg = 8; 
-					$totalPag = ceil($totEmp / $numer_reg);				
-					$itemsInicio = $numer_reg * ($pag - 1);
-					$filasPag = $preguntas->getPreguntasExamenPaginacion($id_examen,$itemsInicio,$numer_reg);
-					
-					$total=mysqli_num_rows($filasTot);
 					
 				
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['tipo']?></a></td>
-						<td><?php echo $rowEmp["pregunta"]?></td>	
-						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="imagenes/activo.png"><?php }else{?><img src="imagenes/inactivo.png"><?php }?></td>
+						<td><a class="ifancybox" href="editar_pregunta_examen.php?id=<?php echo $rowEmp['id']?>&id_examen=<?php echo $dict['id']?>&opcion=ver"><?php echo $rowEmp['tipo']?></a></td>
+						<td><a class="ifancybox" href="editar_pregunta_examen.php?id=<?php echo $rowEmp['id']?>&id_examen=<?php echo $dict['id']?>&opcion=ver"><?php echo $rowEmp['pregunta']?></a></td>							
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>">
 							<a class="ifancybox" href="editar_pregunta_examen.php?id=<?php echo $rowEmp['id']?>&id_examen=<?php echo $dict['id']?>"><img src="imagenes/lapiz.gif"></a>
 						</td>

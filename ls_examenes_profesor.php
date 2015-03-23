@@ -41,7 +41,14 @@ if (isset($dict['orden'])){
 	$orden="";
 }
 ?>
-
+<script>
+function eliminar(id){
+	location.href="do.php?op=eliminar_examen&id="+id;
+}
+function activar(id){
+	location.href='do.php?op=activar_examen&id='+id;
+}
+</script>
 	
 	<h2>Gestion de profesores</h2>
 	
@@ -91,6 +98,10 @@ if (isset($dict['orden'])){
 							?>
 						</th>
 						
+						<th>
+							<span>Nº preguntas</span>
+						</th>
+						
 						<th onclick="orden('estado','<?php echo $orden?>');" style="cursor:pointer"><span>Estado</span>
 							<?php 
 								if($filtro=="estado"){
@@ -122,29 +133,39 @@ if (isset($dict['orden'])){
 				<?php
 					$examen= new clsExamenes();					
 					
-					$filas = $examen->getExamenes($buscador,$filtro,$orden);
+					//$filas = $examen->getExamenes($buscador,$filtro,$orden);
 					$filasTot = $examen->getExamenes($buscador,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
-					$numer_reg = 8; 
+					$numer_reg = 11; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
 					$filasPag = $examen->getExamenesPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg);
 					
 					$total=mysqli_num_rows($filasTot);
 					
-				
+					$preguntas = new clsPreguntasExamen();
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre_profesor']?></a></td>
 						<td><?php echo $rowEmp["fecha"]?></td>
+						<td><?php echo $preguntas->getNumPreguntas($rowEmp['id']);?></td>
+						<?php if($rowEmp['id_profesor']==$_SESSION['id']){?>
+							<td><a href="do.php?op=cambiar_estado_examen&id=<?php echo $rowEmp['id']?>"><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?}?></a></td>
+						<?php }else{?>
+							<td><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?}?></td>
+						<?php }?>
 						
-						<td><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?}?></td>
-						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="imagenes/activo.png"><?php }else{?><img src="imagenes/inactivo.png"><?php }?></td>
-						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="editar(this.id)"><img src="imagenes/lapiz.gif"></td>
+						<?php if($rowEmp["estado"]==1){?>
+							<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="imagenes/activo.png"><?php }else{?><img src="imagenes/inactivo.png"><?php }?></td>
+						<?php }else{?>
+							<td></td>
+						<?php }?>
+						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><img src="imagenes/lapiz.gif"></a></td>
+						
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id)"><img src="imagenes/eliminar.png" style="width:15px;"></td>
 					</tr>
 					<?php 
@@ -152,7 +173,7 @@ if (isset($dict['orden'])){
 					}?>
 				</tbody>
 				
-				<?php //require_once("../paginador.php"); ?>
+				<?php require_once("paginador.php"); ?>
 			</table>
 		</div>
 	

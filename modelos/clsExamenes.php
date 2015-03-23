@@ -136,6 +136,15 @@ public function getTodosExamenesPaginacion($buscador,$filtro,$orden,$itemsInicio
 	 return $res;
 }
 
+public function activar_examen(){
+	$objDatos = new clsDatos();
+	$sql="UPDATE examenes SET activo=0 WHERE activo=1";
+	$objDatos->ejecutar($sql);
+	
+	$sql="UPDATE examenes SET activo=1 WHERE id='$this->id'";
+	$objDatos->ejecutar($sql);
+}
+
 }
 
 ?>
