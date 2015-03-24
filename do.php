@@ -13,7 +13,7 @@ function getRequest() {
 $dict = getRequest();
 $op = $dict['op'];
 $util = new clsUtil();
-//var_dump($dict);
+//var_dump($dict);exit();
 session_start();
 if($op=="login"){
 	$usuario= new clsUsuario();
@@ -36,7 +36,7 @@ if($op=="login"){
 		}else if($usuario['rol']=='P'){
 			header("Location: profesores.php?login=ok");
 		}else{
-			header("Location: index.php?login=ok");
+			header("Location: alumno.php?login=ok");
 		}
 	}else{
 

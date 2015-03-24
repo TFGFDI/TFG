@@ -122,14 +122,14 @@ if (isset($dict['orden'])){
 					$alumnos= new clsUsuario();					
 					
 					//$filas = $alumnos->getEstudiantes($buscador,"on",$nac,$filtro,$orden);
-					$filasTot = $alumnos->getEstudiantes($buscador,"on",$nac,$filtro,$orden);
+					$filasTot = $alumnos->getEstudiantes($buscador,"1",$nac,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
 					$numer_reg = 11; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
-					$filasPag = $alumnos->getEstudiantesPaginacion($buscador,"on",$nac,$filtro,$orden,$itemsInicio,$numer_reg);
+					$filasPag = $alumnos->getEstudiantesPaginacion($buscador,"1",$nac,$filtro,$orden,$itemsInicio,$numer_reg);
 					
 					$total=mysqli_num_rows($filasTot);
 					

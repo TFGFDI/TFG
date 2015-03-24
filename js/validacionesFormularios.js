@@ -121,11 +121,12 @@ jQuery.validator.setDefaults({
 				label.html("&nbsp;").removeClass("error");
 				label.html("&nbsp;").addClass("success");
 			},
-		
+		*/
 			submitHandler: function() {  //cuando se envia el formulario
 				alert("formulario enviado");
+				form_registro.submit();
 			}
-		*/
+		
 		});
 
 });

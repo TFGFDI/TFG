@@ -11,10 +11,10 @@ require_once("top.php");
 $lang='es';
 
 if($dict['menu']==1){
-	$tipoUser="Alumno";
+	$tipoUser="E";
 }
 if($dict['menu']==2){
-	$tipoUser="Profesor";
+	$tipoUser="P";
 }
 
 ?>
@@ -32,7 +32,7 @@ $(function() {
 </script>
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_admin.php");  ?>
-	<h2>Gestion de alumnos</h2>
+	<h2>Gestion de <?php if($tipoUser=="E"){echo "Alumno";}else{ echo "Profesor";}?></h2>
 	
 
 	<div id="divMenu_Vertical" class="bloqueRedondo_2 ">
@@ -42,9 +42,10 @@ $(function() {
 			<li class="noMenu ">&nbsp;asd</li> 
 		</ul>
 	</div>
-	<form name="form_nuevo" id="form_nuevo" method="POST" action="do.php">
+	<form name="form_nuevo" id="form_nuevo" method="POST" action="../do.php">
+	<input type="hidden" name="op" value="altaUsuario">
 	<div id="contenidoBuscador" >
-	<div class="subtitulo">Alta <?php echo $tipoUser; ?></div>
+	<div class="subtitulo">Alta <?php if($tipoUser=="E"){echo "Alumno";}else{ echo "Profesor";}?></div>
 		<div id="formIzquierdo">
 			<div class="bloque_campoForumulario">
 				<label class="labelPequenho" for="email">Email</label>
@@ -75,7 +76,7 @@ $(function() {
 		<div id="formDerecho">
 			<div class="bloque_campoForumulario">
 				<label  for="rol">tipo Usuario<?php echo $util->trad("tipo Usurio",$lang);?></label>
-				<input type="text" name="rol" id="rol" value="<?php echo $tipoUser; ?>" readonly class="input input_tamanhoPequenho consulta" />
+				<input type="text" name="rol" id="rol" value="<?php echo $tipoUser?>" readonly class="input input_tamanhoPequenho consulta" />
 			</div>
 			<div class="bloque_campoForumulario">
 				<label for="apellidos"><?php echo $util->trad("apellidos",$lang);?></label>

@@ -40,6 +40,8 @@ if (isset($dict['orden'])){
 }else{
 	$orden="";
 }
+
+
 ?>
 <script>
 function eliminar(id){
@@ -154,9 +156,9 @@ function activar(id){
 						<td><?php echo $rowEmp["fecha"]?></td>
 						<td><?php echo $preguntas->getNumPreguntas($rowEmp['id']);?></td>
 						<?php if($rowEmp['id_profesor']==$_SESSION['id']){?>
-							<td><a href="do.php?op=cambiar_estado_examen&id=<?php echo $rowEmp['id']?>"><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?}?></a></td>
+							<td><a href="do.php?op=cambiar_estado_examen&id=<?php echo $rowEmp['id']?>"><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?php }?></a></td>
 						<?php }else{?>
-							<td><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?}?></td>
+							<td><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?php }?></td>
 						<?php }?>
 						
 						<?php if($rowEmp["estado"]==1){?>

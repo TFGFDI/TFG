@@ -129,8 +129,8 @@ $(document).ready(function() {
 	  <div class="titulo_examen">
 		<b>Profesor:</b> <?php echo $profesor?><br>
 		<b>Fecha:</b> <?php echo $fecha?><br>
-		<b>Estado:</b> <?php if($estado==0){?>Privado<?php }else if($estado==1){?>Compartido<?}?><br>
-		<b>Activo:</b> <?php if($activo==0){?>No activo<?php }else if($activo==1){?>Activo<?}?><br>
+		<b>Estado:</b> <?php if($estado==0){?>Privado<?php }else if($estado==1){?>Compartido<?php }?><br>
+		<b>Activo:</b> <?php if($activo==0){?>No activo<?php }else if($activo==1){?>Activo<?php }?><br>
 		<b>Total preguntas:</b> <?php echo $totEmp?>
 	  </div>
 		<div class="datagrid" style="width:auto;">
