@@ -121,10 +121,18 @@ public function eliminarPreguntasExamen($id_examen){
 
 public function getNumPreguntas($id){
 	$objDatos = new clsDatos();
-	$sql=" SELECT COUNT(*) as total FROM preguntas_examen WHERE id_examen='$id'";
+	$sql=" SELECT COUNT(*) as total FROM preguntas_examen WHERE id_examen='$id' AND tipo='Test'";
 	$res = $objDatos->filtro($sql);
 	
 	return $res["total"];
+}
+
+public function getSolucion($id){
+	$objDatos = new clsDatos();
+	$sql= "SELECT solucion FROM preguntas_examen WHERE id='$id'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['solucion'];
 }
 
 }

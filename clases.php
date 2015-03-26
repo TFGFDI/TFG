@@ -5,4 +5,6 @@ require_once("modelos/clsUtil.php");
 require_once("modelos/clsTraducciones.php");
 require_once("modelos/clsExamenes.php");
 require_once("modelos/clsPreguntasExamen.php");
+require_once("modelos/clsExamenesRealizados.php");
+require_once("modelos/clsRespuestasAlumnos.php");
 ?>

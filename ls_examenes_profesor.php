@@ -50,8 +50,62 @@ function eliminar(id){
 function activar(id){
 	location.href='do.php?op=activar_examen&id='+id;
 }
-</script>
-	
+
+function openFancybox() {
+  $.fancybox({
+     'autoScale': true,
+     'transitionIn': 'elastic',
+     'transitionOut': 'elastic',
+     'speedIn': 500,
+     'speedOut': 300,
+     'autoDimensions': true,
+     'centerOnScroll': true,
+     'href' : '#fancy_form'
+  });
+}
+
+function openFancybox2(id) {
+  $.fancybox({
+     'autoScale': true,
+     'transitionIn': 'elastic',
+     'transitionOut': 'elastic',
+     'speedIn': 500,
+     'speedOut': 300,
+     'autoDimensions': true,
+     'centerOnScroll': true,
+     'href' : '#fancy_form_edit',	
+	 'content': '<form name="formulario" method="post" action="do.php" enctype="multipart/form-data">		<input type="hidden" name="op" value="editar_examen">	<fieldset class="bloqueSombra bloqueRedondo">	<legend class="bloqueRedondo">Nueva Pregunta</legend>	<div class="bloque_campoForumulario">	<label for="pregunta">Tiempo establecido</label>	<input type="text" name="tiempo_'+id+'"" id="spinner2" class="input" style="width:30%"/> &nbsp;min	</div>	<input type="submit" value="Editar">	</fieldset>		</form>'
+  });
+}
+
+$(document).ready(function() {
+		$(".fancybox").fancybox();
+		$("#spinner").spinner({
+		  step: 10
+		});		
+		$('.fancybox-media').fancybox({
+		openEffect  : 'none',
+		closeEffect : 'none',
+		helpers : {
+			media : {}
+		}
+
+		});
+
+		$(".ifancybox").fancybox({
+         'width' : '25%',
+         'height' : '200px',
+         'autoScale' : true,
+         'transitionIn' : 'none',
+         'transitionOut' : 'none',
+         'type' : 'iframe',
+		 afterClose: function () { 
+                parent.location.reload(true);
+            }
+		});
+		
+	});
+</script>	
 	<h2>Gestion de profesores</h2>
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
@@ -63,7 +117,7 @@ function activar(id){
                     </div>
                     <div class="caja_contenido"  >
 		                <ul>
-                            <li><a href="do.php?op=nuevo_examen"  title="Inicio">Nuevo </a></li>
+                            <li><a onclick="openFancybox()"  title="Nuevo">Nuevo </a></li>
                         </ul>
                     </div>
                 </article>
@@ -102,6 +156,10 @@ function activar(id){
 						
 						<th>
 							<span>Nº preguntas</span>
+						</th>
+						
+						<th>
+							<span>Duraci&oacute;n</span>
 						</th>
 						
 						<th onclick="orden('estado','<?php echo $orden?>');" style="cursor:pointer"><span>Estado</span>
@@ -154,7 +212,9 @@ function activar(id){
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre_profesor']?></a></td>
 						<td><?php echo $rowEmp["fecha"]?></td>
+						
 						<td><?php echo $preguntas->getNumPreguntas($rowEmp['id']);?></td>
+						<td><a id="<?php echo $rowEmp['id']?>" onclick="openFancybox2(this.id)"><?php echo $rowEmp["tiempo"]?> </a></td>
 						<?php if($rowEmp['id_profesor']==$_SESSION['id']){?>
 							<td><a href="do.php?op=cambiar_estado_examen&id=<?php echo $rowEmp['id']?>"><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?php }?></a></td>
 						<?php }else{?>
@@ -183,7 +243,35 @@ function activar(id){
     </section>
 	
 </div>
+<div id="fancy_form" style="display:none">
+	<form name="formulario" method="post" action="do.php" enctype="multipart/form-data">
+		<input type="hidden" name="op" value="nuevo_examen">	
+		
+		<fieldset class="bloqueSombra bloqueRedondo">
+				<legend class="bloqueRedondo">Nueva Pregunta</legend>					
+					<div class="bloque_campoForumulario">
+						<label for="pregunta">Tiempo establecido</label>
+						<input type="text" name="tiempo" id="spinner" class="input input_tamanhoNormal" tabindex="1"/> &nbsp;min
+					</div>					
+					<input type="submit" value="Nuevo">
+		</fieldset>			
+	</form>
+</div>
 
+<div id="fancy_form_edit" style="display:none">
+	<form name="formulario" method="post" action="do.php" enctype="multipart/form-data">
+		<input type="hidden" name="op" value="editar_examen">	
+		
+		<fieldset class="bloqueSombra bloqueRedondo">
+				<legend class="bloqueRedondo">Nueva Pregunta</legend>					
+					<div class="bloque_campoForumulario">
+						<label for="pregunta">Tiempo establecido</label>
+						<input type="text" name="tiempo" id="spinner2" class="input input_tamanhoNormal" tabindex="1"/> &nbsp;min
+					</div>					
+					<input type="submit" value="Editar">
+		</fieldset>			
+	</form>
+</div>
 	
 <?php
 

@@ -112,7 +112,24 @@ if($op=="login"){
 	$examen->fecha = date("Y-m-d");
 	$examen->estado = 0;
 	$examen->activo = 0;
+	$examen->tiempo=$dict['tiempo'];
 	$examen->incluir();
+	header("Location: ls_examenes_profesor.php");
+}else if($op=="editar_examen"){
+	$examen= new clsExamenes();
+	
+	//$examen->estableceCampos($dict);//Obtenemos el examen con el id que nos viene del objeto
+	while ($id = current($dict)) {
+		if (key($dict) != 'op') {
+			$valor=$dict[key($dict)];
+			$ar = explode('_',key($dict));			
+		}
+		next($dict);
+	}
+	$id= $ar[1];
+	
+	$examen->editarTiempoById($id,$valor);
+	
 	header("Location: ls_examenes_profesor.php");
 	
 }else if($op=="eliminar_examen"){
@@ -161,7 +178,10 @@ if($op=="login"){
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
-	
+	if($dict['tipo']=="Desarrollo"){
+		$dict['solucion']="Desarrollo";
+		
+	}	
 	$pregunta->estableceCampos($dict);
 	
 	$pregunta->incluir();
@@ -184,6 +204,57 @@ if($op=="login"){
 	$pregunta->estableceCampos($dict);	
 	$pregunta->editar();
 	echo "<div style='text-align:center;padding-top:75px'>Pregunta modificada con &eacute;xito</div>";
+
+}else if($op=="empezar_examen"){
+	$examen= new clsExamenes();
+	$activo=$examen->getExamenActivo();
+	$examen_r = new ClsExamenesRealizados();
+	$examen_r->id_examen = $activo;
+	$examen_r->id_usuario = $_SESSION['id'];
+	$examen_r->tiempo_ini = date("Y-m-d/H:i:s");
+	$examen_r->incluir();
+	header("Location: examen.php");
 	
+}else if($op=="acabar_examen"){
+	$respuesta = new ClsRespuestasAlumnos();
+	$examen= new clsExamenes();
+	$activo=$examen->getExamenActivo();
+	$pregunta = new ClsPreguntasExamen();
+	$id_usuario = $_SESSION['id'];
+	//Insertamos las respuestas en la bbdd
+	foreach($dict as $clave => $valor){
+		
+		if($clave !="op"){
+			$respuesta->id_examen_realizado = $activo;
+			$respuesta->id_pregunta = $clave;
+			$respuesta->respuesta = $valor;
+			$respuesta->id_usuario = $id_usuario;
+			$respuesta->solucion = $pregunta->getSolucion($clave);
+			$respuesta->comentarios = "";
+			//$respuesta->incluir();	
+		}
+		
+	}
+	
+	//Recuperamos el examen
+	$examen_r = new ClsExamenesRealizados();
+	$examen_r->id_usuario = $id_usuario;
+	$examen_r->id_examen = $activo;
+	
+	$ar_examen = $examen_r->getExamen();
+	
+	$aciertos = $respuesta->getAciertos($id_usuario, $activo);
+	
+	$preguntas_totales = $pregunta->getNumPreguntas($activo);
+	
+	if($preguntas_totales>0){
+		$nota = $aciertos/$preguntas_totales;
+	}else{
+		$nota=0;
+	}
+	$ar_examen['aciertos'] = $aciertos;
+	$ar_examen['nota'] = $nota;
+	$examen_r->estableceCampos($ar_examen);	
+	$examen_r->actualizar();
 }
 ?>

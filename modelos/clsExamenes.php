@@ -24,7 +24,7 @@ class clsExamenes{
 //INICIO FUNCIONES BASICAS PARA AÑADIR,ELIMINAR y MODIFICAR
  public function incluir(){
 	 $objDatos = new clsDatos(); 
-	 $sql = "insert into examenes(id_profesor,nombre_profesor,fecha,estado,activo) values ('$this->id_profesor','$this->nombre_profesor','$this->fecha','$this->estado','$this->activo')";
+	 $sql = "insert into examenes(id_profesor,nombre_profesor,fecha,estado,tiempo,activo) values ('$this->id_profesor','$this->nombre_profesor','$this->fecha','$this->estado','$this->tiempo','$this->activo')";
 	 	
 	 $objDatos->ejecutar($sql);
     
@@ -33,7 +33,7 @@ class clsExamenes{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update examenes set id_profesor='$this->id_profesor', nombre_profesor='$this->nombre_profesor', fecha='$this->fecha', estado='$this->estado', activo='$this->activo' where(id='$this->id')";
+		$sql = "update examenes set id_profesor='$this->id_profesor', nombre_profesor='$this->nombre_profesor', fecha='$this->fecha', estado='$this->estado', tiempo='$this->tiempo', activo='$this->activo' where(id='$this->id')";
 		$objDatos->ejecutar($sql);
 		
 }
@@ -144,6 +144,22 @@ public function activar_examen(){
 	$sql="UPDATE examenes SET activo=1 WHERE id='$this->id'";
 	$objDatos->ejecutar($sql);
 }
+
+
+public function editarTiempoById($id,$tiempo){
+	$objDatos = new clsDatos();
+	$sql="UPDATE examenes SET tiempo=$tiempo WHERE id=$id";
+	$objDatos->ejecutar($sql);
+}
+
+public function getExamenActivo(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT id FROM examenes WHERE activo='1'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['id'];
+}
+
 
 }
 

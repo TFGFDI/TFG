@@ -984,3 +984,12 @@ border-radius: 7px 7px 7px 7px;
 	margin:15px;
 	background-color:#E1EEF4;
 }
+
+#cke_9, #cke_14, #cke_17{
+	display:none;
+}
+
+#cke_editor1{
+	width:650px;
+	margin:15px 0px 15px 25px;
+}
