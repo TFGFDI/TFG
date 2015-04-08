@@ -138,3 +138,28 @@ CREATE TABLE `preguntas_examen` (
   `activo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+
+CREATE TABLE `examenes_realizados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_examen` int(11) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `tiempo_ini` datetime DEFAULT NULL,
+  `tiempo_fin` datetime DEFAULT NULL,
+  `aciertos` int(11) DEFAULT NULL,
+  `nota` float DEFAULT NULL,
+  `comentarios` text COLLATE utf8_spanish_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE `respuestas_alumnos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_examen_realizado` int(11) DEFAULT NULL,
+  `id_pregunta` int(11) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `respuesta` text COLLATE utf8_spanish_ci,
+  `solucion` text COLLATE utf8_spanish_ci,
+  `comentarios` text COLLATE utf8_spanish_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
