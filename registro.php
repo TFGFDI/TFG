@@ -86,7 +86,7 @@ alert("oli");
 			<legend class="bloqueRedondo">Datos Personales</legend>
 				<div class="bloque_campoForumulario">
 					<label for="nombre"><?php echo $util->trad("nombre",$lang);?></label>
-					<input type="text" name="nombre" id="nombre" value="" value="" class="input input_tamanhoNormal" tabindex="1"/>
+					<input type="text" name="nombre" id="nombre" value="" class="input input_tamanhoNormal" tabindex="1"/>
 				</div>
 				<div class="bloque_campoForumulario">
 					<label for="apellidos"><?php echo $util->trad("apellidos",$lang);?></label>

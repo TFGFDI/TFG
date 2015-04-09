@@ -53,7 +53,7 @@ if (isset($dict['orden'])){
                     </div>
                     <div class="caja_contenido"  >
 		                <ul>
-                            <li><a href="./consultaCuentaUsuario.php"  title="Inicio">Modificar Cuenta</a></li>
+                            <li><a href="modificar_perfil.php"  title="Inicio">Modificar Cuenta</a></li>
                         </ul>
                     </div>
                 </article>

@@ -420,7 +420,7 @@ article {
 
 /* MENU SECCION PRIVADA */
 #bloqueMenu {
-	width:950px;
+	width:100%;
 	display: table;  /* para que cada opcion del menu (li) se incluya dentro de la capa del menu */
 	border-top: solid 0.2em #2B4068;;
 	border-bottom: 1px solid #2B4068;
@@ -992,4 +992,14 @@ border-radius: 7px 7px 7px 7px;
 #cke_editor1{
 	width:650px;
 	margin:15px 0px 15px 25px;
+}
+
+.perfil_modificado{
+	color:green;
+	margin: 10px 0px 20px 15px;
+}
+
+.perfil_error{
+	color:red;
+	margin: 10px 0px 20px 15px;
 }

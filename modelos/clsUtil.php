@@ -10,8 +10,13 @@ public function trad($clave,$lang='es'){
 	$sql = "SELECT valor FROM traducciones WHERE clave='$clave' AND lang='$lang'";
 	$resultado = mysqli_query($conexion,$sql) or die(mysql_error());	
 	$res = mysqli_fetch_assoc($resultado);
-	
-	return $res['valor'];
+	if ($res['valor']==NULL){
+		$devuelve = $clave;
+	}else{
+		$devuelve =$res['valor'];
+	}
+		
+	return $devuelve;
 }
 
 public function getURL(){

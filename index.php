@@ -10,9 +10,15 @@ require_once("top.php");
 ?>
 
 	<div id="central"> 
-		<?php require_once("menu_alumno.php");
-		
+		<?php 
+		if($_SESSION['rol']=='E'){
+			require_once("menu_alumno.php");
+		}else if($_SESSION['rol']=='P'){
+			require_once("menu_profesor.php");
+		}
 		?>
+		
+		Bienvenido a tu panel de control
 	</div>
 	
 <?php

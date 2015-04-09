@@ -84,7 +84,7 @@ class clsUsuario{
 //INICIO FUNCIONES BASICAS PARA AÑADIR,ELIMINAR y MODIFICAR
  public function incluir(){
 	 $objDatos = new clsDatos(); 
-	 $sql = "insert into usuarios(nombre,apellidos,sexo,fechanacimiento,email,nacionalidad,contrasena,rol,activo) values ('$this->nombre','$this->apellidos','$this->sexo','$this->fechanacimiento','$this->email','$this->nacionalidad','$this->contrasena','$this->rol','$this->activo')";
+	 $sql = "insert into usuarios(nombre,apellidos,sexo,fechanacimiento,email,telefono,direccion,cp,ciudad,nacionalidad,contrasena,rol,activo) values ('$this->nombre','$this->apellidos','$this->sexo','$this->fechanacimiento','$this->email','$this->telefono','$this->direccion','$this->cp','$this->ciudad','$this->nacionalidad','$this->contrasena','$this->rol','$this->activo')";
 	 	 
 	 $objDatos->ejecutar($sql);
     
@@ -93,7 +93,7 @@ class clsUsuario{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update usuarios set nombre='$this->nombre', apellidos='$this->apellidos', sexo='$this->sexo', fechanacimiento='$this->fechanacimiento', email='$this->email', nacionalidad='$this->nacionalidad', contrasena='$this->contrasena', rol='$this->rol', activo='$this->activo' where(id='$this->id')";
+		$sql = "update usuarios set nombre='$this->nombre', apellidos='$this->apellidos', sexo='$this->sexo', fechanacimiento='$this->fechanacimiento', email='$this->email', telefono='$this->telefono',direccion='$this->direccion',cp='$this->cp',ciudad='$this->ciudad',nacionalidad='$this->nacionalidad', contrasena='$this->contrasena', rol='$this->rol', activo='$this->activo' where(id='$this->id')";
 		$objDatos->ejecutar($sql);
 		
 }
@@ -231,6 +231,14 @@ public function getUsuarioById(){
 	$res = $objDatos->filtro($sql);
 	
 	return $res;
+}
+
+public function getContrasenaById($id_usuario){
+	$objDatos = new clsDatos();
+	$sql= "SELECT contrasena FROM usuarios WHERE id='$id_usuario'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['contrasena'];
 }
 }
 

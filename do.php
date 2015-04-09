@@ -231,7 +231,7 @@ if($op=="login"){
 			$respuesta->id_usuario = $id_usuario;
 			$respuesta->solucion = $pregunta->getSolucion($clave);
 			$respuesta->comentarios = "";
-			//$respuesta->incluir();	
+			$respuesta->incluir();	
 		}
 		
 	}
@@ -256,5 +256,38 @@ if($op=="login"){
 	$ar_examen['nota'] = $nota;
 	$examen_r->estableceCampos($ar_examen);	
 	$examen_r->actualizar();
-}
-?>
+	
+	header("Location: index.php");
+}else if($op=="modificar_perfil"){
+	$usuario= new clsUsuario();
+	$error="";
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}
+	$usuario->estableceCampos($dict);
+	if($dict['contrasena_antigua']== $usuario->getContrasenaById($_SESSION['id'])){
+		if($dict['contrasena']==$dict['contrasena2']){
+			$usuario->contrasena=$dict['contrasena'];
+		}else{
+			$error="noiguales";
+		}
+	}else{
+		if($dict['contrasena_antigua']!=""){
+			$error="no_coincide";
+		}
+		$usuario->contrasena=$usuario->getContrasenaById($_SESSION['id']);
+	}
+	
+	
+	$usuario->rol=$_SESSION['rol'];
+	$usuario->id=$_SESSION['id'];
+	$usuario->activo=1;
+	
+	if($error==""){
+		$usuario->editar();
+		header("Location: modificar_perfil.php?estado=ok");
+	}else{
+		header("Location: modificar_perfil.php?error=$error");
+	}
+	
+}?>
