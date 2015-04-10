@@ -65,7 +65,7 @@ function getRequest() {
 
 $dict = getRequest();
 
-require_once("modelos/clsUtil.php"); 
+require_once("clases.php"); 
 $util= new clsUtil();
 
 

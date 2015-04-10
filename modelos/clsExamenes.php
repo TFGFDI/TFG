@@ -160,6 +160,14 @@ public function getExamenActivo(){
 	return $res['id'];
 }
 
+public function getTiempoExamenActivo(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT tiempo FROM examenes WHERE activo='1'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['tiempo'];
+}
+
 
 }
 

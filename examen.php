@@ -11,7 +11,7 @@ require_once("top.php");
 ?>
  <script>    
 	$( document ).ready( function() {
-	$('#editor1').ckeditor();
+	$('[id^=editor]').ckeditor();
 } );
 
 	
@@ -43,7 +43,7 @@ require_once("top.php");
 				<input type="radio" name="<?php echo $rowEmp['id']?>" value="d"><span><?php echo $rowEmp['respuesta4']?></span><br>
 			</section>
 			<?php }else if ($rowEmp["tipo"]=="Desarrollo"){?>
-				<textarea name="<?php echo $rowEmp['id']?>" id="editor1" rows="10" cols="80"></textarea>
+				<textarea name="<?php echo $rowEmp['id']?>" id="editor_<?php echo $rowEmp['id']?>" rows="10" cols="80"></textarea>
 			<?php }?>
 		</div>
 		

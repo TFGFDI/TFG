@@ -211,8 +211,9 @@ if($op=="login"){
 	$examen_r = new ClsExamenesRealizados();
 	$examen_r->id_examen = $activo;
 	$examen_r->id_usuario = $_SESSION['id'];
-	$examen_r->tiempo_ini = date("Y-m-d/H:i:s");
+	$examen_r->tiempo_ini = date("Y-m-d H:i:s");
 	$examen_r->incluir();
+	$_SESSION['inicio_examen']=date("Y-m-d H:i:s");
 	header("Location: examen.php");
 	
 }else if($op=="acabar_examen"){
@@ -221,43 +222,59 @@ if($op=="login"){
 	$activo=$examen->getExamenActivo();
 	$pregunta = new ClsPreguntasExamen();
 	$id_usuario = $_SESSION['id'];
-	//Insertamos las respuestas en la bbdd
-	foreach($dict as $clave => $valor){
-		
-		if($clave !="op"){
-			$respuesta->id_examen_realizado = $activo;
-			$respuesta->id_pregunta = $clave;
-			$respuesta->respuesta = $valor;
-			$respuesta->id_usuario = $id_usuario;
-			$respuesta->solucion = $pregunta->getSolucion($clave);
-			$respuesta->comentarios = "";
-			$respuesta->incluir();	
+	
+	//Calculo del tiempo realizado
+	$error=false;
+	$inicio = $_SESSION['inicio_examen'];
+	$fin = date("Y-m-d H:i:s");
+	$tiempo = $examen->getTiempoExamenActivo();
+	$nuevafecha = strtotime ( '+'.$tiempo.' minute' , strtotime ( $inicio ) ) ;
+	$nuevafecha = date ( 'Y-m-d H:i:s' , $nuevafecha );
+	
+	if($fin>$nuevafecha){
+		$error=true;
+		header("Location: alumno.php?error=tiempo_expirado");
+	}
+	if(! $error){
+		//Insertamos las respuestas en la bbdd
+		foreach($dict as $clave => $valor){
+			
+			if($clave !="op"){
+				$respuesta->id_examen_realizado = $activo;
+				$respuesta->id_pregunta = $clave;
+				$respuesta->respuesta = $valor;
+				$respuesta->id_usuario = $id_usuario;
+				$respuesta->solucion = $pregunta->getSolucion($clave);
+				$respuesta->comentarios = "";
+				$respuesta->incluir();	
+			}
+			
 		}
 		
+		//Recuperamos el examen
+		$examen_r = new ClsExamenesRealizados();
+		$examen_r->id_usuario = $id_usuario;
+		$examen_r->id_examen = $activo;
+		
+		$ar_examen = $examen_r->getExamen();
+		
+		$aciertos = $respuesta->getAciertos($id_usuario, $activo);
+		
+		$preguntas_totales = $pregunta->getNumPreguntas($activo);
+		
+		if($preguntas_totales>0){
+			$nota = $aciertos/$preguntas_totales;
+		}else{
+			$nota=0;
+		}
+		$ar_examen['aciertos'] = $aciertos;
+		$ar_examen['nota'] = $nota;
+		$ar_examen['tiempo_fin'] = $fin;
+		$examen_r->estableceCampos($ar_examen);	
+		$examen_r->actualizar();
+		
+		header("Location: index.php");
 	}
-	
-	//Recuperamos el examen
-	$examen_r = new ClsExamenesRealizados();
-	$examen_r->id_usuario = $id_usuario;
-	$examen_r->id_examen = $activo;
-	
-	$ar_examen = $examen_r->getExamen();
-	
-	$aciertos = $respuesta->getAciertos($id_usuario, $activo);
-	
-	$preguntas_totales = $pregunta->getNumPreguntas($activo);
-	
-	if($preguntas_totales>0){
-		$nota = $aciertos/$preguntas_totales;
-	}else{
-		$nota=0;
-	}
-	$ar_examen['aciertos'] = $aciertos;
-	$ar_examen['nota'] = $nota;
-	$examen_r->estableceCampos($ar_examen);	
-	$examen_r->actualizar();
-	
-	header("Location: index.php");
 }else if($op=="modificar_perfil"){
 	$usuario= new clsUsuario();
 	$error="";

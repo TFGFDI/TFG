@@ -56,11 +56,22 @@ public function getExamen(){
 }
 
 public function actualizar(){
-		$objDatos = new clsDatos();
-		$sql = "update examenes_realizados set tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota' where(id_examen='$this->id_examen' AND id_usuario='$this->id_usuario')";
+	$objDatos = new clsDatos();
+	$sql = "update examenes_realizados set tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota' where(id_examen='$this->id_examen' AND id_usuario='$this->id_usuario')";
+	
+	$objDatos->ejecutar($sql);
 		
-		$objDatos->ejecutar($sql);
-		
+}
+
+public function puedeExaminarse($examen,$usuario){
+	$objDatos = new clsDatos();
+	$puede=false;
+	$sql= "SELECT count(*) as total FROM examenes_realizados WHERE id_examen='$examen' AND id_usuario='$usuario'";
+	$res = $objDatos->filtro($sql);
+	if($res['total']==0){
+		$puede=true;
+	}
+	return $puede;
 }
 
 }
