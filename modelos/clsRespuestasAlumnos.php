@@ -55,7 +55,27 @@ public function getAciertos($id_usuario, $id_examen){
 	
 	return $res["total"];
 }
+public function getRespuestas($id_examen,$id_usuario){
+	$objDatos = new clsDatos();
+	$sql = "SELECT * FROM respuestas_alumnos WHERE id_usuario='$id_usuario' AND id_examen_realizado = '$id_examen' ";
+	
+	$res = $objDatos->filtroListado($sql);
+	
+	return $res;
+}
 
+public function actualizarRespuestas($id,$comentario){
+	$objDatos = new clsDatos();
+	$sql = "update respuestas_alumnos set comentarios='$comentario' where(id='$id')";
+	$objDatos->ejecutar($sql);
+}
+
+
+public function eliminarRespuestasAlumnos($id_examen,$id_usuario){
+	$objDatos = new clsDatos();
+	$sql = "delete from respuestas_alumnos where(id_examen_realizado='$id_examen') AND (id_usuario='$id_usuario')";
+	$objDatos->ejecutar($sql);
+}
 }
 
 ?>

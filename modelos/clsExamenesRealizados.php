@@ -24,7 +24,7 @@ class clsExamenesRealizados{
 //INICIO FUNCIONES BASICAS PARA AÑADIR,ELIMINAR y MODIFICAR
  public function incluir(){
 	 $objDatos = new clsDatos(); 
-	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->comentarios')";
+	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota,corregido,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->corregido','$this->comentarios')";
 	 	
 	 $objDatos->ejecutar($sql);
     
@@ -33,7 +33,7 @@ class clsExamenesRealizados{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update examenes_realizados set id_examen='$this->id_examen', id_usuario='$this->id_usuario', tiempo_ini='$this->tiempo_ini', tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota', comentarios='$this->comentarios' where(id='$this->id')";
+		$sql = "update examenes_realizados set id_examen='$this->id_examen', id_usuario='$this->id_usuario', tiempo_ini='$this->tiempo_ini', tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota', corregido='$this->corregido', comentarios='$this->comentarios' where(id='$this->id')";
 		$objDatos->ejecutar($sql);
 		
 }
@@ -74,6 +74,28 @@ public function puedeExaminarse($examen,$usuario){
 	return $puede;
 }
 
+public function getPendientesCorregir(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT * FROM examenes_realizados WHERE corregido=0";
+	$res = $objDatos->filtroListado($sql);
+	
+	return $res;
+}
+
+public function getPendientesCorregirPaginacion($itemsInicio,$numer_reg){
+	$objDatos = new clsDatos();
+	$sql= "SELECT * FROM examenes_realizados WHERE corregido=0 LIMIT $itemsInicio,$numer_reg";
+	$res = $objDatos->filtroListado($sql);
+	
+	return $res;
+}
+
+
+public function corregido($examen,$usuario){
+	$objDatos = new clsDatos();
+	$sql = "UPDATE examenes_realizados SET corregido=1 WHERE id_examen='$examen' AND id_usuario='$usuario'";
+	$objDatos->ejecutar($sql);
+}
 }
 
 ?>

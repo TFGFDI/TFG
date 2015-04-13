@@ -45,20 +45,9 @@ if (isset($dict['orden'])){
 ?>
 <script>
 function eliminar(id){
-	location.href="do.php?op=eliminar_examen&id="+id;
+	location.href="do.php?op=eliminar_examen_pendiente&id="+id;
 }
-function activar(id){
-	var act = confirm('\u00BFDesea activar este modelo de ex\u00E1men?');
-	if (act){
-		location.href='do.php?op=activar_examen&id='+id;
-	}
-}
-function desactivar(id){
-	var act = confirm('\u00BFDesea desactivar este modelo de ex\u00E1men?');
-	if (act){
-		location.href='do.php?op=desactivar_examen&id='+id;
-	}
-}
+
 function openFancybox() {
   $.fancybox({
      'autoScale': true,
@@ -139,59 +128,17 @@ $(document).ready(function() {
 			<table>
 				<thead>
 					<tr>
-						<th onclick="orden('nombre_profesor','<?php echo $orden?>');" style="cursor:pointer"><span>Profesor</span>
-							<?php 
-								if($filtro=="nombre_profesor"){
-									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
-									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
-									<?php }
-								}
-							?>
-						</th>
-						<th onclick="orden('fecha','<?php echo $orden?>');" style="cursor:pointer"><span>Fecha</span>
-							<?php 
-								if($filtro=="fecha"){
-									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
-									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
-									<?php }
-								}
-							?>
+									
+						<th>
+							<span>Alumno</span>
 						</th>
 						
 						<th>
-							<span>Nº preguntas</span>
+							<span>Ex&aacute;men</span>
 						</th>
-						
 						<th>
-							<span>Duraci&oacute;n</span>
-						</th>
-						
-						<th onclick="orden('estado','<?php echo $orden?>');" style="cursor:pointer"><span>Estado</span>
-							<?php 
-								if($filtro=="estado"){
-									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
-									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
-									<?php }
-								}
-							?>
-						</th>	
-						<th onclick="orden('activo','<?php echo $orden?>');" style="cursor:pointer"><span>Activo</span>
-							<?php 
-								if($filtro=="activo"){
-									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
-									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
-									<?php }
-								}
-							?>
-						</th>	
+							<span>Nota</span>
+						</th>						
 						<th></th>
 						<th></th>
 						
@@ -199,44 +146,35 @@ $(document).ready(function() {
 				</thead>
 				<tbody>
 				<?php
-					$examen= new clsExamenes();					
-					$no_activos = $examen->ningunoActivo();
+					$examen= new clsExamenesRealizados();					
+					
 					//$filas = $examen->getExamenes($buscador,$filtro,$orden);
-					$filasTot = $examen->getExamenes($buscador,$filtro,$orden);
+					$filasTot = $examen->getPendientesCorregir();
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
 					$numer_reg = 11; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
-					$filasPag = $examen->getExamenesPaginacion($buscador,$filtro,$orden,$itemsInicio,$numer_reg);
+					$filasPag = $examen->getPendientesCorregirPaginacion($itemsInicio,$numer_reg);
 					
 					$total=mysqli_num_rows($filasTot);
 					
-					$preguntas = new clsPreguntasExamen();
+					
 					$i=0;//Saber si es una fila par o impar para estilos
 					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
+					
+					$usuario = new ClsUsuario();
+					$nombre	= $usuario->getNombreById($rowEmp['id_usuario']);
+					
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre_profesor']?></a></td>
-						<td><?php echo $rowEmp["fecha"]?></td>
 						
-						<td><?php echo $preguntas->getNumPreguntasTotales($rowEmp['id']);?></td>
-						<td><a id="<?php echo $rowEmp['id']?>" onclick="openFancybox2(this.id)"><?php echo $rowEmp["tiempo"]?> </a></td>
-						<?php if($rowEmp['id_profesor']==$_SESSION['id']){?>
-							<td><a href="do.php?op=cambiar_estado_examen&id=<?php echo $rowEmp['id']?>"><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?php }?></a></td>
-						<?php }else{?>
-							<td><?php if($rowEmp["estado"]==0){?>Privado<?php }else if($rowEmp["estado"]==1){?>Compartido<?php }?></td>
-						<?php }?>
+						<td><a href="corregir.php?id_usuario=<?php echo $rowEmp['id_usuario']?>&id_examen=<?php echo $rowEmp['id_examen']?>"> <?php echo $nombre?></a></td>
+						<td><a href="corregir.php?id_usuario=<?php echo $rowEmp['id_usuario']?>&id_examen=<?php echo $rowEmp['id_examen']?>"><?php echo $rowEmp["id_examen"]?></a></td>
+						<td><a href="corregir.php?id_usuario=<?php echo $rowEmp['id_usuario']?>&id_examen=<?php echo $rowEmp['id_examen']?>"><?php echo $rowEmp["nota"]?></a></td>
 						
-						<?php if(($rowEmp["estado"]==1)&&($rowEmp["activo"]==1)){?>
-							<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="desactivar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="imagenes/activo.png"><?php }else{?><img src="imagenes/inactivo.png"><?php }?></td>
-						<?php }else if(($rowEmp["estado"]==1)&&($no_activos)){?>
-							<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="imagenes/activo.png"><?php }else{?><img src="imagenes/inactivo.png"><?php }?></td>
-						<?php }else{?>
-							<td></td>
-						<?php }?>
-						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><img src="imagenes/lapiz.gif"></a></td>
+						<td><a href="corregir.php?id_usuario=<?php echo $rowEmp['id_usuario']?>&id_examen=<?php echo $rowEmp['id_examen']?>"><img src="imagenes/lapiz.gif"></a></td>
 						
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id)"><img src="imagenes/eliminar.png" style="width:15px;"></td>
 					</tr>

@@ -145,6 +145,13 @@ public function activar_examen(){
 	$objDatos->ejecutar($sql);
 }
 
+public function desactivar_examen(){
+	$objDatos = new clsDatos();
+	$sql="UPDATE examenes SET activo=0 WHERE activo=1";
+	$objDatos->ejecutar($sql);
+	
+	
+}
 
 public function editarTiempoById($id,$tiempo){
 	$objDatos = new clsDatos();
@@ -168,7 +175,51 @@ public function getTiempoExamenActivo(){
 	return $res['tiempo'];
 }
 
+public function ningunoActivo(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT count(*) as totales FROM examenes WHERE activo='1'";
+	$res = $objDatos->filtro($sql);
+	$ninguno = true;
+	
+	if($res['totales']>0){
+		$ninguno = false;
+	}
+	return $ninguno;
+}
 
+public function getHistorico(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT distinct(id_examen) as ids FROM examenes_realizados ";
+	$res = $objDatos->filtrolistado($sql);
+	$ids='';
+	$sep='';
+	while ($rowEmp = mysqli_fetch_assoc($res)) { 
+		$ids.=$sep.$rowEmp['ids'];
+		$sep=',';
+	}
+	$sql= "SELECT * FROM examenes WHERE id in($ids)";
+	$res = $objDatos->filtroListado($sql);
+	
+	return $res;
+}
+
+
+public function getHistoricoPaginacion($itemsInicio,$numer_reg){
+	$objDatos = new clsDatos();
+	$sql= "SELECT distinct(id_examen) as ids FROM examenes_realizados ";
+	$res = $objDatos->filtrolistado($sql);
+	$ids='';
+	$sep='';
+	while ($rowEmp = mysqli_fetch_assoc($res)) { 
+		$ids.=$sep.$rowEmp['ids'];
+		$sep=',';
+	}
+	$sql= "SELECT * FROM examenes WHERE id in($ids) ";
+	$sql=$sql." LIMIT $itemsInicio,$numer_reg ";
+	$res = $objDatos->filtroListado($sql);
+	
+	return $res;
+}
 }
 
 ?>

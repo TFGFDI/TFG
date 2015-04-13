@@ -985,9 +985,6 @@ border-radius: 7px 7px 7px 7px;
 	background-color:#E1EEF4;
 }
 
-#cke_9, #cke_14, #cke_17{
-	display:none;
-}
 
 #cke_editor1{
 	width:650px;
@@ -1002,4 +999,20 @@ border-radius: 7px 7px 7px 7px;
 .perfil_error{
 	color:red;
 	margin: 10px 0px 20px 15px;
+}
+
+.pregunta{
+	border: 3.5px solid #36559e;
+	margin: 5px 5px 5px !important;
+	padding: 15px 20px 20px 20px;
+	border-radius: 7px 7px 7px 7px;
+
+}
+
+.respuesta{
+	padding: 15px ;
+}
+
+.cke_toolbar{
+	display:none;
 }

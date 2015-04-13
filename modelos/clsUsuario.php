@@ -240,6 +240,14 @@ public function getContrasenaById($id_usuario){
 	
 	return $res['contrasena'];
 }
+
+public function getNombreById($id){
+	$objDatos = new clsDatos();
+	$sql= "SELECT nombre FROM usuarios WHERE id='$id'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['nombre'];
+}
 }
 
 ?>

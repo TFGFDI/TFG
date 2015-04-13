@@ -127,6 +127,14 @@ public function getNumPreguntas($id){
 	return $res["total"];
 }
 
+public function getNumPreguntasTotales($id){
+	$objDatos = new clsDatos();
+	$sql=" SELECT COUNT(*) as total FROM preguntas_examen WHERE id_examen='$id' ";
+	$res = $objDatos->filtro($sql);
+	
+	return $res["total"];
+}
+
 public function getSolucion($id){
 	$objDatos = new clsDatos();
 	$sql= "SELECT solucion FROM preguntas_examen WHERE id='$id'";
@@ -134,7 +142,13 @@ public function getSolucion($id){
 	
 	return $res['solucion'];
 }
-
+public function getPregunta($id){
+	$objDatos = new clsDatos();
+	$sql= "SELECT pregunta FROM preguntas_examen WHERE id='$id'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['pregunta'];
+}
 }
 
 ?>
