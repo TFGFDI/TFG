@@ -29,35 +29,46 @@ require_once("top.php");
 			$id_usuario = $dict['id_usuario'];
 			$ar_preguntas = $respuestas->getRespuestas($id_examen,$id_usuario);
 			
+			$examen = new ClsExamenesRealizados();
+			$nota = $examen->getNota($id_examen,$id_usuario);
+			
 			$i=1;//Saber si es una fila par o impar para estilos
+			$vacio=true;
 			while ($rowEmp = mysqli_fetch_assoc($ar_preguntas)) {
 			
 			$examen = new ClsPreguntasExamen();
 			$pregunta = $examen->getPregunta($rowEmp["id_pregunta"]);
-		?>
-		<?php if ($rowEmp["solucion"]=="Desarrollo"){?>
-		<div class="pregunta">
-					
+			?>
+			<?php if ($rowEmp["solucion"]=="Desarrollo"){?>
+			<div class="pregunta">
+				<?php $vacio=false;?>
+				<?php echo $i?>
+				<section><b><?php echo $pregunta?></b></section>
+				<br>
+				<textarea rows="10" cols="80" disabled><?php echo $rowEmp['respuesta']?></textarea>	
+				<br>
+				Comentario del profesor:
+				<br>
+				<textarea name="comentario_<?php echo $rowEmp['id']?>" id="editor_<?php echo $rowEmp['id']?>"  rows="10" cols="80"></textarea>
+			</div>
+			<?php }?>
 			
-			<?php echo $i?>
-			<section><b><?php echo $pregunta?></b></section>
-			<br>
-			<textarea rows="10" cols="80" disabled><?php echo $rowEmp['respuesta']?></textarea>	
-			<br>
-			Comentario del profesor:
-			<br>
-			<textarea name="comentario_<?php echo $rowEmp['id']?>" id="editor_<?php echo $rowEmp['id']?>"  rows="10" cols="80"></textarea>
-		</div>
-		<?php }?>
-		
-		<?php 
-			$i++;
-		}//fin while?>
-		<?php if($rowEmp==NULL){?>
-		<section class="aviso">
-			<span><b>Este modelo de examen no tiene preguntas a desarrollar y se corrige automáticamente. </b></span>
-		</section>
-		<?php }?>
+			<?php 
+				$i++;
+			}//fin while?>
+			<?php if(!$vacio){?>
+			<section class="aviso">
+				<span><b>Nota de test: </b> <?php echo $nota?></span>
+				<br>
+				<span><b>Nota de desarrollo: </b><input type="text" name="nota"></span>
+			</section>
+			<?php }?>
+			
+			<?php if($vacio){?>
+			<section class="aviso">
+				<span><b>Este modelo de examen no tiene preguntas a desarrollar y se corrige automáticamente. </b></span>
+			</section>
+			<?php }?>
 		<input type="submit" value="Ok">
 		</form>
 	</div>

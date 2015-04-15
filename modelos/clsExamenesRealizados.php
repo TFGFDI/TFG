@@ -119,6 +119,14 @@ public function calcularTiempo($ini,$fin){
 	$interval = $datetime1->diff($datetime2);	
 	echo $interval->format('%i minutos, %s segundos');
 }
+
+public function getNota($examen,$usuario){
+	$objDatos = new clsDatos();
+	$sql= "SELECT nota FROM examenes_realizados WHERE id_usuario=$usuario AND id_examen=$examen";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['nota'];
+}
 }
 
 ?>
