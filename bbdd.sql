@@ -1,129 +1,42 @@
--- phpMyAdmin SQL Dump
--- version 3.4.3.1
--- http://www.phpmyadmin.net
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 03-03-2015 a las 20:44:10
--- Versión del servidor: 5.5.13
--- Versión de PHP: 5.3.6
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de datos: `tfg`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `traducciones`
---
-
-CREATE TABLE IF NOT EXISTS `traducciones` (
-  `id` int(11) DEFAULT NULL,
-  `clave` varchar(255) DEFAULT NULL,
-  `valor` varchar(255) DEFAULT NULL,
-  `lang` varchar(9) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `traducciones`
---
-
-INSERT INTO `traducciones` (`id`, `clave`, `valor`, `lang`) VALUES
-(NULL, 'login', 'Acceso Usuarios', 'es'),
-(NULL, 'login', 'Login', 'en'),
-(NULL, 'iniciar_sesion', 'Iniciar Sesion', 'es'),
-(NULL, 'iniciar_sesion', 'Log me in', 'en'),
-(NULL, 'registro', 'Registrate', 'es'),
-(NULL, 'registro', 'Sign in', 'en'),
-(NULL, 'recordar', '¿No recuerda sus datos de acceso?', 'es'),
-(NULL, 'recordar', 'Can''t you access to your account?', 'en'),
-(NULL, 'salir', 'Salir', 'es'),
-(NULL, 'salir', 'Log Out', 'en'),
-(NULL, 'formulario_registro', 'Formulario de registro', 'es'),
-(NULL, 'formulario_registro', 'Registration Form', 'en'),
-(NULL, 'nombre', 'Nombre', 'es'),
-(NULL, 'nombre', 'Name', 'en'),
-(NULL, 'apellidos', 'Apellidos', 'es'),
-(NULL, 'apellidos', 'Surname', 'en'),
-(NULL, 'nacionalidad', 'Nacionalidad', 'es'),
-(NULL, 'nacionalidad', 'Nacionality', 'en'),
-(NULL, 'nacimiento', 'Fecha Nacimiento', 'es'),
-(NULL, 'nacimiento', 'Date of Birth', 'en'),
-(NULL, 'sexo', 'Sexo', 'es'),
-(NULL, 'sexo', 'Gender', 'en'),
-(NULL, 'masculino', 'Masculino', 'es'),
-(NULL, 'masculino', 'Male', 'en'),
-(NULL, 'femenino', 'Femenino', 'es'),
-(NULL, 'femenino', 'Female', 'en'),
-(NULL, 'contrasena', 'Contrase&ntilde;a', 'es'),
-(NULL, 'contrasena', 'Password', 'en'),
-(NULL, 'repetir', 'Repetir Contrase&ntilde;a', 'es'),
-(NULL, 'repetir', 'Repeat Password', 'en'),
-(NULL, 'telefono', 'Tel&eacute;fono', 'es'),
-(NULL, 'cp', 'C&oacute;digo Postal', 'es'),
-(NULL, 'ciudad', 'Ciudad', 'es');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `nombre` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `apellidos` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `sexo` enum('F','M') CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `fechanacimiento` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `telefono` smallint(6) NOT NULL,
-  `direccion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
-  `cp` smallint(6) NOT NULL,
-  `ciudad` varchar(255) CHARACTER SET utf32 COLLATE utf32_spanish2_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
-  `nacionalidad` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `contrasena` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `rol` enum('A','P','E') CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `activo` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `sexo`, `fechanacimiento`, `telefono`, `direccion`, `cp`, `ciudad`, `email`, `nacionalidad`, `contrasena`, `rol`, `activo`) VALUES
-(1, 'oliver', NULL, NULL, NULL, 0, '', 0, '', 'oli@gmail.com', NULL, '1', 'A', 1),
-(2, 'luis alfonso  jjjjjjjjjjjjkkkkkkkkkkkkkkh', 'perez', NULL, NULL, 0, '', 0, '', 'luijjjjjjjjjjjjjjjjjjs@gmail.com', NULL, '1', 'P', 1),
-(3, 'liza', 'almeida', NULL, NULL, 0, '', 0, '', 'liza@gmail.com', NULL, '1', 'E', 1),
-(4, 'berto', 'asdf', '', '0000-00-00', 0, '', 0, '', 'berto@gmail.com', '', '1', 'P', 0);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
 
 CREATE TABLE `examenes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_profesor` int(11) DEFAULT NULL,
   `nombre_profesor` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fecha` date DEFAULT NULL,
+  `curso` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tipo` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `estado` int(11) DEFAULT NULL COMMENT '0->privado 1->publico',
+  `tiempo` int(11) DEFAULT NULL,
   `activo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+/*Data for the table `examenes` */
 
+insert  into `examenes`(`id`,`id_profesor`,`nombre_profesor`,`fecha`,`curso`,`tipo`,`estado`,`tiempo`,`activo`) values (1,5,'Antonio Sarasa','0000-00-00','2014/2015','Intensivo',1,2,1),(6,5,'Antonio Sarasa','2015-03-16','2014/2015','Intensivo',0,25,0),(7,6,'Alberto Verdejo','2015-03-14','2014/2015','Anual',1,30,0),(10,6,'Alberto Verdejo','2015-03-23','2015/2016','Anual',1,10,0),(11,5,'Antonio Sarasa','2015-03-24','2015/2016','Semestral',1,60,0),(13,5,'Antonio Sarasa','2015-04-15','2015/2016','Semestral',0,70,0);
+
+/*Table structure for table `examenes_realizados` */
+
+CREATE TABLE `examenes_realizados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_examen` int(11) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `tiempo_ini` datetime DEFAULT NULL,
+  `tiempo_fin` datetime DEFAULT NULL,
+  `aciertos` int(11) DEFAULT NULL,
+  `nota` float DEFAULT NULL,
+  `corregido` int(1) DEFAULT NULL,
+  `expirado` int(1) DEFAULT NULL,
+  `comentarios` text COLLATE utf8_spanish_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `examenes_realizados` */
+
+insert  into `examenes_realizados`(`id`,`id_examen`,`id_usuario`,`tiempo_ini`,`tiempo_fin`,`aciertos`,`nota`,`corregido`,`expirado`,`comentarios`) values (8,1,8,'2015-04-10 12:52:41','2015-04-10 12:55:41',0,0,1,0,''),(12,1,2,'2015-04-12 19:23:04','2015-04-12 19:25:16',3,1,1,0,''),(14,7,2,'2015-04-14 16:25:43','2015-04-14 16:35:43',0,0,0,0,'');
+
+/*Table structure for table `preguntas_examen` */
 
 CREATE TABLE `preguntas_examen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -134,24 +47,16 @@ CREATE TABLE `preguntas_examen` (
   `respuesta2` text COLLATE utf8_spanish_ci,
   `respuesta3` text COLLATE utf8_spanish_ci,
   `respuesta4` text COLLATE utf8_spanish_ci,
-  `solucion` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `solucion` text COLLATE utf8_spanish_ci,
   `activo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+/*Data for the table `preguntas_examen` */
 
+insert  into `preguntas_examen`(`id`,`id_examen`,`tipo`,`pregunta`,`respuesta1`,`respuesta2`,`respuesta3`,`respuesta4`,`solucion`,`activo`) values (1,1,'Test','Como se dice casa','Dog','House','Cat','Apple','b',NULL),(2,7,'Test','Como se dice perro ','Dog','House','Cat','Apple','a',NULL),(3,1,'Test','Como se dice perro ','Dog','House','Cat','Apple','a',NULL),(4,2,'Test','Como se dice manzana ','Dog','House','Cat','Apple','d',NULL),(5,1,'Desarrollo','Hablame de tus vacaciones','','','','','Desarrollo',NULL),(8,7,'Test','Pasado de Comer','ate','eat','eatten','eaten','a',NULL),(9,1,'Test','How do you say \'Hello\'','Hola','Adios','Caballo','Mariposa','a',NULL),(10,1,'Desarrollo','Desarrollo sobre tu mascota','','','','','Desarrollo',NULL),(11,1,'Desarrollo','Hablame de tus padres','','','','','Desarrollo',NULL),(12,7,'Test','Como se dice manzana','Dog','House','Cat','Apple','d',NULL);
 
-CREATE TABLE `examenes_realizados` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_examen` int(11) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `tiempo_ini` datetime DEFAULT NULL,
-  `tiempo_fin` datetime DEFAULT NULL,
-  `aciertos` int(11) DEFAULT NULL,
-  `nota` float DEFAULT NULL,
-  `comentarios` text COLLATE utf8_spanish_ci,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+/*Table structure for table `respuestas_alumnos` */
 
 CREATE TABLE `respuestas_alumnos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -162,4 +67,52 @@ CREATE TABLE `respuestas_alumnos` (
   `solucion` text COLLATE utf8_spanish_ci,
   `comentarios` text COLLATE utf8_spanish_ci,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `respuestas_alumnos` */
+
+insert  into `respuestas_alumnos`(`id`,`id_examen_realizado`,`id_pregunta`,`id_usuario`,`respuesta`,`solucion`,`comentarios`) values (34,1,1,2,'b','b',''),(35,1,3,2,'a','a',''),(36,1,5,2,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt at nibh vel feugiat. Suspendisse luctus nunc arcu, et tristique elit posuere vel. Morbi dui lorem, efficitur fringilla sem ac, cursus efficitur quam. Donec tincidunt mauris quis iaculis cursus. Nullam at sem nisl. Etiam porta aliquet libero, eu vehicula leo aliquet eu. Proin non urna vitae massa egestas pellentesque vel at lorem. Aliquam lacus quam, tempor vitae tortor ut, hendrerit finibus leo. Duis tempor, orci sed tempor porta, nulla arcu aliquam dolor, molestie fringilla eros mi et dui. Suspendisse potenti. Suspendisse potenti. Morbi rhoncus laoreet nisi sed hendrerit. Nunc nulla lacus, fringilla ut ligula nec, pellentesque vulputate odio. Donec mi nisi, commodo et velit at, viverra condimentum quam. Ut quis ante dignissim, tincidunt est vel, consectetur nunc. Mauris placerat nisi tortor, vitae tristique tortor luctus non.\r\n\r\nNulla arcu ipsum, dapibus et tincidunt eget, suscipit eget nulla. Duis nec dui risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque semper hendrerit nibh, a imperdiet nunc suscipit id. Quisque eget tellus vehicula, fermentum magna sit amet, scelerisque purus. Morbi dapibus, neque nec placerat feugiat, tellus nisl lobortis magna, id venenatis turpis dui at velit. Integer ante elit, semper ut erat ut, mollis venenatis mi. Morbi tortor nulla, molestie at porttitor at, viverra eget nisl. Donec vitae lectus pellentesque massa tristique blandit. Pellentesque iaculis congue quam, sed tristique sem sodales eu. Duis mi felis, viverra non magna et, ultrices gravida massa.\r\n\r\nFusce quis molestie nulla. Sed vulputate ex facilisis ex tincidunt, sit amet ultrices odio rutrum. Sed congue ipsum vel enim imperdiet luctus. Donec dignissim urna in massa eleifend, in pulvinar quam efficitur. Quisque bibendum congue accumsan. Suspendisse risus augue, fringilla ac urna id, consectetur vehicula nunc. Phasellus convallis venenatis eros nec porta. Curabitur in mi eget risus sollicitudin aliquet. Nunc gravida justo sit amet accumsan pharetra.\r\n\r\nPhasellus tristique erat quis commodo mollis. Curabitur sed sollicitudin odio. Proin pulvinar mi dolor, et pretium nisi consequat ac. Donec aliquam nisl non dapibus condimentum. Aenean non metus id sem vehicula bibendum. Vestibulum in vulputate justo, sed facilisis nisl. Aliquam vulputate lectus a lobortis ultricies. Phasellus mattis a diam ac porta. Pellentesque faucibus luctus lorem convallis aliquet. Sed ligula sem, molestie eu mi nec, condimentum mattis augue.','Desarrollo','<p>Muy bien</p>'),(37,1,9,2,'a','a',''),(38,1,10,2,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt at nibh vel feugiat. Suspendisse luctus nunc arcu, et tristique elit posuere vel. Morbi dui lorem, efficitur fringilla sem ac, cursus efficitur quam. Donec tincidunt mauris quis iaculis cursus. Nullam at sem nisl. Etiam porta aliquet libero, eu vehicula leo aliquet eu. Proin non urna vitae massa egestas pellentesque vel at lorem. Aliquam lacus quam, tempor vitae tortor ut, hendrerit finibus leo. Duis tempor, orci sed tempor porta, nulla arcu aliquam dolor, molestie fringilla eros mi et dui. Suspendisse potenti. Suspendisse potenti. Morbi rhoncus laoreet nisi sed hendrerit. Nunc nulla lacus, fringilla ut ligula nec, pellentesque vulputate odio. Donec mi nisi, commodo et velit at, viverra condimentum quam. Ut quis ante dignissim, tincidunt est vel, consectetur nunc. Mauris placerat nisi tortor, vitae tristique tortor luctus non.\r\n\r\nNulla arcu ipsum, dapibus et tincidunt eget, suscipit eget nulla. Duis nec dui risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque semper hendrerit nibh, a imperdiet nunc suscipit id. Quisque eget tellus vehicula, fermentum magna sit amet, scelerisque purus. Morbi dapibus, neque nec placerat feugiat, tellus nisl lobortis magna, id venenatis turpis dui at velit. Integer ante elit, semper ut erat ut, mollis venenatis mi. Morbi tortor nulla, molestie at porttitor at, viverra eget nisl. Donec vitae lectus pellentesque massa tristique blandit. Pellentesque iaculis congue quam, sed tristique sem sodales eu. Duis mi felis, viverra non magna et, ultrices gravida massa.\r\n\r\nFusce quis molestie nulla. Sed vulputate ex facilisis ex tincidunt, sit amet ultrices odio rutrum. Sed congue ipsum vel enim imperdiet luctus. Donec dignissim urna in massa eleifend, in pulvinar quam efficitur. Quisque bibendum congue accumsan. Suspendisse risus augue, fringilla ac urna id, consectetur vehicula nunc. Phasellus convallis venenatis eros nec porta. Curabitur in mi eget risus sollicitudin aliquet. Nunc gravida justo sit amet accumsan pharetra.\r\n\r\nPhasellus tristique erat quis commodo mollis. Curabitur sed sollicitudin odio. Proin pulvinar mi dolor, et pretium nisi consequat ac. Donec aliquam nisl non dapibus condimentum. Aenean non metus id sem vehicula bibendum. Vestibulum in vulputate justo, sed facilisis nisl. Aliquam vulputate lectus a lobortis ultricies. Phasellus mattis a diam ac porta. Pellentesque faucibus luctus lorem convallis aliquet. Sed ligula sem, molestie eu mi nec, condimentum mattis augue.','Desarrollo','<p>Un poco regular</p>'),(39,1,11,2,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt at nibh vel feugiat. Suspendisse luctus nunc arcu, et tristique elit posuere vel. Morbi dui lorem, efficitur fringilla sem ac, cursus efficitur quam. Donec tincidunt mauris quis iaculis cursus. Nullam at sem nisl. Etiam porta aliquet libero, eu vehicula leo aliquet eu. Proin non urna vitae massa egestas pellentesque vel at lorem. Aliquam lacus quam, tempor vitae tortor ut, hendrerit finibus leo. Duis tempor, orci sed tempor porta, nulla arcu aliquam dolor, molestie fringilla eros mi et dui. Suspendisse potenti. Suspendisse potenti. Morbi rhoncus laoreet nisi sed hendrerit. Nunc nulla lacus, fringilla ut ligula nec, pellentesque vulputate odio. Donec mi nisi, commodo et velit at, viverra condimentum quam. Ut quis ante dignissim, tincidunt est vel, consectetur nunc. Mauris placerat nisi tortor, vitae tristique tortor luctus non.\r\n\r\nNulla arcu ipsum, dapibus et tincidunt eget, suscipit eget nulla. Duis nec dui risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque semper hendrerit nibh, a imperdiet nunc suscipit id. Quisque eget tellus vehicula, fermentum magna sit amet, scelerisque purus. Morbi dapibus, neque nec placerat feugiat, tellus nisl lobortis magna, id venenatis turpis dui at velit. Integer ante elit, semper ut erat ut, mollis venenatis mi. Morbi tortor nulla, molestie at porttitor at, viverra eget nisl. Donec vitae lectus pellentesque massa tristique blandit. Pellentesque iaculis congue quam, sed tristique sem sodales eu. Duis mi felis, viverra non magna et, ultrices gravida massa.\r\n\r\nFusce quis molestie nulla. Sed vulputate ex facilisis ex tincidunt, sit amet ultrices odio rutrum. Sed congue ipsum vel enim imperdiet luctus. Donec dignissim urna in massa eleifend, in pulvinar quam efficitur. Quisque bibendum congue accumsan. Suspendisse risus augue, fringilla ac urna id, consectetur vehicula nunc. Phasellus convallis venenatis eros nec porta. Curabitur in mi eget risus sollicitudin aliquet. Nunc gravida justo sit amet accumsan pharetra.\r\n\r\nPhasellus tristique erat quis commodo mollis. Curabitur sed sollicitudin odio. Proin pulvinar mi dolor, et pretium nisi consequat ac. Donec aliquam nisl non dapibus condimentum. Aenean non metus id sem vehicula bibendum. Vestibulum in vulputate justo, sed facilisis nisl. Aliquam vulputate lectus a lobortis ultricies. Phasellus mattis a diam ac porta. Pellentesque faucibus luctus lorem convallis aliquet. Sed ligula sem, molestie eu mi nec, condimentum mattis augue.','Desarrollo','<p>Mal del todo</p>'),(40,7,2,2,'b','c',NULL),(41,7,8,2,'d','a',NULL);
+
+/*Table structure for table `traducciones` */
+
+CREATE TABLE `traducciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `clave` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `valor` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `lang` varchar(3) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `traducciones` */
+
+insert  into `traducciones`(`id`,`clave`,`valor`,`lang`) values (31,'login','Acceso Usuarios','es'),(32,'login','Login','en'),(33,'iniciar_sesion','Iniciar Sesion','es'),(34,'iniciar_sesion','Log me in','en'),(35,'registro','Registrate','es'),(36,'registro','Sign in','en'),(37,'recordar','¿No recuerda sus datos de acceso?','es'),(38,'recordar','Can\'t you access to your account?','en'),(39,'salir','Salir','es'),(40,'salir','Log Out','en'),(41,'formulario_registro','Formulario de registro','es'),(42,'formulario_registro','Registration Form','en'),(43,'nombre','Nombre','es'),(44,'nombre','Name','en'),(45,'apellidos','Apellidos','es'),(46,'apellidos','Surname','en'),(47,'nacionalidad','Nacionalidad','es'),(48,'nacionalidad','Nacionality','en'),(49,'nacimiento','Fecha Nacimiento','es'),(50,'nacimiento','Date of Birth','en'),(51,'sexo','Sexo','es'),(52,'sexo','Gender','en'),(53,'masculino','Masculino','es'),(54,'masculino','Male','en'),(55,'femenino','Femenino','es'),(56,'femenino','Female','en'),(57,'contrasena','Contrase&ntilde;a','es'),(58,'contrasena','Password','en'),(59,'repetir','Repetir Contrase&ntilde;a','es'),(60,'repetir','Repeat Password','en'),(61,'telefono','Tel&eacute;fono','es'),(62,'cp','C&oacute;digo Postal','es'),(63,'ciudad','Ciudad','es');
+
+/*Table structure for table `usuarios` */
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `apellidos` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sexo` varchar(3) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fechanacimiento` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `direccion` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `cp` varchar(5) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ciudad` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nacionalidad` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `contrasena` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rol` varchar(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `activo` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`,`email`),
+  UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `usuarios` */
+
+insert  into `usuarios`(`id`,`nombre`,`apellidos`,`sexo`,`fechanacimiento`,`email`,`telefono`,`direccion`,`cp`,`ciudad`,`nacionalidad`,`contrasena`,`rol`,`activo`) values (1,'Miguel','Ortega Gomez','M','20/03/1978','mikgongin@hotmail.com',NULL,NULL,NULL,NULL,'Spanish','ccc','A',1),(2,'Miguel','Ortega','M','20/03/1987','miguel@ucm.es','651942440','qwert','28000','Madrid','British','xxx','E',1),(3,'Oliver','Garcia','M','11/09/1987','oliver@ucm.es',NULL,NULL,NULL,NULL,'Austrian','ccc','E',1),(5,'Antonio','Sarasa','M','12/07/1978','antonio@ucm.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(6,'Alberto','Verdejo','M','13/02/1970','alberto@ucm.es',NULL,NULL,NULL,NULL,'Belgian','ccc','P',1),(7,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(8,'Rober','Sopelana','M','12/12/1212','yee@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(9,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(10,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(11,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',0),(12,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',0),(13,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(14,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',0),(15,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(16,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(17,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(18,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',0),(19,'Rober Reford','Sopelana','M','12/12/1212','yyy@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(20,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(21,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(22,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(23,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(24,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

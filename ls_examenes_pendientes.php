@@ -107,22 +107,8 @@ $(document).ready(function() {
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>
-	<section id="izquierdo_general" class="bloqueRedondo">
-	    <article id="caja0" class="caja" >
-                	<div class="caja_titulo">
-		                <p>A&ntilde;adir ex&aacute;men</p>
-                    </div>
-                    <div class="caja_contenido"  >
-		                <ul>
-                            <li><a onclick="openFancybox()"  title="Nuevo">Nuevo </a></li>
-                        </ul>
-                    </div>
-                </article>
 		
-		
-	</section>
-	
-	<section id="derecho_general" class=" bloqueRedondeado">
+	<section class="bloquecompleto bloqueRedondeado">
        
 		<div class="datagrid" style="width:auto;">
 			<table>
@@ -168,7 +154,7 @@ $(document).ready(function() {
 					$nombre	= $usuario->getNombreById($rowEmp['id_usuario']);
 					
 				?>
-					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
+					<tr <?php if($i%2==0){?>class="alt <?php if($rowEmp['expirado']==1){?> expirado<?php }?>"<?php }else{?>class="impar <?php if($rowEmp['expirado']==1){?> expirado<?php }?>"<?php }?> >
 						
 						<td><a href="corregir.php?id_usuario=<?php echo $rowEmp['id_usuario']?>&id_examen=<?php echo $rowEmp['id_examen']?>"> <?php echo $nombre?></a></td>
 						<td><a href="corregir.php?id_usuario=<?php echo $rowEmp['id_usuario']?>&id_examen=<?php echo $rowEmp['id_examen']?>"><?php echo $rowEmp["id_examen"]?></a></td>

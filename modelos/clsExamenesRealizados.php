@@ -24,7 +24,7 @@ class clsExamenesRealizados{
 //INICIO FUNCIONES BASICAS PARA AÑADIR,ELIMINAR y MODIFICAR
  public function incluir(){
 	 $objDatos = new clsDatos(); 
-	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota,corregido,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->corregido','$this->comentarios')";
+	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota,corregido,expirado,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->corregido','$this->expirado','$this->comentarios')";
 	 	
 	 $objDatos->ejecutar($sql);
     
@@ -33,7 +33,7 @@ class clsExamenesRealizados{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update examenes_realizados set id_examen='$this->id_examen', id_usuario='$this->id_usuario', tiempo_ini='$this->tiempo_ini', tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota', corregido='$this->corregido', comentarios='$this->comentarios' where(id='$this->id')";
+		$sql = "update examenes_realizados set id_examen='$this->id_examen', id_usuario='$this->id_usuario', tiempo_ini='$this->tiempo_ini', tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota', corregido='$this->corregido', expirado='$this->expirado',comentarios='$this->comentarios' where(id='$this->id')";
 		$objDatos->ejecutar($sql);
 		
 }
@@ -95,6 +95,29 @@ public function corregido($examen,$usuario){
 	$objDatos = new clsDatos();
 	$sql = "UPDATE examenes_realizados SET corregido=1 WHERE id_examen='$examen' AND id_usuario='$usuario'";
 	$objDatos->ejecutar($sql);
+}
+
+public function expirado($examen,$usuario){
+	$objDatos = new clsDatos();
+	$sql = "UPDATE examenes_realizados SET expirado=1 WHERE id_examen='$examen' AND id_usuario='$usuario'";
+	$objDatos->ejecutar($sql);
+}
+
+public function getExamenesAlumno($id_usuario){
+	$objDatos = new clsDatos();
+	$sql= "SELECT * FROM examenes_realizados WHERE id_usuario=$id_usuario";
+	$res = $objDatos->filtroListado($sql);
+	
+	return $res;
+}
+
+public function calcularTiempo($ini,$fin){
+	$ar_ini = explode(' ',$ini);
+	$ar_fin = explode(' ',$fin);
+	$datetime1 = new DateTime($ar_ini[1]);
+	$datetime2 = new DateTime($ar_fin[1]);
+	$interval = $datetime1->diff($datetime2);	
+	echo $interval->format('%i minutos, %s segundos');
 }
 }
 

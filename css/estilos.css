@@ -715,10 +715,10 @@ ul.menuVertical   li.activo a{
  }
  
  .alt:hover{
-	background:#DCDCDC;;
+	background:#DCDCDC!important;
  }
  .impar:hover{
-	background:#DCDCDC;;
+	background:#DCDCDC;
  }
  
  #central label{
@@ -1015,4 +1015,23 @@ border-radius: 7px 7px 7px 7px;
 
 .cke_toolbar{
 	display:none;
+}
+
+.expirado{
+	background:#F08080;
+}
+
+.visualizar{
+	padding:20px;
+}
+
+.bloquecompleto{
+	padding:20px;
+}
+
+.aviso{
+	border: 3.5px solid #36559e;
+	margin: 5px 5px 5px !important;
+	padding: 15px 20px 20px 20px;
+	border-radius: 7px 7px 7px 7px;
 }

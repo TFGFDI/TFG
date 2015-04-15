@@ -53,7 +53,12 @@ require_once("top.php");
 		<?php 
 			$i++;
 		}//fin while?>
-		<input type="submit" value="Enviar">
+		<?php if($rowEmp==NULL){?>
+		<section class="aviso">
+			<span><b>Este modelo de examen no tiene preguntas a desarrollar y se corrige automáticamente. </b></span>
+		</section>
+		<?php }?>
+		<input type="submit" value="Ok">
 		</form>
 	</div>
 	

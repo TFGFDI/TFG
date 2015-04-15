@@ -110,6 +110,13 @@ if($op=="login"){
 	$examen->id_profesor= $_SESSION["id"];//Obtenemos el usuario con el id que nos viene del objeto
 	$examen->nombre_profesor= $_SESSION["nombre"]." ".$_SESSION["apellidos"];
 	$examen->fecha = date("Y-m-d");
+	$examen->tipo=$dict['tipo'];
+	
+	$fecha = date('Y');
+	$nuevafecha = strtotime ( '+1 year' , strtotime ( $fecha ) ) ;
+	$nuevafecha = date ( 'Y' , $nuevafecha );
+	 
+	$examen->curso= $fecha."/".$nuevafecha;
 	$examen->estado = 0;
 	$examen->activo = 0;
 	$examen->tiempo=$dict['tiempo'];
@@ -222,6 +229,7 @@ if($op=="login"){
 	$examen_r->id_usuario = $_SESSION['id'];
 	$examen_r->tiempo_ini = date("Y-m-d H:i:s");
 	$examen_r->corregido = 0;
+	$examen_r->expirado = 0;
 	$examen_r->incluir();
 	$_SESSION['inicio_examen']=date("Y-m-d H:i:s");
 	$_SESSION['empezado']=true;
@@ -246,6 +254,9 @@ if($op=="login"){
 		$error=true;
 		$_SESSION['empezado']=false;
 		unset($_SESSION['inicio_examen']);
+		
+		$examen_r = new ClsExamenesRealizados();		
+		$examen_r->expirado($activo,$id_usuario);
 		header("Location: alumno.php?error=tiempo_expirado");
 	}
 	if(! $error){
@@ -297,7 +308,7 @@ if($op=="login"){
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
-	$usuario->estableceCampos($dict);
+	$usuario->estableceCampos($dict);var_dump($usuario);
 	if($dict['contrasena_antigua']== $usuario->getContrasenaById($_SESSION['id'])){
 		if($dict['contrasena']==$dict['contrasena2']){
 			$usuario->contrasena=$dict['contrasena'];

@@ -53,22 +53,8 @@ function visualizar(id){
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>
-	<section id="izquierdo_general" class="bloqueRedondo">
-	    <article id="caja0" class="caja" >
-                	<div class="caja_titulo">
-		                <p>A&ntilde;adir ex&aacute;men</p>
-                    </div>
-                    <div class="caja_contenido"  >
-		                <ul>
-                            <li><a onclick="openFancybox()"  title="Nuevo">Nuevo </a></li>
-                        </ul>
-                    </div>
-                </article>
 		
-		
-	</section>
-	
-	<section id="derecho_general" class=" bloqueRedondeado">
+	<section class="bloquecompleto bloqueRedondeado">
        
 		<div class="datagrid" style="width:auto;">
 			<table>

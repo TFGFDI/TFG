@@ -150,9 +150,22 @@ $(document).ready(function() {
 								}
 							?>
 						</th>
-						<th onclick="orden('fecha','<?php echo $orden?>');" style="cursor:pointer"><span>Fecha</span>
+						
+						<th onclick="orden('curso','<?php echo $orden?>');" style="cursor:pointer"><span>Curso</span>
 							<?php 
-								if($filtro=="fecha"){
+								if($filtro=="curso"){
+									if($orden=="DESC"){ ?>
+										<img src="../imagenes/flecha-abajo.png">
+									<?php }else if($orden=="ASC"){ ?>
+										<img src="../imagenes/flecha-arriba.png">
+									<?php }
+								}
+							?>
+						</th>
+						
+						<th onclick="orden('tipo','<?php echo $orden?>');" style="cursor:pointer"><span>Tipo</span>
+							<?php 
+								if($filtro=="tipo"){
 									if($orden=="DESC"){ ?>
 										<img src="../imagenes/flecha-abajo.png">
 									<?php }else if($orden=="ASC"){ ?>
@@ -219,8 +232,9 @@ $(document).ready(function() {
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre_profesor']?></a></td>
-						<td><?php echo $rowEmp["fecha"]?></td>
-						
+					
+						<td><?php echo $rowEmp["curso"]?></td>
+						<td><?php echo $rowEmp["tipo"]?></td>
 						<td><?php echo $preguntas->getNumPreguntasTotales($rowEmp['id']);?></td>
 						<td><a id="<?php echo $rowEmp['id']?>" onclick="openFancybox2(this.id)"><?php echo $rowEmp["tiempo"]?> </a></td>
 						<?php if($rowEmp['id_profesor']==$_SESSION['id']){?>
@@ -262,7 +276,15 @@ $(document).ready(function() {
 					<div class="bloque_campoForumulario">
 						<label for="pregunta">Tiempo establecido</label>
 						<input type="text" name="tiempo" id="spinner" class="input input_tamanhoNormal" tabindex="1"/> &nbsp;min
-					</div>					
+					</div>
+					<div class="bloque_campoForumulario">
+						<label for="tipo">Tipo</label>
+						<select type="text" name="tipo" class="input input_tamanhoNormal" tabindex="2">
+							<option value="Semestral">Semestral</option>
+							<option value="Anual">Anual</option>
+							<option value="Intensivo">Intensivo</option>
+						</select>
+					</div>
 					<input type="submit" value="Nuevo">
 		</fieldset>			
 	</form>
@@ -276,7 +298,7 @@ $(document).ready(function() {
 				<legend class="bloqueRedondo">Nueva Pregunta</legend>					
 					<div class="bloque_campoForumulario">
 						<label for="pregunta">Tiempo establecido</label>
-						<input type="text" name="tiempo" id="spinner2" class="input input_tamanhoNormal" tabindex="1"/> &nbsp;min
+						<input type="text" name="tiempo" id="spinner2" class="input input_tamanhoNormal" tabindex="3"/> &nbsp;min
 					</div>					
 					<input type="submit" value="Editar">
 		</fieldset>			

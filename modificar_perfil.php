@@ -83,8 +83,8 @@ $fila = $alumno->getUsuarioById();
 
 
 ?>
-
-	<div id="central" class="bloqueBordesAzul bloqueSombra bloqueRedondo" >
+<h2><?php echo $util->trad("modificar_perfil",$lang);?></h2>
+	<div id="central1" class="bloqueBordesAzul bloqueSombra bloqueRedondo" >
 	<?php 
 		if($_SESSION['rol']=='E'){
 			require_once("menu_alumno.php");
@@ -93,7 +93,7 @@ $fila = $alumno->getUsuarioById();
 		}
 		?>
 		<br>
-		<h2><?php echo $util->trad("modificar_perfil",$lang);?></h2>
+		
 		<?php if(isset($dict['estado'])){?>
 			<h3 class="perfil_modificado"><?php echo $util->trad("perfil_modificado",$lang);?></h3>
 		<?php }?>

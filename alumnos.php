@@ -41,28 +41,41 @@ if (isset($dict['orden'])){
 	$orden="";
 }
 ?>
+<script>
+$(document).ready(function() {
+		$(".fancybox").fancybox();
 
+		$('.fancybox-media').fancybox({
+		openEffect  : 'none',
+		closeEffect : 'none',
+		helpers : {
+			media : {}
+		}
+
+		});
+
+		$(".ifancybox").fancybox({
+         'width' : '45%',
+         'height' : '75%',
+	     'scrolling'   : 'no',
+		 'autoScale'         : true,
+        'autoDimensions'    : true,
+         'transitionIn' : 'fade',
+         'transitionOut' : 'fade',
+         'type' : 'iframe',		
+		 'padding' : 0,
+		 'margin' : 20
+		});
+
+	});
+</script>
 	
 	<h2>Gestion de Alumnos</h2>
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>
-	<section id="izquierdo_general" class="bloqueRedondo">
-	    <article id="caja0" class="caja" >
-                	<div class="caja_titulo">
-		                <p>A&ntilde;adir ex&aacute;men</p>
-                    </div>
-                    <div class="caja_contenido"  >
-		                <ul>
-                            <li><a href="do.php?op=nuevo_examen"  title="Inicio">Nuevo </a></li>
-                        </ul>
-                    </div>
-                </article>
-		
-		
-	</section>
 	
-	<section id="derecho_general" class=" bloqueRedondeado">
+	<section class="bloquecompleto bloqueRedondeado">
        
 		<div class="datagrid" style="width:auto;">
 			<table>
@@ -138,7 +151,7 @@ if (isset($dict['orden'])){
 					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td><a href="ls_preguntas_examen.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?> <?php echo $rowEmp['apellidos']?></a></td>
+						<td><a class="ifancybox" href="visualizar_alumno.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?> <?php echo $rowEmp['apellidos']?></a></td>
 						<td><?php echo $rowEmp["email"]?></td>						
 						<td><?php echo $rowEmp["nacionalidad"]?></td>
 						<td><?php echo $rowEmp["fechanacimiento"]?></td>

@@ -76,6 +76,15 @@ public function eliminarRespuestasAlumnos($id_examen,$id_usuario){
 	$sql = "delete from respuestas_alumnos where(id_examen_realizado='$id_examen') AND (id_usuario='$id_usuario')";
 	$objDatos->ejecutar($sql);
 }
+
+public function getSolucion($id_pregunta,$id_usuario){
+	$objDatos = new clsDatos();
+	$sql = "SELECT respuesta,solucion,comentarios FROM respuestas_alumnos WHERE id_pregunta='$id_pregunta' AND id_usuario='$id_usuario'";
+	
+	$res = $objDatos->filtro($sql);
+	
+	return $res;
+}
 }
 
 ?>
