@@ -67,6 +67,28 @@ CREATE TABLE `respuestas_alumnos` (
   `solucion` text COLLATE utf8_spanish_ci,
   `comentarios` text COLLATE utf8_spanish_ci,
   PRIMARY KEY (`id`)
+
+
+
+CREATE TABLE IF NOT EXISTS `noticias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `titulo` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `activo` enum('0','1') CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `imagenes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `imagen` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `titulo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `activo` enum('0','1') COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=1 ;
+
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 /*Data for the table `respuestas_alumnos` */
@@ -87,32 +109,4 @@ CREATE TABLE `traducciones` (
 
 insert  into `traducciones`(`id`,`clave`,`valor`,`lang`) values (31,'login','Acceso Usuarios','es'),(32,'login','Login','en'),(33,'iniciar_sesion','Iniciar Sesion','es'),(34,'iniciar_sesion','Log me in','en'),(35,'registro','Registrate','es'),(36,'registro','Sign in','en'),(37,'recordar','¿No recuerda sus datos de acceso?','es'),(38,'recordar','Can\'t you access to your account?','en'),(39,'salir','Salir','es'),(40,'salir','Log Out','en'),(41,'formulario_registro','Formulario de registro','es'),(42,'formulario_registro','Registration Form','en'),(43,'nombre','Nombre','es'),(44,'nombre','Name','en'),(45,'apellidos','Apellidos','es'),(46,'apellidos','Surname','en'),(47,'nacionalidad','Nacionalidad','es'),(48,'nacionalidad','Nacionality','en'),(49,'nacimiento','Fecha Nacimiento','es'),(50,'nacimiento','Date of Birth','en'),(51,'sexo','Sexo','es'),(52,'sexo','Gender','en'),(53,'masculino','Masculino','es'),(54,'masculino','Male','en'),(55,'femenino','Femenino','es'),(56,'femenino','Female','en'),(57,'contrasena','Contrase&ntilde;a','es'),(58,'contrasena','Password','en'),(59,'repetir','Repetir Contrase&ntilde;a','es'),(60,'repetir','Repeat Password','en'),(61,'telefono','Tel&eacute;fono','es'),(62,'cp','C&oacute;digo Postal','es'),(63,'ciudad','Ciudad','es');
 
-/*Table structure for table `usuarios` */
 
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `apellidos` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `sexo` varchar(3) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fechanacimiento` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `telefono` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `direccion` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `cp` varchar(5) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ciudad` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `nacionalidad` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `contrasena` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `rol` varchar(1) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `activo` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`,`email`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-/*Data for the table `usuarios` */
-
-insert  into `usuarios`(`id`,`nombre`,`apellidos`,`sexo`,`fechanacimiento`,`email`,`telefono`,`direccion`,`cp`,`ciudad`,`nacionalidad`,`contrasena`,`rol`,`activo`) values (1,'Miguel','Ortega Gomez','M','20/03/1978','mikgongin@hotmail.com',NULL,NULL,NULL,NULL,'Spanish','ccc','A',1),(2,'Miguel','Ortega','M','20/03/1987','miguel@ucm.es','651942440','qwert','28000','Madrid','British','xxx','E',1),(3,'Oliver','Garcia','M','11/09/1987','oliver@ucm.es',NULL,NULL,NULL,NULL,'Austrian','ccc','E',1),(5,'Antonio','Sarasa','M','12/07/1978','antonio@ucm.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(6,'Alberto','Verdejo','M','13/02/1970','alberto@ucm.es',NULL,NULL,NULL,NULL,'Belgian','ccc','P',1),(7,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(8,'Rober','Sopelana','M','12/12/1212','yee@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(9,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(10,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(11,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',0),(12,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',0),(13,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(14,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',0),(15,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(16,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(17,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(18,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',0),(19,'Rober Reford','Sopelana','M','12/12/1212','yyy@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(20,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1),(21,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(22,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(23,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','P',1),(24,'Rober','Sopelana','M','12/12/1212','aaa@aaa.es',NULL,NULL,NULL,NULL,'Spanish','ccc','E',1);
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

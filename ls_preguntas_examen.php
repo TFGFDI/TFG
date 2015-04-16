@@ -96,7 +96,7 @@ $(document).ready(function() {
 				</ul>
 			</div>
         </article>
-	<input type="button" value="Volver a ex&aacute;menes" class="volver" onclick="window.location='ls_examenes_profesor.php'">	
+		<input type="button" value="Volver a ex&aacute;menes" class="volver" onclick="window.location='ls_examenes_profesor.php'">	
 		
 	</section>
 	

@@ -45,6 +45,8 @@
 </head>
 
 <?php 
+include_once("./modelos/clsNoticia.php");
+
 
 function getRequest() {
 
@@ -72,6 +74,10 @@ if(isset($dict['lang'])){
 }
 
 $url=$util->getURL();
+
+$noticia= new clsNoticia();					
+$filas = $noticia->noticiasActivas();
+
 
 ?>
 <body class="gradiante">
@@ -159,26 +165,16 @@ $url=$util->getURL();
 		  </article>
 		  <article id="tab2">
 			 <div>
-			  <p>Esta.</p>
-				<div class="destacados">
-				<strong>curso de Verano</strong>
-				<span>la visitan dentro de los diferentes programas de cooperación en los que participa (Sócrates-Erasmus, Tempus, ALPA, Asia-Link, Leonardo, etc.). Sus Cursos de Español se integran en dichos programas y, además, organizan cursos específicos para las Universidades extranjeras que así lo solicitan.</span>
-				</div>
-				<div class="destacados">
-				<strong>curso intensivo de Invierno</strong>
-				</div>
-				<div class="destacados">
-				<strong>curso de español para el turismo</strong>
-				</div>
-				<div class="destacados">
-				<strong>curso de Español comercial</strong>
-				</div>
-				<div class="destacados">
-				<strong>cAAAAAAAAAAAAAAercial</strong>
-				</div>
-				<div class="destacados">
-				<strong>curso de CCCCCCCCCCCCCC comercial</strong>
-				</div>
+				<?php while ($rowEmp = mysqli_fetch_assoc($filas)) { ?>
+					<div class="destacados">
+						<div >
+							<span class="fechaNoticia"> <?php echo $rowEmp['fecha']; ?></span>
+							<span class="tituloNoticia"><?php echo $rowEmp['titulo']; ?></span>
+						</div>
+						<div class="descripcionNoticia"><?php echo $rowEmp['descripcion']; ?></div>
+					</div>
+				<?php } ?>
+		
 			</div>
 		  </article>
 		  <article id="tab3">

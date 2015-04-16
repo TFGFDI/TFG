@@ -214,6 +214,7 @@ if (isset($dict['orden'])){
 					$filasTot = $usuario->getEstudiantes($buscador,$activo,$nac,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
+					
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
 					$numer_reg = 8; 
 					$totalPag = ceil($totEmp / $numer_reg);				

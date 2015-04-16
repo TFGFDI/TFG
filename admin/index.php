@@ -40,62 +40,95 @@ if (isset($dict['orden'])){
 
 
 ?>
+<style>
+.fancybox-skin{
+	height:300px!important;
+}
+</style>
 <script>
-	function limpiar(){
-		$('#buscador_input').val('');
-		$('#activo').val('');
-		$('#nac').val('');
-		$("#buscador").submit();
-	}
-	function orden(filtro,orden){
-		
-		if(orden ==""){
-			orden="ASC";
-		} else if(orden =="ASC"){
-			orden="DESC";
-		}else if(orden =="DESC"){
-			orden="ASC";
-		}
-			
-
-		location.href='index.php?filtro='+filtro+"&orden="+orden;
-		
-	}
-	function editar(id){
-	window.location="editar.php?id="+id+"&origen=estudiantes";
- }
-
-	function ver(id){
-		window.location="visualizar.php?id="+id+"";
-	}
-
-  
-	function eliminar(id){
-		
-		
-		var r = confirm("\u00BF Seguro que desea eliminar?");
-		if (r == true) {
-			location.href='../do.php?op=eliminarUsuario&id='+id+"";
-		} 
-
-
-		
-	}
+function limpiar(){
+	$('#buscador_input').val('');
+	$('#activo').val('');
+	$('#nac').val('');
+	$("#buscador").submit();
+}
+function orden(filtro,orden){
 	
-	function activar(id){
-		location.href='../do.php?op=activar&id='+id+"";
+	if(orden ==""){
+		orden="ASC";
+	} else if(orden =="ASC"){
+		orden="DESC";
+	}else if(orden =="DESC"){
+		orden="ASC";
 	}
-	function crear(){
-		location.href='nuevo.php';
-	}
-	
-	function mostrar(){
-		$('#oculto').toggle('slow');
-		$('#avanzada').toggle('slow');
-		$('#simple').toggle('');
-	}
+		
 
-	$(document).ready(function() {
+	location.href='index.php?filtro='+filtro+"&orden="+orden;
+	
+}
+
+/*   NOTICIAS */
+function editar(id){
+window.location="editar.php?id="+id+"&origen=estudiantes";
+}
+
+function ver(id){
+	window.location="visualizarNoticia.php?id="+id+"";
+}
+
+function eliminar(id){
+	var r = confirm("\u00BF Seguro que desea eliminar?");
+	if (r == true) {
+		location.href='../do.php?op=eliminarNoticia&id='+id+"";
+	} 
+
+}
+
+function activar(id){
+	location.href='../do.php?op=activarNoticia&id='+id+"";
+}
+function crear(){
+	location.href='nuevo.php';
+}
+
+/* end NOTICIAS */
+
+function mostrar(){
+	$('#oculto').toggle('slow');
+	$('#avanzada').toggle('slow');
+	$('#simple').toggle('');
+}
+
+
+	
+	
+function openFancybox() {
+  $.fancybox({
+     'autoScale': true,
+     'transitionIn': 'elastic',
+     'transitionOut': 'elastic',
+     'speedIn': 500,
+     'speedOut': 300,
+     'autoDimensions': true,
+     'centerOnScroll': true,
+     'href' : '#fancy_form'  // id del div que se visualiza
+  });
+}
+
+function editFancybox() {
+  $.fancybox({
+     'autoScale': true,
+     'transitionIn': 'elastic',
+     'transitionOut': 'elastic',
+     'speedIn': 500,
+     'speedOut': 300,
+     'autoDimensions': true,
+     'centerOnScroll': true,
+     'href' : '#fancy_form_edit'  // id del div que se visualiza
+  });
+}
+
+$(document).ready(function() {
 		$(".fancybox").fancybox();
 
 		$('.fancybox-media').fancybox({
@@ -107,7 +140,8 @@ if (isset($dict['orden'])){
 
 		});
 
-		$(".ifancybox").fancybox({
+		
+	$(".ifancybox").fancybox({
 		 'width' : '45%',
 		 'height' : '75%',
 		 'scrolling'   : 'no',
@@ -118,7 +152,9 @@ if (isset($dict['orden'])){
 		 'type' : 'iframe',		
 		 'padding' : 0,
 		 'margin' : 20
-		});
+	});
+	
+
 		
 		$("#noticias").click(function(evento){
 			$("#cuenta").removeClass();
@@ -143,6 +179,8 @@ if (isset($dict['orden'])){
 			evento.preventDefault();
 			$("#destino").load("cuentaUsuario.php");
 	   });
+	   
+	 
 
 	});
 	

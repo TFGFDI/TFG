@@ -513,6 +513,26 @@ padding-right:50px;
 
 
 
+.tituloNoticia{
+	font-size: 26px;
+	 font-variant: small-caps;
+	color:#05244c;
+	font-weight: bolder;
+}
+.fechaNoticia{
+	font-size: 16px;
+	font-style: italic;
+	font-weight: bolder;
+	color:#05244c;
+	margin-right: 15px;
+}
+.descripcionNoticia{
+	margin-top:5px;
+	text-align: justify;
+}
+
+
+
 /*  MENU VERTICAL LATERAL IZQUIERDO  */
 
 #divMenu_Vertical{

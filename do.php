@@ -12,6 +12,7 @@ function getRequest() {
 
 $dict = getRequest();
 $op = $dict['op'];
+
 $util = new clsUtil();
 //var_dump($dict);exit();
 session_start();
@@ -110,13 +111,6 @@ if($op=="login"){
 	$examen->id_profesor= $_SESSION["id"];//Obtenemos el usuario con el id que nos viene del objeto
 	$examen->nombre_profesor= $_SESSION["nombre"]." ".$_SESSION["apellidos"];
 	$examen->fecha = date("Y-m-d");
-	$examen->tipo=$dict['tipo'];
-	
-	$fecha = date('Y');
-	$nuevafecha = strtotime ( '+1 year' , strtotime ( $fecha ) ) ;
-	$nuevafecha = date ( 'Y' , $nuevafecha );
-	 
-	$examen->curso= $fecha."/".$nuevafecha;
 	$examen->estado = 0;
 	$examen->activo = 0;
 	$examen->tiempo=$dict['tiempo'];
@@ -179,15 +173,6 @@ if($op=="login"){
 	$examen->activar_examen();
 	header("Location: ls_examenes_profesor.php");
 	
-}else if($op=="desactivar_examen"){	
-	$examen= new clsExamenes();
-	foreach($dict as $clave => $valor){
-		$dict[$clave] = $util->desinfectar($valor);
-	}
-	$examen->estableceCampos($dict);
-	$examen->desactivar_examen();
-	header("Location: ls_examenes_profesor.php");
-
 }else if($op=="nueva_pregunta"){
 	$pregunta= new clsPreguntasExamen();
 	
@@ -228,11 +213,8 @@ if($op=="login"){
 	$examen_r->id_examen = $activo;
 	$examen_r->id_usuario = $_SESSION['id'];
 	$examen_r->tiempo_ini = date("Y-m-d H:i:s");
-	$examen_r->corregido = 0;
-	$examen_r->expirado = 0;
 	$examen_r->incluir();
 	$_SESSION['inicio_examen']=date("Y-m-d H:i:s");
-	$_SESSION['empezado']=true;
 	header("Location: examen.php");
 	
 }else if($op=="acabar_examen"){
@@ -252,18 +234,12 @@ if($op=="login"){
 	
 	if($fin>$nuevafecha){
 		$error=true;
-		$_SESSION['empezado']=false;
-		unset($_SESSION['inicio_examen']);
-		
-		$examen_r = new ClsExamenesRealizados();		
-		$examen_r->expirado($activo,$id_usuario);
 		header("Location: alumno.php?error=tiempo_expirado");
 	}
 	if(! $error){
 		//Insertamos las respuestas en la bbdd
-		
 		foreach($dict as $clave => $valor){
-			$dict[$clave] = $util->desinfectar($valor);
+			
 			if($clave !="op"){
 				$respuesta->id_examen_realizado = $activo;
 				$respuesta->id_pregunta = $clave;
@@ -295,11 +271,9 @@ if($op=="login"){
 		$ar_examen['aciertos'] = $aciertos;
 		$ar_examen['nota'] = $nota;
 		$ar_examen['tiempo_fin'] = $fin;
-		$ar_examen['corregido'] = 0;
 		$examen_r->estableceCampos($ar_examen);	
 		$examen_r->actualizar();
-		$_SESSION['empezado']=false;
-		unset($_SESSION['inicio_examen']);
+		
 		header("Location: index.php");
 	}
 }else if($op=="modificar_perfil"){
@@ -308,7 +282,7 @@ if($op=="login"){
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
-	$usuario->estableceCampos($dict);var_dump($usuario);
+	$usuario->estableceCampos($dict);
 	if($dict['contrasena_antigua']== $usuario->getContrasenaById($_SESSION['id'])){
 		if($dict['contrasena']==$dict['contrasena2']){
 			$usuario->contrasena=$dict['contrasena'];
@@ -333,32 +307,63 @@ if($op=="login"){
 	}else{
 		header("Location: modificar_perfil.php?error=$error");
 	}
-}else if($op=="corregir"){	
-	$respuesta = new ClsRespuestasAlumnos();
+	
+}else if($op=="nueva_noticia"){
+	$noticia= new clsNoticia();
+	
+	foreach($dict as $clave => $valor){
+
+		if($clave == 'fecha'){
+			$dict[$clave] = $util->fechaFormato($valor);
+		}else{
+			$dict[$clave] = $util->desinfectar($valor);
+		}
+		
+	}
+
+	$noticia->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	
+	$noticia->incluir();
+	header("Location: admin/index.php");	
+}else if($op=="eliminarNoticia"){
+	$noticia= new clsNoticia();
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
-		if(($clave !="op")&&($clave !="id_examen")&&($clave !="id_usuario")){
-				$ar_resp = explode("_",$clave);
-				$respuesta->actualizarRespuestas($ar_resp[1],$valor);
-			}
+		echo  $dict[$clave];
+		echo "<br>";
 	}
-	$examen_realizado = new ClsExamenesRealizados();
-	$examen_realizado->corregido($dict['id_examen'],$dict['id_usuario']);
-	header("Location: ls_examenes_pendientes.php");
+	$noticia->estableceCampos($dict);
+	$noticia->eliminar();	
+
+	header("Location: admin/index.php");
 	
-}else if($op=="eliminar_examen_pendiente"){
-	$examen= new clsExamenesRealizados();
+}else if($op=="activarNoticia"){
+	$noticia= new clsNoticia();
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
-	$examen->estableceCampos($dict);	
-	$examen->eliminar();
-	
-	if(isset($dict['respuestas'])){
-		$preguntas= new clsRespuestasAlumnos();
-		$ar = explode('_',$dict['respuestas']);
-		$preguntas->eliminarRespuestasAlumnos($ar[0],$ar[1]);
+	$noticia->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	$notic = $noticia->getNoticiaById();
+	if($notic['activo']=='1'){
+		$notic['activo']='0';
+	}else{
+		$notic['activo']='1';
 	}
+	$noticia->estableceCampos($notic);//modificamos el campo activo a 1 ó 0 
+	$noticia->editar();
+	header("Location: admin/index.php");	
 	
-	header("Location: ls_examenes_profesor.php");
-}?>
+}else if($op=="editarNoticia"){
+	$noticia= new clsNoticia();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}
+	$noticia->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	
+	$noticia->editar();
+	header("Location: admin/index.php");
+	
+}
+
+
+?>

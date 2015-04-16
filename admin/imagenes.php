@@ -1,5 +1,7 @@
 <?php 
 include_once("../modelos/clsImagen.php");
+require_once("../modelos/clsUtil.php"); 
+$util= new clsUtil();
 
 if (isset($dict['buscador'])){
 	$buscador=$dict['buscador'];
@@ -33,6 +35,14 @@ if (isset($dict['orden'])){
 
 
 ?>
+
+<script >
+
+	function enlace(enlace){
+		//abrir en una nueva ventana
+		window.open(enlace);
+	}
+</script>
 
 <section id="derecho_general" class="bloqueRedondo bloqueSombra">
 	<h2 style="width:400px; float:left;">Gestion de Imagenes</h2>
@@ -77,7 +87,7 @@ if (isset($dict['orden'])){
 			<table>
 				<thead>
 					<tr>
-						<th onclick="orden('fecha','<?php echo $orden?>');" style="cursor:pointer"><span>Fecha</span>
+						<th onclick="orden('fecha','<?php echo $orden?>');" style="cursor:pointer" width="10%"><span>Fecha</span>
 							<?php 
 								if($filtro=="fecha"){
 									if($orden=="DESC"){ ?>
@@ -88,7 +98,7 @@ if (isset($dict['orden'])){
 								}
 							?>
 						</th>
-						<th onclick="orden('titulo','<?php echo $orden?>');" style="cursor:pointer"><span>Título</span>
+						<th onclick="orden('titulo','<?php echo $orden?>');" style="cursor:pointer" width="70%"><span>Título</span>
 							<?php 
 								if($filtro=="titulo"){
 									if($orden=="DESC"){ ?>
@@ -100,7 +110,7 @@ if (isset($dict['orden'])){
 							?>
 						</th>
 				
-						<th onclick="orden('activo','<?php echo $orden?>');" style="cursor:pointer"><span>Activo</span>
+						<th onclick="orden('activo','<?php echo $orden?>');" style="cursor:pointer" width="5%"><span>Activo</span>
 							<?php 
 								if($filtro=="activo"){
 									if($orden=="DESC"){ ?>
@@ -111,9 +121,9 @@ if (isset($dict['orden'])){
 								}
 							?>
 						</th>	
-						<th></th>
-						<th></th>
-						<th></th>
+						<th width="5%"></th>
+						<th width="5%"></th>
+						<th width="5%"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -128,7 +138,7 @@ if (isset($dict['orden'])){
 					$numer_reg = 8; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
-					$filasPag = $imagen->getNoticisPaginacion($buscador,$activo,$fecha,$filtro,$orden,$itemsInicio,$numer_reg);
+					$filasPag = $imagen->getImagenesPaginacion($buscador,$activo,$fecha,$filtro,$orden,$itemsInicio,$numer_reg);
 					
 					$total=mysqli_num_rows($filasTot);
 					
@@ -138,13 +148,12 @@ if (isset($dict['orden'])){
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><?php echo $rowEmp["fecha"]?></td>
-						<td><a class="ifancybox" href="visualizarImagen.php?id=<?php echo $rowEmp['idImagen']?>"><?php echo $rowEmp['titulo']?></a></td>
-						<td><?php echo $rowEmp["descripcion"]?></td>
-						<td><?php echo $rowEmp["nacionalidad"]?></td>
+						<td style="text-align:left;"><a class="ifancybox" href="visualizarImagen.php?id=<?php echo $rowEmp['id']?>"><?php echo $util->reducirCadenaLarga($rowEmp['titulo']);?></a></td>
+
 						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="../imagenes/activo.png"><?php }else{?><img src="../imagenes/inactivo.png"><?php }?></td>
-						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['idImagen']?>" onclick=" "><img src="../imagenes/lapiz.gif"></td>
-						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['idImagen']?>" onclick="editar(this.id)"><img src="../imagenes/lapiz.gif"></td>
-						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['idImagen']?>" onclick="eliminar(this.id)"><img src="../imagenes/eliminar.png" style="width:15px;"></td>
+						<td  style="cursor:pointer;" onclick="enlace('<?php echo "../imagenes/galeria/".$rowEmp['imagen'] ?>')"><img src="../imagenes/fichero1.png"> </td>
+						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="editar(this.id)"><img src="../imagenes/lapiz.gif"></td>
+						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id)"><img src="../imagenes/eliminar.png" style="width:15px;"></td>
 					</tr>
 					<?php 
 					$i++;

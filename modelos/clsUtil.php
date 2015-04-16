@@ -72,6 +72,53 @@ static function desinfectar($cad){
 		
 		return $cad;
 	}
+
+/*  te convierte la fecha tipo 12/06/2015 a formato 2015/06/12 Se utiliza en nuevaNoticia */
+static function fechaFormato($cad){  
+	$vector=explode('/',$cad);
+	$f=$vector[2].'/'.$vector[1].'/'.$vector[0];
+	return $f;
+}
+
+/*  te convierte la fecha tipo 2015-06-12 a formato  12/06/2015.  Se utiliza por ejemplo en editarNoticia*/
+static function fechaFormato1($cad){  
+	$vector=explode('-',$cad);
+	$f=$vector[2].'/'.$vector[1].'/'.$vector[0];
+	return $f;
+}
+
+ //funcion que muestra solo los primeros 20 caracteres de una cadena
+static function reducirCadena($cad){
+	$resumen;
+	if(strlen($cad) > 20){
+		$resumen= substr($cad, 0, 20)." ....";
+	}else{
+		$resumen=$cad;
+	}
+	return $resumen;
+ }
+ 
+static function reducirCadenaMedia($cad){
+ 
+	$resumen;
+	if(strlen($cad) > 45){
+		$resumen= substr($cad, 0, 45)." ....";
+	}else{
+		$resumen=$cad;
+	}
+	return $resumen;
+ }
+ 
+ static function reducirCadenaLarga($cad){
+ 
+	$resumen;
+	if(strlen($cad) > 60){
+		$resumen= substr($cad, 0, 60)." ....";
+	}else{
+		$resumen=$cad;
+	}
+	return $resumen;
+ }
 	
 public function getNacionalidades(){
 $nacionalidades = array(

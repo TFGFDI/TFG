@@ -33,7 +33,7 @@ class clsImagen{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update imagenes set fecha='$this->fecha', titulo='$this->titulo', descripcion='$this->imagen', activo='$this->activo' where(idImagen='$this->idImagen')";
+		$sql = "update imagenes set fecha='$this->fecha', titulo='$this->titulo', descripcion='$this->imagen', activo='$this->activo' where(id='$this->id')";
 		$objDatos->ejecutar($sql);
 		
 }
@@ -41,7 +41,7 @@ public function editar(){
 	
 public function eliminar(){
 	$objDatos = new clsDatos();
-	$sql = "delete from imagenes where(id='$this->idImagen')";
+	$sql = "delete from imagenes where(id='$this->id')";
 	$objDatos->ejecutar($sql);
 	
 }
@@ -51,7 +51,7 @@ public function eliminar(){
 public function getImagenes($buscador,$activo,$fec,$filtro,$orden){
 	$objDatos = new clsDatos();
 	if($buscador==""){
-		$sql= "SELECT * FROM imagenes WHERE ";
+		$sql= "SELECT * FROM imagenes";
 	}else{
 		$sql= "SELECT * FROM imagenes WHERE  (titulo LIKE ('%".$buscador."%') OR imagen LIKE ('%".$buscador."%') )";
 	}
@@ -74,10 +74,10 @@ public function getImagenes($buscador,$activo,$fec,$filtro,$orden){
 	 return $res;
 }
 
-public function getImagenesPaginacion($buscador,$activo,$nacionalidad,$filtro,$orden,$itemsInicio,$numer_reg){
+public function getImagenesPaginacion($buscador,$activo,$fecha,$filtro,$orden,$itemsInicio,$numer_reg){
 	$objDatos = new clsDatos();
 	if($buscador==""){
-		$sql= "SELECT * FROM imagenes WHERE ";
+		$sql= "SELECT * FROM imagenes";
 	}else{
 		$sql= "SELECT * FROM imagenes WHERE (titulo LIKE ('%".$buscador."%') OR descripcion LIKE ('%".$buscador."%'))";
 	}
@@ -102,7 +102,13 @@ public function getImagenesPaginacion($buscador,$activo,$nacionalidad,$filtro,$o
 	 return $res;
 }
 
-
+public function getImagenById(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT * FROM imagenes WHERE id='$this->id'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res;
+}
 
 
 }

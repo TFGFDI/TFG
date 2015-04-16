@@ -4,8 +4,8 @@ $url=$util->getPagina();
 
 ?>
 <div id="buscador" class=" bloqueSombra bloqueRedondo">
+	<form name="formulario" method="get" action="<?php echo $url?>" id="formulario">
 	<div id="buscadorIzq">
-		<form name="formulario" method="get" action="<?php echo $url?>" id="formulario">
 			<div class="divCampo">
 				<input type="text" name="buscador" value="<?php echo $buscador?>" class="input input_tamanhoGrande" id="buscador_input">
 			</div>
@@ -33,7 +33,7 @@ $url=$util->getPagina();
 				</div>
 
 			</div>
-		</form>
+	
 	</div>
 	<div id="buscadorDch">
 		<input type="button" name="buscar" value="Buscar" onclick="formulario.submit()" style="margin-right:10px;">
@@ -43,5 +43,5 @@ $url=$util->getPagina();
 		<span class="avanzada" id="avanzada" onclick="mostrar();">B&uacute;squeda avanzada</span>
 		<span class="avanzada" id="simple" onclick="mostrar();" style="display:none;">[X]</span>
 	</div>
-	
+	</form>	
 </div>

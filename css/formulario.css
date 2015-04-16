@@ -41,8 +41,12 @@ label{
 	font-weight: bold;
 	
 }
+
 .labelPequenho{
 	width: 25%;
+}
+.labelEnano{
+	width: 20%;
 }
 
 input[type="text"], input[type="password"]{
@@ -139,6 +143,10 @@ select{
 
 .input_tamanhoGrande{
 	width:90%;
+}
+
+.input_tamanhoNormalGrande{
+	width:75%;
 }
 
 .input_tamanhoNormal{
