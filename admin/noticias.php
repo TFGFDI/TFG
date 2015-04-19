@@ -1,10 +1,23 @@
 <?php 
 include_once("../modelos/clsNoticia.php");
-
 require_once("../modelos/clsUtil.php"); 
+
 $util= new clsUtil();
 
-if (isset($dict['buscador'])){
+function getRequest() {
+
+		global $_GET,$_POST;
+		$dict=$_GET;
+		if (count($dict)==0) $dict = $_POST;
+		return $dict;
+
+	}
+
+
+$dict = getRequest();
+
+
+if (isset($dict['buscador'])){ 
 	$buscador=$dict['buscador'];
 }else{
 	$buscador="";
@@ -21,12 +34,17 @@ if (isset($dict['activo'])){
 	$activo="";
 }
 
-if (isset($dict['fecha'])){
-	$fecha=$dict['fecha'];
+if (isset($dict['fechaInicio'])){
+	$fechaInicio=$dict['fechaInicio'];
 }else{
-	$fecha="";
+	$fechaInicio="";
 }
 
+if (isset($dict['fechaFin'])){
+	$fechaFin=$dict['fechaFin'];
+}else{
+	$fechaFin="";
+}
 
 if (isset($dict['orden'])){
 	$orden = $dict['orden'];
@@ -41,44 +59,89 @@ $fecha_nuevaNoticia=date('d')."/".date('m')."/".date('Y');
 $(document).ready(function() {
 	$("#buscarNoticias").click(function(evento){
 		$("#noticias").addClass("menuActivo");
-			var campo=$('#campo_b').val();
-			var c_activo=$('#activo_b').val();
-			var c_fecha=$('#fecha_b').val();
-		
-			//evento.preventDefault();
-			
-		//	$("#destino").load("noticias.php");
-			$.post("noticias.php",{buscador: campo, activo:c_activo, fecha:c_fecha}, function(datos){ 
-				$("destino").html(datos);
-			});
+			var campo=$('#campo_buscador').val();
+			var c_activo=$('#activo').val();
+			var c_fechaInicio=$('[name=fechaInicio]').val();
+			var c_fechaFin=$('[name=fechaFin]').val();
+			evento.preventDefault();
+
+			$.post('./noticias.php',
+				{buscador: campo, activo:c_activo, fechaInicio:c_fechaInicio, fechaFin:c_fechaFin},
+				/* function(datos) {
+					alert('Respuesta = '+datos);
+				  }*/
+				function(datos){
+					$("#destino").html(datos);
+				}
+			);
 	   });
- });
+	   
+  	
+	$( "#datepicker" ).datepicker({
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "1970:2015",
+		showAnim: "explode"
+	});
+
+	
+	$( "#datepicker1" ).datepicker({
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "1970:2015",
+		showAnim: "explode"
+	});
+
+	   
+});
+
+	function cargarPagina(numPagina){
+		var campo=$('#campo_buscador').val();
+		var c_activo=$('#activo').val();
+		var c_fechaInicio=$('[name=fechaInicio]').val();
+		var c_fechaFin=$('[name=fechaFin]').val();
+
+		$.post('./noticias.php',
+				{pag: numPagina, buscador: campo, activo:c_activo, fechaInicio:c_fechaInicio, fechaFin:c_fechaFin},
+				/* function(datos) {
+					alert('Respuesta = '+datos);
+				  }*/
+				function(datos){
+					$("#destino").html(datos);
+				}
+			);
+
+	}; 
 </script>
 <section id="derecho_general" class="bloqueRedondo bloqueSombra">
 	<h2 style="width:400px; float:left;">Gestion de Noticias</h2>
 	<div id="nuevaNoticia" style="width:120px; float:right; margin:10px 10px 0px 0px; ">
 		<input type="button" name="b_nuevaNoticia" value="Nueva Noticia" onclick="openFancybox()" id="b_nuevaNoticia">
 	</div>
-	<div id="buscador" class="bloqueRedondo  bloqueSombra" style="margin-top:60px; border:1px solid silver;">
-	<form name="buscador" method="get" action="" id="buscador">
+	<div id="buscador1" class="bloqueRedondo  bloqueSombra" style="margin-top:60px; border:1px solid silver;">
+	<form name="formBuscador" method="get" action="" id="buscador">
 		<div id="buscadorIzq">
 				<div class="divCampo">
-					<input type="text" name="campo_b" id="campo_b" value="<?php echo $buscador?>" class="input input_tamanhoGrande" >
+					<input type="text" name="buscador" id="campo_buscador" value="<?php echo $buscador?>" class="input input_tamanhoGrande" >
 				</div>
-				<div id="oculto" style="display:none; padding:10px">
+				
+				<div id="oculto" <?php if(($activo!="")||($fechaFin!="")||($fechaInicio!="")){?><?php }else{?> style="display:none; padding:4px"<?php }?>>
 					<div class="bloque_campoForumulario">
-						<label class="labelBuscador">Activos/Desactivos:</label>
-						<select name="activo_b" id="activo_b" class="select_tamanhoPequenho_1" >
-							<option value="" selected>Activos & Desactivos</option>
-							<option value="1">Activos</option>
-							<option value="2">Desactivo</option>
+						<label class="labelBuscador">Activas/Desactivas:</label>
+						<select name="activo" id="activo" class="select_tamanhoMediano" >
+							<option value="" <?php if($activo==""){?>selected<?php }?>>Activas & Desactivas</option>
+							<option value="1" <?php if($activo=="1"){?>selected<?php }?>>Activas</option>
+							<option value="0" <?php if($activo=="0"){?>selected<?php }?>>Desactivas</option>
 						</select>
 					</div>
-					<div class="bloque_campoForumulario divCampo"  style="margin-top:10px;" >
-						<label class="labelBuscador">Fecha:</label>
-						<input type="text" name="fecha_b" id="fecha_id" value="" class="input input_tamanhoPequeno" >
+					<div class="bloque_campoForumulario divCampo"  style="margin-top:7px;" >
+						<label class="labelBuscador">Fecha Inicio:</label>
+						<input type="text" name="fechaInicio" id="datepicker" value="<?php echo $fechaInicio?>" class="input_tamanhoPequenho" >
 					</div>
-
+					<div class="bloque_campoForumulario divCampo"  style="margin-top:7px;" >
+						<label class="labelBuscador">Fecha Fin:</label>
+						<input type="text" name="fechaFin" id="datepicker1" value="<?php echo $fechaFin?>" class="input_tamanhoPequenho" >
+					</div>
 				</div>
 		</div>
 		<div id="buscadorDch">
@@ -108,7 +171,7 @@ $(document).ready(function() {
 						</div>
 						<div class="bloque_campoForumulario">
 							<label class="labelEnano" for="descripcion">Descripción</label>
-							<input type="text" name="descripcion" id="descripcion" class="input input_tamanhoNormal" tabindex="3"/>
+							<textarea type="text" name="descripcion" id="descripcion" class="textarea" tabindex="3"> </textarea>
 						</div>
 					
 						<div class="bloque_campoForumulario">
@@ -182,23 +245,23 @@ $(document).ready(function() {
 				<?php
 			
 					$noticia= new clsNoticia();					
-					$filas = $noticia->getNoticias($buscador,$activo,$fecha,$filtro,$orden);
+					$filas = $noticia->getNoticias($buscador,$activo,$fechaInicio,$fechaFin,$filtro,$orden);
 				
 					
-					$filasTot = $noticia->getNoticias($buscador,$activo,$fecha,$filtro,$orden);
+					$filasTot = $noticia->getNoticias($buscador,$activo,$fechaInicio,$fechaFin,$filtro,$orden);
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
-					$numer_reg = 8; 
+					$numer_reg = 4; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
-					$filasPag = $noticia->getNoticiasPaginacion($buscador,$activo,$fecha,$filtro,$orden,$itemsInicio,$numer_reg);
+					$filasPag = $noticia->getNoticiasPaginacion($buscador,$activo,$fechaInicio,$fechaFin,$filtro,$orden,$itemsInicio,$numer_reg);
 					
 					$total=mysqli_num_rows($filasTot);
 					
 				
 					$i=0;//Saber si es una fila par o impar para estilos
-					while ($rowEmp = mysqli_fetch_assoc($filas)) { 
+					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><?php echo $rowEmp["fecha"]?></td>
@@ -206,7 +269,7 @@ $(document).ready(function() {
 						<td  style="text-align:left;"><?php echo $util->reducirCadenaMedia($rowEmp["descripcion"]);?></td>
 						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="../imagenes/activo.png"><?php }else{?><img src="../imagenes/inactivo.png"><?php }?></td> 						
 							
-						<td><a class="ifancybox" href="EditarNoticia.php?id=<?php echo $rowEmp['id']?>"><img src="../imagenes/lapiz.gif"></a></td> 
+						<td><a class="ifancybox" href="editarNoticia.php?id=<?php echo $rowEmp['id']?>"><img src="../imagenes/lapiz.gif"></a></td> 
 					<!--	<td style="cursor:pointer;text-align:center" id="<?php // echo $rowEmp['id']?>" onclick="editar(this.id)"><img src="../imagenes/lapiz.gif"></td> -->
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id)"><img src="../imagenes/eliminar.png" style="width:15px;"></td>
 					</tr>
@@ -215,7 +278,46 @@ $(document).ready(function() {
 					}?>
 				</tbody>
 				
-				<?php  require_once("../paginador.php"); ?>
+				<?php if($totalPag>0){?>
+					<?php if(ceil($total/$totalPag)>1){?>
+					<tfoot>
+					<tr >
+						<td colspan="10">	
+							<div id="paging" >
+								<ul>
+									
+									<?php for($i=1; $i<=ceil($total/$numer_reg); $i++){ ?>
+										
+										<?php 
+											$url = $util->getURLparametros();
+											if(!strpos($url,"&pag=")===false){
+												$url = $util->eliminarParametrosURL($url,"pag")."&";
+											}
+										?>
+									
+										<li><a style="cursor:pointer;" name="numPaginador"  onclick="cargarPagina(<?php echo $i ?>)" <?php if ($pag == $i){?>class="active" <?php }?>><span><?php echo $i ?></span></a></li>							
+										
+									<?php }?>
+									
+								</ul>
+							</div>
+						</td>
+					</tr>
+					</tfoot>	
+					<?php }?>
+				<?php }else{?>
+					<tfoot>
+					<tr>
+						<td colspan="7" >	
+							<div  id="paging" style="background:#fff; color:#005D8B; font-weight:bold; padding-top:10px; padding-bottom:10px; font-size:15px;" >
+								<ul>
+									<span>No se han encontrado resultados</span>
+								</ul>
+							</div>
+						</td>
+					</tr>
+					</tfoot>
+				<?php }?>
 			</table>
 		</div>
 	

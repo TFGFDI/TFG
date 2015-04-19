@@ -216,7 +216,7 @@ if (isset($dict['orden'])){
 					$totEmp = mysqli_num_rows($filasTot);
 					
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
-					$numer_reg = 8; 
+					$numer_reg = 12; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
 					$filasPag = $usuario->getEstudiantesPaginacion($buscador,$activo,$nac,$filtro,$orden,$itemsInicio,$numer_reg);

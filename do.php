@@ -1,3 +1,16 @@
+<script type="text/javascript"  src="./js/jquery-1.8.1.min.js"></script>
+<script>
+
+	$.noticia = function(){ // te recarga la pagina NOTICIAS	
+		window.location="admin/index.php";
+		
+	//	$("#destino").load("noticias.php");
+	//	$("#noticias").addClass("menuActivo");
+	}
+
+
+</script>
+
 <?php
 include_once("clases.php");
 function getRequest() {
@@ -314,17 +327,17 @@ if($op=="login"){
 	foreach($dict as $clave => $valor){
 
 		if($clave == 'fecha'){
-			$dict[$clave] = $util->fechaFormato($valor);
+			$dict[$clave] = $util->fechaFormato2($valor);
 		}else{
 			$dict[$clave] = $util->desinfectar($valor);
 		}
-		
 	}
-
 	$noticia->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
-	
 	$noticia->incluir();
-	header("Location: admin/index.php");	
+	header("Location: admin/index.php?menu=0&cargarNoticias=1");	
+
+
+	
 }else if($op=="eliminarNoticia"){
 	$noticia= new clsNoticia();
 	foreach($dict as $clave => $valor){
@@ -335,9 +348,9 @@ if($op=="login"){
 	$noticia->estableceCampos($dict);
 	$noticia->eliminar();	
 
-	header("Location: admin/index.php");
+//	header("Location: admin/index.php");
 	
-}else if($op=="activarNoticia"){
+}else if($op=="activarNoticia"){ 
 	$noticia= new clsNoticia();
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
@@ -351,17 +364,69 @@ if($op=="login"){
 	}
 	$noticia->estableceCampos($notic);//modificamos el campo activo a 1 ó 0 
 	$noticia->editar();
-	header("Location: admin/index.php");	
+//	header("Location: admin/index.php?noticias=1");	
+	
 	
 }else if($op=="editarNoticia"){
 	$noticia= new clsNoticia();
 	foreach($dict as $clave => $valor){
-		$dict[$clave] = $util->desinfectar($valor);
+		if($clave == 'fecha'){
+			$dict[$clave] = $util->fechaFormato($valor);
+		}else{
+			$dict[$clave] = $util->desinfectar($valor);
+		}
 	}
 	$noticia->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
 	
 	$noticia->editar();
-	header("Location: admin/index.php");
+//	header("Location: admin/index.php");
+	
+}
+else if($op=="nueva_noticia"){
+	$noticia= new clsNoticia();
+/*	
+	foreach($dict as $clave => $valor){
+
+		if($clave == 'fecha'){
+			$dict[$clave] = $util->fechaFormato2($valor);
+		}else{
+			$dict[$clave] = $util->desinfectar($valor);
+		}
+	}
+	$noticia->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	$noticia->incluir();
+	header("Location: admin/index.php?menu=0&cargarNoticias=1");	
+
+*/
+	
+}else if($op=="eliminarImagen"){
+	$imagen= new clsImagen();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+		echo  $dict[$clave];
+		echo "<br>";
+	}
+	$imagen->estableceCampos($dict);
+	$imagen->eliminar();	
+
+//	header("Location: admin/index.php");
+	
+}else if($op=="activarImagen"){ 
+	$imagen= new clsImagen();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}
+	$imagen->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	$img = $imagen->getImagenById();
+	if($img['activo']=='1'){
+		$img['activo']='0';
+	}else{
+		$img['activo']='1';
+	}
+	$imagen->estableceCampos($img);//modificamos el campo activo a 1 ó 0 
+	$imagen->editar();
+//	header("Location: admin/index.php?noticias=1");	
+	
 	
 }
 

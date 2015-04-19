@@ -30,14 +30,27 @@ $not = $noticia->getNoticiaById();
 
 	
 ?>
+
 <script type="text/javascript"  src="../js/jquery-1.8.1.min.js"></script>
 
-<script type="text/javascript">
 
+<link rel="stylesheet" type="text/css" href="../css/estilos.css" media="screen" />
+<link rel="stylesheet" href="../css/formulario.css" type="text/css" media="screen"/>
+
+<script type="text/javascript">
+/*
 	$(document).ready(function() {
 		$('.fancybox').fancybox();
 		parent.$.fancybox.close();
 		//window.open('');
+	});
+	*/
+	
+	$( "#datepicker" ).datepicker({
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "1970:2015",
+		showAnim: "explode"
 	});
 	
 </script>
@@ -50,16 +63,17 @@ $not = $noticia->getNoticiaById();
 				<legend class="bloqueRedondo">Editar Noticia</legend>					
 					<div class="bloque_campoForumulario">
 						<label class="labelEnano" for="fecha">Fecha</label>
-						<input type="text" name="fecha" id="fecha" class="input input_tamanhoPequenho consulta" value="<?php echo $util->fechaFormato1($not['fecha']); ?>" tabindex="1" readonly />
+						<input type="text" name="fecha" id="datepicker" style="height:25px;" class="input input_tamanhoPequenho " value="<?php echo $util->fechaFormato1($not['fecha']); ?>" tabindex="1" />
 					</div>
 			
 					<div class="bloque_campoForumulario">
 						<label class="labelEnano" for="titulo">Título</label>
-						<input type="text" name="titulo" id="titulo" class="input input_tamanhoNormalGrande" tabindex="2" value="<?php echo $not['titulo'];?>"/>
+						<input type="text" name="titulo" id="titulo" style="height:25px;" class="input input_tamanhoNormalGrande" tabindex="2" value="<?php echo $not['titulo'];?>"/>
 					</div>
 					<div class="bloque_campoForumulario">
 						<label class="labelEnano" for="descripcion">Descripción</label>
-						<input type="text" name="descripcion" id="descripcion" class="input input_tamanhoNormal" tabindex="3" value="<?php echo $not['descripcion']?>"/>
+						
+						<textarea type="text" name="descripcion" id="descripcion" class="textarea" tabindex="3"><?php echo $not['descripcion']?></textarea>
 					</div>
 				
 					<div class="bloque_campoForumulario">

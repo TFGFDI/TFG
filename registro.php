@@ -12,6 +12,7 @@ require_once("top.php");
   
  
 <script>
+/*
 	function validarCampos(){
 		var nombre = $('#nombre').val();
 		var apellidos = $('#apellidos').val();
@@ -20,42 +21,42 @@ require_once("top.php");
 		var email = $('#email').val();
 		var contrasena = $('#contrasena').val();
 		var error="";
-	if(nombre==""){
-		error += " -Nombre \n";
-	}
+		if(nombre==""){
+			error += " -Nombre \n";
+		}
 
-	if(apellidos==""){
-		error += " -Apellidos \n";
-	}	
-	
-	if(nacionalidad==""){
-		error += " -Nacionalidad \n";
-	}
-	if(fechanacimiento==""){
-		error += " -Fecha de nacimiento \n";
+		if(apellidos==""){
+			error += " -Apellidos \n";
+		}	
 		
-	}
-	if(sexo==""){
-		error += " -Sexo \n";
+		if(nacionalidad==""){
+			error += " -Nacionalidad \n";
+		}
+		if(fechanacimiento==""){
+			error += " -Fecha de nacimiento \n";
+			
+		}
+		if(sexo==""){
+			error += " -Sexo \n";
+			
+		}
+		if(contrasena==""){
+			error += " -Password \n";
+		}
 		
-	}
-	if(contrasena==""){
-		error += " -Password \n";
-	}
-	
-	if(email==""){
-		error += " -Email \n";
-	}
-	
-	if(error !=""){
+		if(email==""){
+			error += " -Email \n";
+		}
+		
+		if(error !=""){
 
-		alert("Compruebe que ha rellenado los siguientes campos: \n " + error);
+			alert("Compruebe que ha rellenado los siguientes campos: \n " + error);
 
-	}else{
-		formulario.submit();
+		}else{
+			formulario.submit();
+		}
 	}
-	}
-	
+	*/
 	$(function() {
 		$( "#datepicker" ).datepicker({
 		  changeMonth: true,

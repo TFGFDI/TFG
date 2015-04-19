@@ -46,7 +46,7 @@
 
 <?php 
 include_once("./modelos/clsNoticia.php");
-
+include_once("./modelos/clsImagen.php");
 
 function getRequest() {
 
@@ -78,6 +78,8 @@ $url=$util->getURL();
 $noticia= new clsNoticia();					
 $filas = $noticia->noticiasActivas();
 
+$imagenes= new clsImagen();					
+$filasImagen = $imagenes->imagenesActivas();
 
 ?>
 <body class="gradiante">
@@ -106,15 +108,11 @@ $filas = $noticia->noticiasActivas();
 	
 		<div id="slider">
 		<ul class="bjqs">
+			<?php while ($rowImg = mysqli_fetch_assoc($filasImagen)) { ?>
 			<li>
-				<img src="./imagenes/universidad.jpg" alt="" title="Curso Intensivo de Invierno">
+				<img src="./imagenes/galeria/<?php echo $rowImg['imagen']; ?>" alt="" title="<?php echo $rowImg['titulo']; ?>">
 			</li>
-			<li>
-				<img src="./imagenes/verano.jpg" alt="" title="Curso de Español para el turismo">
-			</li>
-			<li>
-				<img src="./imagenes/expo.jpg" alt="" title="Curso de Español comercial">
-			</li>
+			<?php } ?>
 		</ul>
 	</div>
 	

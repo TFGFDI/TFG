@@ -2,14 +2,19 @@
 session_start();
 //include_once("../modelos/clsUsuario.php");
 if (($_SESSION["id"]=="")){ 
-
-header("Location: login.php");
-
+	header("Location: login.php");
 }
 require_once("top.php"); 
 
 ?>
+
+
+
 <?php 
+
+
+
+
 if (isset($dict['buscador'])){
 	$buscador=$dict['buscador'];
 }else{
@@ -67,7 +72,7 @@ function orden(filtro,orden){
 	
 }
 
-/*   NOTICIAS */
+
 function editar(id){
 window.location="editar.php?id="+id+"&origen=estudiantes";
 }
@@ -76,22 +81,65 @@ function ver(id){
 	window.location="visualizarNoticia.php?id="+id+"";
 }
 
-function eliminar(id){
+function eliminar(_id){
 	var r = confirm("\u00BF Seguro que desea eliminar?");
 	if (r == true) {
-		location.href='../do.php?op=eliminarNoticia&id='+id+"";
+		//location.href='../do.php?op=eliminarNoticia&id='+id+"";
+		$.post('../do.php',
+			{op: 'eliminarNoticia',id: _id},
+			function() {
+				cargarNoticias ();   
+			}
+		);
 	} 
-
 }
 
-function activar(id){
-	location.href='../do.php?op=activarNoticia&id='+id+"";
+function eliminarImagen(_id){
+	var r = confirm("\u00BF Seguro que desea eliminar?");
+	if (r == true) {
+		//location.href='../do.php?op=eliminarNoticia&id='+id+"";
+		$.post('../do.php',
+			{op: 'eliminarImagen',id: _id},
+			function() {
+				cargarImagenes ();   
+			}
+		);
+	} 
 }
+
+function activar(_id){
+//	location.href='../do.php?op=activarNoticia&id='+id+"";
+	$.post('../do.php',
+	  { op: 'activarNoticia',id: _id},
+	  function() {
+		cargarNoticias ();   
+	});
+}
+
+function activarImagen(_id){ 
+//	location.href='../do.php?op=activarImagen&id='+_id+"";
+	$.post('../do.php',
+	  { op: 'activarImagen', id: _id},
+	  function() {
+		cargarImagenes();   
+	});
+}
+
 function crear(){
 	location.href='nuevo.php';
 }
 
-/* end NOTICIAS */
+
+
+cargarNoticias = function(){
+	$("#noticias").addClass("menuActivo");
+	$("#destino").load("noticias.php");
+}
+
+cargarImagenes = function(){
+	$("#imagenes").addClass("menuActivo");
+	$("#destino").load("imagenes.php");
+}
 
 function mostrar(){
 	$('#oculto').toggle('slow');
@@ -111,11 +159,16 @@ function openFancybox() {
      'speedOut': 300,
      'autoDimensions': true,
      'centerOnScroll': true,
-     'href' : '#fancy_form'  // id del div que se visualiza
+     'href' : '#fancy_form' , // id del div que se visualiza
+/*	  
+	afterClose: function () { 
+			parent.location.reload(true);
+		}
+		*/
   });
 }
 
-function editFancybox() {
+function openFancyboxImagen() {
   $.fancybox({
      'autoScale': true,
      'transitionIn': 'elastic',
@@ -124,9 +177,11 @@ function editFancybox() {
      'speedOut': 300,
      'autoDimensions': true,
      'centerOnScroll': true,
-     'href' : '#fancy_form_edit'  // id del div que se visualiza
+     'href' : '#fancy_formImagen'  // id del div que se visualiza
   });
 }
+
+
 
 $(document).ready(function() {
 		$(".fancybox").fancybox();

@@ -193,12 +193,25 @@ article {
 	
 }   
 
+#buscador2{
+	width: 600px;
+	height:110px;
+	margin:0px auto 30px auto;
+	padding-left: 10px;
+	
+}
 #buscador{
 	width: 600px;
 	height:130px;
 	margin:0px auto 30px auto;
 	padding-left: 10px;
 	
+}
+#buscador1{
+	width: 600px;
+	height:150px;
+	margin:0px auto 30px auto;
+	padding-left: 10px;
 }
 
 #buscadorIzq{

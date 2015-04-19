@@ -25,7 +25,9 @@ $usuario->estableceCampos($dict);
 $user = $usuario->getUsuarioById();
 
 ?>
-
+<script type="text/javascript"  src="../js/jquery-1.8.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/estilos.css" media="screen" />
+<link rel="stylesheet" href="../css/formulario.css" type="text/css" media="screen"/>
 <div class="visualizar">
 			
 			<table class="ver">

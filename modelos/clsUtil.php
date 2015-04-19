@@ -73,17 +73,24 @@ static function desinfectar($cad){
 		return $cad;
 	}
 
-/*  te convierte la fecha tipo 12/06/2015 a formato 2015/06/12 Se utiliza en nuevaNoticia */
+/*  te convierte la fecha tipo 04/26/2015 a formato 2015-04-26 Se utiliza en nuevaNoticia */
 static function fechaFormato($cad){  
 	$vector=explode('/',$cad);
-	$f=$vector[2].'/'.$vector[1].'/'.$vector[0];
+	$f=$vector[2].'-'.$vector[0].'-'.$vector[1];
 	return $f;
 }
 
-/*  te convierte la fecha tipo 2015-06-12 a formato  12/06/2015.  Se utiliza por ejemplo en editarNoticia*/
+/*  te convierte la fecha tipo 20/06/2015 a formato 2015/04/20 Se utiliza en nuevaNoticia */
+static function fechaFormato2($cad){  
+	$vector=explode('/',$cad);
+	$f=$vector[2].'-'.$vector[1].'-'.$vector[0];
+	return $f;
+}
+
+/*  te convierte la fecha tipo 2015-06-26 a formato  26/06/2015.  Se utiliza por ejemplo en editarNoticia*/
 static function fechaFormato1($cad){  
 	$vector=explode('-',$cad);
-	$f=$vector[2].'/'.$vector[1].'/'.$vector[0];
+	$f=$vector[1].'/'.$vector[2].'/'.$vector[0];
 	return $f;
 }
 

@@ -33,9 +33,10 @@ class clsImagen{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update imagenes set fecha='$this->fecha', titulo='$this->titulo', descripcion='$this->imagen', activo='$this->activo' where(id='$this->id')";
+		$sql = "update imagenes set fecha='$this->fecha', titulo='$this->titulo', imagen='$this->imagen', activo='$this->activo' where(id='$this->id')";
+			echo $sql;
 		$objDatos->ejecutar($sql);
-		
+	
 }
 	
 	
@@ -48,21 +49,34 @@ public function eliminar(){
 
 //FUNCIONES PROPIAS DE LA CLASE
 
-public function getImagenes($buscador,$activo,$fec,$filtro,$orden){
+public function imagenesActivas(){
 	$objDatos = new clsDatos();
+	$sql="select * from imagenes where activo='1' order by fecha DESC";
+	$res = $objDatos->filtroListado($sql);
+	return $res;
+}
+
+public function getImagenes($buscador,$activo,$filtro,$orden){
+	$objDatos = new clsDatos();
+	$where=" where ";
 	if($buscador==""){
 		$sql= "SELECT * FROM imagenes";
 	}else{
 		$sql= "SELECT * FROM imagenes WHERE  (titulo LIKE ('%".$buscador."%') OR imagen LIKE ('%".$buscador."%') )";
+		$where="";
 	}
 	
-	if($activo=="on"){
-		$sql=$sql." AND activo=1 ";
+	if($activo!=""){
+		if($where==""){
+			$sql=$sql." AND activo='$activo' ";
+		}else{
+			$sql=$sql.$where." (activo='$activo')";
+			$where="";
+		}
+		
 	}
 	
-	if($fec !=""){
-		$sql=$sql." AND fecha='$fec' ";
-	}
+
 	
 	if(($filtro!="")&&($orden!="")){
 		$sql=$sql." order by $filtro $orden";
@@ -70,25 +84,32 @@ public function getImagenes($buscador,$activo,$fec,$filtro,$orden){
 	
 	
 	 $res = $objDatos->filtroListado($sql);
-	
+
 	 return $res;
 }
 
-public function getImagenesPaginacion($buscador,$activo,$fecha,$filtro,$orden,$itemsInicio,$numer_reg){
+public function getImagenesPaginacion($buscador,$activo,$filtro,$orden,$itemsInicio,$numer_reg){
 	$objDatos = new clsDatos();
+	$where=" where ";
+	
 	if($buscador==""){
 		$sql= "SELECT * FROM imagenes";
 	}else{
-		$sql= "SELECT * FROM imagenes WHERE (titulo LIKE ('%".$buscador."%') OR descripcion LIKE ('%".$buscador."%'))";
+		$sql= "SELECT * FROM imagenes WHERE (titulo LIKE ('%".$buscador."%') OR imagen LIKE ('%".$buscador."%'))";
+		$where="";
 	}
 	
-	if($activo=="on"){
-		$sql=$sql." AND activo=1 ";
+	if($activo!=""){
+		if($where==""){
+			$sql=$sql." AND activo='$activo' ";
+		}else{
+			$sql=$sql.$where." (activo='$activo')";
+			$where="";
+		}
+		
 	}
 	
-	if($fecha !=""){
-		$sql=$sql." AND fecha='$fec' ";
-	}
+
 	
 	if(($filtro!="")&&($orden!="")){
 		$sql=$sql." order by $filtro $orden";
@@ -96,7 +117,7 @@ public function getImagenesPaginacion($buscador,$activo,$fecha,$filtro,$orden,$i
 	
 	$sql=$sql." LIMIT $itemsInicio,$numer_reg ";
 	
-	
+
 	 $res = $objDatos->filtroListado($sql);
 	
 	 return $res;

@@ -71,7 +71,7 @@ if(isset($dict['lang'])){
 $url=$util->getURL();
 
 ?>
-<body class="gradiante" >
+<body class="gradiante" <?php if (isset($dict['cargarNoticias'])){ ?> onLoad="cargarNoticias();" <?php } ?>>
 <div id="contenedor" > 
 	<header id="logo">
 		<div style="float:left">

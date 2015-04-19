@@ -67,7 +67,7 @@ CREATE TABLE `respuestas_alumnos` (
   `solucion` text COLLATE utf8_spanish_ci,
   `comentarios` text COLLATE utf8_spanish_ci,
   PRIMARY KEY (`id`)
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 
 CREATE TABLE IF NOT EXISTS `noticias` (

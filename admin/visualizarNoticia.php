@@ -37,7 +37,7 @@ if($not['activo']){
 		<tr>
 			<td class="sub">Fecha</b></td>
 			<td>
-				<input type="text" name="titulo" id="titulo" value="<?php echo $not['fecha']?>" readonly style="width:100%;border:none">
+				<input type="text" name="fecha" id="fecha" value="<?php echo $not['fecha']?>" readonly style="width:100%;border:none">
 			</td>
 		</tr>
 
