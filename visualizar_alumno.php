@@ -139,9 +139,11 @@ $user = $usuario->getUsuarioById();
 							<span>Aciertos</span>
 						</th>
 						<th>
-							<span>Nota</span>
+							<span>Nota Test</span>
 						</th>						
-						
+						<th>
+							<span>Nota Desarrollo</span>
+						</th>
 						
 					</tr>
 				</thead>
@@ -158,6 +160,7 @@ $user = $usuario->getUsuarioById();
 						<td><?php $examenes_r->calcularTiempo($rowEmp['tiempo_ini'],$rowEmp['tiempo_fin']);?></td>
 						<td><?php echo $rowEmp['aciertos']?></td>
 						<td><?php echo $rowEmp['nota']?></td>
+						<td><?php echo $rowEmp['nota_desarrollo']?></td>
 					</tr>
 					<tr style="display:none;cursor:pointer" id="examen_<?php echo $rowEmp['id']?>" onclick="ocultar(this.id)">
 						

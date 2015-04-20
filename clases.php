@@ -9,4 +9,6 @@ require_once("modelos/clsExamenes.php");
 require_once("modelos/clsPreguntasExamen.php");
 require_once("modelos/clsExamenesRealizados.php");
 require_once("modelos/clsRespuestasAlumnos.php");
+require_once("modelos/clsImagen.php");
+require_once("modelos/clsNoticia.php");
 ?>

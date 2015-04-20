@@ -13,7 +13,35 @@ require_once("top.php");
 	$( document ).ready( function() {
 	$('[id^=editor]').ckeditor();	
 } );
-
+	function limpiar(id){
+		$('#'+id).val('');
+	}
+	function calcularNota() {
+        checkboxes=document.getElementsByClassName('input_nota');
+		var total = 0; var media=0;
+        for(i=0;i<checkboxes.length;i++) //recoremos todos los controles
+        {
+            /*if(checkboxes[i].type == "checkbox") 
+            {
+                checkboxes[i].checked=source.checked; 
+            }*/
+			if(checkboxes[i].value==""){
+				checkboxes[i].value=0;
+			}
+			total = parseFloat(total) + parseFloat(checkboxes[i].value);			
+        }
+		media = total/i;
+		$('#nota_desarrollo').val(Math.round(media * 100) / 100);
+    }
+	
+	function anadirNota(id,nota){
+		var ar_nota= id.split("_");
+		id=ar_nota[1];
+		var comentario = $('#editor_'+id).val();
+		comentario = comentario + "<br><b>Nota: </b>"+nota;
+		$('#editor_'+id).val(comentario);
+		
+	}
 	
 </script>
 	<div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
@@ -45,7 +73,8 @@ require_once("top.php");
 				<?php echo $i?>
 				<section><b><?php echo $pregunta?></b></section>
 				<br>
-				<textarea rows="10" cols="80" disabled><?php echo $rowEmp['respuesta']?></textarea>	
+				<textarea class="texto_respuesta" rows="10" cols="80" disabled><?php echo $rowEmp['respuesta']?></textarea>	
+				Nota (De 0 a 10): <input type="text" id="nota_<?php echo $rowEmp['id']?>" class="input_nota" onchange="calcularNota();anadirNota(this.id,this.value)" onclick="limpiar(this.id)">
 				<br>
 				Comentario del profesor:
 				<br>
@@ -60,7 +89,7 @@ require_once("top.php");
 			<section class="aviso">
 				<span><b>Nota de test: </b> <?php echo $nota?></span>
 				<br>
-				<span><b>Nota de desarrollo: </b><input type="text" name="nota"></span>
+				<span><b>Nota de desarrollo: </b><input type="text" name="nota_desarrollo" id="nota_desarrollo"></span>
 			</section>
 			<?php }?>
 			
@@ -69,7 +98,7 @@ require_once("top.php");
 				<span><b>Este modelo de examen no tiene preguntas a desarrollar y se corrige automáticamente. </b></span>
 			</section>
 			<?php }?>
-		<input type="submit" value="Ok">
+		<input type="submit" value="Ok" style="margin:5px">
 		</form>
 	</div>
 	

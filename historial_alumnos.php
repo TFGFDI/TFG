@@ -45,8 +45,11 @@ require_once("top.php");
 							<span>Aciertos</span>
 						</th>
 						<th>
-							<span>Nota</span>
-						</th>				
+							<span>Nota Test</span>
+						</th>
+						<th>
+							<span>Nota Desarrollo</span>
+						</th>
 						
 					</tr>
 				</thead>
@@ -63,6 +66,7 @@ require_once("top.php");
 						<td><?php $examenes_r->calcularTiempo($rowEmp['tiempo_ini'],$rowEmp['tiempo_fin']);?></td>
 						<td><?php echo $rowEmp['aciertos']?></td>
 						<td><?php echo $rowEmp['nota']?></td>
+						<td><?php echo $rowEmp['nota_desarrollo']?></td>
 					</tr>
 					<tr style="display:none;cursor:pointer" id="examen_<?php echo $rowEmp['id']?>" onclick="ocultar(this.id)">
 						
@@ -97,7 +101,7 @@ require_once("top.php");
 								<br>
 								<section class="respuesta">
 									<span><b>Respuesta:</b><?php echo $res['respuesta']?></span>
-									<br>
+									<br><br>
 									<span><b>Comentario Profesor:</b><?php echo $res['comentarios']?></span>
 								</section>
 								<?php }?>

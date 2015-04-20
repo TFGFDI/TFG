@@ -24,7 +24,7 @@ class clsExamenesRealizados{
 //INICIO FUNCIONES BASICAS PARA AÑADIR,ELIMINAR y MODIFICAR
  public function incluir(){
 	 $objDatos = new clsDatos(); 
-	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota,corregido,expirado,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->corregido','$this->expirado','$this->comentarios')";
+	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota, nota_desarrollo, corregido,expirado,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->nota_desarrollo','$this->corregido','$this->expirado','$this->comentarios')";
 	 	
 	 $objDatos->ejecutar($sql);
     
@@ -33,7 +33,7 @@ class clsExamenesRealizados{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update examenes_realizados set id_examen='$this->id_examen', id_usuario='$this->id_usuario', tiempo_ini='$this->tiempo_ini', tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota', corregido='$this->corregido', expirado='$this->expirado',comentarios='$this->comentarios' where(id='$this->id')";
+		$sql = "update examenes_realizados set id_examen='$this->id_examen', id_usuario='$this->id_usuario', tiempo_ini='$this->tiempo_ini', tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota', nota_desarrollo='$this->nota_desarrollo', corregido='$this->corregido', expirado='$this->expirado',comentarios='$this->comentarios' where(id='$this->id')";
 		$objDatos->ejecutar($sql);
 		
 }
@@ -123,6 +123,14 @@ public function calcularTiempo($ini,$fin){
 public function getNota($examen,$usuario){
 	$objDatos = new clsDatos();
 	$sql= "SELECT nota FROM examenes_realizados WHERE id_usuario=$usuario AND id_examen=$examen";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['nota'];
+}
+
+public function setNotaDesarrollo($examen,$usuario,$nota){
+	$objDatos = new clsDatos();
+	$sql= "UPDATE examenes_realizados SET nota_desarrollo=$nota WHERE id_examen='$examen' AND id_usuario='$usuario'";
 	$res = $objDatos->filtro($sql);
 	
 	return $res['nota'];

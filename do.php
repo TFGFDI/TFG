@@ -426,6 +426,37 @@ else if($op=="nueva_noticia"){
 	$imagen->estableceCampos($img);//modificamos el campo activo a 1 ó 0 
 	$imagen->editar();
 //	header("Location: admin/index.php?noticias=1");	
+
+
+}else if($op=="corregir"){	
+	$respuesta = new ClsRespuestasAlumnos();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+		if(($clave !="op")&&($clave !="id_examen")&&($clave !="id_usuario")&&($clave !="nota_desarrollo")){
+				$ar_resp = explode("_",$clave);
+				$respuesta->actualizarRespuestas($ar_resp[1],$valor);
+			}
+	}
+	$examen_realizado = new ClsExamenesRealizados();
+	$examen_realizado->corregido($dict['id_examen'],$dict['id_usuario']);
+	$examen_realizado->setNotaDesarrollo($dict['id_examen'],$dict['id_usuario'],$dict['nota_desarrollo']);
+	header("Location: ls_examenes_pendientes.php");
+	
+}else if($op=="eliminar_examen_pendiente"){
+	$examen= new clsExamenesRealizados();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}
+	$examen->estableceCampos($dict);	
+	$examen->eliminar();
+	
+	if(isset($dict['respuestas'])){
+		$preguntas= new clsRespuestasAlumnos();
+		$ar = explode('_',$dict['respuestas']);
+		$preguntas->eliminarRespuestasAlumnos($ar[0],$ar[1]);
+	}
+	
+	header("Location: ls_examenes_profesor.php");
 	
 	
 }

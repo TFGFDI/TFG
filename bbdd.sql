@@ -26,6 +26,7 @@ CREATE TABLE `examenes_realizados` (
   `tiempo_fin` datetime DEFAULT NULL,
   `aciertos` int(11) DEFAULT NULL,
   `nota` float DEFAULT NULL,
+  `nota_desarrollo` float DEFAULT NULL,
   `corregido` int(1) DEFAULT NULL,
   `expirado` int(1) DEFAULT NULL,
   `comentarios` text COLLATE utf8_spanish_ci,
