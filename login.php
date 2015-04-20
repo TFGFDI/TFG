@@ -16,9 +16,16 @@
 <script src="js/bjqs.min.js"></script>
 <script src="js/script.js"></script>
 
+<!-- validaciones formularios  -->
+  <script type="text/javascript" src="js/jquery.validate.js"></script>
+  <script type="text/javascript" src="js/additional-methods.js"></script>
+  <script type="text/javascript" src="js/messages_es.js"></script>
+
 <link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 
+ <script type="text/javascript"  src="js/validacionesFormularios.js"></script>
+ 
 <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
 <link rel="stylesheet" href="css/formulario.css" type="text/css" media="screen"/>
     <title>TFG</title>  
@@ -29,17 +36,163 @@
 			$('#informacion article').hide();
 			$('#informacion article:first').show();
 
-				$('nav ul li').on('click',function(){		
-					$('nav ul li').removeClass('activo');
-					$(this).addClass('activo')
-					$('#informacion article').hide();
-					var activeTab = $(this).find('a').attr('href');
-					$(activeTab).show();
-					
-				});
+			$('nav ul li').on('click',function(){		
+				$('nav ul li').removeClass('activo');
+				$(this).addClass('activo')
+				$('#informacion article').hide();
+				var activeTab = $(this).find('a').attr('href');
+				$(activeTab).show();
+				
+			});
+			
+			jQuery.validator.setDefaults({
+				debug: true,
+				success: "valid",
+			});
+			
+			$("#formContacto").validate({
+				debug: true,
+				success: "valid",
+				rules: {
+					mail: {
+						required: true,
+						email:true,
+					},
+					mensaje: {
+						required: true,
+					},
+				},
+				
+				submitHandler: function() {  //cuando se envia el formulario
+					alert("formulario enviado");
+					//formContacto.submit();
+					var email=$('[name=mail]').val();
+					var msg=$('[name=mensaje]').val();
+						$.post('./do.php',
+							{ op: 'contactar',email: email, mensaje: msg},
+							function(){
+								$("#bloque_contacto").html("<div style='text-align:center;margin-top:50px;' id='message'></div>");
+								$('#message').append("<a  onclick='emailEnviado();'><img id='checkmark' src='imagenes/aceptar.png' /></a>");
+								$('#message').append("<h2>¡¡ Email Enviado !!</h2>");
+							}
+						);
+				}
+			});
+			
+			$("#formLoguin").validate({
+				debug: true,
+				success: "valid",
+				rules: {
+					email: {
+						required: true,
+						email:true,
+					},
+					contrasena: {
+						required: true,
+						//rangelength: [6, 12],
+					},
+				},
+				messages: {
+					email: {
+						email: "Email invalido"
+					},
 
-		})
+				},
+				submitHandler: function() {  //cuando se envia el formulario
+					//alert("formulario enviado");
+					formLoguin.submit();
+				}
+			});
+			
+			
+			$("#form_RecuperarPassword").validate({
+				debug: true,
+				success: "valid",
+				rules: {
+					email1: {
+						required: true,
+						email:true,
+					},
 
+				},
+				messages: {
+					email1: {
+						email: "Email invalido"
+					},
+
+				},
+				submitHandler: function() {  //cuando se envia el formulario
+					//form_RecuperarPassword.submit();
+					$("#errorEmail").empty();
+					var e=$('[name=email1]').val();
+					$.post('./do.php',
+					  { op: 'recuperarPassword', email: e},
+					  function(dato) {
+						if(dato==0){  //no existe el email
+							openFancybox();
+							$("#errorEmail").append("El Email NO existe en el sistema");
+								
+						}
+						
+						if(dato==1){
+							openFancyboxPequenho();
+						}
+						
+					});
+				}
+			});
+			//recuperar PASSWORD
+
+		});
+		
+
+	function emailEnviado(){
+		$("#bloque_contacto").load("email_contactar.php");
+	}
+	
+	function openFancybox() {
+		  $.fancybox({
+			 'autoScale': true,
+			 'transitionIn': 'elastic',
+			 'transitionOut': 'elastic',
+			 'speedIn': 500,
+			 'speedOut': 300,
+			 'autoDimensions': true,
+			 'centerOnScroll': true,
+			 'href' : '#fancy_form' , // id del div que se visualiza
+		/*	  
+			afterClose: function () { 
+					parent.location.reload(true);
+				}
+				*/
+		  });
+	}
+	
+	function openFancyboxPequenho() {
+		  $.fancybox({
+			 'autoScale': true,
+			 'transitionIn': 'elastic',
+			 'transitionOut': 'elastic',
+			 'speedIn': 500,
+			 'speedOut': 300,
+			 'autoDimensions': true,
+			 'centerOnScroll': true,
+			 'href' : '#fancy_emailEnviado' , // id del div que se visualiza
+		  });
+	}
+	
+	
+/*	function enviar(){
+		var user= $('#email').val();
+		var pass= $('#contrasena').val();
+		
+		if ((user=="") || (pass="")){
+			alert('Compruebe que ha introducido todos los datos');
+		}else{
+			formLoguin.submit();
+		}
+	}		
+	*/
 		
 	</script>
 </head>
@@ -48,8 +201,14 @@
 include_once("./modelos/clsNoticia.php");
 include_once("./modelos/clsImagen.php");
 
-function getRequest() {
+if(isset($_GET['login'])){
+	$msjError= "Datos de acceso incorrectos";
+}else{
+	$msjError="";
+}
 
+
+function getRequest() {
 		global $_GET,$_POST;
 		$dict=$_GET;
 		if (count($dict)==0) $dict = $_POST;
@@ -119,7 +278,7 @@ $filasImagen = $imagenes->imagenesActivas();
 	<div id="sidebar" >
 		<div id="loguearse"  class="bloqueSombra bloqueBordesAzul">
 			 <h2><?php echo $util->trad("login",$lang);?></h2>
-			 <form name="formLoguin" class="loguin_form" method="POST" action="do.php">
+			 <form name="formLoguin" id="formLoguin" class="loguin_form" method="POST" action="do.php">
 			 <input type="hidden" name="op" value="login">
 			 	<div>
 					<label for="login">Email</label>
@@ -127,19 +286,19 @@ $filasImagen = $imagenes->imagenesActivas();
 				</div>
 				<div >
 					<label for="password">Password</label>
-					<input type="password" name="contrasena" id="contrasena" value="" />
+					<input type="password" name="contrasena" id="contrasena" maxlength="12" value="" />
 				</div>
 				<div style="text-align:center;">
-					
-					<input type="button" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" onclick="enviar()"/> 
-					
+				<!--	<input type="button" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" onclick="enviar()"/>  -->
+					<input type="submit" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" name="inicioSesion" id="inicioSesion"/> 
 				</div>
+				<div id="errores" style="text-align: center; color: rgb(204, 0, 0); font-weight: bold; font-size:14px;margin-bottom:-20px;"><?php echo $msjError; ?> </div>
 				<hr>
 				<p >
 					<a href="registro.php"><?php echo $util->trad("registro",$lang);?></a>
 				</p>
 				<p>
-					<a href=""><?php echo $util->trad("recordar",$lang);?></a>
+					<a style="cursor:pointer;" onclick="openFancybox()"><?php echo $util->trad("recordar",$lang);?></a>
 				</p>
 				
 			</form>
@@ -147,7 +306,7 @@ $filasImagen = $imagenes->imagenesActivas();
 	</div>
 	
 	
-	<div id="contenido">
+	<div id="contenido" >
 		<nav id="menu">
 			<ul>
 				<li ><a href="#tab1">Información</a></li>
@@ -176,48 +335,78 @@ $filasImagen = $imagenes->imagenesActivas();
 			</div>
 		  </article>
 		  <article id="tab3">
-		  <div>
-			<form name="formulario" class="loguin_form" action="#" method="post">
-				<fieldset class="bloqueSombra bloqueRedondo" style="margin-top:10px">
-					<legend class="bloqueRedondo">Contáctenos:</legend>
-						<label for="Email">E-mail: </label>
-						<input type="text" name="Email" id="Email" class=""/>
-						
-						<label style="margin-top:20px">Comentario:</label>
-						<textarea name="mensaje" class="" style="margin: 20px 0 0 0; width: 207px; height: 87px;"></textarea>
-						<input type="submit" class="" value="Enviar" onclick="" style="margin:30px;">
-				</fieldset>
-			</form>
+		  <div >
+			
+		
+			<fieldset  class="bloqueSombra bloqueRedondo" style="margin-top:10px; height:260px;">
+				<legend class="bloqueRedondo">Contáctenos:</legend>
+				<div id="bloque_contacto">
+					<form name="formContacto"  id="formContacto" class="loguin_form" action="" method="post">
+						<div>
+							<label for="mail">E-mail: </label>
+							<input type="text" name="mail" id="mail" class="input input_tamanhoNormal"/>
+						</div>
+						<div style="margin-top:15px">
+							<label  for="mensaje">Comentario:</label>
+							<textarea name="mensaje" class="" style=" width: 230px; height: 90px;"></textarea>
+						</div>
+						<div style="text-align:center;">
+							<input type="submit" class="" value="Enviar" style="margin:5px 0 5px 0;">
+						</div>
+					</form>
+				</div>
+			</fieldset>
+				
+			
 			<div id="mapa">
 				<iframe src="mapa.php" class="mapa"></iframe> 
-				
 			</div>
-			<span class="direccion">
-				Pedro Cerbuna,12 <br>
-			</span>
-			<span class="direccion">
-				50009 Zaragoza - España <br>
-			</span>
-			<span class="direccion">
-				Tel: 976 76 10 00				
-			</span>
+			<div id="direccion">
+				C/ Pedro Cerbuna,12 - 50009 Zaragoza - España 
+				<div style="margin-top:5px;">
+					<span style="font-weight:bold;">Tlf.:</span> 976 76 10 00
+				</div>
+			</div>
+			
 		</div>
 		  </article>
 		</section>
 		
+		
+	<!--  para recuperar CONTRASEÑA -->
+	<div id="fancy_form" style="display:none; height:270px;" >
+		<form name="form_RecuperarPassword" id="form_RecuperarPassword" method="post" action="" enctype="multipart/form-data">
+			<input type="hidden" name="op" value="recuperarPassword"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
+			<fieldset class="bloqueSombra bloqueRedondo" style="height:250px;">
+				<legend class="bloqueRedondo">Recuperar Password</legend>	
+				<h2 style="text-align:center;">¿Password olvidada?</h2>
+				<p style="font-size:15px;">
+				Para recibir su contraseña; por favor, introduzca el email de su cuenta.
+				</p>
+				<div class="bloque_campoForumulario">
+					<label class="labelEnano" for="email1">Email</label>
+					<input type="text" name="email1" id="email1" class="input input_tamanhoNormal" value="" tabindex="1"  />
+				</div>
+				<div id="errorEmail" style="text-align: center; color: rgb(204, 0, 0); font-weight: bold; font-size:14px;"> </div>
+				<div style="text-align:center; margin-top:20px;"> 
+					<input type="submit" value="Recuperar Password" />
+				</div>
+			</fieldset>			
+		</form>
 	</div>
-	<script>
-		function enviar(){
-			var user= $('#email').val();
-			var pass= $('#contrasena').val();
-			
-			if ((user=="") || (pass="")){
-				alert('Compruebe que ha introducido todos los datos');
-			}else{
-				formLoguin.submit();
-			}
-		}		
-	</script>
+	
+	<div id="fancy_emailEnviado" style="display:none; height:150px;" >
+		<fieldset class="bloqueSombra bloqueRedondo" style="height:130px;">
+			<legend class="bloqueRedondo">Recuperar Password</legend>	
+			<h2 style="text-align:center;">¡¡ Email Enviado !!</h2>
+			<p style="font-size:18px; text-align:center;">
+			Le acabamos de enviar un email.
+			</p>
+		</fieldset>			
+	</div>
+		
+	</div>
+
 	
 	
 	<footer>

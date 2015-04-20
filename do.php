@@ -1,15 +1,3 @@
-<script type="text/javascript"  src="./js/jquery-1.8.1.min.js"></script>
-<script>
-
-	$.noticia = function(){ // te recarga la pagina NOTICIAS	
-		window.location="admin/index.php";
-		
-	//	$("#destino").load("noticias.php");
-	//	$("#noticias").addClass("menuActivo");
-	}
-
-
-</script>
 
 <?php
 include_once("clases.php");
@@ -29,16 +17,16 @@ $op = $dict['op'];
 $util = new clsUtil();
 //var_dump($dict);exit();
 session_start();
-if($op=="login"){
+
+if($op=="login"){ 
 	$usuario= new clsUsuario();
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
 	$usuario->estableceCampos($dict);
-	$usuario = $usuario->login($dict);
+	$usuario = $usuario->login($dict);  //
 	
 	if ($usuario != NULL){
-	
 		$_SESSION['email'] = $usuario['email'];
 		$_SESSION['nombre'] = $usuario['nombre'];	
 		$_SESSION['apellidos'] = $usuario['apellidos'];
@@ -53,16 +41,43 @@ if($op=="login"){
 			header("Location: alumno.php?login=ok");
 		}
 	}else{
-
 		$_SESSION['ERRORES'][] = "Error al hacer login, vuelva intentarlo";
 		header("Location: login.php?login=nok");
+	}
+	
+}else if ($op=="contactar"){
+	
+//	 $dict['mail'];
+//	$dict['mensaje'];
+	
+}else if($op=="recuperarPassword"){
+	$usuario= new clsUsuario();
+	$existe = $usuario->existeEmail($dict['email']); 
+	if($existe==1){  //enviar email
+		echo "1";
+	}
+	//NO existe
+	if ($existe==0){
+		echo "0";
+	}
+
+}else if($op=="duplicadoEmail"){
+
+	$usuario= new clsUsuario();
+	$existe = $usuario->existeEmail($dict['email']); 
+	//if($existe >'0'){
+	if($existe =='1'){
+		echo 'false';
+	}
+	if($existe =='0'){
+		echo 'true';
 	}
 	
 }else if($op=="salir"){
 	session_destroy();
 	header("Location: login.php");
 	
-}else if($op=="registro"){
+}else if($op=="registro"){ 
 	$usuario= new clsUsuario();
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
@@ -460,6 +475,7 @@ else if($op=="nueva_noticia"){
 	
 	
 }
+
 
 
 ?>

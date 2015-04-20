@@ -993,18 +993,24 @@ border-radius: 7px 7px 7px 7px;
 
 
 .mapa{
-	
 	width:400px;
 	height:200px;
 	margin:20px 20px 0 20px ;
 }
-.direccion{
-	font-family:Georgia, "Times New Roman", serif;
-	margin:15px;
+#direccion{
+	float:left;
+	width:350px;
+	margin-left:40px;
+	margin-top:10px;
+	color:#2b4068;
+	font-style: italic;
+	font-size: 16px;
+
 }
 
 #tab1, #tab2, #tab3{
 	margin:20px;
+	min-height: 300px;
 }
 
 .titulo_examen{

@@ -85,7 +85,6 @@ class clsUsuario{
  public function incluir(){
 	 $objDatos = new clsDatos(); 
 	 $sql = "insert into usuarios(nombre,apellidos,sexo,fechanacimiento,email,telefono,direccion,cp,ciudad,nacionalidad,contrasena,rol,activo) values ('$this->nombre','$this->apellidos','$this->sexo','$this->fechanacimiento','$this->email','$this->telefono','$this->direccion','$this->cp','$this->ciudad','$this->nacionalidad','$this->contrasena','$this->rol','$this->activo')";
-	 	 
 	 $objDatos->ejecutar($sql);
     
 
@@ -109,17 +108,14 @@ public function eliminar(){
 //FUNCIONES PROPIAS DE LA CLASE
 
 public function login($dict){
-	
 	$obj = new clsDatos();
 	$this->estableceCampos( $dict);
 	$sql = "SELECT * FROM usuarios where(email='$this->email' AND contrasena='$this->contrasena')";
-	
 	$res=$obj->filtro($sql);
-	
-	return $res;
-		
-	
+	return $res;	
 }
+
+
 public function getEstudiantes($buscador="",$activo="",$nacionalidad="",$filtro,$orden){
 	$objDatos = new clsDatos();
 	if($buscador==""){
@@ -245,9 +241,17 @@ public function getNombreById($id){
 	$objDatos = new clsDatos();
 	$sql= "SELECT nombre FROM usuarios WHERE id='$id'";
 	$res = $objDatos->filtro($sql);
-	
 	return $res['nombre'];
 }
+
+//comprobar si existe un usuario con un determinado email. Devuelve 1 si existe y 0 si NO existe
+public function existeEmail($emailUser){
+	$obj = new clsDatos();
+	$sql = "SELECT * FROM usuarios where(email='$emailUser')";
+	$res=$obj->existe($sql);
+	return $res;	
+}
+
 }
 
 ?>

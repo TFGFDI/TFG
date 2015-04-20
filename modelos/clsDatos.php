@@ -39,6 +39,12 @@ mysqli_query($this->conexion,$sql) or die(mysql_error());
 	
 }
 
+//existe registro
+public function existe($sql){ 
+	$resultado = mysqli_query($this->conexion,$sql) or die(mysql_error());	
+	return mysqli_num_rows($resultado);
+} 				
+
 }
 
 ?>

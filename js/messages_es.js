@@ -6,7 +6,7 @@ jQuery.extend(jQuery.validator.messages, {
 	required: "Campo obligatorio.",
 	email:"Introduzca una dirección de correo valida",
 	equalTo: "Introduzca el mismo valor que en Contraseña.",
-
+	remote: "Email en uso.",
 	date: "Introduzca una fecha válida.",
 	number: "Introduzca un número entero.",
 	digits: "Introduzca sólo dígitos.",

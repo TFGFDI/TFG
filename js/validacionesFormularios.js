@@ -93,6 +93,8 @@ jQuery.validator.setDefaults({
 			email: {
 				required: true,
 				email:true,
+				remote: "do.php?op=duplicadoEmail&email="+ $("[name=email]").val(),
+				//remote: "do.php?op=duplicadoEmail",
 			},
 			contrasena: {
 				required: true,
@@ -109,6 +111,7 @@ jQuery.validator.setDefaults({
 		messages: {
 			nombre: {
 				required: "Campo obligatorios"
+				  remote: "Email ya está en uso."
 			},
 			apellidos: {
 				lettersonly: "Escribe sólo letras"
@@ -128,5 +131,7 @@ jQuery.validator.setDefaults({
 			}
 		
 		});
+		
+		
 
 });

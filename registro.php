@@ -57,20 +57,39 @@ require_once("top.php");
 		}
 	}
 	*/
-	$(function() {
+//	$(function() {
+	$(document).ready(function() {  
 		$( "#datepicker" ).datepicker({
 		  changeMonth: true,
 		  changeYear: true,
 		  yearRange: "1970:2015",
 		  showAnim: "explode"
 		});
+	/*	
+		$('#email').blur(function(){ 
+			$('#info').html('<img src="./imagenes/load.gif" alt="" />').fadeOut(1000);
+			var e = $(this).val();        
+			
+			var dataString = 'op=duplicadoEmail&email='+e;
+
+			$.ajax({
+				type: "POST",
+				url: "do.php",
+				data: dataString,
+				success: function(dato) {
+					$('#info').fadeIn(1000).html(dato);
+					
+				}
+			});
+		});
+		*/
 
 	});
 	
 
 $( "#datepicker" ).blur(function() {
 //$('#datepicker').removeClass('error');
-alert("oli");
+//alert("oli");
 });
 
 	
@@ -142,22 +161,24 @@ alert("oli");
 			<legend class="bloqueRedondo">Datos Acceso</legend>
 				<div class="bloque_campoForumulario">
 					<label for="email">Email</label>
-					<input type="text" name="email" id="email" value="" class="input_tamanhoNormal" tabindex="9"/>
+					<input type="text" name="email" id="email" value="" class="input_tamanhoMediano1" tabindex="9"/>
+					<span id="info"></span>
 				</div>
 
 				<div class="bloque_campoForumulario">
 					<label for="contrasena"><?php echo $util->trad("contrasena",$lang);?></label>
-					<input type="password" name="contrasena" id="contrasena"   value=""  class="input_tamanhoNormal" tabindex="10" />
+					<input type="password" name="contrasena" id="contrasena"   value=""  class="input_tamanhoMediano1" tabindex="10" />
 				</div>
 				<div class="bloque_campoForumulario">
 					<label for="contrasena2"><?php echo $util->trad("repetir ",$lang);?></label>
-					<input type="password" name="contrasena2" id="contrasena2" value="" class="input_tamanhoNormal" tabindex="11"/>
+					<input type="password" name="contrasena2" id="contrasena2" value="" class="input_tamanhoMediano1" tabindex="11"/>
 				</div>
 			</fieldset	>
 			
 			<div class="divBoton" >
 				<!-- <input type="button" name="b_registro" value="<?php // echo $util->trad("registro",$lang);?>" onclick="validarCampos()" style="margin:15px;"> -->
 				<input type="submit" name="b_registro" value="<?php echo $util->trad("registro",$lang);?>" style="margin:15px;">
+				<input type="button" name="b_inicio" value="Cancelar" onclick="javascript:location.href='login.php';" style="margin:15px;">
 			</div>
 		</form>
 		

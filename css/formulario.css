@@ -164,6 +164,9 @@ select{
 .input_tamanhoNormal{
 	width:58%;
 }
+.input_tamanhoMediano1{
+	width:45%;
+}
 .input_tamanhoMediano{
 	width:35%;
 }
@@ -275,4 +278,8 @@ label.valid {  /*  MENSAGE QUE SE MMUESTRA CUANDO EL CAMPO ES VALIDO*/
 	
 div.error { display: none; }
 input:focus, select:focus { border:2px solid #2B4068; }  /* efecto cuando el input coje el valor */
-input.error, select.error { border:2px solid #BC1010;} /* efecto del campo input cuando se produce un error */
+input.error, select.error, textarea.error  { border:2px solid #BC1010;} /* efecto del campo input cuando se produce un error */
+textarea:focus { border:2px solid #2B4068; }
+
+
+
