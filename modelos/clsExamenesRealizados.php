@@ -25,7 +25,7 @@ class clsExamenesRealizados{
  public function incluir(){
 	 $objDatos = new clsDatos(); 
 	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota, nota_desarrollo, corregido,expirado,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->nota_desarrollo','$this->corregido','$this->expirado','$this->comentarios')";
-	 	
+	 	var_dump($sql);
 	 $objDatos->ejecutar($sql);
     
 

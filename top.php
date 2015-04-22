@@ -81,13 +81,30 @@ if(isset($dict['lang'])){
 $url=$util->getURL();
 
 ?>
+<style>
+#logo_inferior{
+	
+	width:800px;
+	height:100px;
+	margin:-20px auto 0 auto;
+	position: relative;	
+	border-style: solid;
+	border-color: #2B4068;
+	border-left-width: 0.2em;
+	border-right-width: 0.2em; 
+	border-bottom-width: 0.2em;
+	border-radius: 0.5em;
+
+	background: none repeat scroll 0 0 white; 
+}
+</style>
 <body class="gradiante">
 <div id="contenedor"> 
 	<header id="logo">
 		<div style="float:left">
-			<a href="http://www.unizar.es/">
-				<img src="./imagenes/titulo.png" />
-			</a>
+			<a href="http://culm.unizar.es/">
+			<img src="./imagenes/culm_blanco.png" />
+		</a>
 		</div>
 		<div style="float:right;margin-right:20px;">
 			<span style="margin-right:15px"><a href="do.php?op=salir"><?php echo $util->trad("salir",$lang);?></a></span>
@@ -100,7 +117,10 @@ $url=$util->getURL();
 		</div>
 	</header >
 	<div id="logo_inferior"  >
-		<a href="http://culm.unizar.es/">
-			<img src="./imagenes/logo.png" />
-		</a>
+		<p class="cabecera_titulo">
+		<span>Cursos de español como lengua extranjera</span>
+		<br>
+		<span style="font-size: 15px;">Vicerrectorado de Cultura y Política Social </span>
+		</p>
 	</div>
+	
