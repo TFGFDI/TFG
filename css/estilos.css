@@ -49,21 +49,21 @@ a:hover, a:active{
 }
 
 header{
-	width:960px;
-	height:60px;
-	padding:20px 0 0 20px;
-	background-color:#2B4068;
-	color: #fff;
+	width: 960px;
+  height: 85px;
+  padding: 10px 0 0 20px;
+  background-color: #2B4068;
+  color: #fff;
 	
 }
 
 footer{
 	clear: both;
 	width:960px;
-	height:40px;
+	height:150px;
 	padding:20px 0 0 20px;
-	background-color:#2B4068;
-	color: #fff;
+	background-color:#4c4c4c;
+	position: relative; 
 	/*border:1px solid #000;*/
 	
 }
@@ -141,6 +141,22 @@ nav li.activo a, nav li:hover  a{
 	-o-box-shadow: 0.3 0.3em 0.1em 0.05em silver;
 
 }
+
+.cabecera_titulo{
+   font-family: 'Open Sans', arial, serif;
+  border-left: 4px solid #213c71;
+  border-right: 4px solid #213c71;
+  font-size: 25px;
+  color: #213c71;
+  position: absolute;
+  top: 15px;
+  margin: 6px 0 0 0;
+  letter-spacing: -1px;
+  line-height: 28px;
+  text-align: center;
+  width: 792px;
+}
+
 
 #contenido{
 	clear:left;
@@ -1091,4 +1107,144 @@ border-radius: 7px 7px 7px 7px;
 
 .input_nota, #nota_desarrollo{
 	width:3%;
+}
+
+footer img {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 200px;
+}
+footer ul.info-servicio {
+  color: #DDDDDD;
+  content: "Contacto";
+  font-size: 12px;
+  left: 246px;
+  margin: 0;
+  position: absolute;
+  top: 50px;
+  width: 250px;
+}
+footer  li .info-servicio{
+	left: 515px;
+}
+footer ul .info-servicio  li{
+  margin-bottom: 6px;
+  padding-left: 30px;
+  line-height: 18px;
+}
+
+footer .contacto {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: bold;
+  left: 290px;
+  position: absolute;
+  top: 20px;
+}
+.info-servicio .direc {
+  background: url("../imagenes/iconos-pie.png") no-repeat -3px -5px;
+  padding:6px 0 6px 0;
+}
+.info-servicio .mail {
+  background: url("../imagenes/iconos-pie.png") no-repeat -3px -37px;
+  padding:6px 0 6px 0;
+}
+.info-servicio .telefono {
+  background: url("../imagenes/iconos-pie.png") no-repeat -3px -75px; 
+  padding:6px 0 6px 0;
+}
+.info-servicio a {
+  color: #ddd;
+  text-decoration: none;
+}
+.info-servicio{
+	margin-top:15px!important;
+}
+footer h2 {
+  display: block;
+  font-size: 1.2em;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+  font-family: Arial;
+}
+footer #logo_pie {
+  bottom: 85px;
+  position: absolute;
+  right: 200px;
+}
+footer #logo_pie img {
+  width: 160px;
+}
+#menu_pie_inferior{
+	border-top: 1px solid #505050;
+	position: absolute;
+	background: #424242;
+	width: 980px;
+	font-size: 11px;
+	top: 170px;
+	left: 0;
+}
+
+ #menu_pie_inferior ul{
+	list-style: none;
+	float: right;
+	margin-right: 10px;
+}
+
+#menu_pie_inferior li{
+	margin-left: 5px;
+	margin-right: 5px;
+	float: left;
+}
+
+#menu_pie_inferior .centro {
+border-left: 1px solid #505050;
+border-right: 1px solid #505050;
+padding-left: 10px;
+padding-right: 10px;
+}
+#menu_pie_inferior a{
+	color: #ccc;
+	text-decoration: none;
+}
+
+.direc a, .telefono span, .mail a{
+	margin-left:25px;
+}
+.redes-sociales{
+  float: right;
+  margin: 30px 90px 0 0;
+}
+
+.fb a {
+	background: url(../imagenes/icon-rrss-1.png) no-repeat -3px 0px;
+}
+.fb a:hover {
+
+  background: url(../imagenes/icon-rrss-1.png) no-repeat -3px -27px;
+}
+.tw a {
+	background: url(../imagenes/icon-rrss-1.png) no-repeat -30px 0px;
+}
+.tw a:hover {
+
+  background: url(../imagenes/icon-rrss-1.png) no-repeat -30px -27px;
+}
+.rss a {
+	background: url(../imagenes/icon-rrss-1.png) no-repeat -56px 0px;
+}
+.rss a:hover {
+
+  background: url(../imagenes/icon-rrss-1.png) no-repeat -56px -27px;
+}
+
+.redes-sociales .fb a, .redes-sociales .tw a, .redes-sociales .rss a {
+  text-indent: -10000em;
+  display: inline-block;
+  height: 26px;
+  width: 26px;
 }

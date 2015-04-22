@@ -57,7 +57,7 @@ function getRequest() {
 
 
 $dict = getRequest();
-session_start();
+//session_start();
 require_once("modelos/clsUtil.php"); 
 $util= new clsUtil();
 
@@ -162,7 +162,6 @@ $filasImagen = $imagenes->imagenesActivas();
 			</form>
 		</div>
 	</div>
-	
 	
 	<div id="contenido">
 		<nav id="menu">

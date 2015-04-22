@@ -70,7 +70,7 @@ require_once("top.php");
 					</tr>
 					<tr style="display:none;cursor:pointer" id="examen_<?php echo $rowEmp['id']?>" onclick="ocultar(this.id)">
 						
-						<td colspan="5">
+						<td colspan="6">
 							<div >
 								<?php
 								$preguntas = new ClsPreguntasExamen();
