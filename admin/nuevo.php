@@ -75,7 +75,7 @@ $(function() {
 		</div>
 		<div id="formDerecho">
 			<div class="bloque_campoForumulario">
-				<label  for="rol">tipo Usuario<?php echo $util->trad("tipo Usurio",$lang);?></label>
+				<label  for="rol"><?php echo $util->trad("tipo Usurio",$lang);?></label>
 				<input type="text" name="rol" id="rol" value="<?php echo $tipoUser?>" readonly class="input input_tamanhoPequenho consulta" />
 			</div>
 			<div class="bloque_campoForumulario">

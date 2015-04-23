@@ -1,11 +1,17 @@
 <?php
 $util = new ClsUtil();
 $url=$util->getPagina();
-
+if($url=="alumnos.php"){
+	$menu='1';
+}	
+if($url=="profesores.php"){
+	$menu='2';
+}
 ?>
 <div id="buscador" class=" bloqueSombra bloqueRedondo">
 	<form name="formulario" method="get" action="<?php echo $url?>" id="formulario">
 	<div id="buscadorIzq">
+			<input type="hidden" name="menu" value="<?php echo $menu; ?>">
 			<div class="divCampo">
 				<input type="text" name="buscador" value="<?php echo $buscador?>" class="input input_tamanhoGrande" id="buscador_input">
 			</div>

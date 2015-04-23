@@ -1,5 +1,4 @@
 	<footer>
-		
 		<div class="logo-pie">
 			<img typeof="foaf:Image" src="./imagenes/culm_blanco.png"> 
 				<div class="redes-sociales"> 
@@ -25,10 +24,9 @@
 					</ul>
 		</div>
 		<div id="logo_pie">
-					
-					<a href="http://www.unizar.es">
-						<img alt="Logo universidad" src="imagenes/logoUZ.png">
-					</a>
+			<a href="http://www.unizar.es">
+				<img alt="Logo universidad" src="imagenes/logoUZ.png">
+			</a>
 		</div>
 		
 		<div id="menu_pie_inferior" >

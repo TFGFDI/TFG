@@ -87,10 +87,17 @@ static function fechaFormato2($cad){
 	return $f;
 }
 
-/*  te convierte la fecha tipo 2015-06-26 a formato  26/06/2015.  Se utiliza por ejemplo en editarNoticia*/
+/*  te convierte la fecha tipo 2015-06-26 a formato  06/26/2015.  Se utiliza por ejemplo en editarNoticia*/
 static function fechaFormato1($cad){  
 	$vector=explode('-',$cad);
 	$f=$vector[1].'/'.$vector[2].'/'.$vector[0];
+	return $f;
+}
+
+/*  te convierte la fecha tipo 2015-06-26 a formato  26-06-2015.  Se utiliza por ejemplo en editarNoticia*/
+static function fechaFormato3($cad){  
+	$vector=explode('-',$cad);
+	$f=$vector[2].'/'.$vector[1].'/'.$vector[0];
 	return $f;
 }
 

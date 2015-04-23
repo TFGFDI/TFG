@@ -201,7 +201,7 @@ function cargarPagina(numPagina){
 					
 					$totEmp = mysqli_num_rows($filasTot);
 					$pag = isset($dict['pag']) ? $dict['pag'] : 1;				
-					$numer_reg = 2; 
+					$numer_reg = 4; 
 					$totalPag = ceil($totEmp / $numer_reg);				
 					$itemsInicio = $numer_reg * ($pag - 1);
 					$filasPag = $imagen->getImagenesPaginacion($buscador,$activo,$filtro,$orden,$itemsInicio,$numer_reg);
@@ -213,7 +213,7 @@ function cargarPagina(numPagina){
 					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td><?php echo $rowEmp["fecha"]?></td>
+						<td><?php echo $util->fechaFormato3($rowEmp["fecha"]);?></td>
 						<td style="text-align:left;"><a class="ifancybox" href="visualizarImagen.php?id=<?php echo $rowEmp['id']?>"><?php echo $util->reducirCadenaLarga($rowEmp['titulo']);?></a></td>
 
 						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activarImagen(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="../imagenes/activo.png"><?php }else{?><img src="../imagenes/inactivo.png"><?php }?></td>

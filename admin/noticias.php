@@ -264,7 +264,7 @@ $(document).ready(function() {
 					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td><?php echo $rowEmp["fecha"]?></td>
+						<td><?php echo $util->fechaFormato3($rowEmp["fecha"]);?></td>
 						<td  style="text-align:left;"><a class="ifancybox" href="visualizarNoticia.php?id=<?php echo $rowEmp['id']?>"><?php echo $util->reducirCadena($rowEmp['titulo']);?></a></td>
 						<td  style="text-align:left;"><?php echo $util->reducirCadenaMedia($rowEmp["descripcion"]);?></td>
 						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="../imagenes/activo.png"><?php }else{?><img src="../imagenes/inactivo.png"><?php }?></td> 						

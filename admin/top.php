@@ -76,16 +76,26 @@ $url=$util->getURL();
 	<header id="logo">
 		<div style="float:left">
 			<a href="http://www.unizar.es/">
-				<img src="../imagenes/titulo.png" />
+				<img src="../imagenes/culm_blanco.png" />
 			</a>
 		</div>
+
 		<div style="float:right;margin-right:20px;">
-			<span style="margin-right:15px"><a href="../do.php?op=salir">Salir</a></span>
-			
+			<a href="<?php echo $url?>?lang=es">
+				<img src="../imagenes/esp.gif" />
+			</a>
+			<a href="<?php echo $url?>?lang=en" style="margin-left:10px;">
+				<img src="../imagenes/eng.gif" />
+			</a>
+			<span  ><a href="../do.php?op=salir" class="salir"><?php echo $util->trad("salir",$lang);?></a></span>
 		</div>
+
+		
 	</header >
 	<div id="logo_inferior"  >
-		<a href="http://culm.unizar.es/">
-			<img src="../imagenes/logo.png" />
-		</a>
+		<p class="cabecera_titulo">
+		<span style="  font-weight: bold;">Cursos de español como lengua extranjera</span>
+		<br>
+		<span style="font-size: 15px;">Vicerrectorado de Cultura y Política Social </span>
+		</p>
 	</div>

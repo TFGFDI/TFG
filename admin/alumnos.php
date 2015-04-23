@@ -147,7 +147,7 @@ if (isset($dict['orden'])){
 			<table>
 				<thead>
 					<tr>
-						<th onclick="orden('nombre','<?php echo $orden?>');" style="cursor:pointer"><span>Nombre</span>
+						<th width="20%" onclick="orden('nombre','<?php echo $orden?>');" style="cursor:pointer"><span>Nombre</span>
 							<?php 
 								if($filtro=="nombre"){
 									if($orden=="DESC"){ ?>
@@ -158,7 +158,7 @@ if (isset($dict['orden'])){
 								}
 							?>
 						</th>
-						<th onclick="orden('apellidos','<?php echo $orden?>');" style="cursor:pointer"><span>Apellidos</span>
+						<th width="25%" onclick="orden('apellidos','<?php echo $orden?>');" style="cursor:pointer"><span>Apellidos</span>
 							<?php 
 								if($filtro=="apellidos"){
 									if($orden=="DESC"){ ?>
@@ -169,7 +169,7 @@ if (isset($dict['orden'])){
 								}
 							?>
 						</th>
-						<th onclick="orden('email','<?php echo $orden?>');" style="cursor:pointer"><span>Email</span>
+						<th width="20%" onclick="orden('email','<?php echo $orden?>');" style="cursor:pointer"><span>Email</span>
 							<?php 
 								if($filtro=="email"){
 									if($orden=="DESC"){ ?>
@@ -180,7 +180,7 @@ if (isset($dict['orden'])){
 								}
 							?>
 						</th>
-						<th onclick="orden('nacionalidad','<?php echo $orden?>');" style="cursor:pointer"><span>Nacionalidad</span>
+						<th width="20%" onclick="orden('nacionalidad','<?php echo $orden?>');" style="cursor:pointer"><span>Nacionalidad</span>
 							<?php 
 								if($filtro=="nacionalidad"){
 									if($orden=="DESC"){ ?>
@@ -191,7 +191,7 @@ if (isset($dict['orden'])){
 								}
 							?>
 						</th>	
-						<th onclick="orden('activo','<?php echo $orden?>');" style="cursor:pointer"><span>Activo</span>
+						<th width="5%" onclick="orden('activo','<?php echo $orden?>');" style="cursor:pointer"><span>Activo</span>
 							<?php 
 								if($filtro=="activo"){
 									if($orden=="DESC"){ ?>
@@ -202,8 +202,8 @@ if (isset($dict['orden'])){
 								}
 							?>
 						</th>	
-						<th></th>
-						<th></th>
+						<th width="5%"></th>
+						<th width="5%"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -228,10 +228,10 @@ if (isset($dict['orden'])){
 					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?></a></td>
-						<td><?php echo $rowEmp["apellidos"]?></td>
-						<td><?php echo $rowEmp["email"]?></td>
-						<td><?php echo $rowEmp["nacionalidad"]?></td>
+						<td  style="text-align:left;"><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $util->reducirCadena($rowEmp['nombre']);?></a></td>
+						<td  style="text-align:left;"><?php echo $util->reducirCadena($rowEmp["apellidos"]);?></td>
+						<td  style="text-align:left;"><?php echo $util->reducirCadena($rowEmp["email"]);?></td>
+						<td  style="text-align:left;"><?php echo $util->reducirCadena($rowEmp["nacionalidad"]);?></td>
 						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="../imagenes/activo.png"><?php }else{?><img src="../imagenes/inactivo.png"><?php }?></td>
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="editar(this.id)"><img src="../imagenes/lapiz.gif"></td>
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id)"><img src="../imagenes/eliminar.png" style="width:15px;"></td>

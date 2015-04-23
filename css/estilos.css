@@ -31,6 +31,18 @@ a:hover, a:active{
 	opacity: .7;
 }
 
+.salir{
+	text-decoration: none;
+	margin-left: 40px;
+	color:#fff;
+	font-size: 18px;
+	font-weight: bold;
+}
+.salir:hover{
+	text-decoration: none;
+	font-weight: bold;
+	opacity: .7;
+}
 
 #contenedor{
 	margin: 0 auto;
@@ -62,7 +74,7 @@ footer{
 	width:960px;
 	height:150px;
 	padding:20px 0 0 20px;
-	background-color:#4c4c4c;
+	background-color:#2B4068;
 	position: relative; 
 	/*border:1px solid #000;*/
 	
@@ -121,13 +133,14 @@ nav li.activo a, nav li:hover  a{
 
 
 #logo_inferior{
-	width:800px;
-	height:130px;
-	margin:-20px auto 20px auto;
-	position: relative;
 	
+	width:800px;
+	height:100px;
+	margin:-20px auto 0 auto;
+	position: relative;	
 	border-style: solid;
 	border-color: #2B4068;
+	/*  color: #213c71;*/
 	border-left-width: 0.2em;
 	border-right-width: 0.2em; 
 	border-bottom-width: 0.2em;
@@ -135,11 +148,17 @@ nav li.activo a, nav li:hover  a{
 
 	background: none repeat scroll 0 0 white; 
 
-	box-shadow: 0.3em 0.3em 0.1em 0.05em silver;
+/*
+	box-shadow: 0.15em -0.3em 0.1em   silver;
+	-webkit-box-shadow: 0.15em -0.3em 0.1em   silver;
+	-moz-box-shadow: 0.15em -0.3em 0.1em   silver;
+	-o-box-shadow: 0.15em -0.3em 0.1em   silver;
+
+		box-shadow: 0.3em 0.3em 0.1em 0.05em silver;
 	-webkit-box-shadow: 0.3em 0.3em 0.1em 0.05em silver;
 	-moz-box-shadow: 0.3 0.3em 0.1em 0.05em silver;
 	-o-box-shadow: 0.3 0.3em 0.1em 0.05em silver;
-
+	*/
 }
 
 .cabecera_titulo{
@@ -155,6 +174,9 @@ nav li.activo a, nav li:hover  a{
   line-height: 28px;
   text-align: center;
   width: 792px;
+
+  text-transform: capitalize;
+
 }
 
 
@@ -1187,6 +1209,8 @@ footer #logo_pie img {
 	font-size: 11px;
 	top: 170px;
 	left: 0;
+	
+
 }
 
  #menu_pie_inferior ul{
@@ -1199,6 +1223,7 @@ footer #logo_pie img {
 	margin-left: 5px;
 	margin-right: 5px;
 	float: left;
+
 }
 
 #menu_pie_inferior .centro {
@@ -1208,8 +1233,9 @@ padding-left: 10px;
 padding-right: 10px;
 }
 #menu_pie_inferior a{
-	color: #ccc;
+	color: #fff;
 	text-decoration: none;
+	font-size: 12px;
 }
 
 .direc a, .telefono span, .mail a{

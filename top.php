@@ -96,6 +96,7 @@ $url=$util->getURL();
 	border-radius: 0.5em;
 
 	background: none repeat scroll 0 0 white; 
+	
 }
 </style>
 <body class="gradiante">
@@ -111,14 +112,14 @@ $url=$util->getURL();
 			<a href="<?php echo $url?>?lang=es">
 				<img src="./imagenes/esp.gif" />
 			</a>
-			<a href="<?php echo $url?>?lang=en">
+			<a href="<?php echo $url?>?lang=en" >
 				<img src="./imagenes/eng.gif" />
 			</a>
 		</div>
 	</header >
 	<div id="logo_inferior"  >
 		<p class="cabecera_titulo">
-		<span>Cursos de español como lengua extranjera</span>
+		<span style=" font-weight: bold;">Cursos de español como lengua extranjera</span>
 		<br>
 		<span style="font-size: 15px;">Vicerrectorado de Cultura y Política Social </span>
 		</p>
