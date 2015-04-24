@@ -166,16 +166,16 @@ $filasImagen = $imagenes->imagenesActivas();
 	<div id="contenido">
 		<nav id="menu">
 			<ul>
-				<li ><a href="#tab1">Información</a></li>
-				<li ><a href="#tab2">Noticias</a></li>
-				<li><a href="#tab3">contacto</a></li>
+				<li ><a href="#tab1"><span style="font-size:26px; font-weight:bold;">I</span>NFORMACIÓN</a></li>
+				<li ><a href="#tab2"><span style="font-size:26px; font-weight:bold;">N</span>OTICIAS</a></li>
+				<li><a href="#tab3"><span style="font-size:26px; font-weight:bold;">C</span>ONTACTO</a></li>
 			</ul>
 		</nav>
 		<section id="informacion" class="bloqueSombra bloqueBordesAzul">
 			<article id="tab1">
-			<p>Los Cursos de Español como Lengua Extranjera de la Universidad de Zaragoza desarrollan su labor a lo largo de todo el año en Zaragoza y durante el verano trasladan su actividad a la ciudad de Jaca (Huesca), enclave turístico situado en los Pirineos.</p>
-			<p>La Universidad de Zaragoza es pionera en la enseñanza de español a extranjeros desde 1927. Mantiene convenios con diferentes instituciones públicas y privadas de todo el mundo, colabora directamente con distintos organismos oficiales en la tarea de difusión del español (Instituto Cervantes, Consejerías de Educación de diversas Embajadas de España, Gobierno de Aragón, Ministerio de Educación, Cultura y Deporte) y es Centro Examinador Oficial para la obtención del Diploma de Español como Lengua Extranjera (DELE).</p>
-			<p>La Universidad de Zaragoza cuenta con un gran reconocimiento internacional, como lo demuestra el elevado número de estudiantes extranjeros que la visitan dentro de los diferentes programas de cooperación en los que participa (Sócrates-Erasmus, Tempus, ALPA, Asia-Link, Leonardo, etc.). Sus Cursos de Español se integran en dichos programas y, además, organizan cursos específicos para las Universidades extranjeras que así lo solicitan.</p>
+			<p><span class="primeraPalabra"><span class="letraCapital">L</span>os</span> Cursos de Español como Lengua Extranjera de la Universidad de Zaragoza desarrollan su labor a lo largo de todo el año en Zaragoza y durante el verano trasladan su actividad a la ciudad de Jaca (Huesca), enclave turístico situado en los Pirineos.</p>
+			<p><span class="primeraPalabra"><span class="letraCapital">L</span>a</span> Universidad de Zaragoza es pionera en la enseñanza de español a extranjeros desde 1927. Mantiene convenios con diferentes instituciones públicas y privadas de todo el mundo, colabora directamente con distintos organismos oficiales en la tarea de difusión del español (Instituto Cervantes, Consejerías de Educación de diversas Embajadas de España, Gobierno de Aragón, Ministerio de Educación, Cultura y Deporte) y es Centro Examinador Oficial para la obtención del Diploma de Español como Lengua Extranjera (DELE).</p>
+			<p><span class="primeraPalabra"><span class="letraCapital">L</span>a</span> Universidad de Zaragoza cuenta con un gran reconocimiento internacional, como lo demuestra el elevado número de estudiantes extranjeros que la visitan dentro de los diferentes programas de cooperación en los que participa (Sócrates-Erasmus, Tempus, ALPA, Asia-Link, Leonardo, etc.). Sus Cursos de Español se integran en dichos programas y, además, organizan cursos específicos para las Universidades extranjeras que así lo solicitan.</p>
 		  </article>
 		  <article id="tab2">
 			 <div>
@@ -189,47 +189,39 @@ $filasImagen = $imagenes->imagenesActivas();
 					</div>
 				<?php } ?>
 		
-				<div class="destacados">
-				<strong>curso de español para el turismo</strong>
-				</div>
-				<div class="destacados">
-				<strong>cAAAAAAAAAAAAAAercial</strong>
-				</div>
-				<div class="destacados">
-				<strong>cAAAAAAAAAAAAAAercial</strong>
-				</div>
-				<div class="destacados">
-				<strong>cAAAAAAAAAAAAAAercial</strong>
-				</div>
+			
 			</div>
 		  </article>
 		  <article id="tab3">
 		  <div>
-			<form name="formulario" class="loguin_form" action="#" method="post">
-				<fieldset class="bloqueSombra bloqueRedondo" style="margin-top:10px">
-					<legend class="bloqueRedondo">Contáctenos:</legend>
-						<label for="Email">E-mail: </label>
-						<input type="text" name="Email" id="Email" class=""/>
-						
-						<label style="margin-top:20px">Comentario:</label>
-						<textarea name="mensaje" class="" style="margin: 20px 0 0 0; width: 207px; height: 87px;"></textarea>
-						<input type="submit" class="" value="Enviar" onclick="" style="margin:30px;">
-				</fieldset>
-			</form>
+			<fieldset  class="bloqueSombra bloqueRedondo" style="margin-top:10px; height:260px;">
+				<legend class="bloqueRedondo">Contáctenos:</legend>
+				<div id="bloque_contacto">
+					<form name="formContacto"  id="formContacto" class="loguin_form" action="" method="post">
+						<div>
+							<label for="mail">E-mail: </label>
+							<input type="text" name="mail" id="mail" class="input input_tamanhoNormal"/>
+						</div>
+						<div style="margin-top:15px">
+							<label  for="mensaje">Comentario:</label>
+							<textarea name="mensaje" class="" style=" width: 230px; height: 90px;"></textarea>
+						</div>
+						<div style="text-align:center;">
+							<input type="submit" class="" value="Enviar" style="margin:5px 0 5px 0;">
+						</div>
+					</form>
+				</div>
+			</fieldset>
 			<div id="mapa">
 				<iframe src="mapa.php" class="mapa"></iframe> 
-				
 			</div>
-			<span class="direccion">
-				Pedro Cerbuna,12 <br>
-			</span>
-			<span class="direccion">
-				50009 Zaragoza - España <br>
-			</span>
-			<span class="direccion">
-				Tel: 976 76 10 00				
-			</span>
-		</div>
+			<div id="direccion">
+					C/ Pedro Cerbuna,12 - 50009 Zaragoza - España 
+					<div style="margin-top:5px;">
+						<span style="font-weight:bold;">Tlf.:</span> 976 76 10 00
+					</div>
+				</div>
+			</div>
 		  </article>
 		</section>
 		

@@ -208,6 +208,7 @@ nav li.activo a, nav li:hover  a{
 	border-bottom-right-radius: 0.5em;
 	border-bottom-left-radius: 0.5em;
 	border-top-right-radius: 0.5em;
+	text-align: justify;
 
 }
 
