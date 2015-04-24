@@ -97,13 +97,67 @@
 						);
 				}
 			});
+			
+			
+				$("#form_RecuperarPassword").validate({
+				debug: true,
+				success: "valid",
+				rules: {
+					email1: {
+						required: true,
+						email:true,
+					},
+
+				},
+				messages: {
+					email1: {
+						email: "Email invalido"
+					},
+
+				},
+				submitHandler: function() {  //cuando se envia el formulario
+					//form_RecuperarPassword.submit();
+					$("#errorEmail").empty();
+					var e=$('[name=email1]').val();
+					$.post('./do.php',
+					  { op: 'recuperarPassword', email: e},
+					  function(dato) {
+						if(dato==0){  //no existe el email
+							openFancybox();
+							$("#errorEmail").append("El Email NO existe en el sistema");
+								
+						}
+						
+						if(dato==1){
+							openFancyboxPequenho();
+						}
+						
+					});
+				}
+			});
 
 		});
 		
 		function emailEnviado(){
 		$("#bloque_contacto").load("email_contactar.php");
 	}
-
+	function openFancybox() {
+		  $.fancybox({
+			 'autoScale': true,
+			 'transitionIn': 'elastic',
+			 'transitionOut': 'elastic',
+			 'speedIn': 500,
+			 'speedOut': 300,
+			 'autoDimensions': true,
+			 'centerOnScroll': true,
+			 'href' : '#fancy_form' , // id del div que se visualiza
+		/*	  
+			afterClose: function () { 
+					parent.location.reload(true);
+				}
+				*/
+		  });
+	}
 		
 	</script>
 </head>
@@ -299,7 +353,30 @@ $filasImagen = $imagenes->imagenesActivas();
 		  </article>
 		</section>
 		
+			<!--  para recuperar CONTRASEÑA -->
+	<div id="fancy_form" style="display:none; height:270px;" >
+		<form name="form_RecuperarPassword" id="form_RecuperarPassword" method="post" action="" enctype="multipart/form-data">
+			<input type="hidden" name="op" value="recuperarPassword"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
+			<fieldset class="bloqueSombra bloqueRedondo" style="height:250px;">
+				<legend class="bloqueRedondo">Recuperar Password</legend>	
+				<h2 style="text-align:center;">¿Password olvidada?</h2>
+				<p style="font-size:15px;">
+				Para recibir su contraseña; por favor, introduzca el email de su cuenta.
+				</p>
+				<div class="bloque_campoForumulario">
+					<label class="labelEnano" for="email1">Email</label>
+					<input type="text" name="email1" id="email1" class="input input_tamanhoNormal" value="" tabindex="1"  />
+				</div>
+				<div id="errorEmail" style="text-align: center; color: rgb(204, 0, 0); font-weight: bold; font-size:14px;"> </div>
+				<div style="text-align:center; margin-top:20px;"> 
+					<input type="submit" value="Recuperar Password" />
+				</div>
+			</fieldset>			
+		</form>
 	</div>
+		
+	</div>
+	<!--
 	<script>
 		function enviar(){
 			var user= $('#email').val();
@@ -312,6 +389,6 @@ $filasImagen = $imagenes->imagenesActivas();
 			}
 		}		
 	</script>
-	
+	-->
 	
 <?php include("bottom.php")?>
