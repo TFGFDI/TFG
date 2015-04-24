@@ -16,6 +16,11 @@
 <script src="js/bjqs.min.js"></script>
 <script src="js/script.js"></script>
 
+<!-- validaciones formularios  -->
+  <script type="text/javascript" src="js/jquery.validate.js"></script>
+  <script type="text/javascript" src="js/additional-methods.js"></script>
+  <script type="text/javascript" src="js/messages_es.js"></script>
+
 <link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 
@@ -24,21 +29,80 @@
     <title>TFG</title>  
     <script language="javascript">
 		$(document).ready(function () { 
-		  	
 			$('nav ul li:first').addClass('activo')
 			$('#informacion article').hide();
 			$('#informacion article:first').show();
 
-				$('nav ul li').on('click',function(){		
-					$('nav ul li').removeClass('activo');
-					$(this).addClass('activo')
-					$('#informacion article').hide();
-					var activeTab = $(this).find('a').attr('href');
-					$(activeTab).show();
-					
-				});
+			$('nav ul li').on('click',function(){		
+				$('nav ul li').removeClass('activo');
+				$(this).addClass('activo')
+				$('#informacion article').hide();
+				var activeTab = $(this).find('a').attr('href');
+				$(activeTab).show();
+				
+			});
+			
+			
+			$("#formLoguin").validate({
+				debug: true,
+				success: "valid",
+				rules: {
+					email: {
+						required: true,
+						email:true,
+					},
+					contrasena: {
+						required: true,
+						//rangelength: [6, 12],
+					},
+				},
+				messages: {
+					email: {
+						email: "Email invalido"
+					},
 
-		})
+				},
+				submitHandler: function() {  //cuando se envia el formulario
+					//alert("formulario enviado");
+					formLoguin.submit();
+				}
+			});
+			
+			
+			$("#formContacto").validate({
+				debug: true,
+				success: "valid",
+				rules: {
+					mail: {
+						required: true,
+						email:true,
+					},
+					mensaje: {
+						required: true,
+					},
+				},
+				
+				submitHandler: function() {  //cuando se envia el formulario
+					alert("formulario enviado");
+					//formContacto.submit();
+					var email=$('[name=mail]').val();
+					var msg=$('[name=mensaje]').val();
+						$.post('./do.php',
+							{ op: 'contactar',email: email, mensaje: msg},
+							function(){
+								$("#bloque_contacto").html("<div style='text-align:center;margin-top:50px;' id='message'></div>");
+								$('#message').append("<a  onclick='emailEnviado();'><img id='checkmark' src='imagenes/aceptar.png' /></a>");
+								$('#message').append("<h2>¡¡ Email Enviado !!</h2>");
+							}
+						);
+				}
+			});
+
+		});
+		
+		function emailEnviado(){
+		$("#bloque_contacto").load("email_contactar.php");
+	}
 
 		
 	</script>
@@ -46,6 +110,16 @@
 
 <?php 
 include_once("clases.php");
+include_once("./modelos/clsNoticia.php");
+include_once("./modelos/clsImagen.php");
+
+if(isset($_GET['login'])){
+	$msjError= "Datos de acceso incorrectos";
+}else{
+	$msjError="";
+}
+
+
 function getRequest() {
 
 		global $_GET,$_POST;
@@ -136,7 +210,7 @@ $filasImagen = $imagenes->imagenesActivas();
 	<div id="sidebar" >
 		<div id="loguearse"  class="bloqueSombra bloqueBordesAzul">
 			 <h2><?php echo $util->trad("login",$lang);?></h2>
-			 <form name="formLoguin" class="loguin_form" method="POST" action="do.php">
+				 <form name="formLoguin" id="formLoguin" class="loguin_form" method="POST" action="do.php">
 			 <input type="hidden" name="op" value="login">
 			 	<div>
 					<label for="login">Email</label>
@@ -144,19 +218,19 @@ $filasImagen = $imagenes->imagenesActivas();
 				</div>
 				<div >
 					<label for="password">Password</label>
-					<input type="password" name="contrasena" id="contrasena" value="" />
+					<input type="password" name="contrasena" id="contrasena" maxlength="12" value="" />
 				</div>
 				<div style="text-align:center;">
-					
-					<input type="button" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" onclick="enviar()"/> 
-					
+				<!--	<input type="button" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" onclick="enviar()"/>  -->
+					<input type="submit" value="<?php echo $util->trad("iniciar_sesion",$lang);?>" name="inicioSesion" id="inicioSesion"/> 
 				</div>
+				<div id="errores" style="text-align: center; color: rgb(204, 0, 0); font-weight: bold; font-size:14px;margin-bottom:-20px;"><?php echo $msjError; ?> </div>
 				<hr>
 				<p >
 					<a href="registro.php"><?php echo $util->trad("registro",$lang);?></a>
 				</p>
 				<p>
-					<a href=""><?php echo $util->trad("recordar",$lang);?></a>
+					<a style="cursor:pointer;" onclick="openFancybox()"><?php echo $util->trad("recordar",$lang);?></a>
 				</p>
 				
 			</form>
