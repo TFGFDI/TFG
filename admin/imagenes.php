@@ -41,6 +41,7 @@ if (isset($dict['orden'])){
 $fecha_nuevaImagen=date('d')."/".date('m')."/".date('Y');
 ?>
 <script type="text/javascript"  src="../js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <script >
 $(document).ready(function() { 
 	$("#buscarImagenes").click(function(evento){
@@ -77,12 +78,25 @@ function cargarPagina(numPagina){
 	);
 
 }; 
+
+function openFancyboxImagen() { 
+  $.fancybox({
+     'autoScale': true,
+     'transitionIn': 'elastic',
+     'transitionOut': 'elastic',
+     'speedIn': 500,
+     'speedOut': 300,
+     'autoDimensions': true,
+     'centerOnScroll': true,
+     'href' : '#fancy_formImagen'  // id del div que se visualiza
+  });
+}
 </script>
 
 <section id="derecho_general" class="bloqueRedondo bloqueSombra">
 	<h2 style="width:400px; float:left;">Gestion de Imagenes</h2>
 	<div id="nuevaImagen" style="width:120px; float:right; margin:10px 10px 0px 0px; ">
-		<input type="button" name="b_nuevaNoticia" value="Nueva Imagen"  onclick="openFancyboxImagen()"id="b_nuevaImagen">
+		<input type="button" name="b_nuevaNoticia" value="Nueva Imagen"  onclick="openFancyboxImagen()" id="b_nuevaImagen">
 	</div>
 	<div id="buscador2" class="bloqueRedondo  bloqueSombra" style="margin-top:60px; border:1px solid silver;">
 		<div id="buscadorIzq">

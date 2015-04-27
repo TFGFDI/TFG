@@ -718,7 +718,7 @@ ul.menuVertical   li.activo a{
 	font-size: 12px;
 	font-weight: normal; 
 }
- .datagrid table tbody .alt td { /*  se aplica a las celdas que tienen la clase 'alt'. La clase 'alt' se aplica a las filas impares */
+.alt { /*  se aplica a las celdas que tienen la clase 'alt'. La clase 'alt' se aplica a las filas impares */
 	background: #E1EEF4; 
 	color: #00557F; 
 }
@@ -1101,8 +1101,9 @@ border-radius: 7px 7px 7px 7px;
 }
 
 .expirado{
-	background:#F08080;
+	background:#F08080!important;
 }
+
 
 .visualizar{
 	padding:20px;
@@ -1184,6 +1185,11 @@ footer .contacto {
 .info-servicio{
 	margin-top:15px!important;
 }
+#logo a {
+	color:white!important;
+	text-decoration:none;
+}
+
 footer h2 {
   display: block;
   font-size: 1.2em;

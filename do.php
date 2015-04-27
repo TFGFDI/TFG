@@ -397,9 +397,27 @@ if($op=="login"){
 //	header("Location: admin/index.php");
 	
 }
-else if($op=="nueva_noticia"){
-	$noticia= new clsNoticia();
-/*	
+else if($op=="nueva_imagen"){
+	$imagen= new clsImagen(); 
+	
+	//obtener nombre aleatorio
+
+	$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
+	$cad = ""; 
+
+	for($i=0;$i<12;$i++) { 
+		$cad .= substr($str,rand(0,62),1); 
+	}
+	
+	$sep=explode('image/',$_FILES["titulo"]["type"]); // Separamos image/ 
+	$tipo=$sep[1]; // Optenemos el tipo de imagen que es 
+	$target_path = "imagenes/galeria/";
+	//$target_path = $target_path . basename( $_FILES['imagen']['name']); 	
+
+	if(move_uploaded_file($_FILES['titulo']['tmp_name'], $target_path . '/' .$cad.'.'.$tipo)) { 
+	} else{
+	}
+	
 	foreach($dict as $clave => $valor){
 
 		if($clave == 'fecha'){
@@ -408,11 +426,12 @@ else if($op=="nueva_noticia"){
 			$dict[$clave] = $util->desinfectar($valor);
 		}
 	}
-	$noticia->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
-	$noticia->incluir();
-	header("Location: admin/index.php?menu=0&cargarNoticias=1");	
-
-*/
+	$imagen->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	$imagen->imagen = $cad.'.'.$tipo;
+	$imagen->incluir();
+	header("Location: admin/index.php?menu=0&cargarImagenes=1");	
+	
+	
 	
 }else if($op=="eliminarImagen"){
 	$imagen= new clsImagen();

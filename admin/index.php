@@ -168,18 +168,7 @@ function openFancybox() {
   });
 }
 
-function openFancyboxImagen() {
-  $.fancybox({
-     'autoScale': true,
-     'transitionIn': 'elastic',
-     'transitionOut': 'elastic',
-     'speedIn': 500,
-     'speedOut': 300,
-     'autoDimensions': true,
-     'centerOnScroll': true,
-     'href' : '#fancy_formImagen'  // id del div que se visualiza
-  });
-}
+
 
 
 

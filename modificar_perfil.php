@@ -139,7 +139,7 @@ $fila = $alumno->getUsuarioById();
 				</div>
 				<div class="bloque_campoForumulario">
 					<label for="direccion"><?php echo $util->trad("direccion",$lang);?></label>
-					<input type="text" name="direccion" id="direccion" value="<?php echo $fila['direccion']?>"  class="input_tamanhoMediano" tabindex="5"/>
+					<input type="text" name="direccion"  value="<?php echo $fila['direccion']?>"  class="input_tamanhoMediano" tabindex="5"/>
 				</div>
 				<div class="bloque_campoForumulario">
 					<label for="cp"><?php echo $util->trad("cp",$lang);?></label>
