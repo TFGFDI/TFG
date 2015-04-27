@@ -158,6 +158,19 @@
 				*/
 		  });
 	}
+	
+	function openFancyboxPequenho() {
+	  $.fancybox({
+		 'autoScale': true,
+		 'transitionIn': 'elastic',
+		 'transitionOut': 'elastic',
+		 'speedIn': 500,
+		 'speedOut': 300,
+		 'autoDimensions': true,
+		 'centerOnScroll': true,
+		 'href' : '#fancy_emailEnviado' , // id del div que se visualiza
+	  });
+	}
 		
 	</script>
 </head>
@@ -209,21 +222,7 @@ $filasImagen = $imagenes->imagenesActivas();
 
 ?>
 <style>
-#logo_inferior{
-	
-	width:800px;
-	height:100px;
-	margin:-20px auto 0 auto;
-	position: relative;	
-	border-style: solid;
-	border-color: #2B4068;
-	border-left-width: 0.2em;
-	border-right-width: 0.2em; 
-	border-bottom-width: 0.2em;
-	border-radius: 0.5em;
 
-	background: none repeat scroll 0 0 white; 
-}
 </style>
 <body class="gradiante">
 <div id="contenedor"> 
@@ -237,10 +236,11 @@ $filasImagen = $imagenes->imagenesActivas();
 			<a href="<?php echo $url?>?lang=es">
 				<img src="./imagenes/esp.gif" />
 			</a>
-			<a href="<?php echo $url?>?lang=en">
+			<a href="<?php echo $url?>?lang=en" style="margin-left:10px;">
 				<img src="./imagenes/eng.gif" />
 			</a>
 		</div>
+		
 	</header >
 	<div id="logo_inferior"  >
 		<p class="cabecera_titulo">
@@ -294,9 +294,9 @@ $filasImagen = $imagenes->imagenesActivas();
 	<div id="contenido">
 		<nav id="menu">
 			<ul>
-				<li ><a href="#tab1"><span style="font-size:26px; font-weight:bold;">I</span>NFORMACIÓN</a></li>
-				<li ><a href="#tab2"><span style="font-size:26px; font-weight:bold;">N</span>OTICIAS</a></li>
-				<li><a href="#tab3"><span style="font-size:26px; font-weight:bold;">C</span>ONTACTO</a></li>
+				<li ><a href="#tab1"><span style="font-size:22px; font-weight:bold;">I</span>NFORMACIÓN</a></li>
+				<li ><a href="#tab2"><span style="font-size:22px; font-weight:bold;">N</span>OTICIAS</a></li>
+				<li><a href="#tab3"><span style="font-size:22px; font-weight:bold;">C</span>ONTACTO</a></li>
 			</ul>
 		</nav>
 		<section id="informacion" class="bloqueSombra bloqueBordesAzul">
@@ -353,27 +353,37 @@ $filasImagen = $imagenes->imagenesActivas();
 		  </article>
 		</section>
 		
-			<!--  para recuperar CONTRASEÑA -->
-	<div id="fancy_form" style="display:none; height:270px;" >
-		<form name="form_RecuperarPassword" id="form_RecuperarPassword" method="post" action="" enctype="multipart/form-data">
-			<input type="hidden" name="op" value="recuperarPassword"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
-			<fieldset class="bloqueSombra bloqueRedondo" style="height:250px;">
+				<!--  para recuperar CONTRASEÑA -->
+		<div id="fancy_form" style="display:none; height:270px;" >
+			<form name="form_RecuperarPassword" id="form_RecuperarPassword" method="post" action="" enctype="multipart/form-data">
+				<input type="hidden" name="op" value="recuperarPassword"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
+				<fieldset class="bloqueSombra bloqueRedondo" style="height:250px;">
+					<legend class="bloqueRedondo">Recuperar Password</legend>	
+					<h2 style="text-align:center;">¿Password olvidada?</h2>
+					<p style="font-size:15px;">
+					Para recibir su contraseña; por favor, introduzca el email de su cuenta.
+					</p>
+					<div class="bloque_campoForumulario">
+						<label class="labelEnano" for="email1">Email</label>
+						<input type="text" name="email1" id="email1" class="input input_tamanhoNormal" value="" tabindex="1"  />
+					</div>
+					<div id="errorEmail" style="text-align: center; color: rgb(204, 0, 0); font-weight: bold; font-size:14px;"> </div>
+					<div style="text-align:center; margin-top:20px;"> 
+						<input type="submit" value="Recuperar Password" />
+					</div>
+				</fieldset>			
+			</form>
+		</div>
+		
+		<div id="fancy_emailEnviado" style="display:none; height:150px;" >
+			<fieldset class="bloqueSombra bloqueRedondo" style="height:130px;">
 				<legend class="bloqueRedondo">Recuperar Password</legend>	
-				<h2 style="text-align:center;">¿Password olvidada?</h2>
-				<p style="font-size:15px;">
-				Para recibir su contraseña; por favor, introduzca el email de su cuenta.
+				<h2 style="text-align:center;">¡¡ Email Enviado !!</h2>
+				<p style="font-size:18px; text-align:center;">
+				Le acabamos de enviar un email.
 				</p>
-				<div class="bloque_campoForumulario">
-					<label class="labelEnano" for="email1">Email</label>
-					<input type="text" name="email1" id="email1" class="input input_tamanhoNormal" value="" tabindex="1"  />
-				</div>
-				<div id="errorEmail" style="text-align: center; color: rgb(204, 0, 0); font-weight: bold; font-size:14px;"> </div>
-				<div style="text-align:center; margin-top:20px;"> 
-					<input type="submit" value="Recuperar Password" />
-				</div>
 			</fieldset>			
-		</form>
-	</div>
+		</div>
 		
 	</div>
 	<!--
