@@ -83,7 +83,12 @@ if($op=="login"){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
 	$usuario->estableceCampos($dict);
-	$usuario->rol="E";
+	if(isset($dict['rol'])){
+		$usuario->rol="P";
+	}else{
+		$usuario->rol="E";
+	}
+	
 	$usuario->activo="0";
 	$usuario->incluir();
 	
@@ -100,9 +105,9 @@ if($op=="login"){
 	}else{
 		$user['activo']='1';
 	}
-	$usuario->estableceCampos($user);//modificamos el campo activo a 1 ó 0 
+	$usuario->estableceCampos($user);
 	$usuario->editar();
-	header("Location: admin/index.php");	
+	header("Location: ".$_SESSION['redireccion']);	
 	
 }else if($op=="eliminarUsuario"){
 	$usuario= new clsUsuario();
@@ -492,6 +497,15 @@ else if($op=="nueva_imagen"){
 	
 	header("Location: ls_examenes_profesor.php");
 	
+}else if($op=="contactar"){
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}
+	$para="mikgongin@hotmail.com";
+	$titulo="Envio contacto";
+	$mensaje= $dict['email']." le ha mandado el siguiente mensaje:";
+	$mensaje .=	$dict['mensaje'];
+	mail($para, $titulo, $mensaje);
 	
 }
 

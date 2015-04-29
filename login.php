@@ -87,7 +87,7 @@
 					//formContacto.submit();
 					var email=$('[name=mail]').val();
 					var msg=$('[name=mensaje]').val();
-						$.post('./do.php',
+						$.post('do.php',
 							{ op: 'contactar',email: email, mensaje: msg},
 							function(){
 								$("#bloque_contacto").html("<div style='text-align:center;margin-top:50px;' id='message'></div>");
@@ -325,7 +325,8 @@ $filasImagen = $imagenes->imagenesActivas();
 			<fieldset  class="bloqueSombra bloqueRedondo" style="margin-top:10px; height:260px;">
 				<legend class="bloqueRedondo">Contáctenos:</legend>
 				<div id="bloque_contacto">
-					<form name="formContacto"  id="formContacto" class="loguin_form" action="" method="post">
+					<form name="formContacto"  id="formContacto" class="loguin_form" action="do.php" method="post">
+					<input type="hidden" name="op" value="contacto">
 						<div>
 							<label for="mail">E-mail: </label>
 							<input type="text" name="mail" id="mail" class="input input_tamanhoNormal"/>
@@ -355,7 +356,7 @@ $filasImagen = $imagenes->imagenesActivas();
 		
 				<!--  para recuperar CONTRASEÑA -->
 		<div id="fancy_form" style="display:none; height:270px;" >
-			<form name="form_RecuperarPassword" id="form_RecuperarPassword" method="post" action="" enctype="multipart/form-data">
+			<form name="form_RecuperarPassword" id="form_RecuperarPassword" method="post" action="do.php" enctype="multipart/form-data">
 				<input type="hidden" name="op" value="recuperarPassword"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
 				<fieldset class="bloqueSombra bloqueRedondo" style="height:250px;">
 					<legend class="bloqueRedondo">Recuperar Password</legend>	

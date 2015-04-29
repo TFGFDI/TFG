@@ -545,7 +545,7 @@ padding-right:50px;
 	width:750px;
 	float:left;
 	height:166px;
-	padding:20px 20px 0px 20px;
+	padding:20px 20px 29px 20px;
 	border-top:0.2em solid #05244c;
 			
 	border-right:0.2em solid #05244c;
@@ -648,7 +648,7 @@ ul.menuVertical li.noMenu{
 	/* deshabilitar link de a href con css */
 	pointer-events: none;
 	cursor: default;
-	height:103px;
+	height:132px;
 
 }
 ul.menuVertical li.noMenu:hover{

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once("../modelos/clsUsuario.php");
+include_once("../clases.php");
 if (($_SESSION["id"]=="")){ 
 
 header("Location: login.php");
@@ -41,6 +41,9 @@ if (isset($dict['orden'])){
 	$orden="";
 }
 
+$util = new ClsUtil();
+$url=$util->getURLparametros();
+$_SESSION['redireccion']=trim($url, '&');
 
 ?>
 <script>
@@ -64,7 +67,7 @@ if (isset($dict['orden'])){
 		}
 			
 
-		location.href='index.php?filtro='+filtro+"&orden="+orden;
+		location.href='profesores.php?menu=2&filtro='+filtro+"&orden="+orden;
 		
 	}
 	function editar(id){
@@ -130,6 +133,7 @@ if (isset($dict['orden'])){
 	});
 	
 </script>
+
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_admin.php");  ?>
 	<h2>Gestion de profesores</h2>

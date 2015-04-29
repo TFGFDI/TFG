@@ -8,6 +8,7 @@ if($url=="profesores.php"){
 	$menu='2';
 }
 ?>
+
 <div id="buscador" class=" bloqueSombra bloqueRedondo">
 	<form name="formulario" method="get" action="<?php echo $url?>" id="formulario">
 	<div id="buscadorIzq">
@@ -42,8 +43,8 @@ if($url=="profesores.php"){
 	
 	</div>
 	<div id="buscadorDch">
-		<input type="button" name="buscar" value="Buscar" onclick="formulario.submit()" style="margin-right:10px;">
-		<input type="button" name="limpiar" value="Limpiar" onclick="limpiar()" id="limpiar">
+		<input type="button" value="Buscar" onclick="formulario.submit()" style="margin-right:10px;">
+		<input type="button" value="Limpiar" onclick="limpiar()">
 	</div>
 	<div id="buscadorDch" style="margin-left:10px">
 		<span class="avanzada" id="avanzada" onclick="mostrar();">B&uacute;squeda avanzada</span>

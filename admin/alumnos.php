@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once("../modelos/clsUsuario.php");
+include_once("../clases.php");
 if (($_SESSION["id"]=="")){ 
 
 header("Location: login.php");
@@ -39,7 +39,9 @@ if (isset($dict['orden'])){
 	$orden="";
 }
 
-
+$util = new ClsUtil();
+$url=$util->getURLparametros();
+$_SESSION['redireccion']=trim($url, '&');
 ?>
 <script>
 	function limpiar(){
@@ -61,7 +63,7 @@ if (isset($dict['orden'])){
 		}
 			
 
-		location.href='index.php?filtro='+filtro+"&orden="+orden;
+		location.href='alumnos.php?menu=1&filtro='+filtro+"&orden="+orden;
 		
 	}
 	function editar(id){
