@@ -1,4 +1,4 @@
-
+/*Mysql*/
 CREATE TABLE `examenes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_profesor` int(11) DEFAULT NULL,
