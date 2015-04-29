@@ -99,7 +99,7 @@ $url=$util->getURL();
 			<a href="<?php echo $url?>?lang=en" style="margin-left:10px;" />
 				<img src="./imagenes/eng.gif" />
 			</a>
-			<span  ><a href="../do.php?op=salir" class="salir"><?php echo $util->trad("salir",$lang);?></a></span>
+			<span  ><a href="do.php?op=salir" class="salir"><?php echo $util->trad("salir",$lang);?></a></span>
 		</div>
 	</header >
 	<div id="logo_inferior"  >
