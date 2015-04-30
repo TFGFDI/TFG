@@ -109,6 +109,7 @@ public function eliminar(){
 
 public function login($dict){
 	$obj = new clsDatos();
+	$dict['contrasena']=base64_encode($dict['contrasena']);
 	$this->estableceCampos( $dict);
 	$sql = "SELECT * FROM usuarios where(email='$this->email' AND contrasena='$this->contrasena')";
 	$res=$obj->filtro($sql);
@@ -252,6 +253,13 @@ public function existeEmail($emailUser){
 	return $res;	
 }
 
+public function getContrasenaByEmail($email){
+	$objDatos = new clsDatos();
+	$sql= "SELECT contrasena FROM usuarios WHERE email='$email'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['contrasena'];
+}
 }
 
 ?>

@@ -87,7 +87,7 @@
 					//formContacto.submit();
 					var email=$('[name=mail]').val();
 					var msg=$('[name=mensaje]').val();
-						$.post('do.php',
+						$.get('do.php',
 							{ op: 'contactar',email: email, mensaje: msg},
 							function(){
 								$("#bloque_contacto").html("<div style='text-align:center;margin-top:50px;' id='message'></div>");
@@ -122,6 +122,7 @@
 					$.post('./do.php',
 					  { op: 'recuperarPassword', email: e},
 					  function(dato) {
+						
 						if(dato==0){  //no existe el email
 							openFancybox();
 							$("#errorEmail").append("El Email NO existe en el sistema");

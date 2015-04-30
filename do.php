@@ -45,20 +45,23 @@ if($op=="login"){
 		header("Location: login.php?login=nok");
 	}
 	
-}else if ($op=="contactar"){
-	
-//	 $dict['mail'];
-//	$dict['mensaje'];
-	
 }else if($op=="recuperarPassword"){
 	$usuario= new clsUsuario();
 	$existe = $usuario->existeEmail($dict['email']); 
 	if($existe==1){  //enviar email
-		echo "1";
+		$contrasena_cod = $usuario->getContrasenaByEmail($dict['email']);
+		$contrasena_decod = base64_decode($contrasena_cod);
+		$para=$dict['email'];
+		$titulo="Recordatorio de Contrase&ntilde;a";
+		
+		$mensaje = "Su contrase&ntilde;a para acceder a la plataforma de Cursos de Espa&ntilde;ol es: <b>". $contrasena_decod."</b>";		
+		mail($para, $titulo, $mensaje);
+		echo "1";		
 	}
 	//NO existe
 	if ($existe==0){
 		echo "0";
+		
 	}
 
 }else if($op=="duplicadoEmail"){
@@ -82,6 +85,7 @@ if($op=="login"){
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
+	$dict['contrasena']=base64_encode($dict['contrasena']);
 	$usuario->estableceCampos($dict);
 	if(isset($dict['rol'])){
 		$usuario->rol="P";
@@ -502,11 +506,13 @@ else if($op=="nueva_imagen"){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
 	$para="mikgongin@hotmail.com";
-	$titulo="Envio contacto";
+	$titulo="Solicitud de informacion";
 	$mensaje= $dict['email']." le ha mandado el siguiente mensaje:";
 	$mensaje .=	$dict['mensaje'];
+		
 	mail($para, $titulo, $mensaje);
 	
+
 }
 
 
