@@ -301,7 +301,7 @@ if($op=="login"){
 		$preguntas_totales = $pregunta->getNumPreguntas($activo);
 		
 		if($preguntas_totales>0){
-			$nota = $aciertos/$preguntas_totales;
+			$nota = ($aciertos/$preguntas_totales)*100;
 		}else{
 			$nota=0;
 		}
@@ -513,6 +513,63 @@ else if($op=="nueva_imagen"){
 	mail($para, $titulo, $mensaje);
 	
 
+}else if($op=="exportar_paises"){
+	header("Content-type: text/csv");
+	header("Content-Disposition: attachment; filename=alumnos_paises.csv");
+	header("Pragma: no-cache");
+	header("Expires: 0");
+	$objDatos = new clsDatos();
+	$csv_end = "  
+	";  
+	$csv_sep = ";";  
+	$csv_file = "alumnos_paises.csv";  
+	$csv="PAIS".$csv_sep."N.Alumnos".$csv_end;  
+	$sql= "SELECT nacionalidad,COUNT(*) AS total FROM usuarios GROUP BY nacionalidad";
+	$res = $objDatos->filtroListado($sql); 
+	while ($row = mysqli_fetch_assoc($res)) { 
+		$csv.=$row['nacionalidad'].$csv_sep.$row['total'].$csv_end;  
+	}  
+	//Generamos el csv de todos los datos  
+	if (!$handle = fopen($csv_file, "w")) {  
+		echo "Cannot open file";  
+		exit;  
+	}  
+	if (fwrite($handle, utf8_decode($csv)) === FALSE) {  
+		echo "Cannot write to file";  
+		exit;  
+	}  
+	fclose($handle); 
+	echo $csv;
+
+}else if($op=="exportar_notas"){
+	header("Content-type: text/csv");
+	header("Content-Disposition: attachment; filename=notas_rango.csv");
+	header("Pragma: no-cache");
+	header("Expires: 0");
+	
+	$csv_end = "  
+	";  
+	$csv_sep = ";";  
+	$csv_file = "notas_rango.csv";  
+	$csv="Rango".$csv_sep."N.Alumnos".$csv_end;  
+	$i=0;
+	$notas = explode(",",$dict['notas']);
+	foreach($notas as $nota) { 
+		$csv.=intval($i)."-".intval($i+1).$csv_sep.$nota.$csv_end;  
+		$i++;
+	}  
+	//Generamos el csv de todos los datos  
+	if (!$handle = fopen($csv_file, "w")) {  
+		echo "Cannot open file";  
+		exit;  
+	}  
+	if (fwrite($handle, utf8_decode($csv)) === FALSE) {  
+		echo "Cannot write to file";  
+		exit;  
+	}  
+	fclose($handle); 
+	echo $csv;	
+	
 }
 
 

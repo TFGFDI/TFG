@@ -135,6 +135,36 @@ public function setNotaDesarrollo($examen,$usuario,$nota){
 	
 	return $res['nota'];
 }
+public function getNotaBloque($from,$to){
+	$objDatos = new clsDatos();
+	$sql= "SELECT COUNT(*) as nota FROM examenes_realizados WHERE nota>='$from' AND nota<='$to'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['nota'];
+}
+
+public function getMedia(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT AVG(nota) as nota FROM examenes_realizados";
+	$res = $objDatos->filtro($sql);
+	
+	return round($res['nota'],2);
+}
+
+public function getVarianza(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT nota FROM examenes_realizados";
+	$res = $objDatos->filtroListado($sql);
+	
+	while ($rowEmp = mysqli_fetch_assoc($res)) { 
+		$ar_notas[]=$rowEmp['nota'];
+	}
+	$varianza = stats_variance($ar_notas); var_dump($varianza);
+	return $varianza;
+	
+	
+}
+
 }
 
 ?>

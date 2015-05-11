@@ -260,6 +260,38 @@ public function getContrasenaByEmail($email){
 	
 	return $res['contrasena'];
 }
+
+public function getCountSexo($sexo){
+	$objDatos = new clsDatos();
+	$sql= "SELECT count(*) as total FROM usuarios WHERE sexo='$sexo' AND activo='1' AND rol='E'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['total'];
+}
+
+public function getNacionalidadJSON(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT nacionalidad,COUNT(*) AS total FROM usuarios GROUP BY nacionalidad";
+	$res = $objDatos->filtroListado($sql);
+	$separador="";
+	$json="[";
+	while ($rowEmp = mysqli_fetch_assoc($res)) { 
+		$sql= "SELECT codigo FROM paises WHERE nombre='".$rowEmp['nacionalidad']."'";
+		$result = $objDatos->filtro($sql);
+		$codigo=strtoupper($result['codigo']);
+		
+		$json.=$separador.'{"code":"'.$codigo.'",';
+		$json.='"value":'.$rowEmp['total'].',';
+		$json.='"name":"'.$rowEmp['nacionalidad'].'"}';
+		$separador=",";
+	}
+	$json.="]";
+	
+	return $json;
+	
+	
+}
+
 }
 
 ?>
