@@ -6,6 +6,8 @@
 
 <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon" />
 <script type="text/javascript"  src="../js/jquery-1.8.1.min.js"></script>
+<script src="../ckeditor/ckeditor.js"></script>
+<script src="../ckeditor/adapters/jquery.js"></script>
 <link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <link rel="stylesheet" href="../js/jquery-ui-1.11.3.custom/jquery-ui.css">  

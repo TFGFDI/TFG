@@ -11,4 +11,5 @@ require_once("modelos/clsExamenesRealizados.php");
 require_once("modelos/clsRespuestasAlumnos.php");
 require_once("modelos/clsImagen.php");
 require_once("modelos/clsNoticia.php");
+require_once("modelos/clsInformacion.php");
 ?>

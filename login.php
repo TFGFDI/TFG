@@ -221,6 +221,9 @@ $filas = $noticia->noticiasActivas();
 $imagenes= new clsImagen();					
 $filasImagen = $imagenes->imagenesActivas();
 
+$informacion= new clsInformacion();					
+$filasInformacion = $informacion->informacionesActivas();
+
 ?>
 <style>
 
@@ -302,9 +305,21 @@ $filasImagen = $imagenes->imagenesActivas();
 		</nav>
 		<section id="informacion" class="bloqueSombra bloqueBordesAzul">
 			<article id="tab1">
-			<p><span class="primeraPalabra"><span class="letraCapital">L</span>os</span> Cursos de Español como Lengua Extranjera de la Universidad de Zaragoza desarrollan su labor a lo largo de todo el año en Zaragoza y durante el verano trasladan su actividad a la ciudad de Jaca (Huesca), enclave turístico situado en los Pirineos.</p>
+			<!--p><span class="primeraPalabra"><span class="letraCapital">L</span>os</span> Cursos de Español como Lengua Extranjera de la Universidad de Zaragoza desarrollan su labor a lo largo de todo el año en Zaragoza y durante el verano trasladan su actividad a la ciudad de Jaca (Huesca), enclave turístico situado en los Pirineos.</p>
 			<p><span class="primeraPalabra"><span class="letraCapital">L</span>a</span> Universidad de Zaragoza es pionera en la enseñanza de español a extranjeros desde 1927. Mantiene convenios con diferentes instituciones públicas y privadas de todo el mundo, colabora directamente con distintos organismos oficiales en la tarea de difusión del español (Instituto Cervantes, Consejerías de Educación de diversas Embajadas de España, Gobierno de Aragón, Ministerio de Educación, Cultura y Deporte) y es Centro Examinador Oficial para la obtención del Diploma de Español como Lengua Extranjera (DELE).</p>
-			<p><span class="primeraPalabra"><span class="letraCapital">L</span>a</span> Universidad de Zaragoza cuenta con un gran reconocimiento internacional, como lo demuestra el elevado número de estudiantes extranjeros que la visitan dentro de los diferentes programas de cooperación en los que participa (Sócrates-Erasmus, Tempus, ALPA, Asia-Link, Leonardo, etc.). Sus Cursos de Español se integran en dichos programas y, además, organizan cursos específicos para las Universidades extranjeras que así lo solicitan.</p>
+			<p><span class="primeraPalabra"><span class="letraCapital">L</span>a</span> Universidad de Zaragoza cuenta con un gran reconocimiento internacional, como lo demuestra el elevado número de estudiantes extranjeros que la visitan dentro de los diferentes programas de cooperación en los que participa (Sócrates-Erasmus, Tempus, ALPA, Asia-Link, Leonardo, etc.). Sus Cursos de Español se integran en dichos programas y, además, organizan cursos específicos para las Universidades extranjeras que así lo solicitan.</p-->
+			 <div>
+				<?php while ($rowEmp = mysqli_fetch_assoc($filasInformacion)) { ?>
+					<div>						
+							
+							<span><?php echo $rowEmp['informaciones']; ?></span>				
+						
+					</div>
+				<?php } ?>
+		
+			
+			</div>
+		  
 		  </article>
 		  <article id="tab2">
 			 <div>

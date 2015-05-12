@@ -92,6 +92,8 @@ $url=$util->getURL();
 			<img src="./imagenes/culm_blanco.png" />
 		</a>
 		</div>
+		
+		
 		<div style="float:right;margin-right:20px;">
 			<a href="<?php echo $url?>?lang=es">
 				<img src="./imagenes/esp.gif" />
@@ -100,6 +102,9 @@ $url=$util->getURL();
 				<img src="./imagenes/eng.gif" />
 			</a>
 			<span  ><a href="do.php?op=salir" class="salir"><?php echo $util->trad("salir",$lang);?></a></span>
+		</div>
+		<div style="float:right;margin-right:15px">
+			<span>Hola <b><?php echo $_SESSION['nombre']?></b></span>
 		</div>
 	</header >
 	<div id="logo_inferior"  >

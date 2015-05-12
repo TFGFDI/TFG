@@ -15,7 +15,7 @@ $dict = getRequest();
 $op = $dict['op'];
 
 $util = new clsUtil();
-//var_dump($dict);exit();
+
 session_start();
 
 if($op=="login"){ 
@@ -204,11 +204,19 @@ if($op=="login"){
 	$examen= new clsExamenes();
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
-	}
+	}	
 	$examen->estableceCampos($dict);
 	$examen->activar_examen();
 	header("Location: ls_examenes_profesor.php");
 	
+}else if($op=="desactivar_examen"){
+	$examen= new clsExamenes();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}	
+	$examen->estableceCampos($dict);
+	$examen->desactivar_examen();
+	header("Location: ls_examenes_profesor.php");
 }else if($op=="nueva_pregunta"){
 	$pregunta= new clsPreguntasExamen();
 	
@@ -403,6 +411,57 @@ if($op=="login"){
 	
 	$noticia->editar();
 //	header("Location: admin/index.php");
+
+}else if($op=="editarInformacion"){
+	$informacion= new clsInformacion();
+	foreach($dict as $clave => $valor){
+		
+			$dict[$clave] = $util->desinfectar($valor);
+		
+	}
+	$informacion->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	
+	$informacion->editar();
+
+}else if($op=="eliminarInformacion"){
+	$informacion= new clsInformacion();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+		echo  $dict[$clave];
+		echo "<br>";
+	}
+	$informacion->estableceCampos($dict);
+	$informacion->eliminar();	
+
+}else if($op=="activarInformacion"){ 
+	$informacion = new clsInformacion();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}
+	$informacion->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	$infor = $informacion->getInformacionById();
+	if($infor['activo']=='1'){
+		$infor['activo']='0';
+	}else{
+		$infor['activo']='1';
+	}
+	$informacion->estableceCampos($infor);//modificamos el campo activo a 1 ó 0 
+	$informacion->editar();	
+	
+}else if($op=="nueva_informacion"){
+	$informacion= new clsInformacion();
+	
+	foreach($dict as $clave => $valor){
+
+		if($clave == 'fecha'){
+			$dict[$clave] = $util->fechaFormato2($valor);
+		}else{
+			$dict[$clave] = $util->desinfectar($valor);
+		}
+	}
+	$informacion->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	$informacion->incluir();
+	header("Location: admin/index.php?menu=0&cargarInformacion=1");	
 	
 }
 else if($op=="nueva_imagen"){

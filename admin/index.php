@@ -47,7 +47,7 @@ if (isset($dict['orden'])){
 ?>
 <style>
 .fancybox-skin{
-	height:300px!important;
+	height:400px!important;
 }
 </style>
 <script>
@@ -107,6 +107,20 @@ function eliminarImagen(_id){
 	} 
 }
 
+function eliminarInformacion(_id){
+	var r = confirm("\u00BF Seguro que desea eliminar?");
+	if (r == true) {
+		
+		$.post('../do.php',
+			{op: 'eliminarInformacion',id: _id},
+			function() {
+				cargarInformacion ();   
+			}
+		);
+	} 
+}
+
+
 function activar(_id){
 //	location.href='../do.php?op=activarNoticia&id='+id+"";
 	$.post('../do.php',
@@ -122,6 +136,15 @@ function activarImagen(_id){
 	  { op: 'activarImagen', id: _id},
 	  function() {
 		cargarImagenes();   
+	});
+}
+
+function activarInformacion(_id){ 
+//	location.href='../do.php?op=activarImagen&id='+_id+"";
+	$.post('../do.php',
+	  { op: 'activarInformacion', id: _id},
+	  function() {
+		cargarInformacion();   
 	});
 }
 
@@ -141,6 +164,10 @@ cargarImagenes = function(){
 	$("#destino").load("imagenes.php");
 }
 
+cargarInformacion = function(){
+	$("#informacion").addClass("menuActivo");
+	$("#destino").load("informacion.php");
+}
 function mostrar(){
 	$('#oculto').toggle('slow');
 	$('#avanzada').toggle('slow');
@@ -187,7 +214,7 @@ $(document).ready(function() {
 		
 	$(".ifancybox").fancybox({
 		 'width' : '45%',
-		 'height' : '75%',
+		 'height' : '15%',
 		 'scrolling'   : 'no',
 		 'autoScale'         : true,
 		'autoDimensions'    : true,
@@ -203,6 +230,7 @@ $(document).ready(function() {
 		$("#noticias").click(function(evento){
 			$("#cuenta").removeClass();
 			$("#imagenes").removeClass();
+			$("#informacion").removeClass();
 			$("#noticias").addClass("menuActivo");
 			evento.preventDefault();
 			$("#destino").load("noticias.php");
@@ -211,14 +239,25 @@ $(document).ready(function() {
 	   	$("#imagenes").click(function(evento){ 
 			$("#cuenta").removeClass();
 			$("#noticias").removeClass();
+			$("#informacion").removeClass();
 			$("#imagenes").addClass("menuActivo");
 			evento.preventDefault();
 			$("#destino").load("imagenes.php");
 	   });
 	   
+	   $("#informacion").click(function(evento){ 
+			$("#cuenta").removeClass();
+			$("#noticias").removeClass();
+			$("#imagenes").removeClass();
+			$("#informacion").addClass("menuActivo");
+			evento.preventDefault();
+			$("#destino").load("informacion.php");
+	   });
+	   
 	    $("#cuenta").click(function(evento){ 
 			$("#noticias").removeClass();
 			$("#imagenes").removeClass();
+			$("#informacion").removeClass();
 			$("#cuenta").addClass("menuActivo");
 			evento.preventDefault();
 			$("#destino").load("cuentaUsuario.php");
@@ -250,8 +289,9 @@ $(document).ready(function() {
 			</div>	
 			<div class="caja_contenido">
 				<ul>
-					<li><a href="#" id="noticias" title="Inicio">Gestión NOTICIAS</a></li>
-					<li><a href="#" id="imagenes" title="Empresa">Gestión IMAGENES</a></li>
+					<li><a href="#" id="noticias" title="Inicio">Gesti&oacute;n NOTICIAS</a></li>
+					<li><a href="#" id="imagenes" title="Empresa">Gesti&oacute;n IMAGENES</a></li>
+					<li><a href="#" id="informacion" title="Empresa">Gesti&oacute;n INFORMACI&Oacute;N</a></li>
 				</ul>
 			</div>
 		</article>
