@@ -66,7 +66,7 @@ $(document).ready(function() {
 		});
 
 		$(".ifancybox").fancybox({
-         'width' : '25%',
+         'width' : '35%',
          'height' : '200px',
          'autoScale' : true,
          'transitionIn' : 'none',

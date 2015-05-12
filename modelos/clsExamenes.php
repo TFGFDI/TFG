@@ -143,6 +143,7 @@ public function activar_examen(){
 	
 	$sql="UPDATE examenes SET activo=1 WHERE id='$this->id'";
 	$objDatos->ejecutar($sql);
+	
 }
 
 public function desactivar_examen(){

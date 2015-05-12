@@ -63,7 +63,6 @@ if($op=="login"){
 		echo "0";
 		
 	}
-
 }else if($op=="duplicadoEmail"){
 
 	$usuario= new clsUsuario();

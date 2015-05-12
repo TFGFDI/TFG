@@ -385,7 +385,7 @@ nav li.activo a, nav li:hover  a{
 #derecho_general{
 	float:left;
     width: 700px;
-	height:460px;
+	height: auto;
 	border: 3px solid #ecebeb;
 	margin: 15px 10px 0 10px;
 
