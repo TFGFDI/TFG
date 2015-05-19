@@ -332,10 +332,11 @@ if($op=="login"){
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
-	$usuario->estableceCampos($dict);
-	if($dict['contrasena_antigua']== $usuario->getContrasenaById($_SESSION['id'])){
+	$usuario->estableceCampos($dict);	
+	
+	if(base64_encode($dict['contrasena_antigua'])== $usuario->getContrasenaById($_SESSION['id'])){
 		if($dict['contrasena']==$dict['contrasena2']){
-			$usuario->contrasena=$dict['contrasena'];
+			$usuario->contrasena=base64_encode($dict['contrasena']);
 		}else{
 			$error="noiguales";
 		}
@@ -353,9 +354,11 @@ if($op=="login"){
 	
 	if($error==""){
 		$usuario->editar();
-		header("Location: modificar_perfil.php?estado=ok");
+		//header("Location: modificar_perfil.php?estado=ok");
+		header("Location:". $_SERVER['HTTP_REFERER']."?estado=ok");
 	}else{
-		header("Location: modificar_perfil.php?error=$error");
+		//header("Location: modificar_perfil.php?error=$error");
+		header("Location:". $_SERVER['HTTP_REFERER']."?error=$error");
 	}
 	
 }else if($op=="nueva_noticia"){
@@ -633,7 +636,18 @@ else if($op=="nueva_imagen"){
 	}  
 	fclose($handle); 
 	echo $csv;	
-	
+
+}else if($op=="editarExamen"){
+	$examen= new clsExamenes();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}
+	$ar_profesor = explode("_",$dict['profesor']);
+	$dict['id_profesor'] = $ar_profesor[0];
+	$dict['nombre_profesor'] = $ar_profesor[1];
+	$examen->estableceCampos($dict);	
+	$examen->editar();
+	header("Location: admin/examenes.php?menu=3");
 }
 
 

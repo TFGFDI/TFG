@@ -165,7 +165,7 @@ cargarImagenes = function(){
 }
 
 cargarInformacion = function(){
-	$("#informacion").addClass("menuActivo");
+	$("#info").addClass("menuActivo");
 	$("#destino").load("informacion.php");
 }
 function mostrar(){
@@ -200,6 +200,8 @@ function openFancybox() {
 
 
 $(document).ready(function() {
+		$("#destino").load("cuentaUsuario.php");
+		$("#cuenta").addClass("menuActivo");
 		$(".fancybox").fancybox();
 
 		$('.fancybox-media').fancybox({
@@ -230,7 +232,7 @@ $(document).ready(function() {
 		$("#noticias").click(function(evento){
 			$("#cuenta").removeClass();
 			$("#imagenes").removeClass();
-			$("#informacion").removeClass();
+			$("#info").removeClass();
 			$("#noticias").addClass("menuActivo");
 			evento.preventDefault();
 			$("#destino").load("noticias.php");
@@ -239,17 +241,17 @@ $(document).ready(function() {
 	   	$("#imagenes").click(function(evento){ 
 			$("#cuenta").removeClass();
 			$("#noticias").removeClass();
-			$("#informacion").removeClass();
+			$("#info").removeClass();
 			$("#imagenes").addClass("menuActivo");
 			evento.preventDefault();
 			$("#destino").load("imagenes.php");
 	   });
 	   
-	   $("#informacion").click(function(evento){ 
+	   $("#info").click(function(evento){ 
 			$("#cuenta").removeClass();
 			$("#noticias").removeClass();
 			$("#imagenes").removeClass();
-			$("#informacion").addClass("menuActivo");
+			$("#info").addClass("menuActivo");
 			evento.preventDefault();
 			$("#destino").load("informacion.php");
 	   });
@@ -257,7 +259,7 @@ $(document).ready(function() {
 	    $("#cuenta").click(function(evento){ 
 			$("#noticias").removeClass();
 			$("#imagenes").removeClass();
-			$("#informacion").removeClass();
+			$("#info").removeClass();
 			$("#cuenta").addClass("menuActivo");
 			evento.preventDefault();
 			$("#destino").load("cuentaUsuario.php");
@@ -289,9 +291,9 @@ $(document).ready(function() {
 			</div>	
 			<div class="caja_contenido">
 				<ul>
-					<li><a href="#" id="noticias" title="Inicio">Gesti&oacute;n NOTICIAS</a></li>
-					<li><a href="#" id="imagenes" title="Empresa">Gesti&oacute;n IMAGENES</a></li>
-					<li><a href="#" id="informacion" title="Empresa">Gesti&oacute;n INFORMACI&Oacute;N</a></li>
+					<li><a href="#" id="noticias" title="Noticias">Gesti&oacute;n NOTICIAS</a></li>
+					<li><a href="#" id="imagenes" title="Imagenes">Gesti&oacute;n IMAGENES</a></li>
+					<li><a href="#" id="info" title="Informacion">Gesti&oacute;n INFORMACI&Oacute;N</a></li>
 				</ul>
 			</div>
 		</article>

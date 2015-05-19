@@ -54,9 +54,10 @@ if (isset($dict['orden'])){
 <script>
 	function limpiar(){
 	
-		$('#buscador_input').val('');		
+		$('#campo_buscador').val('');		
 		$('#activo').val('');
-		$('#nac').val('');
+		$('#datepicker').val('');
+		$('#datepicker1').val('');
 		$("#formulario").submit();
 		
 	}
@@ -95,9 +96,7 @@ if (isset($dict['orden'])){
 		
 	}
 	
-	function activar(id){
-		location.href='../do.php?op=activar&id='+id+"";
-	}
+	
 	function crear(){
 		location.href='nuevo.php';
 	}
@@ -194,8 +193,8 @@ if (isset($dict['orden'])){
 						</div>
 				</div>
 				<div id="buscadorDch">
-					<input type="button" name="buscar" value="Buscar" onclick="formulario.submit()" style="margin-right:10px;">
-					<input type="button" name="limpiar" value="Limpiar" onclick="limpiar()" id="limpiar">
+					<input type="button" value="Buscar" onclick="formulario.submit()" style="margin-right:10px;">
+					<input type="button" value="Limpiar" onclick="limpiar()" >
 				</div>
 				<div id="buscadorDch" style="margin-left:10px">
 					<span class="avanzada" id="avanzada" onclick="mostrar();">B&uacute;squeda avanzada</span>
@@ -243,17 +242,7 @@ if (isset($dict['orden'])){
 								}
 							?>
 						</th>						
-						<th width="5%" onclick="orden('activo','<?php echo $orden?>');" style="cursor:pointer"><span>Activo</span>
-							<?php 
-								if($filtro=="activo"){
-									if($orden=="DESC"){ ?>
-										<img src="../imagenes/flecha-abajo.png">
-									<?php }else if($orden=="ASC"){ ?>
-										<img src="../imagenes/flecha-arriba.png">
-									<?php }
-								}
-							?>
-						</th>	
+						
 						<th width="5%"></th>
 						<th width="5%"></th>
 					</tr>
@@ -286,10 +275,10 @@ if (isset($dict['orden'])){
 						}
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td style="text-align:left;"><a class="ifancybox" href="visualizar.php?id=<?php echo $rowEmp['id']?>"><?php echo $util->reducirCadenaLarga($rowEmp['nombre_profesor'])?></a></td>
+						<td style="text-align:left;cursor:pointer" id="<?php echo $rowEmp['id']?>" onclick="editar(this.id)"><?php echo $util->reducirCadenaLarga($rowEmp['nombre_profesor'])?></td>
 						<td><?php echo $util->fechaFormato3($rowEmp["fecha"])?></td>
 						<td><?php echo $estado;?></td>						
-						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="../imagenes/activo.png"><?php }else{?><img src="../imagenes/inactivo.png"><?php }?></td>
+						
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="editar(this.id)"><img src="../imagenes/lapiz.gif"></td>
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id)"><img src="../imagenes/eliminar.png" style="width:15px;"></td>
 					</tr>

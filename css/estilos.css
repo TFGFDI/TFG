@@ -395,7 +395,7 @@ nav li.activo a, nav li:hover  a{
 /*  seccion CAJAs MENUS IZQUIERDO*/
 .caja{
     width: 160px;
-	height:100px;
+	height:120px;
 	margin:10px 15px 0 15px;
 	border: 2px solid #fff;
 	border-bottom-left-radius: 0.5em;
