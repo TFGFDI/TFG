@@ -95,6 +95,12 @@ if($op=="login"){
 	$usuario->activo="0";
 	$usuario->incluir();
 	
+	$para=$usuario->getEmailAdministrador();
+	$titulo="Alta nuevo usuario";
+	$mensaje= $usuario->nombre." ".$usuario->apellidos." se ha registrado. Proceda a su activaci?n si es correcto";
+			
+	mail($para, $titulo, $mensaje);
+	
 	header("Location: login.php?registro=ok");
 }else if($op=="activar"){
 	$usuario= new clsUsuario();

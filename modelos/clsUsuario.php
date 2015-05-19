@@ -292,6 +292,19 @@ public function getNacionalidadJSON(){
 	
 }
 
+public function getEmailAdministrador(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT email FROM usuarios WHERE rol='A'";
+	$res = $objDatos->filtroListado($sql);
+	$email="";
+	$sep="";
+	while ($rowEmp = mysqli_fetch_assoc($res)) { 
+		$email.=$sep.$rowEmp['email'];
+		$sep=",";
+	}
+	return $email;
+}
+
 }
 
 ?>
