@@ -101,11 +101,15 @@ $url=$util->getURL();
 			<a href="<?php echo $url?>?lang=en" style="margin-left:10px;" />
 				<img src="./imagenes/eng.gif" />
 			</a>
-			<span  ><a href="do.php?op=salir" class="salir"><?php echo $util->trad("salir",$lang);?></a></span>
+			<?php if(isset($_SESSION['nombre'])){?>
+				<span  ><a href="do.php?op=salir" class="salir"><?php echo $util->trad("salir",$lang);?></a></span>
+			<?php }?>
 		</div>
+		<?php if(isset($_SESSION['nombre'])){?>
 		<div style="float:right;margin-right:15px">
 			<span>Hola <b><?php echo $_SESSION['nombre']?></b></span>
 		</div>
+		<?php }?>
 	</header >
 	<div id="logo_inferior"  >
 		<p class="cabecera_titulo">
