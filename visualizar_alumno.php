@@ -182,14 +182,16 @@ $user = $usuario->getUsuarioById();
 								<section><b><?php echo $rowEmp2["pregunta"]?></b></section>
 										
 								<?php if ($rowEmp2["tipo"]=="Test"){?>
+								
+																
 								<section class="respuesta">
 									<input type="radio" <?php if ($res['respuesta']=='a'){?>checked <?php }?> disabled><span><?php echo $rowEmp2['respuesta1']?></span><br>
 									<input type="radio" <?php if ($res['respuesta']=='b'){?>checked <?php }?> disabled><span><?php echo $rowEmp2['respuesta2']?></span><br>
 									<input type="radio" <?php if ($res['respuesta']=='c'){?>checked <?php }?> disabled><span><?php echo $rowEmp2['respuesta3']?></span><br>
 									<input type="radio" <?php if ($res['respuesta']=='d'){?>checked <?php }?> disabled><span><?php echo $rowEmp2['respuesta4']?></span><br>
 								</section>
-								<section <?php if($res['respuesta']==$res['solucion']){?>style="color:green" <?php }else{?>style="color:red"<?php }?>>
-									<b>Soluci&oacute;n:</b> <?php echo $res['solucion']?>
+								<section <?php if($res['respuesta']==$rowEmp2['solucion']){?>style="color:green" <?php }else{?>style="color:red"<?php }?>>
+									<b>Soluci&oacute;n:</b> <?php echo $rowEmp2['solucion']?>
 								</section>
 								<?php }else if ($rowEmp2["tipo"]=="Desarrollo"){?>
 								<br>
