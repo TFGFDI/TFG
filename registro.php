@@ -111,9 +111,7 @@ $( "#datepicker" ).blur(function() {
 				<div class="bloque_campoForumulario">
 					<label for="apellidos"><?php echo $util->trad("apellidos",$lang);?></label>
 					<input type="text" name="apellidos" id="apellidos" value=""  class="input input_tamanhoNormal" tabindex="2"/>
-				</div>
-			
-			
+				</div>			
 				<div class="bloque_campoForumulario">
 					<label for="sexo"><?php echo $util->trad("sexo",$lang);?></label>
 					<select name="sexo" id="sexo" class="select_tamanhoPequenho" tabindex="3">
@@ -126,22 +124,28 @@ $( "#datepicker" ).blur(function() {
 					<label for="fechanacimiento"><?php echo $util->trad("nacimiento",$lang);?></label>
 					<input type="text" name="fechanacimiento" id="datepicker" value="" class="input_tamanhoPequenho" tabindex="4"/>
 				</div>
+				
 				<div class="bloque_campoForumulario">
-					<label for="telefono"><?php echo $util->trad("telefono",$lang);?></label>
-					<input type="text" name="telefono" id="telefono" value=""  class="input_tamanhoMediano" tabindex="5"/>
-				</div>
-				<div class="bloque_campoForumulario">
-					<label for="cp"><?php echo $util->trad("cp",$lang);?></label>
-					<input type="text" name="cp" id="cp" value=""  class="input_tamanhoPequenho" tabindex="6"/>
+					<label for="direccion"><?php echo $util->trad("dirección",$lang);?></label>
+					<input type="text" name="direccion" id="direccion" value=""  class="input input_tamanhoNormal" tabindex="5"/>
 				</div>
 				<div class="bloque_campoForumulario">
 					<label for="ciudad"><?php echo $util->trad("ciudad",$lang);?></label>
-					<input type="text" name="ciudad" id="ciudad" value=""  class="input_tamanhoNormal" tabindex="7"/>
+					<input type="text" name="ciudad" id="ciudad" value=""  class="input_tamanhoNormal" tabindex="10"/>
 				</div>
+				<div class="bloque_campoForumulario">
+					<label for="cp"><?php echo $util->trad("cp",$lang);?></label>
+					<input type="text" name="cp" id="cp" value=""  class="input_tamanhoPequenho" tabindex="9"/>
+				</div>
+					<div class="bloque_campoForumulario">
+					<label for="telefono"><?php echo $util->trad("telefono",$lang);?></label>
+					<input type="text" name="telefono" id="telefono" value=""  class="input_tamanhoMediano" tabindex="8"/>
+				</div>
+				
 				<div class="bloque_campoForumulario">
 					
 					<label for="nacionalidad"><?php echo $util->trad("nacionalidad",$lang);?></label>					
-					<select name="nacionalidad" id="nacionalidad" class="select_tamanhoMediano" tabindex="8">
+					<select name="nacionalidad" id="nacionalidad" class="select_tamanhoMediano" tabindex="11">
 						<option value="" selected></option>
 					<?php 
 						$util=new ClsUtil();

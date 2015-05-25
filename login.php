@@ -63,7 +63,7 @@
 
 				},
 				submitHandler: function() {  //cuando se envia el formulario
-					//alert("formulario enviado");
+					//alert("Formulario enviado");
 					formLoguin.submit();
 				}
 			});
@@ -83,7 +83,7 @@
 				},
 				
 				submitHandler: function() {  //cuando se envia el formulario
-					alert("formulario enviado");
+					alert("Gracias por ponerse en contacto con nosotros.");
 					//formContacto.submit();
 					var email=$('[name=mail]').val();
 					var msg=$('[name=mensaje]').val();

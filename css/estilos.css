@@ -1029,9 +1029,9 @@ table.menuVertical th:hover.menu{
 .destacados{
 background: url(../imagenes/boton_info.png) no-repeat top left;
 border: 3.5px solid #36559e;
-margin: 20px 0 30px !important;
+margin: 20px 10px 30px !important;
 padding: 15px 20px 20px 80px;
-border-radius: 7px 7px 7px 7px;
+border-radius: 35px 7px 7px 7px;
 }
 
 

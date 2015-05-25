@@ -83,7 +83,7 @@ $fila = $alumno->getUsuarioById();
 
 
 ?>
-<h2><?php echo $util->trad("modificar_perfil",$lang);?></h2>
+<h2><?php echo $util->trad("Modificar Perfil",$lang);?></h2>
 	<div id="central1" class="bloqueBordesAzul bloqueSombra bloqueRedondo" >
 	<?php 
 		if($_SESSION['rol']=='E'){
