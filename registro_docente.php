@@ -87,12 +87,7 @@ require_once("top.php");
 	});
 	
 
-$( "#datepicker" ).blur(function() {
-//$('#datepicker').removeClass('error');
-//alert("oli");
-});
 
-	
 	
 
 </script>

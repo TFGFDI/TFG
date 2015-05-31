@@ -20,8 +20,9 @@
 			},
 			
 			submitHandler: function() {  //cuando se envia el formulario
-				alert("formulario enviado");
+			//	alert("formulario enviado");
 				//formContacto.submit();
+				openFancyboxPequenho1();
 				var email=$('[name=mail]').val();
 				var msg=$('[name=mensaje]').val();
 					$.post('./do.php',
@@ -29,7 +30,7 @@
 						function(){
 							$("#bloque_contacto").html("<div style='text-align:center;margin-top:50px;' id='message'></div>");
 							$('#message').append("<a  onclick='emailEnviado();'><img id='checkmark' src='imagenes/aceptar.png' /></a>");
-							$('#message').append("<h2>¡¡ Email Enviado !!</h2>");
+							$('#message').append("<h2>¡¡ Consulta Enviada !!</h2>");
 						}
 					);
 			}

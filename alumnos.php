@@ -21,11 +21,9 @@ if (isset($dict['filtro'])){
 	$filtro="";
 }
 
-if (isset($dict['activo'])){
-	$activo=$dict['activo'];
-}else{
-	$activo="";
-}
+$util = new ClsUtil();
+$url=$util->getPagina();
+
 
 if (isset($dict['nac'])){
 	$nac=$dict['nac'];
@@ -40,8 +38,31 @@ if (isset($dict['orden'])){
 }else{
 	$orden="";
 }
+
+
 ?>
 <script>
+	function limpiar(){
+		$('#buscador_input').val('');		
+		$("#formulario").submit();
+		
+	}
+	
+	function orden(filtro,orden){
+		
+		if(orden ==""){
+			orden="ASC";
+		} else if(orden =="ASC"){
+			orden="DESC";
+		}else if(orden =="DESC"){
+			orden="ASC";
+		}
+			
+
+		location.href='alumnos.php?menu=1&filtro='+filtro+"&orden="+orden;
+		
+	}
+	
 $(document).ready(function() {
 		$(".fancybox").fancybox();
 
@@ -55,7 +76,7 @@ $(document).ready(function() {
 		});
 
 		$(".ifancybox").fancybox({
-         'width' : '45%',
+         'width' : '70%',
          'height' : '75%',
 	     'scrolling'   : 'no',
 		 'autoScale'         : true,
@@ -74,14 +95,27 @@ $(document).ready(function() {
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>
+	<br />
+	<div id="buscador3" class=" bloqueSombra bloqueRedondo">
+		<form name="formulario" method="get" action="./alumnos.php" id="formulario">
+			<input type="hidden" name="menu" value="1">
+			<div class="divCampo">
+				<input type="text" name="buscador" value="<?php echo $buscador?>" class="input input_tamanhoGrande" id="buscador_input">
+			</div>
+			<div style="margin-top:20px;">
+				<input type="button" value="Buscar" onclick="formulario.submit()" style="margin-right:10px;">
+				<input type="button" value="Limpiar" onclick="limpiar()">
+			</div>
+		
+		</form>
+	</div>
 	
-	<section class="bloquecompleto bloqueRedondeado">
-       
+	<section class="bloquecompleto bloqueRedondeado">	
 		<div class="datagrid" style="width:auto;">
 			<table>
 				<thead>
 					<tr>
-						<th onclick="orden('nombre','<?php echo $orden?>');" style="cursor:pointer"><span>Nombre</span>
+						<th width="30%" onclick="orden('nombre','<?php echo $orden?>');" style="cursor:pointer"><span>Nombre</span>
 							<?php 
 								if($filtro=="nombre"){
 									if($orden=="DESC"){ ?>
@@ -92,7 +126,7 @@ $(document).ready(function() {
 								}
 							?>
 						</th>
-						<th onclick="orden('email','<?php echo $orden?>');" style="cursor:pointer"><span>Email</span>
+						<th width="30%" onclick="orden('email','<?php echo $orden?>');" style="cursor:pointer"><span>Email</span>
 							<?php 
 								if($filtro=="email"){
 									if($orden=="DESC"){ ?>
@@ -104,7 +138,7 @@ $(document).ready(function() {
 							?>
 						</th>
 						
-						<th onclick="orden('nacionalidad','<?php echo $orden?>');" style="cursor:pointer"><span>Nacionalidad</span>
+						<th width="20%" onclick="orden('nacionalidad','<?php echo $orden?>');" style="cursor:pointer"><span>Nacionalidad</span>
 							<?php 
 								if($filtro=="nacionalidad"){
 									if($orden=="DESC"){ ?>
@@ -115,7 +149,7 @@ $(document).ready(function() {
 								}
 							?>
 						</th>	
-						<th onclick="orden('fechanacimiento','<?php echo $orden?>');" style="cursor:pointer"><span>Fecha de Nacimiento</span>
+						<th width="20%" onclick="orden('fechanacimiento','<?php echo $orden?>');" style="cursor:pointer"><span>Fecha Nacimiento</span>
 							<?php 
 								if($filtro=="fechanacimiento"){
 									if($orden=="DESC"){ ?>
@@ -151,10 +185,10 @@ $(document).ready(function() {
 					while ($rowEmp = mysqli_fetch_assoc($filasPag)) { 
 				?>
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
-						<td><a class="ifancybox" href="visualizar_alumno.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?> <?php echo $rowEmp['apellidos']?></a></td>
-						<td><?php echo $rowEmp["email"]?></td>						
-						<td><?php echo $rowEmp["nacionalidad"]?></td>
-						<td><?php echo $rowEmp["fechanacimiento"]?></td>
+						<td style="text-align:left;"><a class="ifancybox" href="visualizar_alumno.php?id=<?php echo $rowEmp['id']?>"><?php echo $rowEmp['nombre']?> <?php echo $util->reducirCadena($rowEmp['apellidos'])?></a></td>
+						<td style="text-align:left;"><?php echo$util->reducirCadena($rowEmp["email"])?></td>						
+						<td style="text-align:left;"><?php echo $rowEmp["nacionalidad"]?></td>
+						<td style="text-align:left;"><?php echo $rowEmp["fechanacimiento"]?></td>
 					</tr>
 					<?php 
 					$i++;

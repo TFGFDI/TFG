@@ -17,6 +17,7 @@ if($activo==NULL){
 }
 ?>
 	<ul>
+		<li <?php if((isset($dict['menu']))&&($dict['menu']=='0')){?> class="activo" <?php } ?>><a href="alumno.php?menu=0" >Inicio</a></li>
 		<?php if($puede_examinarse){?>
 			<li <?php if((isset($dict['menu']))&&($dict['menu']=='1')){?> class="activo" <?php } ?> onclick="empezar();"><a>Hacer Ex&aacute;men</a></li>
 		<?php }?>
@@ -25,8 +26,8 @@ if($activo==NULL){
 				<li <?php if((isset($dict['menu']))&&($dict['menu']=='1')){?> class="activo" <?php } ?>><a href="examen.php">Hacer Ex&aacute;men</a></li>
 			<?php }?>
 		<?php }?>
-		<li <?php if((isset($dict['menu']))&&($dict['menu']=='2')){?> class="activo" <?php } ?>><a href="historial_alumnos.php">Historial</a></li>
-		<li <?php if((isset($dict['menu']))&&($dict['menu']=='3')){?> class="activo" <?php } ?>><a href="modificar_perfil.php">Perfil</a></li>
+		<li <?php if((isset($dict['menu']))&&($dict['menu']=='2')){?> class="activo" <?php } ?>><a href="historial_alumnos.php?menu=2">Historial</a></li>
+	
 	
 	</ul>
 

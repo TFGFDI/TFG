@@ -124,10 +124,10 @@ $( "#datepicker" ).blur(function() {
 					<label for="fechanacimiento"><?php echo $util->trad("nacimiento",$lang);?></label>
 					<input type="text" name="fechanacimiento" id="datepicker" value="" class="input_tamanhoPequenho" tabindex="4"/>
 				</div>
-				
+			
 				<div class="bloque_campoForumulario">
 					<label for="direccion"><?php echo $util->trad("dirección",$lang);?></label>
-					<input type="text" name="direccion" id="direccion" value=""  class="input input_tamanhoNormal" tabindex="5"/>
+					<input type="text" name="direccion" id="direccion" value=""  class="input_tamanhoNormal" tabindex="5"/>
 				</div>
 				<div class="bloque_campoForumulario">
 					<label for="ciudad"><?php echo $util->trad("ciudad",$lang);?></label>

@@ -83,8 +83,9 @@
 				},
 				
 				submitHandler: function() {  //cuando se envia el formulario
-					alert("Gracias por ponerse en contacto con nosotros.");
+				//	alert("Gracias por ponerse en contacto con nosotros.");
 					//formContacto.submit();
+					openFancyboxPequenho1();
 					var email=$('[name=mail]').val();
 					var msg=$('[name=mensaje]').val();
 						$.get('do.php',
@@ -92,14 +93,14 @@
 							function(){
 								$("#bloque_contacto").html("<div style='text-align:center;margin-top:50px;' id='message'></div>");
 								$('#message').append("<a  onclick='emailEnviado();'><img id='checkmark' src='imagenes/aceptar.png' /></a>");
-								$('#message').append("<h2>¡¡ Email Enviado !!</h2>");
+								$('#message').append("<h2>¡¡ Consulta Enviada !!</h2>");
 							}
 						);
 				}
 			});
 			
 			
-				$("#form_RecuperarPassword").validate({
+			$("#form_RecuperarPassword").validate({
 				debug: true,
 				success: "valid",
 				rules: {
@@ -125,8 +126,7 @@
 						
 						if(dato==0){  //no existe el email
 							openFancybox();
-							$("#errorEmail").append("El Email NO existe en el sistema");
-								
+							$("#errorEmail").append("El Email NO existe en el sistema");		
 						}
 						
 						if(dato==1){
@@ -172,6 +172,21 @@
 		 'href' : '#fancy_emailEnviado' , // id del div que se visualiza
 	  });
 	}
+	
+	function openFancyboxPequenho1() {
+	  $.fancybox({
+		 'autoScale': true,
+		 'transitionIn': 'elastic',
+		 'transitionOut': 'elastic',
+		 'speedIn': 500,
+		 'speedOut': 300,
+		 'autoDimensions': true,
+		 'centerOnScroll': true,
+		 'href' : '#fancy_emailContacto' , // id del div que se visualiza
+	  });
+	}
+	
+
 		
 	</script>
 </head>
@@ -360,7 +375,7 @@ $filasInformacion = $informacion->informacionesActivas();
 			<div id="mapa">
 				<iframe src="mapa.php" class="mapa"></iframe> 
 			</div>
-			<div id="direccion">
+			<div id="direccion_facultad">
 					C/ Pedro Cerbuna,12 - 50009 Zaragoza - España 
 					<div style="margin-top:5px;">
 						<span style="font-weight:bold;">Tlf.:</span> 976 76 10 00
@@ -398,6 +413,16 @@ $filasInformacion = $informacion->informacionesActivas();
 				<h2 style="text-align:center;">¡¡ Email Enviado !!</h2>
 				<p style="font-size:18px; text-align:center;">
 				Le acabamos de enviar un email.
+				</p>
+			</fieldset>			
+		</div>
+		
+		<div id="fancy_emailContacto" style="display:none; height:150px;" >
+			<fieldset class="bloqueSombra bloqueRedondo" style="height:130px;">
+				<legend class="bloqueRedondo">Formulario Contacto</legend>	
+				<h2 style="text-align:center;">¡¡ Consulta enviada !!</h2>
+				<p style="font-size:18px; text-align:center;">
+				En breve nos pondremos en contacto con usted.
 				</p>
 			</fieldset>			
 		</div>

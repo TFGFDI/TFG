@@ -36,9 +36,9 @@ if($op=="login"){
 		if($usuario['rol']=='A'){
 			header("Location: admin/index.php?login=ok&menu=0");
 		}else if($usuario['rol']=='P'){
-			header("Location: profesores.php?login=ok");
+			header("Location: profesores.php?menu=0&login=ok");
 		}else{
-			header("Location: alumno.php?login=ok");
+			header("Location: alumno.php?menu=0&login=ok");
 		}
 	}else{
 		$_SESSION['ERRORES'][] = "Error al hacer login, vuelva intentarlo";
@@ -98,10 +98,9 @@ if($op=="login"){
 	$para=$usuario->getEmailAdministrador();
 	$titulo="Alta nuevo usuario";
 	$mensaje= $usuario->nombre." ".$usuario->apellidos." se ha registrado. Proceda a su activaci?n si es correcto";
-			
 	mail($para, $titulo, $mensaje);
 	
-	header("Location: login.php?registro=ok");
+//	header("Location: login.php?registro=ok");
 }else if($op=="activar"){
 	$usuario= new clsUsuario();
 	foreach($dict as $clave => $valor){
@@ -355,10 +354,10 @@ if($op=="login"){
 	if($error==""){
 		$usuario->editar();
 		//header("Location: modificar_perfil.php?estado=ok");
-		header("Location:". $_SERVER['HTTP_REFERER']."?estado=ok");
+		header("Location:". $_SERVER['HTTP_REFERER']."&estado=ok");
 	}else{
 		//header("Location: modificar_perfil.php?error=$error");
-		header("Location:". $_SERVER['HTTP_REFERER']."?error=$error");
+		header("Location:". $_SERVER['HTTP_REFERER']."&error=$error");
 	}
 	
 }else if($op=="nueva_noticia"){

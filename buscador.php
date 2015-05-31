@@ -7,6 +7,7 @@ if($url=="alumnos.php"){
 if($url=="profesores.php"){
 	$menu='2';
 }
+
 ?>
 
 <div id="buscador" class=" bloqueSombra bloqueRedondo">

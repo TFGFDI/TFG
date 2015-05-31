@@ -244,6 +244,14 @@ nav li.activo a, nav li:hover  a{
 	padding-left: 10px;
 	
 }
+#buscador3{
+	padding-top:15px;
+	width: 600px;
+	height:100px;
+	margin:0px auto 20px auto;
+	text-align: center;
+	
+}
 #buscador{
 	width: 600px;
 	height:130px;
@@ -1041,7 +1049,7 @@ border-radius: 35px 7px 7px 7px;
 	height:200px;
 	margin:20px 20px 0 20px ;
 }
-#direccion{
+#direccion_facultad{
 	float:left;
 	width:350px;
 	margin-left:40px;

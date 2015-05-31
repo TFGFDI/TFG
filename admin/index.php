@@ -186,6 +186,7 @@ function openFancybox() {
      'speedOut': 300,
      'autoDimensions': true,
      'centerOnScroll': true,
+//	 'scrolling':'no',
      'href' : '#fancy_form' , // id del div que se visualiza
 /*	  
 	afterClose: function () { 
@@ -200,8 +201,8 @@ function openFancybox() {
 
 
 $(document).ready(function() {
-		$("#destino").load("cuentaUsuario.php");
-		$("#cuenta").addClass("menuActivo");
+	//	$("#destino").load("cuentaUsuario.php");
+	//	$("#cuenta").addClass("menuActivo");
 		$(".fancybox").fancybox();
 
 		$('.fancybox-media').fancybox({
@@ -265,7 +266,7 @@ $(document).ready(function() {
 			$("#destino").load("cuentaUsuario.php");
 	   });
 	   
-	 
+	
 
 	});
 	
@@ -293,7 +294,7 @@ $(document).ready(function() {
 				<ul>
 					<li><a href="#" id="noticias" title="Noticias">Gesti&oacute;n NOTICIAS</a></li>
 					<li><a href="#" id="imagenes" title="Imagenes">Gesti&oacute;n IMAGENES</a></li>
-					<li><a href="#" id="info" title="Informacion">Gesti&oacute;n INFORMACI&Oacute;N</a></li>
+					<li><a href="#" id="info" title="Informacion">Gesti&oacute;n INFO.</a></li>
 				</ul>
 			</div>
 		</article>
