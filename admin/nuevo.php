@@ -69,6 +69,10 @@ $(function() {
 				<input type="text" name="telefono" id="telefono" value=""  class="input_tamanhoMediano" tabindex="6"/>
 			</div>
 			<div class="bloque_campoForumulario">
+				<label class="labelPequenho" for="direccion"><?php echo $util->trad("direccion",$lang);?></label>
+				<input type="text" name="direccion" value=""  class="input_tamanhoNormal" tabindex="7"/>
+			</div>
+			<div class="bloque_campoForumulario">
 				<label class="labelPequenho" for="ciudad"><?php echo $util->trad("ciudad",$lang);?></label>
 				<input type="text" name="ciudad" id="ciudad" value=""  class="input_tamanhoNormal" tabindex="8"/>
 			</div>

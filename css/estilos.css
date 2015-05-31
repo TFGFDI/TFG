@@ -175,7 +175,7 @@ nav li.activo a, nav li:hover  a{
   text-align: center;
   width: 792px;
 
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
 
 }
 

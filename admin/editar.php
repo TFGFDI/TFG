@@ -56,9 +56,9 @@ $(document).ready(function() {
 					
 					<label for="nombre">Profesor</label>
 						<select name="profesor">
-							<?while ($rowEmp = mysqli_fetch_assoc($ar_profesores)) { ?>
+							<?php while ($rowEmp = mysqli_fetch_assoc($ar_profesores)) { ?>
 									<option value="<?php echo $rowEmp["id"]?>_<?php echo $rowEmp["nombre"]?> <?php echo $rowEmp["apellidos"]?>" <?php if($rowEmp['id']==$exam['id_profesor']){?>selected<?php }?>><?php echo $rowEmp["nombre"]?> <?php echo $rowEmp["apellidos"]?></option>
-							<?}?>
+							<?php }?>
 						</select>
 				</div><br>
 				<div >

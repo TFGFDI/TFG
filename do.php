@@ -124,8 +124,14 @@ if($op=="login"){
 	}
 	$usuario->estableceCampos($dict);
 	$usuario->eliminar();	
-
-	header("Location: admin/index.php");
+	if($dict['tipo']=='P'){
+		header("Location: admin/profesores.php");
+	}else if($dict['tipo']=='E'){
+		header("Location: admin/alumnos.php");
+	}else{
+	
+		header("Location: admin/index.php");
+	}
 	
 }else if($op=="editarUsuario"){
 	$usuario= new clsUsuario();
@@ -539,9 +545,10 @@ else if($op=="nueva_imagen"){
 
 }else if($op=="corregir"){	
 	$respuesta = new ClsRespuestasAlumnos();
+	var_dump($dict);
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
-		if(($clave !="op")&&($clave !="id_examen")&&($clave !="id_usuario")&&($clave !="nota_desarrollo")){
+		if(($clave !="op")&&($clave !="id_examen")&&($clave !="id_usuario")&&($clave !="nota_desarrollo")&&($clave !="nivel")){
 				$ar_resp = explode("_",$clave);
 				$respuesta->actualizarRespuestas($ar_resp[1],$valor);
 			}
@@ -549,6 +556,7 @@ else if($op=="nueva_imagen"){
 	$examen_realizado = new ClsExamenesRealizados();
 	$examen_realizado->corregido($dict['id_examen'],$dict['id_usuario']);
 	$examen_realizado->setNotaDesarrollo($dict['id_examen'],$dict['id_usuario'],$dict['nota_desarrollo']);
+	$examen_realizado->setNivel($dict['id_examen'],$dict['id_usuario'],$dict['nivel']);
 	header("Location: ls_examenes_pendientes.php");
 	
 }else if($op=="eliminar_examen_pendiente"){
@@ -647,6 +655,17 @@ else if($op=="nueva_imagen"){
 	$examen->estableceCampos($dict);	
 	$examen->editar();
 	header("Location: admin/examenes.php?menu=3");
+	
+}else if($op=="eliminarExamen"){
+	$examen= new clsExamenes();
+	foreach($dict as $clave => $valor){
+		$dict[$clave] = $util->desinfectar($valor);
+	}
+	$examen->estableceCampos($dict);
+	$examen->eliminar();	
+
+	header("Location: admin/examenes.php?menu=3");	
+	
 }
 
 

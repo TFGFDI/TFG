@@ -98,6 +98,11 @@ require_once("top.php");
 				<span><b>Este modelo de examen no tiene preguntas a desarrollar y se corrige automáticamente. </b></span>
 			</section>
 			<?php }?>
+			<section class="aviso">
+				
+				<span><b>Nivel asignado: </b><input type="text" name="nivel" id="nivel"></span>
+			</section>
+			
 		<input type="submit" value="Ok" style="margin:5px">
 		</form>
 	</div>

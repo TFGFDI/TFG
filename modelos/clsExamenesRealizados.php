@@ -24,8 +24,8 @@ class clsExamenesRealizados{
 //INICIO FUNCIONES BASICAS PARA AÑADIR,ELIMINAR y MODIFICAR
  public function incluir(){
 	 $objDatos = new clsDatos(); 
-	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota, nota_desarrollo, corregido,expirado,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->nota_desarrollo','$this->corregido','$this->expirado','$this->comentarios')";
-	 	var_dump($sql);
+	 $sql = "insert into examenes_realizados (id_examen,id_usuario,tiempo_ini,tiempo_fin,aciertos, nota, nota_desarrollo, nivel, corregido,expirado,comentarios) values ('$this->id_examen','$this->id_usuario','$this->tiempo_ini','$this->tiempo_fin', '$this->aciertos','$this->nota','$this->nota_desarrollo','$this->nivel','$this->corregido','$this->expirado','$this->comentarios')";
+	 	
 	 $objDatos->ejecutar($sql);
     
 
@@ -33,7 +33,7 @@ class clsExamenesRealizados{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update examenes_realizados set id_examen='$this->id_examen', id_usuario='$this->id_usuario', tiempo_ini='$this->tiempo_ini', tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota', nota_desarrollo='$this->nota_desarrollo', corregido='$this->corregido', expirado='$this->expirado',comentarios='$this->comentarios' where(id='$this->id')";
+		$sql = "update examenes_realizados set id_examen='$this->id_examen', id_usuario='$this->id_usuario', tiempo_ini='$this->tiempo_ini', tiempo_fin='$this->tiempo_fin', aciertos='$this->aciertos', nota='$this->nota', nota_desarrollo='$this->nota_desarrollo', nivel='$this->nivel', corregido='$this->corregido', expirado='$this->expirado',comentarios='$this->comentarios' where(id='$this->id')";
 		$objDatos->ejecutar($sql);
 		
 }
@@ -135,6 +135,15 @@ public function setNotaDesarrollo($examen,$usuario,$nota){
 	
 	return $res['nota'];
 }
+
+public function setNivel($examen,$usuario,$nivel){
+	$objDatos = new clsDatos();
+	$sql= "UPDATE examenes_realizados SET nivel='$nivel' WHERE id_examen='$examen' AND id_usuario='$usuario'";
+	
+	$res = $objDatos->filtro($sql);
+	
+	return $res['nota'];
+}
 public function getNotaBloque($from,$to){
 	$objDatos = new clsDatos();
 	$sql= "SELECT COUNT(*) as nota FROM examenes_realizados WHERE nota>='$from' AND nota<='$to'";
@@ -151,19 +160,7 @@ public function getMedia(){
 	return round($res['nota'],2);
 }
 
-public function getVarianza(){
-	$objDatos = new clsDatos();
-	$sql= "SELECT nota FROM examenes_realizados";
-	$res = $objDatos->filtroListado($sql);
-	
-	while ($rowEmp = mysqli_fetch_assoc($res)) { 
-		$ar_notas[]=$rowEmp['nota'];
-	}
-	$varianza = stats_variance($ar_notas); var_dump($varianza);
-	return $varianza;
-	
-	
-}
+
 
 }
 

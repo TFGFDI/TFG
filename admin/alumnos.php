@@ -80,7 +80,7 @@ $_SESSION['redireccion']=trim($url, '&');
 		
 		var r = confirm("\u00BF Seguro que desea eliminar?");
 		if (r == true) {
-			location.href='../do.php?op=eliminarUsuario&id='+id+"";
+			location.href='../do.php?op=eliminarUsuario&id='+id+"&tipo=E";
 		} 
 
 

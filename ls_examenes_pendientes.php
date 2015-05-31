@@ -103,7 +103,7 @@ $(document).ready(function() {
 		
 	});
 </script>	
-	<h2>Gestion de profesores</h2>
+	<h2>Gesti&oacute;n de ex&aacute;menes pendientes de corregir</h2>
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>

@@ -2,30 +2,7 @@
 include_once("clsDatos.php");
 
 class clsUsuario{  
-/*	
-	private $nombre;
-	private $apellidos;
-	private $sexo; 
-	private $fechanacimiento;     
-    private $email;
-    private $nacionalidad; 
-	private $contrasena;
-	private $rol;
-	private $activo;
-	
-	function __construct($nombre,$apellidos,$sexo,$fechanacimiento,$email,$nacionalidad,$contrasena,$rol,$activo)
-	{
-		$this->nombre = $nombre;
-		$this->apellidos = $apellidos;
-		$this->sexo = $sexo;
-		$this->fechanacimiento = $fechanacimiento;
-		$this->email = $email;
-		$this->nacionalidad = $nacionalidad;
-		$this->contrasena = $contrasena;
-		$this->rol = $rol;
-		$this->activo = $activo;
-		
-	}*/
+
 	
 	public function get_nombre(){
 		return $this->nombre;
@@ -111,7 +88,7 @@ public function login($dict){
 	$obj = new clsDatos();
 	$dict['contrasena']=base64_encode($dict['contrasena']);
 	$this->estableceCampos( $dict);
-	$sql = "SELECT * FROM usuarios where(email='$this->email' AND contrasena='$this->contrasena')";
+	$sql = "SELECT * FROM usuarios where(email='$this->email' AND contrasena='$this->contrasena' AND activo='1')";
 	$res=$obj->filtro($sql);
 	return $res;	
 }
