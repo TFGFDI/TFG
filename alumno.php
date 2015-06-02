@@ -41,11 +41,11 @@ require_once("top.php");
 		<section id="izquierdo_general" class="bloqueRedondo">
 			<article id="caja0" class="caja" >
 				<div class="caja_titulo">
-					<p>Cuenta Usuario</p>
+					<p><?php echo $util->trad("cuenta_usuario",$lang);?></p>
 				</div>
 				<div class="caja_contenido"  >
 					<ul>
-						<li><a href="#"  id="cuenta" title="Inicio">Modificar Cuenta</a></li>
+						<li><a href="#"  id="cuenta" title="Inicio"><?php echo $util->trad("modificar_perfil",$lang);?></a></li>
 					</ul>
 				</div>
 			</article>

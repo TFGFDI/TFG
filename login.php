@@ -313,9 +313,9 @@ $filasInformacion = $informacion->informacionesActivas();
 	<div id="contenido">
 		<nav id="menu">
 			<ul>
-				<li ><a href="#tab1"><span style="font-size:22px; font-weight:bold;">I</span>NFORMACIÓN</a><?php echo $util->trad("informacion",$lang);?></li>
-				<li ><a href="#tab2"><span style="font-size:22px; font-weight:bold;">N</span>OTICIAS</a></li>
-				<li><a href="#tab3"><span style="font-size:22px; font-weight:bold;">C</span>ONTACTO</a></li>
+				<li ><a href="#tab1"><span style="font-size:22px; font-weight:bold;"><?php echo $util->trad("informacion",$lang);?></a></li>
+				<li ><a href="#tab2"><span style="font-size:22px; font-weight:bold;"><?php echo $util->trad("noticias",$lang);?></a></li>
+				<li><a href="#tab3"><span style="font-size:22px; font-weight:bold;"><?php echo $util->trad("contacto",$lang);?></a></li>
 			</ul>
 		</nav>
 		<section id="informacion" class="bloqueSombra bloqueBordesAzul">

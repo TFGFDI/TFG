@@ -107,7 +107,7 @@ $url=$util->getURL();
 		</div>
 		<?php if(isset($_SESSION['nombre'])){?>
 		<div style="float:right;margin-right:15px">
-			<span>Hola <b><?php echo $_SESSION['nombre']?></b></span>
+			<span><?php echo $util->trad("hola",$lang);?> <b><?php echo $_SESSION['nombre']?></b></span>
 		</div>
 		<?php }?>
 	</header >
