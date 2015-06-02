@@ -251,11 +251,11 @@ $(document).ready(function() {
 					<tr <?php if($i%2==0){?>class="alt"<?php }else{?>class="impar"<?php }?> >
 						<td><?php echo $util->fechaFormato3($rowEmp["fecha"]);?></td>
 						
-						<td  style="text-align:left;"><?php echo $util->reducirCadenaMedia($rowEmp["informaciones"]);?></td>
+						<td style="text-align:left;"><?php echo $util->reducirCadenaMedia($rowEmp["informaciones"]);?></td>
 						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activarInformacion(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="../imagenes/activo.png"><?php }else{?><img src="../imagenes/inactivo.png"><?php }?></td> 						
 							
 						<td><a class="ifancybox" href="editarInformacion.php?id=<?php echo $rowEmp['id']?>"><img src="../imagenes/lapiz.gif"></a></td> 
-					<!--	<td style="cursor:pointer;text-align:center" id="<?php // echo $rowEmp['id']?>" onclick="editar(this.id)"><img src="../imagenes/lapiz.gif"></td> -->
+						
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminarInformacion(this.id)"><img src="../imagenes/eliminar.png" style="width:15px;"></td>
 					</tr>
 					<?php 

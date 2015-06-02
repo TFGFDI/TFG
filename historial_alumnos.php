@@ -42,6 +42,9 @@ require_once("top.php");
 						<th>
 							<span>Nota Desarrollo</span>
 						</th>
+						<th>
+							<span>Nivel</span>
+						</th>
 						
 					</tr>
 				</thead>
@@ -59,12 +62,18 @@ require_once("top.php");
 						<td><?php echo $rowEmp['aciertos']?></td>
 						<td><?php echo $rowEmp['nota']?></td>
 						<td><?php echo $rowEmp['nota_desarrollo']?></td>
+						<td><?php echo $rowEmp['nivel']?></td>
 					</tr>
 					
 				<?php 
 				$i++;
 				}
 				?>	
+				<?php if ($i==0){?>
+					<tr>
+						<td colspan="7">No hay examenes realizados.</td>
+					</tr>
+				<?php }?>
 				</tbody>
 			</table>
 		</div>

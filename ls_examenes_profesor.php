@@ -280,9 +280,13 @@ $(document).ready(function() {
 					<div class="bloque_campoForumulario">
 						<label for="tipo">Tipo</label>
 						<select type="text" name="tipo" class="input input_tamanhoNormal" tabindex="2">
-							<option value="Semestral">Semestral</option>
+							<option value="Trimestral">Trimestral</option>
+							<option value="Cuatrimestral">Cuatrimestral</option>
 							<option value="Anual">Anual</option>
 							<option value="Intensivo">Intensivo</option>
+							<option value="Fines Especificos">Fines Espec&iacute;ficos</option>
+							<option value="Conversacion">Conversaci&oacute;n</option>
+							<option value="Especial de Septiembre">Especial de Septiembre</option>
 						</select>
 					</div>
 					<input type="submit" value="Nuevo">

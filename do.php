@@ -555,7 +555,13 @@ else if($op=="nueva_imagen"){
 	}
 	$examen_realizado = new ClsExamenesRealizados();
 	$examen_realizado->corregido($dict['id_examen'],$dict['id_usuario']);
-	$examen_realizado->setNotaDesarrollo($dict['id_examen'],$dict['id_usuario'],$dict['nota_desarrollo']);
+	
+	if(isset($dict['nota_desarrollo'])){
+	
+		$examen_realizado->setNotaDesarrollo($dict['id_examen'],$dict['id_usuario'],$dict['nota_desarrollo']);
+	}else{
+		$examen_realizado->setNoDesarrollo($dict['id_examen'],$dict['id_usuario']);
+	}
 	$examen_realizado->setNivel($dict['id_examen'],$dict['id_usuario'],$dict['nivel']);
 	header("Location: ls_examenes_pendientes.php");
 	

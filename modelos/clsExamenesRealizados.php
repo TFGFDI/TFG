@@ -136,6 +136,14 @@ public function setNotaDesarrollo($examen,$usuario,$nota){
 	return $res['nota'];
 }
 
+public function setNoDesarrollo($examen,$usuario){
+	$objDatos = new clsDatos();
+	$sql= "UPDATE examenes_realizados SET nota_desarrollo='No Desarrollo' WHERE id_examen='$examen' AND id_usuario='$usuario'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['nota'];
+}
+
 public function setNivel($examen,$usuario,$nivel){
 	$objDatos = new clsDatos();
 	$sql= "UPDATE examenes_realizados SET nivel='$nivel' WHERE id_examen='$examen' AND id_usuario='$usuario'";

@@ -89,7 +89,7 @@ $url=$util->getURL();
 	<header id="logo">
 		<div style="float:left">
 			<a href="http://culm.unizar.es/">
-			<img src="./imagenes/culm_blanco.png" />
+			<img src="./imagenes/logo2.png" />
 		</a>
 		</div>
 		
