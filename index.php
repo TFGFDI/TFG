@@ -9,7 +9,9 @@ header("Location: login.php");
 require_once("top.php"); 
 ?>
 
+	
 	<div id="central1" style="height:300px;"> 
+
 		<?php 
 		if($_SESSION['rol']=='E'){
 			require_once("menu_alumno.php");
