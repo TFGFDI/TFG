@@ -6,8 +6,8 @@ public $conexion;
 public function __construct(){
     $servidor="localhost";
     $usuario="root";
-//	$pass="root";
-$pass="";
+	$pass="root";
+ //$pass="";
     $base="tfg";
 	
     //PARAMETROS CONNECT: servidor db, usuario db, pass db, nombre db
