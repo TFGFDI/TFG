@@ -46,9 +46,25 @@ require_once("top.php");
 		
 	</section>
 	
-	<section id="destino" >
-  
-    </section>
+	<section id="derecho_general">
+		<section id="destino" >
+			<?php 
+				$noticias = new ClsNoticia();
+				$ar_noticias = $noticias->noticiasActivas();
+			?>
+			<?php while ($rowEmp = mysqli_fetch_assoc($ar_noticias)) { ?>
+					<div class="destacados">
+						<div >
+							<span class="fechaNoticia"> <?php echo $rowEmp['fecha']; ?></span>
+							<span class="tituloNoticia"><?php echo $rowEmp['titulo']; ?></span>
+						</div>
+						<div class="descripcionNoticia"><?php echo $rowEmp['descripcion']; ?></div>
+					</div>
+				<?php } ?>
+		
+				  
+		</section>
+		</section>
 	
 </div>
 	

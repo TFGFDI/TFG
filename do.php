@@ -329,7 +329,7 @@ if($op=="login"){
 		$examen_r->estableceCampos($ar_examen);	
 		$examen_r->actualizar();
 		
-		header("Location: index.php");
+		header("Location: alumno.php");
 	}
 }else if($op=="modificar_perfil"){
 	$usuario= new clsUsuario();

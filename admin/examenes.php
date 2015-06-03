@@ -160,7 +160,7 @@ if (isset($dict['orden'])){
 	<div id="divMenu_Vertical" class="bloqueRedondo_2 ">
 		<ul class="menuVertical ">
 			<li class="activo" style="border-top-left-radius: 0.5em;"><a href="examenes.php?menu=2" >Consulta</a></li>
-			<li style="border-bottom-left-radius: 0.5em;"><a href="./nuevo.php?menu=2&page=examenes" >Alta</a></li>
+			<li style="border-bottom-left-radius: 0.5em;"><a href="#" >&nbsp;</a></li>
 			<li class="noMenu ">&nbsp;asd</li> 
 		</ul>
 	</div>

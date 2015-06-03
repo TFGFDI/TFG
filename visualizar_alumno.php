@@ -107,12 +107,7 @@ if($user['sexo'] =='F'){
 						</td>						
 
 					</tr>
-					<tr>
-						<td class="sub" style="text-align:right;">Contrase&ntilde;a:</td>
-						<td>
-							<input type="text" name="contrasena" id="contrasena" value="<?php echo $user['contrasena']?>"  style="height:20px;border:none; margin-bottom:5px;" class="input input_tamanhoNormal" />
-						</td>						
-					</tr>
+					
 					
 					<tr>
 						<td class="sub" style="text-align:right;">Observaciones:</td>
@@ -149,6 +144,9 @@ if($user['sexo'] =='F'){
 						<th>
 							<span>Nota Desarrollo</span>
 						</th>
+						<th>
+							<span>Nivel</span>
+						</th>
 						<th></th>
 						
 					</tr>
@@ -167,6 +165,7 @@ if($user['sexo'] =='F'){
 						<td><?php echo $rowEmp['aciertos']?></td>
 						<td><?php echo $rowEmp['nota']?></td>
 						<td><?php echo $rowEmp['nota_desarrollo']?></td>
+						<td><?php echo $rowEmp['nivel']?></td>
 						<td><a href="imprimir_examen.php?id=<?php echo $user['id']?>&examen=<?php echo $rowEmp['id_examen']?>" target="_blank">Imprimir</a></td>
 					</tr>
 					<tr style="display:none;cursor:pointer" id="examen_<?php echo $rowEmp['id']?>" onclick="ocultar(this.id)">

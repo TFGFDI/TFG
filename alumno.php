@@ -12,7 +12,7 @@ require_once("top.php");
 <script>
 
 	$(document).ready(function() {
-	openFancyboxPequenho();
+	//openFancyboxPequenho();
 	    $("#cuenta").click(function(evento){ 
 			$("#cuenta").addClass("menuActivo");
 			evento.preventDefault();
@@ -52,21 +52,25 @@ require_once("top.php");
 		
 			
 		</section>
-		
+		<section id="derecho_general">
 		<section id="destino" >
+			<?php 
+				$noticias = new ClsNoticia();
+				$ar_noticias = $noticias->noticiasActivas();
+			?>
+			<?php while ($rowEmp = mysqli_fetch_assoc($ar_noticias)) { ?>
+					<div class="destacados">
+						<div >
+							<span class="fechaNoticia"> <?php echo $rowEmp['fecha']; ?></span>
+							<span class="tituloNoticia"><?php echo $rowEmp['titulo']; ?></span>
+						</div>
+						<div class="descripcionNoticia"><?php echo $rowEmp['descripcion']; ?></div>
+					</div>
+				<?php } ?>
 		
-		<div id="fancy_datosModificados" style="display:none; height:150px;" >
-			<fieldset class="bloqueSombra bloqueRedondo" style="height:130px;">
-				<legend class="bloqueRedondo">Formulario Contacto</legend>	
-				<h2 style="text-align:center;">¡¡ Consulta enviada !!</h2>
-				<p style="font-size:18px; text-align:center;">
-				En breve nos pondremos en contacto con usted.
-				</p>
-			</fieldset>			
-		</div>
 				  
 		</section>
-		
+		</section>
 	</div>
 	
 <?php

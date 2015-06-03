@@ -1,3 +1,4 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/formulario.css" media="screen" />
 <script type="text/javascript"  src="js/jquery-1.8.1.min.js"></script>

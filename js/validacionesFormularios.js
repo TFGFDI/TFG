@@ -59,11 +59,11 @@ jQuery.validator.setDefaults({
 			nombre: {
 				required: true,
 				// lettersonly: true, escribe solo letras
-				letterswithspaces: true, // escribe letras y espacios en blanco
+				//letterswithspaces: true, // escribe letras y espacios en blanco
 			},
 			apellidos: {
 				required: true,
-				letterswithspaces: true,
+				
 			},
 			sexo: {
 				required: true,
