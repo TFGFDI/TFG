@@ -28,22 +28,22 @@ require_once("top.php");
 						</th>
 						
 						<th>
-							<span>Ex&aacute;men</span>
+							<span><?php echo $util->trad("examenes",$lang);?></span>
 						</th>
 						<th>
-							<span>Tiempo transcurrido</span>
+							<span><?php echo $util->trad("tiempo_transcurrido",$lang);?></span>
 						</th>
 						<th>
-							<span>Aciertos</span>
+							<span><?php echo $util->trad("aciertos",$lang);?></span>
 						</th>
 						<th>
-							<span>Nota Test</span>
+							<span><?php echo $util->trad("nota_test",$lang);?></span>
 						</th>
 						<th>
-							<span>Nota Desarrollo</span>
+							<span><?php echo $util->trad("nota_desa",$lang);?></span>
 						</th>
 						<th>
-							<span>Nivel</span>
+							<span><?php echo $util->trad("nivel",$lang);?></span>
 						</th>
 						
 					</tr>
