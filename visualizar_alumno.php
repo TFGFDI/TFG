@@ -149,6 +149,7 @@ if($user['sexo'] =='F'){
 						<th>
 							<span>Nota Desarrollo</span>
 						</th>
+						<th></th>
 						
 					</tr>
 				</thead>
@@ -166,6 +167,7 @@ if($user['sexo'] =='F'){
 						<td><?php echo $rowEmp['aciertos']?></td>
 						<td><?php echo $rowEmp['nota']?></td>
 						<td><?php echo $rowEmp['nota_desarrollo']?></td>
+						<td><a href="imprimir_examen.php?id=<?php echo $user['id']?>&examen=<?php echo $rowEmp['id_examen']?>" target="_blank">Imprimir</a></td>
 					</tr>
 					<tr style="display:none;cursor:pointer" id="examen_<?php echo $rowEmp['id']?>" onclick="ocultar(this.id)">
 						

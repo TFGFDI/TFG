@@ -1289,3 +1289,8 @@ padding-right: 10px;
   height: 26px;
   width: 26px;
 }
+
+.cabecera_imprimir span{
+	font-weight:bold;
+	margin:10px;
+}
