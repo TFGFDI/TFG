@@ -44,14 +44,14 @@ $not = $imagen->getImagenById();
 		parent.$.fancybox.close();
 		//window.open('');
 	});
-	*/
+	
 	
 	$( "#datepicker" ).datepicker({
 		changeMonth: true,
 		changeYear: true,
 		yearRange: "1970:2015",
 		showAnim: "explode"
-	});
+	});*/
 	
 </script>
 
@@ -70,10 +70,7 @@ $not = $imagen->getImagenById();
 						<label class="labelEnano" for="titulo">Título</label>
 						<input type="text" name="titulo" id="titulo" style="height:25px;" class="input input_tamanhoNormalGrande" tabindex="2" value="<?php echo $not['titulo'];?>"/>
 					</div>
-					<div class="bloque_campoForumulario">
-						<label class="labelEnano" for="imagen">Imagen</label>
-						<input type="file" name="titulo" id="imagen" class="input input_tamanhoNormalGrande" tabindex="3"/>
-					</div>
+					
 				
 					<div class="bloque_campoForumulario">
 						<label class="labelEnano" for="activo">Estado</label>

@@ -33,7 +33,7 @@ class clsImagen{
 
 public function editar(){
 		$objDatos = new clsDatos();
-		$sql = "update imagenes set fecha='$this->fecha', titulo='$this->titulo', imagen='$this->imagen', activo='$this->activo' where(id='$this->id')";
+		$sql = "update imagenes set fecha='$this->fecha', titulo='$this->titulo', activo='$this->activo' where(id='$this->id')";
 		$objDatos->ejecutar($sql);
 	
 }

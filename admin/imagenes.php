@@ -87,14 +87,19 @@ function openFancyboxImagen() {
      'speedIn': 500,
      'speedOut': 300,
      'autoDimensions': true,
-     'centerOnScroll': true,
-     'href' : '#fancy_formImagen'  // id del div que se visualiza
+     'centerOnScroll': true,	 
+     'href' : '#fancy_formImagen',
+	  'afterClose' : function() {
+        location.reload();
+        return;
+    }
+	
   });
 }
 </script>
 
 <section id="derecho_general" class="bloqueRedondo bloqueSombra">
-	<h2 style="width:400px; float:left;">Gestion de Imagenes</h2>
+	<h2 style="width:400px; float:left;">Gesti&oacute;n de Im&aacute;genes</h2>
 	<div id="nuevaImagen" style="width:120px; float:right; margin:10px 10px 0px 0px; ">
 		<input type="button" name="b_nuevaNoticia" value="Nueva Imagen"  onclick="openFancyboxImagen()" id="b_nuevaImagen">
 	</div>
@@ -123,7 +128,7 @@ function openFancyboxImagen() {
 		<form name="formulario" method="post" action="../do.php" enctype="multipart/form-data">
 			<input type="hidden" name="op" value="nueva_imagen"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
 			<fieldset class="bloqueSombra bloqueRedondo">
-					<legend class="bloqueRedondo">Nueva Noticia</legend>					
+					<legend class="bloqueRedondo">Nueva Imagen</legend>					
 						<div class="bloque_campoForumulario">
 							<label class="labelEnano" for="fecha">Fecha</label>
 							<input type="text" name="fecha" id="fecha" class="input input_tamanhoPequenho consulta" value="<?php echo $fecha_nuevaImagen; ?>" tabindex="1" readonly />
