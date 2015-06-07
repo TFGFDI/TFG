@@ -48,45 +48,45 @@ if(isset($dict['lang'])){
 			<fieldset class="bloqueSombra bloqueRedondo" style="width:630px;">
 			<legend class="bloqueRedondo"><?php echo $util->trad("datos_personales",$lang);?></legend>
 				<div class="bloque_campoForumulario">
-					<label for="nombre">Nombre:</label>
+					<label for="nombre"><?php echo $util->trad("nombre",$lang);?>:</label>
 					<input type="text" name="nombre" id="nombre" value="<?php echo $fila['nombre']?>" class="input input_tamanhoMediano" tabindex="1"/>
 				</div>
 				<div class="bloque_campoForumulario">
-					<label for="apellidos">Apellidos</label>
+					<label for="apellidos"><?php echo $util->trad("apellidos",$lang);?></label>
 					<input type="text" name="apellidos" id="apellidos" value="<?php echo $fila['apellidos']?>"  class="input input_tamanhoNormal" tabindex="2"/>
 				</div>
 			
 			
 				<div class="bloque_campoForumulario">
-					<label for="sexo">Sexo:</label>
+					<label for="sexo"><?php echo $util->trad("sexo",$lang);?>:</label>
 					<select name="sexo" id="sexo" class="select_tamanhoPequenho" tabindex="3">
 						<option value="F" <?php if($fila['sexo']=='F'){?>selected<?php }?>>Femenino</option>
 						<option value="M" <?php if($fila['sexo']=='M'){?>selected<?php }?>>Masculino</option>
 					</select>
 				</div>
 				<div class="bloque_campoForumulario">
-					<label for="fechanacimiento">Fecha de Nacimiento:</label>
+					<label for="fechanacimiento"><?php echo $util->trad("nacimiento",$lang);?>:</label>
 					<input type="text" name="fechanacimiento" id="datepicker" value="<?php echo $fila['fechanacimiento']?>" class="input_tamanhoPequenho" tabindex="4"/>
 				</div><br>
 				<div class="bloque_campoForumulario">
-					<label for="telefono">Tel&eacute;fono:</label>
+					<label for="telefono"><?php echo $util->trad("telefono",$lang);?>:</label>
 					<input type="text" name="telefono" id="telefono" value="<?php echo $fila['telefono']?>"  class="input_tamanhoPequenho" tabindex="5"/>
 				</div>
 				<div class="bloque_campoForumulario">
-					<label for="direccion">Direcci&oacute;n:</label>
+					<label for="direccion"><?php echo $util->trad("direccion",$lang);?>:</label>
 					<input type="text" name="direccion"  value="<?php echo $fila['direccion']?>"  class="input_tamanhoNormal" tabindex="6"/>
 				</div>
 				<div class="bloque_campoForumulario">
-					<label for="cp">C&oacute;digo Postal:</label>
+					<label for="cp"><?php echo $util->trad("cp",$lang);?>:</label>
 					<input type="text" name="cp" id="cp" value="<?php echo $fila['cp']?>"  class="input_tamanhoPequenho" tabindex="7"/>
 				</div>
 				<div class="bloque_campoForumulario">
-					<label for="ciudad">Ciudad:</label>
+					<label for="ciudad"><?php echo $util->trad("ciudad",$lang);?>:</label>
 					<input type="text" name="ciudad" id="ciudad" value="<?php echo $fila['ciudad']?>"  class="input_tamanhoMediano" tabindex="8"/>
 				</div>
 				<div class="bloque_campoForumulario">
 					
-					<label for="nacionalidad">Pa&iacute;s:</label>					
+					<label for="nacionalidad"><?php echo $util->trad("pais",$lang);?>:</label>					
 					<select name="nacionalidad" id="nacionalidad" class="select_tamanhoPequenho" tabindex="9">
 						<option value="" selected></option>
 					<?php 
@@ -101,20 +101,20 @@ if(isset($dict['lang'])){
 					</select>
 				</div>
 				<div class="bloque_campoForumulario">
-					<label for="email">Email</label>
+					<label for="email"><?php echo $util->trad("email",$lang);?></label>
 					<input type="text" name="email" id="email" value="<?php echo $fila['email']?>" class="input_tamanhoNormal" tabindex="10"/>
 				</div>
 				<br>
 				<div class="bloque_campoForumulario">
-					<label for="contrasena antigua">Contrase&ntilde;a actual:</label>
+					<label for="contrasena antigua"><?php echo $util->trad("contrasena_actual",$lang);?>:</label>
 					<input type="password" name="contrasena_antigua" id="contrasena_antigua"   value=""  class="input_tamanhoMediano" tabindex="11" />
 				</div>
 				<div class="bloque_campoForumulario">
-					<label for="contrasena nueva">Contrase&ntilde;a nueva:</label>
+					<label for="contrasena nueva"><?php echo $util->trad("contrasena_nueva",$lang);?>:</label>
 					<input type="password" name="contrasena" id="contrasena" value="" class="input_tamanhoMediano" tabindex="12"/>
 				</div>
 				<div class="bloque_campoForumulario">
-					<label for="contrasena nueva2">Confirmar contrase&ntilde;a nueva:</label>
+					<label for="contrasena nueva2"><?php echo $util->trad("confirmar_contrasena_actual",$lang);?>:</label>
 					<input type="password" name="contrasena2" id="contrasena2" value="" class="input_tamanhoMediano" tabindex="13"/>
 				</div>
 			
