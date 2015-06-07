@@ -3,6 +3,7 @@
 include_once("./clases.php");
 session_start();
 $usuario= new ClsUsuario();
+$util=new ClsUtil();
 $usuario->id = $_SESSION['id'];
 $fila = $usuario->getUsuarioById();
 
@@ -45,7 +46,7 @@ if(isset($dict['lang'])){
 			<input type="hidden" name="op" value="modificar_perfil">
 			
 			<fieldset class="bloqueSombra bloqueRedondo" style="width:630px;">
-			<legend class="bloqueRedondo">Datos Personales</legend>
+			<legend class="bloqueRedondo"><?php echo $util->trad("datos_personales",$lang);?></legend>
 				<div class="bloque_campoForumulario">
 					<label for="nombre">Nombre:</label>
 					<input type="text" name="nombre" id="nombre" value="<?php echo $fila['nombre']?>" class="input input_tamanhoMediano" tabindex="1"/>
