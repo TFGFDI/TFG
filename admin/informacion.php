@@ -94,7 +94,7 @@ $(document).ready(function() {
 	   
 });
 
-	function cargarPagina(numPagina){
+	function cargarPagina(numPagina){ 
 		var campo=$('#campo_buscador').val();
 		var c_activo=$('#activo').val();
 		var c_fechaInicio=$('[name=fechaInicio]').val();
@@ -114,7 +114,7 @@ $(document).ready(function() {
 </script>
 <section id="derecho_general" class="bloqueRedondo bloqueSombra">
 	<h2 style="width:400px; float:left;">Gesti&oacute;n de Informaci&oacute;n</h2>
-	<div id="nuevaInformacion" style="width:120px; float:right; margin:10px 10px 0px 0px; ">
+	<div id="nuevaInformacion" style="width:120px; float:right; margin:10px 40px 0px 0px; ">
 		<input type="button" name="b_nuevaInformacion" value="Nueva Informacion" onclick="openFancybox()" id="b_nuevaInformacion">
 	</div>
 	<div id="buscador1" class="bloqueRedondo  bloqueSombra" style="margin-top:60px; border:1px solid silver;">
@@ -158,7 +158,7 @@ $(document).ready(function() {
 		<form name="formulario" method="post" action="../do.php" enctype="multipart/form-data">
 			<input type="hidden" name="op" value="nueva_informacion"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
 			<fieldset class="bloqueSombra bloqueRedondo">
-					<legend class="bloqueRedondo">Nueva Informaci&oacute;n</legend>					
+					<legend class="bloqueRedondo" >Nueva Informaci&oacute;n</legend>					
 						<div class="bloque_campoForumulario">
 							<label class="labelEnano" for="fecha">Fecha</label>
 							<input type="text" name="fecha" id="fecha" class="input input_tamanhoPequenho consulta" value="<?php echo $fecha_nuevaNoticia; ?>" tabindex="1" readonly />

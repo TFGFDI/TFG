@@ -485,27 +485,20 @@ if($op=="login"){
 }
 else if($op=="nueva_imagen"){
 	$imagen= new clsImagen(); 
-	
 	//obtener nombre aleatorio
-
 	$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
 	$cad = ""; 
-
 	for($i=0;$i<12;$i++) { 
 		$cad .= substr($str,rand(0,62),1); 
 	}
-	
 	$sep=explode('image/',$_FILES["titulo"]["type"]); // Separamos image/ 
 	$tipo=$sep[1]; // Optenemos el tipo de imagen que es 
 	$target_path = "imagenes/galeria/";
 	//$target_path = $target_path . basename( $_FILES['imagen']['name']); 	
-
 	if(move_uploaded_file($_FILES['titulo']['tmp_name'], $target_path . '/' .$cad.'.'.$tipo)) { 
 	} else{
 	}
-	
 	foreach($dict as $clave => $valor){
-
 		if($clave == 'fecha'){
 			$dict[$clave] = $util->fechaFormato2($valor);
 		}else{
@@ -517,8 +510,37 @@ else if($op=="nueva_imagen"){
 	$imagen->incluir();
 	header("Location: admin/index.php?menu=0&cargarImagenes=1");	
 	
+
+}else if($op=="editarImagen"){ 
+	$imagen= new clsImagen();
 	
+		//obtener nombre aleatorio
+	$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
+	$cad = ""; 
+	for($i=0;$i<12;$i++) { 
+		$cad .= substr($str,rand(0,62),1); 
+	}
 	
+	$sep=explode('image/',$_FILES["titulo"]["type"]); // Separamos image/ 
+	$tipo=$sep[1]; // Optenemos el tipo de imagen que es 
+	$target_path = "imagenes/galeria/";
+	//$target_path = $target_path . basename( $_FILES['imagen']['name']); 	
+	if(move_uploaded_file($_FILES['titulo']['tmp_name'], $target_path . '/' .$cad.'.'.$tipo)) { 
+	} else{
+	}
+	
+	foreach($dict as $clave => $valor){
+		if($clave == 'fecha'){
+			$dict[$clave] = $util->fechaFormato($valor);
+		}else{
+			$dict[$clave] = $util->desinfectar($valor);
+		}
+	}
+	$imagen->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
+	
+	$imagen->editar();
+//	header("Location: admin/index.php");
+
 }else if($op=="eliminarImagen"){
 	$imagen= new clsImagen();
 	foreach($dict as $clave => $valor){
@@ -679,6 +701,13 @@ else if($op=="nueva_imagen"){
 	
 }
 
+else if($op=="anadirObservacionProfesor"){
 
+	$usuario= new clsUsuario();
+	$usuario->estableceObservacion($_POST['id'],$_POST['observaciones']);
+	header("Location: alumnos.php?menu=1");
+	
+
+}
 
 ?>

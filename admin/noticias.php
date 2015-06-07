@@ -270,6 +270,7 @@ $(document).ready(function() {
 						<td style="cursor:pointer;" id="<?php echo $rowEmp['id']?>" onclick="activar(this.id)"><?php if($rowEmp["activo"]=='1'){?><img src="../imagenes/activo.png"><?php }else{?><img src="../imagenes/inactivo.png"><?php }?></td> 						
 							
 						<td><a class="ifancybox" href="editarNoticia.php?id=<?php echo $rowEmp['id']?>"><img src="../imagenes/lapiz.gif"></a></td> 
+						
 					<!--	<td style="cursor:pointer;text-align:center" id="<?php // echo $rowEmp['id']?>" onclick="editar(this.id)"><img src="../imagenes/lapiz.gif"></td> -->
 						<td style="cursor:pointer;text-align:center" id="<?php echo $rowEmp['id']?>" onclick="eliminar(this.id)"><img src="../imagenes/eliminar.png" style="width:15px;"></td>
 					</tr>

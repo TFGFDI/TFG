@@ -139,7 +139,7 @@ function activarImagen(_id){
 	});
 }
 
-function activarInformacion(_id){ 
+function activarInformacion(_id){ alert("222");
 //	location.href='../do.php?op=activarImagen&id='+_id+"";
 	$.post('../do.php',
 	  { op: 'activarInformacion', id: _id},
@@ -154,7 +154,7 @@ function crear(){
 
 
 
-cargarNoticias = function(){
+cargarNoticias = function(){ 
 	$("#noticias").addClass("menuActivo");
 	$("#destino").load("noticias.php");
 }
@@ -164,7 +164,7 @@ cargarImagenes = function(){
 	$("#destino").load("imagenes.php");
 }
 
-cargarInformacion = function(){
+cargarInformacion = function(){ 
 	$("#info").addClass("menuActivo");
 	$("#destino").load("informacion.php");
 }
@@ -203,6 +203,8 @@ function openFancybox() {
 $(document).ready(function() {
 	//	$("#destino").load("cuentaUsuario.php");
 	//	$("#cuenta").addClass("menuActivo");
+	
+
 		$(".fancybox").fancybox();
 
 		$('.fancybox-media').fancybox({
@@ -266,7 +268,7 @@ $(document).ready(function() {
 			$("#destino").load("cuentaUsuario.php");
 	   });
 	   
-	
+
 
 	});
 	

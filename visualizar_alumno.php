@@ -112,8 +112,12 @@ if($user['sexo'] =='F'){
 					<tr>
 						<td class="sub" style="text-align:right;">Observaciones:</td>
 						<td>
+						<form name="formulario" method="post" action="./do.php" enctype="multipart/form-data">
+							<input type="hidden" name="op" value="anadirObservacionProfesor"> 
+							<input type="hidden" name="id" value="<?php echo $dict['id']; ?>"> <!-- idNoticia -->
 							<textarea style="border:none;height:70px; margin-bottom:5px;"  cols="70" name="observaciones" id="observaciones"><?php echo $user['observaciones']?> </textarea>
-					
+							<input type="submit" value="Añadir Observación" />
+						</form>
 						</td>						
 					</tr>
 

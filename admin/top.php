@@ -73,7 +73,7 @@ if(isset($dict['lang'])){
 $url=$util->getURL();
 
 ?>
-<body class="gradiante" <?php if (isset($dict['cargarNoticias'])){ ?> onLoad="cargarNoticias();" <?php } ?>>
+<body class="gradiante" <?php if (isset($dict['cargarNoticias'])){ ?> onLoad="cargarNoticias();" <?php }else if (isset($dict['cargarInformacion'])){ ?> onLoad="cargarInformacion();" <?php }else if (isset($dict['cargarImagenes'])){ ?> onLoad="cargarImagenes();" <?php } ?> >
 <div id="contenedor" > 
 	<header id="logo">
 		<div style="float:left">

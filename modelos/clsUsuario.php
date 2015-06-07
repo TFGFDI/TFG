@@ -40,6 +40,12 @@ class clsUsuario{
 		return $this->activo;
 	}
 	
+	function estableceObservacion($id, $obs){
+		$objDatos = new clsDatos();
+		$sql = "update usuarios set observaciones='$obs' where(id='$id')";
+		$objDatos->ejecutar($sql);
+	}
+	
 	function estableceCampos($arr,$prefix="") {
 		if ($arr!="") {
 			reset($arr);

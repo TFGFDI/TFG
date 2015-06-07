@@ -36,7 +36,7 @@ class clsNoticia{
 public function editar(){
 		$objDatos = new clsDatos();
 		$sql = "update noticias set fecha='$this->fecha', titulo='$this->titulo', descripcion='$this->descripcion', activo='$this->activo' where(id='$this->id')";
-		echo $sql;
+	
 		$objDatos->ejecutar($sql);
 		
 }

@@ -34,7 +34,6 @@ class clsImagen{
 public function editar(){
 		$objDatos = new clsDatos();
 		$sql = "update imagenes set fecha='$this->fecha', titulo='$this->titulo', imagen='$this->imagen', activo='$this->activo' where(id='$this->id')";
-			echo $sql;
 		$objDatos->ejecutar($sql);
 	
 }
@@ -51,7 +50,7 @@ public function eliminar(){
 
 public function imagenesActivas(){
 	$objDatos = new clsDatos();
-	$sql="select * from imagenes where activo='1' order by fecha DESC";
+	$sql="select * from imagenes where activo='1' order by fecha DESC"; 
 	$res = $objDatos->filtroListado($sql);
 	return $res;
 }

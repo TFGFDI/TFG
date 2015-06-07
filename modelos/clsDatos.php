@@ -6,7 +6,7 @@ public $conexion;
 public function __construct(){
     $servidor="localhost";
     $usuario="root";
-	$pass="root";
+	$pass="";
  //$pass="";
     $base="tfg";
 	
