@@ -705,7 +705,7 @@ else if($op=="anadirObservacionProfesor"){
 
 	$usuario= new clsUsuario();
 	$usuario->estableceObservacion($_POST['id'],$_POST['observaciones']);
-	header("Location: alumnos.php?menu=1");
+	header("Location: visualizar_alumno.php?id=".$_POST['id']);
 	
 
 }
