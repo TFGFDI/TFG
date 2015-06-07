@@ -66,14 +66,34 @@ public function actualizar(){
 public function puedeExaminarse($examen,$usuario){
 	$objDatos = new clsDatos();
 	$puede=false;
+	$puede_tiempo=false;
 	$sql= "SELECT count(*) as total FROM examenes_realizados WHERE id_examen='$examen' AND id_usuario='$usuario'";
 	$res = $objDatos->filtro($sql);
 	if($res['total']==0){
 		$puede=true;
 	}
-	return $puede;
+	
+	
+	$sql= "SELECT tiempo_fin FROM examenes_realizados WHERE id_examen='$examen' AND id_usuario='$usuario'";
+	$res = $objDatos->filtro($sql);
+	if($res['tiempo_fin']=="0000-00-00 00:00:00"){
+		$puede_tiempo=true;
+	}
+	
+	return $puede || $puede_tiempo;
 }
 
+
+public function estaRealizando(){
+	$objDatos = new clsDatos();
+	$esta=false;
+	$sql = "SELECT count(*) as total FROM examenes_realizados WHERE id_examen='$this->id_examen' AND id_usuario='$this->id_usuario'";
+	$res = $objDatos->filtro($sql);
+	if($res['total']==1){
+		$puede=true;
+	}
+	return $puede;
+}
 public function getPendientesCorregir(){
 	$objDatos = new clsDatos();
 	$sql= "SELECT * FROM examenes_realizados WHERE corregido=0";
@@ -168,7 +188,13 @@ public function getMedia(){
 	return round($res['nota'],2);
 }
 
-
+public function getComienzo(){
+	$objDatos = new clsDatos();
+	$sql= "SELECT tiempo_ini FROM examenes_realizados WHERE id_examen='$this->id_examen' AND id_usuario='$this->id_usuario'";
+	$res = $objDatos->filtro($sql);
+	
+	return $res['tiempo_ini'];
+}
 
 }
 

@@ -268,8 +268,13 @@ if($op=="login"){
 	$examen_r->id_examen = $activo;
 	$examen_r->id_usuario = $_SESSION['id'];
 	$examen_r->tiempo_ini = date("Y-m-d H:i:s");
-	$examen_r->incluir();
-	$_SESSION['inicio_examen']=date("Y-m-d H:i:s");
+	if(! $examen_r->estaRealizando()){
+		$examen_r->incluir();
+		$_SESSION['inicio_examen']=date("Y-m-d H:i:s");
+	}else{
+		$_SESSION['inicio_examen']=$examen_r->getComienzo();
+	}
+	
 	header("Location: examen.php");
 	
 }else if($op=="acabar_examen"){
