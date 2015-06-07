@@ -57,10 +57,7 @@ $not = $noticia->getNoticiaById();
 
 <div >
 	
-	<?php if(isset($dict['guardar'])){?>
-		<span>GUARDADO CORRECTO</span>
-	
-	<?php }?>
+
 	<form name="formulario" id="formulario" method="post" action="../do.php" enctype="multipart/form-data">
 		<input type="hidden" name="op" value="editarNoticia"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
 		<input type="hidden" name="id" value="<?php echo $dict['id']; ?>"> <!-- idNoticia -->
@@ -91,6 +88,9 @@ $not = $noticia->getNoticiaById();
 					<div style="text-align:center; margin-top:20px;">
 						<input type="submit" value="Guardar" />
 					</div>
+						<?php if(isset($dict['guardar'])){?>
+							<div style="text-align:center;margin-top:10px; font-weight: bold; color:green">¡¡ DATOS GUARDADOS !!</div>
+						<?php }?>
 		</fieldset>			
 	</form>
 </div>

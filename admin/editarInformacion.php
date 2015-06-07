@@ -72,6 +72,10 @@ $inf = $informacion->getInformacionById();
 					<div style="text-align:center; margin-top:20px;">
 						<input type="submit" value="Guardar" />
 					</div>
+					<?php if(isset($dict['guardar'])){?>
+							<div style="text-align:center;margin-top:10px; font-weight: bold; color:green">¡¡ DATOS GUARDADOS !!</div>
+						<?php }?>
+		</fieldset>			
 		</fieldset>			
 	</form>
 </div>

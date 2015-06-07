@@ -441,6 +441,7 @@ if($op=="login"){
 	$informacion->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
 	
 	$informacion->editar();
+	header("Location: admin/editarInformacion.php?id=".$dict['id']."&guardar=ok");
 
 }else if($op=="eliminarInformacion"){
 	$informacion= new clsInformacion();
@@ -539,7 +540,7 @@ else if($op=="nueva_imagen"){
 	$imagen->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
 	
 	$imagen->editar();
-//	header("Location: admin/index.php");
+		header("Location: admin/editarImagen.php?id=".$dict['id']."&guardar=ok");
 
 }else if($op=="eliminarImagen"){
 	$imagen= new clsImagen();
