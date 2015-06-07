@@ -6,6 +6,15 @@ $usuario= new ClsUsuario();
 $usuario->id = $_SESSION['id'];
 $fila = $usuario->getUsuarioById();
 
+if(isset($dict['lang'])){
+	$lang=$dict['lang'];
+	$_SESSION['lang']=$lang;
+}else if (isset($_SESSION['lang'])){
+	$lang=$_SESSION['lang'];
+}else{
+	$lang='es';
+}
+
 ?>
 <script>
 	$(document).ready(function() {
