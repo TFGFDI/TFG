@@ -429,7 +429,7 @@ if($op=="login"){
 	$noticia->estableceCampos($dict);//Obtenemos el usuario con el id que nos viene del objeto
 	
 	$noticia->editar();
-//	header("Location: admin/index.php");
+	header("Location: admin/editarNoticia.php?id=".$dict['id']."&guardar=ok");
 
 }else if($op=="editarInformacion"){
 	$informacion= new clsInformacion();

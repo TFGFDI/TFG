@@ -56,6 +56,11 @@ $not = $noticia->getNoticiaById();
 </script>
 
 <div >
+	
+	<?php if(isset($dict['guardar'])){?>
+		<span>GUARDADO CORRECTO</span>
+	
+	<?php }?>
 	<form name="formulario" id="formulario" method="post" action="../do.php" enctype="multipart/form-data">
 		<input type="hidden" name="op" value="editarNoticia"> <!-- el campo OP indica que opcion del controlador se ejecuta-->
 		<input type="hidden" name="id" value="<?php echo $dict['id']; ?>"> <!-- idNoticia -->
