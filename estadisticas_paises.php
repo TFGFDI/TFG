@@ -112,7 +112,7 @@ $(function () {
     });
 });
 </script>
-<div style="float:right;margin:-5px 40px -16px 0;">
+<div style="float:right;margin:-5px 40px -6px 0;">
 	<form name="exportar" method="post" action="do.php">
 		<input type="hidden" name="op" value="exportar_paises">
 		<input type="submit" value="Exportar">

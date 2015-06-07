@@ -77,7 +77,7 @@ $(function () {
     });
 });
 </script>
-<div style="float:right;">
+<div style="float:right;margin-bottom:10px;">
 	<form name="exportar" method="post" action="do.php">
 		<input type="hidden" name="op" value="exportar_notas">
 		<input type="hidden" name="notas" value="<?php echo $notas?>">

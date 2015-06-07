@@ -60,7 +60,7 @@ function countdown(id){
         diferencia=diferencia-(60*minutos);
         segundos=Math.floor(diferencia);
 
-        document.getElementById(id).innerHTML='Queda ' + horas + ' Horas, ' + minutos + ' Minutos, ' + segundos + ' Segundos';
+        document.getElementById(id).innerHTML='Quedan ' + horas + ' Horas, ' + minutos + ' Minutos, ' + segundos + ' Segundos';
 
         if ( horas>0 || minutos>0 || segundos>0){
             setTimeout("countdown(\"" + id + "\")",1000);
@@ -79,13 +79,15 @@ function countdown(id){
 	<div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 		<?php require_once("menu_alumno.php"); ?>
 		
-	
+		<div class="datos_examen">
 		
 		<?php echo $util->trad("duracion_examen",$lang);?>: <?php echo $tiempo?> min
 		<br>
 		<?php echo $util->trad("inicio_examen",$lang);?>: <?php echo $_SESSION['inicio_examen']?>
 		<br>
 		<div id="contador"></div>
+		</div>
+		
 		<form name="formulario" method="post" action="do.php">
 		<input type="hidden" name="op" value="acabar_examen">
 		<?php

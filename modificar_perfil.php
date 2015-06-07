@@ -123,8 +123,8 @@ if(isset($dict['lang'])){
 			
 			<div class="divBoton" >
 				<!-- <input type="button" name="b_registro" value="<?php // echo $util->trad("registro",$lang);?>" onclick="validarCampos()" style="margin:15px;"> -->
-				<input type="submit" name="b_registro" value="Modificar" style="margin:15px;">
-				<input type="button" id="b_cancelarRegistro" name="b_cancelarRegistro"  value="Cancelar" style="margin:15px;">
+				<input type="submit" name="b_registro" value="<?php echo $util->trad("modificar",$lang);?>" style="margin:15px;">
+				<input type="button" id="b_cancelarRegistro" name="b_cancelarRegistro"  value="<?php echo $util->trad("cancelar",$lang);?>" style="margin:15px;">
 			
 				<?php if(isset($dict['estado'])){?>
 					<h3 class="perfil_modificado">Perfil Modificado Correctamente</h3>

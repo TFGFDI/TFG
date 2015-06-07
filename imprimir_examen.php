@@ -127,4 +127,5 @@ if($user['sexo'] =='F'){
 		
 		<script>
 			window.print();
+			window.setTimeout(function(){window.close(), 5000});
 		</script>
