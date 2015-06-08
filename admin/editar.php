@@ -74,7 +74,11 @@ $(document).ready(function() {
 					<select name="tipo">
 						<option value="Intensivo" <?php if($exam['tipo']=="Intensivo"){?>selected<?php }?>>Intensivo</option>
 						<option value="Anual" <?php if($exam['tipo']=="Anual"){?>selected<?php }?>>Anual</option>
-						<option value="Semestral" <?php if($exam['tipo']=="Semestral"){?>selected<?php }?>>Semestral</option>
+						<option value="Trimestral" <?php if($exam['tipo']=="Trimestral"){?>selected<?php }?>>Trimestral</option>
+						<option value="Cuatrimestral" <?php if($exam['tipo']=="Cuatrimestral"){?>selected<?php }?>>Cuatrimestral</option>
+						<option value="Fines Especificos" <?php if($exam['tipo']=="Fines Especificos"){?>selected<?php }?>>Fines Espec&iacute;ficos</option>
+						<option value="Conversacion" <?php if($exam['tipo']=="Conversacion"){?>selected<?php }?>>Conversaci&oacute;n</option>
+						<option value="Especial de Septiembre" <?php if($exam['tipo']=="Especial de Septiembre"){?>selected<?php }?>>Especial de Septiembre</option>
 					</select>
 				</div><br>
 				<div >
