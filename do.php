@@ -100,7 +100,7 @@ if($op=="login"){
 	$mensaje= $usuario->nombre." ".$usuario->apellidos." se ha registrado. Proceda a su activaci?n si es correcto";
 	mail($para, $titulo, $mensaje);
 	
-//	header("Location: login.php?registro=ok");
+	header("Location: login.php?registro=ok");
 }else if($op=="activar"){
 	$usuario= new clsUsuario();
 	foreach($dict as $clave => $valor){

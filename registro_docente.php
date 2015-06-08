@@ -127,6 +127,10 @@ require_once("top.php");
 					<input type="text" name="telefono" id="telefono" value=""  class="input_tamanhoMediano" tabindex="5"/>
 				</div>
 				<div class="bloque_campoForumulario">
+					<label for="direccion"><?php echo $util->trad("direccion",$lang);?></label>
+					<input type="text" name="direccion" id="direccion" value=""  class="input_tamanhoPequenho" tabindex="6"/>
+				</div>
+				<div class="bloque_campoForumulario">
 					<label for="cp"><?php echo $util->trad("cp",$lang);?></label>
 					<input type="text" name="cp" id="cp" value=""  class="input_tamanhoPequenho" tabindex="6"/>
 				</div>
