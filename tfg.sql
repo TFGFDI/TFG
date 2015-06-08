@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2015 a las 18:38:56
+-- Tiempo de generación: 08-06-2015 a las 11:55:57
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `examenes_realizados` (
   `expirado` int(1) NOT NULL,
   `comentarios` text COLLATE utf8_spanish_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=19 ;
 
 --
 -- Volcado de datos para la tabla `examenes_realizados`
@@ -93,7 +93,8 @@ INSERT INTO `examenes_realizados` (`id`, `id_examen`, `id_usuario`, `tiempo_ini`
 (11, 22, 2, '2015-05-18 12:29:57', '0000-00-00 00:00:00', 0, 0, 0, 'C3PO', 1, 0, ''),
 (12, 22, 11, '2015-05-28 10:43:32', '0000-00-00 00:00:00', 0, 0, 0, '', 0, 0, ''),
 (13, 26, 11, '2015-05-28 11:10:59', '2015-05-28 11:22:48', 13, 68.4211, 7, 'B2', 1, 0, ''),
-(17, 26, 2, '2015-06-03 17:57:12', '2015-06-03 18:00:05', 10, 52.6316, 8, 'C2', 1, 0, '');
+(17, 26, 2, '2015-06-03 17:57:12', '2015-06-03 18:00:05', 10, 52.6316, 8, 'C2', 1, 0, ''),
+(18, 26, 3, '2015-06-03 21:08:27', '0000-00-00 00:00:00', 0, 0, 0, '', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -564,7 +565,7 @@ CREATE TABLE IF NOT EXISTS `traducciones` (
   `valor` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
   `lang` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=64 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=84 ;
 
 --
 -- Volcado de datos para la tabla `traducciones`
@@ -627,7 +628,27 @@ INSERT INTO `traducciones` (`id`, `clave`, `valor`, `lang`) VALUES
 (60, 'inicio', 'Inicio', 'es'),
 (61, 'inicio', 'Home', 'en'),
 (62, 'examen', 'Hacer Ex&aacute;men', 'es'),
-(63, 'examen', 'To test', 'en');
+(63, 'examen', 'To test', 'en'),
+(64, 'examenes', 'Ex&aacute;men', 'es'),
+(65, 'examenes', 'Test', 'en'),
+(66, 'tiempo_transcurrido', 'Tiempo Transcurrido', 'es'),
+(67, 'tiempo_transcurrido', 'Elapsed time', 'en'),
+(68, 'nota_test', 'Nota Test', 'es'),
+(69, 'nota_test', 'Test score', 'en'),
+(70, 'nota_desa', 'Nota Desarrollo', 'es'),
+(71, 'nota_desa', 'Score', 'en'),
+(72, 'nivel', 'Nivel', 'es'),
+(73, 'nivel', 'Level', 'en'),
+(74, 'inicio_examen', 'Inicio de Examen', 'es'),
+(75, 'inicio_examen', 'Start test', 'en'),
+(76, 'duracion_examen', 'Tiempo de duraci&oacute;n', 'es'),
+(77, 'duracion_examen', 'Test duration', 'en'),
+(78, 'contrasena_actual', 'Contraseña Actual', 'es'),
+(79, 'contrasena_actual', 'Current password', 'en'),
+(80, 'contrasena_nueva', 'Nueva Contraseña', 'es'),
+(81, 'contrasena_nueva', 'New Password', 'en'),
+(82, 'confirmar_contrasena_actual', 'Confirme Contraseña', 'es'),
+(83, 'confirmar_contrasena_actual', 'Repeat password', 'en');
 
 -- --------------------------------------------------------
 
