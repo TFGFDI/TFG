@@ -613,7 +613,7 @@ else if($op=="nueva_imagen"){
 	foreach($dict as $clave => $valor){
 		$dict[$clave] = $util->desinfectar($valor);
 	}
-	$para="mikgongin@hotmail.com";
+	$para=$usuario->getEmailAdministrador();
 	$titulo="Solicitud de informacion";
 	$mensaje= $dict['email']." le ha mandado el siguiente mensaje:";
 	$mensaje .=	$dict['mensaje'];
