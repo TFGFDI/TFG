@@ -139,7 +139,7 @@ function activarImagen(_id){
 	});
 }
 
-function activarInformacion(_id){ alert("222");
+function activarInformacion(_id){ 
 //	location.href='../do.php?op=activarImagen&id='+_id+"";
 	$.post('../do.php',
 	  { op: 'activarInformacion', id: _id},

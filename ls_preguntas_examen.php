@@ -89,7 +89,7 @@ $(document).ready(function() {
 			<div class="caja_titulo">
 				<p>A&ntilde;adir pregunta</p>
 			</div>
-			<div class="caja_contenido"  >
+			<div class="caja_contenido" style="cursor:pointer" >
 				<ul>
 					<li><a class="nueva_pregunta" onclick="openFancybox()"> Nuevo</a></li>
 				</ul>

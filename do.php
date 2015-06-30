@@ -160,6 +160,12 @@ if($op=="login"){
 	$examen->fecha = date("Y-m-d");
 	$examen->estado = 0;
 	$examen->activo = 0;
+	$examen->tipo = $dict['tipo'];
+	$curso = date("Y");
+	$curso2 = strtotime ( '+1 year' , strtotime ( $curso ) ) ;
+	$curso2 = date ( 'Y' , $curso2 );
+	
+	$examen->curso = $curso."/".$curso2;
 	$examen->tiempo=$dict['tiempo'];
 	$examen->incluir();
 	header("Location: ls_examenes_profesor.php");

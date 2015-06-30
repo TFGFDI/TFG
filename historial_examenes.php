@@ -49,7 +49,7 @@ function visualizar(id){
 	location.href="visualizar_examen.php?id="+id;
 }
 </script>	
-	<h2>Gestion de profesores</h2>
+	<h2>Historial Ex&aacute;menes</h2>
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>

@@ -114,7 +114,7 @@ $(document).ready(function() {
 		
 	});
 </script>	
-	<h2>Gestion de profesores</h2>
+	<h2>Gesti&oacute;n de ex&aacute;menes</h2>
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>
@@ -123,7 +123,7 @@ $(document).ready(function() {
                 	<div class="caja_titulo">
 		                <p>A&ntilde;adir ex&aacute;men</p>
                     </div>
-                    <div class="caja_contenido"  >
+                    <div class="caja_contenido"  style="cursor:pointer" >
 		                <ul>
                             <li><a onclick="openFancybox()"  title="Nuevo">Nuevo </a></li>
                         </ul>

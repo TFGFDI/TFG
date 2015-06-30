@@ -26,7 +26,7 @@ require_once("top.php");
 	});
 </script>
 	
-	<h2>Gestion de profesores</h2>
+	<h2>&Aacute;rea de Profesor</h2>
 	
 <div id="central1" class="bloqueBordesAzul_1 bloqueSombra bloqueRedondo" >
 <?php require_once("menu_profesor.php");  ?>

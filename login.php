@@ -26,7 +26,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
 <link rel="stylesheet" href="css/formulario.css" type="text/css" media="screen"/>
-    <title>TFG</title>  
+    <title>Cursos de espa&ntilde;ol como lengua extranjera </title>  
     <script language="javascript">
 		$(document).ready(function () { 
 			$('nav ul li:first').addClass('activo')
